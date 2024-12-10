@@ -1,0 +1,6 @@
+.vscode/
+
+*.eps
+*.aux
+*.fdb_latexmk
+*.log
