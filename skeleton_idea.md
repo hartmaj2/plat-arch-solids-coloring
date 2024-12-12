@@ -2,6 +2,8 @@
 
 ## Motivation
 
+- why platonic solids motivated Greeks & Kepler
+
 ## Definitions
 
 solids:
