@@ -5,3 +5,4 @@
 - where to research to find what is state of the art?
   - jstor?
   - elsweyr?
+- does he know where to get the book: Coloring Problems so I can take it home also?
