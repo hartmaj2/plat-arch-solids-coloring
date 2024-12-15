@@ -1,0 +1,1 @@
+[mathematics in crystallography](https://www.jstor.org/stable/30214185)
