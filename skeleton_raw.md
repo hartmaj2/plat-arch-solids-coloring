@@ -29,13 +29,35 @@ colorings:
 - archimedean graphs [link](https://en.wikipedia.org/wiki/Archimedean_graph)
 - show proof why there is no more than 5
 
-## What is known so far
+## Colorability of the polyhedra
 
-chromatic numbers of:
-  - platonic solids
-    - tetrahedron
-    - cube
-    - octahedron
-    - dodecahedron
-    - 
-  - archimedean solids
+- link containing chromatic numbers for vertex/edge colorings 
+  - [link](https://en.wikipedia.org/wiki/List_of_graphs_by_edges_and_vertices)
+
+| Platonic Solid | X(G) |
+| -------------- | ---- |
+| Tetrahedron    | 4    |
+| Cube           | 2    |
+| Octahedron     | 3    |
+| Dodecahedron   | 3    |
+| Icosahedron    | 4    |
+
+
+
+| Archimedean Solid           | X(G)  |
+| --------------------------- | ----- |
+| Truncated Tetrahedron       | 3     |
+| Cuboctahedron               | ? (3) |
+| Truncated Cube              | 3     |
+| Truncated Octahedron        | 2     |
+| Rhombicuboctahedron         | ? (3) |
+| Truncated Cuboctahedron     | 2     |
+| Snub Cube                   | 3     |
+| Icosidodecahedron           | ? (3) |
+| Truncated Dodecahedron      | 3     |
+| Truncated Icosahedron       | ? (3) |
+| Rhombicosidodecahedron      | ? (3) |
+| Truncated Icosidodecahedron | 2     |
+| Snub Dodecahedron           | ? (4) |
+
+(? is where GPT was wrong)
