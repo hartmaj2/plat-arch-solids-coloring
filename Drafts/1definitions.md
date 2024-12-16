@@ -40,12 +40,16 @@
 ### Archimedean solid 
 
 - constructed from archimedean solids by operations: (TODO: how the operations translate to the graphs)
-  1. **truncation** [link](https://en.wikipedia.org/wiki/Truncation_(geometry))
+  - **truncation** [link](https://en.wikipedia.org/wiki/Truncation_(geometry))
     - cut off each vertex while:
       - creating new faces which are all regular polygons
       - duplicating amount of vertices of the original faces
-  2. **rectification** (truncation in the limiting case i.e. maximal possible) [link](https://en.wikipedia.org/wiki/Rectification_(geometry))
+  - **rectification** (truncation in the limiting case i.e. maximal possible) [link](https://en.wikipedia.org/wiki/Rectification_(geometry))
     - cut off each vertex while:
       - creating new faces which are all regular polygons
       - keeping the amount of vertices of the original faces the same as before (new vertices are midpoints of edges of old faces)
-  3. **expansion** [link](https://en.wikipedia.org/wiki/Expansion_(geometry))
+  - **expansion** [link](https://en.wikipedia.org/wiki/Expansion_(geometry))
+    - a.k.a. cantellation
+  - **snub** [link](https://en.wikipedia.org/wiki/Snub_(geometry))
+    - expand and cut the squares made by the expansion into two triangles
+    - then twist original faces in a chosen direction
