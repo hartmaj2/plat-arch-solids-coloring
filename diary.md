@@ -19,3 +19,16 @@
 - found out how are archimedean solids defined
   - based on operation done on platonic solids
 - edited wikipedia page [link](https://en.wikipedia.org/wiki/Expansion_(geometry))
+
+- emailed C++ tutor about graph editor program
+
+- written first draft of the Introduction chapter of the thesis
+
+## 2024_12_16
+
+- drawn pictures of how the operation on Platonic solids behave
+  - noted how these operations change the vertex configuration
+
+## 2024_12_17
+
+- 
