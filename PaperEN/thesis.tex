@@ -31,6 +31,7 @@
 %% Ostatní balíčky
 \usepackage{graphicx}
 \usepackage{amsthm}
+\usepackage{amssymb}
 
 %% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
 %% ale hlavně ho používáme k uložení metadat do PDF (včetně obsahu).
@@ -63,6 +64,8 @@
 \chapter*{#1}
 \addcontentsline{toc}{chapter}{#1}
 }
+
+\newtheorem*{define}{Definition}
 
 \begin{document}
 
@@ -238,7 +241,7 @@ Keywords:
 \include{chap2}
 
 % Ukázka použití některých konstrukcí LateXu (odkomentujte, chcete-li)
-% \include{example}
+\include{example}
 
 \include{epilog}
 
