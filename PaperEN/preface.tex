@@ -9,17 +9,50 @@ This brings is to the topic of this thesis, which will concern itself with vario
 
 \section{Platonic solids}
 
-Let us first define what objects we will be coloring. Luckily, we are going to be working only with \emph{convex} polyhedra, which are easier to define than general polyhedra. In addition, when we only restrict ourselves to 3-dimensions, these objects have a nice property proved by Steinitz, that is, they exactly correspond to 3-vertex-connected planar graphs.
-
-Moreover, the solids we are considering are also regular or semi-regular.
+Let us first define what objects we will be coloring. We are going to be working only with \emph{convex} polyhedra, which are easier to define than general polyhedra. Let us define the notion of convexity of a set.
 
 \begin{define}
-For $A\in\mathbb{R}^{n \times m}$, $b\in\mathbb{R}^n$ {\sl convex polyherdron} is the set:
-\[
-\{ x \in \mathbb{R}^m | Ax \leq b\}
-\]
+Set $S\subseteq\mathbb{R}^{n}$ is {\sl convex} if for any two points $x,y\in S$ the line segment between these two points is completely contained in the set $S$.
+\end{define}
+
+Since the intersection of two convex sets is also a convex set, we can come up with the notion of \emph{convex hull} of finite set of points which in turn allows us to formulate a nice definition of convex polyhedra.
+
+\begin{define}
+For a finite set of points $X$, we call $T$ its {\sl convex hull} if $T$ is the intersection of all convex sets containing all points of $X$.
+\end{define}
+
+Now we are ready to introduce the notions of \emph{convex polygon} and \emph{convex polyhedron}.
+
+\begin{define}
+A {\sl convex polygon} is a convex hull of any finite set of points $X \subset \mathbb{R}^3$ all lying on a single plane but not on a single line.
 \end{define}
 
 \begin{define}
-A~{\sl Platonic solid} is a connected graph with no cycles.
+A {\sl convex polyhedron} is a convex hull of any finite set of points $X \subset \mathbb{R}^3$ that don't lie in a single plane.
 \end{define}
+
+\begin{define}
+A convex polygon $F$ is a {\sl facet} of a convex polyhedron $P$ if there exists some plane $A$ such that $F=A\cap P$ and $F$ doesn't contain any interior points of $P$.
+\end{define}
+
+Having introduced the concept of a facet, we can finally define regular. Combined with the property of convexity, we will get exactly the Platonic solids.
+
+\begin{define}
+A polyhedron $P$ is {\sl regular} if all its facets are congruent to the same regular polygon i.e. a polygon with all sides of same length.
+\end{define}
+
+\begin{define}
+A~{\sl Platonic solid} is a regular convex polyhedron.
+\end{define}
+
+\section{Archimedean solids}
+
+All Archimedean solids can now be obtained by performing one of the following non disjunct operations on Platonic solids:
+
+\begin{description}
+    \item[Truncation] Removes corners of the polyhedron by making a cut perpendicular to a line connecting the vertex of the corresponding corner with the centroid of the polyhedron.
+    \item[Rectification] Special case of truncation where the the truncating cuts are done in such way, that they go through midpoints of the edges connecting the vertices. 
+    \item[Expansion] All the facets are pulled out away from the centroid of the polyhedron by the same distance without rescaling. The empty spaces are then filled with regular polygons in the following way: Edges that used to be identical in the original polyhedron are connected by adding a new a square. All the vertices that corresponded to a single vertex $v$ in the original polyhedron are connected by adding a $d$-gon where $d=deg(v)$.   
+    \item[Snub] Is an application of expansion followed by splitting each square that was added to fill in the missing space in halves in such a way, that we can twist the resulting triangles around the polygon that was surrounded by the additional squares that we split. 
+\end{description}
+
