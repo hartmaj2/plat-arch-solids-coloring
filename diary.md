@@ -29,6 +29,7 @@
 - drawn pictures of how the operation on Platonic solids behave
   - noted how these operations change the vertex configuration
 
-## 2024_12_17
+## 2024_12_22
 
-- 
+- fix errors in overleaf
+- begin working on Sage
