@@ -45,7 +45,7 @@ colorings:
 
 
 
-| Archimedean Solid           | X(G) | X(G) |
+| Archimedean Solid           | X(G) | X'(G) |
 | --------------------------- | ---- | ---- |
 | Truncated Tetrahedron       | 3    | 3    |
 | Cuboctahedron               | 3    | 4    |
