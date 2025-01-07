@@ -14,6 +14,7 @@
 
 [on_archimedean_solids](https://www.jstor.org/stable/27961672)
 
-### Steinitz theorem
+### Steinitz theorem 
 
+- connects 3d polyhedra with planar graphs
 [steinitz_theorem](https://matthewkendall.github.io/assets/steinitz.pdf)
