@@ -7,6 +7,14 @@ Since both of these classes fall into the category of convex polyhedra, we can u
 
 This brings is to the topic of this thesis, which will concern itself with various colorings of Platonic and Archimedean graphs. First we will provide an overview of known facts about their chromatic numbers for traditional colorings, (e.g. vertex coloring, edge coloring) which have been already been studied and discovered. Later, we will focus on more unconventional types of colorings, where still some interesting revelations can be made.
 
+\newenvironment{redtext}
+  {\color{red}} % begin environment action
+  {} % end environment action
+
+\begin{redtext}
+    
+
+
 \section{Platonic solids}
 
 Let us first define what objects we will be coloring. We are going to be working only with \emph{convex} polyhedra, which are easier to define than general polyhedra. Let us define the notion of convexity of a set.
@@ -53,6 +61,9 @@ All Archimedean solids can now be obtained by performing one of the following no
     \item[Truncation] Removes corners of the polyhedron by making a cut perpendicular to a line connecting the vertex of the corresponding corner with the centroid of the polyhedron.
     \item[Rectification] Special case of truncation where the the truncating cuts are done in such way, that they go through midpoints of the edges connecting the vertices. 
     \item[Expansion] All the facets are pulled out away from the centroid of the polyhedron by the same distance without rescaling. The empty spaces are then filled with regular polygons in the following way: Edges that used to be identical in the original polyhedron are connected by adding a new a square. All the vertices that corresponded to a single vertex $v$ in the original polyhedron are connected by adding a $d$-gon where $d=deg(v)$.   
-    \item[Snub] Is an application of expansion followed by splitting each square that was added to fill in the missing space in halves in such a way, that we can twist the resulting triangles around the polygon that was surrounded by the additional squares that we split. 
+    \item[Snub] Is an application of expansion followed by splitting each new square in half in such a way, that we can twist the facets of the original Platonic solid.
+
 \end{description}
+
+\end{redtext}
 
