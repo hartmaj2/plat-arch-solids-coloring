@@ -7,55 +7,13 @@ Since both of these classes fall into the category of convex polyhedra, we can u
 
 This brings is to the topic of this thesis, which will concern itself with various colorings of Platonic and Archimedean graphs. First we will provide an overview of known facts about their chromatic numbers for traditional colorings, (e.g. vertex coloring, edge coloring) which have been already been studied and discovered. Later, we will focus on more unconventional types of colorings, where still some interesting revelations can be made.
 
-\newenvironment{redtext}
-  {\color{red}} % begin environment action
-  {} % end environment action
+\section{Platonic and Archimedean solids}
 
-\begin{redtext}
-    
+Platonic solids are regular \textbf{convex} polyhedra. Regular polyhedron is a polyhedron whose all faces are congruent to a single regular polygon i.e. a polygon with all sides of equal length. There is exaclty five Platonic solids: tetrahedron, cube, octahedron, dodecahedron and icosahedron.
 
+Note that convexity is an important property for us, since it ensures, that we can always obtain a 3-vertex connected planar graph. This fact is also known as Steinitz’ theorem for polyhedra \cite{kendall24}.
 
-\section{Platonic solids}
-
-Let us first define what objects we will be coloring. We are going to be working only with \emph{convex} polyhedra, which are easier to define than general polyhedra. Let us define the notion of convexity of a set.
-
-\begin{define}
-Set $S\subseteq\mathbb{R}^{n}$ is {\sl convex} if for any two points $x,y\in S$ the line segment between these two points is completely contained in the set $S$.
-\end{define}
-
-Since the intersection of two convex sets is also a convex set, we can come up with the notion of \emph{convex hull} of finite set of points which in turn allows us to formulate a nice definition of convex polyhedra.
-
-\begin{define}
-For a finite set of points $X$, we call $T$ its {\sl convex hull} if $T$ is the intersection of all convex sets containing all points of $X$.
-\end{define}
-
-Now we are ready to introduce the notions of \emph{convex polygon} and \emph{convex polyhedron}.
-
-\begin{define}
-A {\sl convex polygon} is a convex hull of any finite set of points $X \subset \mathbb{R}^3$ all lying on a single plane but not on a single line.
-\end{define}
-
-\begin{define}
-A {\sl convex polyhedron} is a convex hull of any finite set of points $X \subset \mathbb{R}^3$ that don't lie in a single plane.
-\end{define}
-
-\begin{define}
-A convex polygon $F$ is a {\sl facet} of a convex polyhedron $P$ if there exists some plane $A$ such that $F=A\cap P$ and $F$ doesn't contain any interior points of $P$.
-\end{define}
-
-Having introduced the concept of a facet, we can finally define regular. Combined with the property of convexity, we will get exactly the Platonic solids.
-
-\begin{define}
-A polyhedron $P$ is {\sl regular} if all its facets are congruent to the same regular polygon i.e. a polygon with all sides of same length.
-\end{define}
-
-\begin{define}
-A~{\sl Platonic solid} is a regular convex polyhedron.
-\end{define}
-
-\section{Archimedean solids}
-
-All Archimedean solids can now be obtained by performing one of the following non disjoint operations on Platonic solids:
+The Archimedean solids can then be obtained by performing one of the following non disjoint operations on Platonic solids:
 
 \begin{description}
     \item[Truncation] Removes corners of the polyhedron by making a cut perpendicular to a line connecting the vertex of the corresponding corner with the centroid of the polyhedron.
@@ -64,6 +22,4 @@ All Archimedean solids can now be obtained by performing one of the following no
     \item[Snub] Is an application of expansion followed by splitting each new square in half in such a way, that we can twist the facets of the original Platonic solid.
 
 \end{description}
-
-\end{redtext}
 
