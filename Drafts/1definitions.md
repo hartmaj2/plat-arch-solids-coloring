@@ -48,8 +48,8 @@
     - cut off each vertex while:
       - creating new faces which are all regular polygons
       - keeping the amount of vertices of the original faces the same as before (new vertices are midpoints of edges of old faces)
-  - **expansion** [link](https://en.wikipedia.org/wiki/Expansion_(geometry))
-    - a.k.a. cantellation
+  - **expansion**  [link](https://en.wikipedia.org/wiki/Expansion_(geometry))
+    - same result as cantellation but different way how imagine the process [link](https://en.wikipedia.org/wiki/Cantellation_(geometry))
   - **snub** [link](https://en.wikipedia.org/wiki/Snub_(geometry))
     - expand and cut the squares made by the expansion into two triangles
     - then twist original faces in a chosen direction
