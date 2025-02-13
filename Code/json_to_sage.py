@@ -28,6 +28,10 @@ TABLE_ROWS_SEPARATOR = "="
 ROOT_FOLDER = "Code"
 INPUT_FOLDER_PATH = ROOT_FOLDER + "/JsonGraphs"
 OUTPUT_DEBUG_FILE_PATH = ROOT_FOLDER + "/sage_graphs.txt"
+
+GRAPH_JSONS_PATH = f"{os.getcwd()}/{INPUT_FOLDER_PATH}"
+GRAPH_JSONS_FOLDERS = os.listdir(GRAPH_JSONS_PATH)
+
 JSON_NAME_PROPERTY_KEY_NAME = "name"
 JSON_EDGES_PROPERTY_KEY_NAME = "edges"
 
@@ -46,7 +50,7 @@ def calculate_chromatic_numbers(solid_edges : list[tuple]) -> tuple[int,int] :
     edge_chrom_num : int = edge_coloring(g,value_only=True)
     return vtx_chrom_num, edge_chrom_num
 
-# 
+# processes all solids and prints output to terminal
 def process_solids(folder_name : str, solid_names : list[str]):
     print(f"{TABLE_COLS_SEPARATOR} {folder_name:^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR} {VTX_CHROM_NUM_HEADER:^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR} {EDG_CHROM_NUM_HEADER:^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR}")
     print(f"{TABLE_COLS_SEPARATOR} {TABLE_ROWS_SEPARATOR:{TABLE_ROWS_SEPARATOR}^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR} {TABLE_ROWS_SEPARATOR:{TABLE_ROWS_SEPARATOR}^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR} {TABLE_ROWS_SEPARATOR:{TABLE_ROWS_SEPARATOR}^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR}")
@@ -56,15 +60,14 @@ def process_solids(folder_name : str, solid_names : list[str]):
         print(f"{TABLE_COLS_SEPARATOR} {solid_name:^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR} {vtx_chrom_num:^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR} {edge_chrom_num:^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR}")
     print()
 
-graph_jsons_path = f"{os.getcwd()}/{INPUT_FOLDER_PATH}"
+# main loop over folders with different solid types (Platonic, Archimedean)
+def main():
+    for folder in GRAPH_JSONS_FOLDERS:
+        solid_names = os.listdir(GRAPH_JSONS_PATH + '/' + folder) # retrieves solid names in current folder
+        process_solids(folder,solid_names)
 
-graph_jsons_folders = os.listdir(graph_jsons_path)
-
-for folder in graph_jsons_folders:
-    solid_names = os.listdir(graph_jsons_path + '/' + folder)
-    process_solids(folder,solid_names)
-
-
+if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
+    main()
 
 # SOLID NAMES
 
