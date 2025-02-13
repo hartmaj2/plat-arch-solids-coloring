@@ -1,4 +1,4 @@
-# What is known
+# What relevant mathematical facts are already knowns
 
 - all convex polyhedra correspond to planar graphs (Kapitoly 6.6) 
 - there is only five platonic solids (Kapitoly 6.6)
