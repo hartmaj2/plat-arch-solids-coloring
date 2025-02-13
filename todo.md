@@ -23,9 +23,13 @@
 
 - [ ] build intuition about why there is only five platonic solids proof
   - then read [this](https://www.jstor.org/stable/27961672?seq=1)
+
 - [ ] create own visualisations of the operations using 3d software (Blender)
   - maybe use [this page](https://drajmarsh.bitbucket.io/poly3d.html)
     - read about conway notation
+
 - [ ] suggest tessera.lis:
   - to offer a cantellating view on expansion operation (the size of the polyhedron will decrease)
   - offer chamfer operation
+
+- [ ] implement web scraping using BeautifulSoap for cleaner code (maybe cleaner?)
