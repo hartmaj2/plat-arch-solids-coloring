@@ -18,3 +18,7 @@
 
 - connects 3d polyhedra with planar graphs
 [steinitz_theorem](https://matthewkendall.github.io/assets/steinitz.pdf)
+
+### Pictures
+
+- truncation [link](https://en.wikipedia.org/wiki/User:Tomruen)
