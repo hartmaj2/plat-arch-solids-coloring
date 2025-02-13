@@ -28,24 +28,32 @@ TABLE_ROWS_SEPARATOR = "="
 ROOT_FOLDER = "Code"
 INPUT_FOLDER_PATH = ROOT_FOLDER + "/JsonGraphs"
 OUTPUT_DEBUG_FILE_PATH = ROOT_FOLDER + "/sage_graphs.txt"
+JSON_NAME_PROPERTY_KEY_NAME = "name"
 JSON_EDGES_PROPERTY_KEY_NAME = "edges"
 
-def get_solid_edges(folder_name: str, solid_filename : str):
+# retrieves data from json files necessary to create sage graphs
+def get_solid_data(folder_name: str, solid_filename : str) -> tuple[str,list]:
     with open(f"{INPUT_FOLDER_PATH}/{folder_name}/{solid_filename}","r") as file:
-        graph_data = json.load(file)
+        graph_data : dict = json.load(file)
         edges = graph_data[JSON_EDGES_PROPERTY_KEY_NAME]
-        return [tuple(edge) for edge in edges]
+        name = graph_data[JSON_NAME_PROPERTY_KEY_NAME]
+        return name,[tuple(edge) for edge in edges] # convert: list of lists -> list of tuples
 
-def print_chromatic_number(folder_name : str, solid_filename : str):
-    g = Graph(get_solid_edges(folder_name,solid_filename))
-    solid_name = solid_filename.split(sep=".")[0]
-    print(f"{TABLE_COLS_SEPARATOR} {solid_name:^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR} {chromatic_number(g):^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR} {edge_coloring(g,value_only=True):^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR}")
+# calls sage code on given data
+def calculate_chromatic_numbers(solid_edges : list[tuple]) -> tuple[int,int] :
+    g = Graph(solid_edges)
+    vtx_chrom_num : int = chromatic_number(g)
+    edge_chrom_num : int = edge_coloring(g,value_only=True)
+    return vtx_chrom_num, edge_chrom_num
 
+# 
 def process_solids(folder_name : str, solid_names : list[str]):
     print(f"{TABLE_COLS_SEPARATOR} {folder_name:^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR} {VTX_CHROM_NUM_HEADER:^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR} {EDG_CHROM_NUM_HEADER:^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR}")
     print(f"{TABLE_COLS_SEPARATOR} {TABLE_ROWS_SEPARATOR:{TABLE_ROWS_SEPARATOR}^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR} {TABLE_ROWS_SEPARATOR:{TABLE_ROWS_SEPARATOR}^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR} {TABLE_ROWS_SEPARATOR:{TABLE_ROWS_SEPARATOR}^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR}")
     for solid_filename in solid_names:
-        print_chromatic_number(folder_name,solid_filename)
+        solid_name, solid_edges = get_solid_data(folder_name,solid_filename)
+        vtx_chrom_num, edge_chrom_num = calculate_chromatic_numbers(solid_edges)
+        print(f"{TABLE_COLS_SEPARATOR} {solid_name:^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR} {vtx_chrom_num:^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR} {edge_chrom_num:^{CHROM_NO_COL_SIZE}} {TABLE_COLS_SEPARATOR}")
     print()
 
 graph_jsons_path = f"{os.getcwd()}/{INPUT_FOLDER_PATH}"
