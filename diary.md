@@ -75,3 +75,18 @@
   - there exists also [chamfering](https://en.wikipedia.org/wiki/Chamfer_(geometry))
     - edge truncation
     - similar to cantellation but after beveling/chamfering the edges, the
+
+
+### 2025_02_14
+
+- found out more about regexp in python
+  - `search` vs `match`
+    - search: matches even if the match is somewhere in between the string
+    - match: matches only if the match is somewhere starting from the beginning of the string
+    - (fullmatch: matches only if entire string is match) 
+  
+- regexp in general
+  - `x{n}` - exactly n occurences of x
+
+- python in general
+  - `r"some_string\n"` interprets the string without considering \ as escape character (r as for raw string)
