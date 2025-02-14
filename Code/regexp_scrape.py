@@ -48,6 +48,8 @@ def scrape_solid_data(solids_search_strings : list[str], solids_dict : dict):
 
 # scrapes the page content string for the data of the given solid
 def extract_chrom_nums_regexp(solid_name : str, page_content : str):
+    # regexp below first matches characters [space,letter,(,),-,digit] 0 to 30 times
+    # then it matches </a></td>, then it skips 6 times <td>something</td> and then it captures two occurences of <td>number<\td>
     pattern = r"[\s\w\(\)\-\d]{0,30}</a></td>(<td>[0-9a-zA-Z\-]*</td>){6}<td>(\d*)</td><td>(\d*)</td>"
     prog = re.compile(solid_name + pattern)
     matches = prog.search(page_content)
