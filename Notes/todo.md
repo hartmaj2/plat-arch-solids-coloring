@@ -18,6 +18,10 @@
 
 - [ ] find nice visualisation for snub operation
 - [ ] write definitions of colorings
+  - [x] vertex coloring
+  - [ ] edge coloring
+  - [ ] total coloring
+- [ ] add examples of colorings on the tetrahedron
 
 ## Side tasks
 

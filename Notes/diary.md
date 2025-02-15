@@ -90,3 +90,26 @@
 
 - python in general
   - `r"some_string\n"` interprets the string without considering \ as escape character (r as for raw string)
+
+### 2025_02_15
+
+- wrote definition of graph and graph coloring in my own words without checking the literature
+
+- included the amsmath package
+- learned how to define a new environment using \newtheorem{name_of_env}{text_at_beginning_of_env}
+
+- read definitions of graphs and coloring
+  - Handbook of Graph Theory - Gross, Yellen, Zhang
+  - Graph Theory - Reinhard Diestel
+
+- read Ipe documentation and learned the basics of working in it
+  - problem: how to draw graphs so that nodes keep attached to the edges
+    - when node is moved, the edge should keep being attached and not bend itself
+
+- tried working with Tikz
+  - programmatic way of defining a graph
+  - it is super precise and the result looks great but has major disadvantage: slow to create the graph
+
+- found out why the draggin did not work in Ipe
+  - edges have to be finished with a right click 
+  - (if there's a left click before the right click, it creates a midpoint of the edge that is anchored to the position where was clicked)
