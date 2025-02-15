@@ -26,14 +26,24 @@
 % \let\openright=\cleardoublepage
 
 %% Použité kódování znaků: obvykle latin2, cp1250 nebo utf8:
-\usepackage[utf8]{inputenc}
+% \usepackage[utf8]{inputenc} % Not necessary since using LuaLaTeX
 
 %% Ostatní balíčky
 \usepackage{graphicx}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{xcolor}
-\usepackage{float}
+
+\usepackage{float} % [H] syntax to stop certain elems from floating
+\usepackage{amsmath} % Definition environment
+
+% \usepackage{tikz} % Draw graphs with automatical positioning
+% \usepackage{pgf}
+% \usetikzlibrary {graphs, graphdrawing} % For drawing graphs in tikz
+% \usetikzlibrary{graphs.standard} % To be able to use the subgraph notation
+
+\newtheorem{definition}{Definition}
+\newtheorem*{todo}{TODO}
 
 %% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
 %% ale hlavně ho používáme k uložení metadat do PDF (včetně obsahu).
@@ -66,8 +76,6 @@
 \chapter*{#1}
 \addcontentsline{toc}{chapter}{#1}
 }
-
-\newtheorem*{define}{Definition}
 
 \begin{document}
 
