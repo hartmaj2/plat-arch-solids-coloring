@@ -113,3 +113,8 @@
 - found out why the draggin did not work in Ipe
   - edges have to be finished with a right click 
   - (if there's a left click before the right click, it creates a midpoint of the edge that is anchored to the position where was clicked)
+
+- organized all notes into a notes folder
+- added a ipe_notes file for notes about working with ipe
+
+- created a figure with example vertex coloring on tetrahedral graph in Ipe
