@@ -10,3 +10,16 @@ solution steps:
 4. create a circle with center at the origin using `circles (by center and radius)`
 5. use both `angular snap` and `snap to boundary` to place the vertices at 120 degree intervals around the circle
 6. hide the angular axis using `axes` button on mac touch toolbar
+
+## General 
+
+- one face should fit roughly 28 pts (~10 mm) on the grid
+
+## Edge coloring
+
+- use pen size 0.6
+
+## Angular snap
+
+- set origin using `org` and then the direction using `dir` on mac toolbar
+  - tip: the direction set by `dir` is kept even if we choose a new point as origin using `org`
