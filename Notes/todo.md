@@ -14,6 +14,11 @@
 - [x] look for picture visualisations of operations on platonic solids 
   - truncation, rectification, expansion, snub
 
+## 2025_02_16
+
+- [x] define other colorings and add examples on cubic graph / or octahedral graph
+- [x] define total coloring and add example
+
 ## Main tasks
 
 - [ ] find nice visualisation for snub operation
