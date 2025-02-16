@@ -8,6 +8,8 @@ Since the main concern of this thesis is coloring of the graphs mentioned in the
     An \textit{undirected graph} $G$ is an ordered pair $G=(V,E)$ where $V$ is a set of vertices of the graph and $E \subseteq \binom{V}{2}$ is the set of its edges.
 \end{definition}
 
+\section{Typical colorings}
+
 \begin{definition}
     A \textit{vertex coloring} of a graph is a function $c: V \rightarrow \mathbb{N}$ s.t. $\forall \{u,v\}\in E : c(u) \neq c(v)$
 \end{definition}
@@ -16,9 +18,9 @@ In other words, coloring is an assignment of colors, represented by natural numb
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.2\textwidth]{../Resources/Figs/tetrahedral_vtx_colr.pdf}
-    \caption{Example of a coloring}
-    \label{fig:tetrahedral_vtx_coloring}
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/octahedral_vtx_colr.pdf}
+    \caption{Vertex coloring of octahedral graph}
+    \label{fig:octahedral_vtx_coloring}
 \end{figure}
 
 There are more types of colorings that can be considered, but for every coloring, we are usually interested in the so called \textit{chromatic number} of the given graph under the given coloring.
@@ -27,10 +29,17 @@ There are more types of colorings that can be considered, but for every coloring
     For a graph $G=(V,E)$ and some coloring $c$, the \textit{chromatic number} $\chi(G)$ is the minimum number $n$, s.t. $G$ can be colored using $n$ colors.
 \end{definition}
 
-\section{Special colorings}
-
 We can also consider colorings of edges.
 
 \begin{definition}
     An \textit{edge coloring} of a graph is a function $c: E \rightarrow \mathbb{N}$ s.t. $\forall e,f \in E : e \cap f \neq \emptyset \implies c(e) \neq c(f)$
 \end{definition}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/cubical_edg_colr.pdf}
+    \caption{Edge coloring of cubical graph}
+    \label{fig:cubical_edge_coloring}
+\end{figure}
+
+\section{Special colorings}
