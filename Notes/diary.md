@@ -118,3 +118,18 @@
 - added a ipe_notes file for notes about working with ipe
 
 - created a figure with example vertex coloring on tetrahedral graph in Ipe
+
+### 2025_02_16
+
+- made octahedral and cubical graphs in Ipe 
+  - octahedral - vertex coloring
+  - cubical - edge coloring
+
+- made exercise from Ipe manual on snapping modes
+
+- generalized the definition of coloring and introduced a family of colorings
+  - this generalized version can be used to derive the concrete colorings from it
+
+- learned that .stl files can be used to represent 3D objects like polyhedra
+  - stl as stereolithography
+  - they can be rendered in browser (wikipedia does that)
