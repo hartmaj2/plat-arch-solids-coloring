@@ -2,19 +2,53 @@
 
 Since the main concern of this thesis is coloring of the graphs mentioned in the preface, it is useful to define all the necessary concepts we will be working with.
 
-\section{Graph theory}
+\section{Basic definitions and assumptions}
+
+Here we state mathematical definitions, that should not be surprising in any way. Also, we state some assumption we will make, which will then hold for the rest of this thesis.
 
 \begin{definition}
-    An \textit{undirected graph} $G$ is an ordered pair $G=(V,E)$ where $V$ is a set of vertices of the graph and $E \subseteq \binom{V}{2}$ is the set of its edges.
+    An \textit{undirected graph} $G$ is an ordered pair $G=(V,E)$ where $V$ is a set of vertices of the graph and $E \subseteq \binom{V}{2}$ is the set of its edges. 
 \end{definition}
 
-\section{Typical colorings}
+\begin{assumption}
+    For any graph $G=(V,E)$ we will assume $V \cap E = \emptyset$ 
+\end{assumption}
 
 \begin{definition}
-    A \textit{vertex coloring} of a graph is a function $c: V \rightarrow \mathbb{N}$ s.t. $\forall \{u,v\}\in E : c(u) \neq c(v)$
+    A \textit{partial function} is a function $f:X \rightarrow Y$ s.t. $\forall x \in X$ we have $f(x) \in Y$ or $f(x)$ is undefined.
 \end{definition}
 
-In other words, coloring is an assignment of colors, represented by natural numbers, to each vertex with the following condition: If two vertices are adjacent, they must be of different color.
+\section{General coloring}
+
+As we will be working with many different colorings, to avoid repetition, we will define the notion of an abstract coloring which all the concrete colorings will share.
+
+\begin{definition}
+    For $k \in \mathbb{N}$ and a graph $G=(V,E)$ \textit{coloring} of $G$ is a partial function $c: V \cup E \rightarrow \{1,\ldots,k\}$ with a coloring rule $R$ that restricts, which elements of the graph cannot share the same color.
+\end{definition}
+
+In other words, coloring is an assignment of numbers to vertices, edges or both s.t. based on the coloring rule, certain vertices or edges cannot share the same color. The coloring rule is usually independent on the choice of graph.
+
+\begin{definition}
+    Let the set of all colorings sharing the same coloring rule $R$ be called a \textit{family of colorings}
+\end{definition}
+
+\begin{definition}
+    For a graph $G=(V,E)$ and a family of colorings $F$, if there exists a coloring $c \in F$ s.t. $c: V \cup E \rightarrow \{1,\ldots,k\}$ for some $k \in \mathbb{N}$ then we say that $G$ is \textit{k-colorable}
+\end{definition}
+
+\begin{definition}
+    For a graph $G=(V,E)$ and a family of colorings $F$, let \textit{chromatic number} $\chi ^F (G)$ be the minimum $k \in \mathbb{N}$ s.t. $G$ is k-colorable.
+\end{definition}
+
+\section{Concrete colorings}
+
+\subsection{Vertex coloring}
+
+\begin{definition}
+    A \textit{vertex coloring} of a graph $G=(V,E)$ is a coloring $c : V \rightarrow \mathbb{N}$ belonging to family of colorings $F_V$ with the following coloring rule: $\forall u,v \in V$ if $\{u,v\} \in E$ then $c(u) \neq c(v)$ 
+\end{definition}
+
+In other words, vertex coloring is an assignment of colors to each vertex s.t. no two vertices connected by an edge share the same color.
 
 \begin{figure}[H]
     \centering
@@ -23,17 +57,15 @@ In other words, coloring is an assignment of colors, represented by natural numb
     \label{fig:octahedral_vtx_coloring}
 \end{figure}
 
-There are more types of colorings that can be considered, but for every coloring, we are usually interested in the so called \textit{chromatic number} of the given graph under the given coloring.
+The graph in figure~\ref{fig:octahedral_vtx_coloring} has vertex chromatic number 3.
+
+\subsection{Edge coloring}
 
 \begin{definition}
-    For a graph $G=(V,E)$ and some coloring $c$, the \textit{chromatic number} $\chi(G)$ is the minimum number $n$, s.t. $G$ can be colored using $n$ colors.
+    An \textit{edge coloring} of a graph $G=(V,E)$ is a coloring $c: E \rightarrow \mathbb{N}$ belonging to family of colorings $F_E$ where the coloring rule is: $\forall e,f \in E$ whenever $e \cap f \neq \emptyset$ then $c(e) \neq c(f)$
 \end{definition}
 
-We can also consider colorings of edges.
-
-\begin{definition}
-    An \textit{edge coloring} of a graph is a function $c: E \rightarrow \mathbb{N}$ s.t. $\forall e,f \in E : e \cap f \neq \emptyset \implies c(e) \neq c(f)$
-\end{definition}
+What the definition above says is, that whenever two edges share an endpoint, they cannot share the same color. 
 
 \begin{figure}[H]
     \centering
@@ -42,4 +74,22 @@ We can also consider colorings of edges.
     \label{fig:cubical_edge_coloring}
 \end{figure}
 
-\section{Special colorings}
+\subsection{Total coloring}
+
+\begin{definition}
+    A \textit{total coloring} of graph $G=(V,E)$ is a coloring $c: V \cup E \rightarrow \mathbb{N}$ from family of colorings $F_T$ sharing both coloring rules of families $F_V$ and $F_E$ and the following additional rule: $\forall v \in V,  \forall e \in E$ if $\{v\} \cap e \neq \emptyset$ then $c(v) \neq c(e)$
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/cubical_tot_colr.pdf}
+    \caption{Total coloring of cubical graph using five colors}
+    \label{fig:cubical_tot_coloring}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/octahedral_tot_colr.pdf}
+    \caption{Total coloring of octahedral graph using five colors}
+    \label{fig:octahedral_tot_coloring}
+\end{figure}
