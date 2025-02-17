@@ -1,8 +1,6 @@
-# Definitions
+# Geometric definitions
 
-## Polyhedra
-
-### Notation
+## Notation
 
 - Schläfli symbol [link](https://en.wikipedia.org/wiki/Schl%C3%A4fli_symbol)
   - !only for regular polyhedra (Platonic)
@@ -12,7 +10,7 @@
   - the dual has Schlafli {q,p}
 - vertex configuration [link](https://en.wikipedia.org/wiki/Vertex_configuration)
 
-### General
+## General
 
 - uniform 
   - all faces regular polygons ( TODO: how does this translate to graphs?)
@@ -27,7 +25,7 @@
     - all faces are congruent to a regular polygon but these polygons can be different
     - EX: archimedean solids, prisms, antiprisms
 
-### Platonic solid
+## Platonic solid
 
 - polyhedron
 - ! convex
@@ -37,7 +35,7 @@
 - vertex sequence
   - enumerates the counts of sides that the polygons around each vertex have
 
-### Archimedean solid 
+## Archimedean solid 
 
 - constructed from archimedean solids by operations: (TODO: how the operations translate to the graphs)
   - **truncation** [link](https://en.wikipedia.org/wiki/Truncation_(geometry))
