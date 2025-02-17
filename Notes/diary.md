@@ -133,3 +133,13 @@
 - learned that .stl files can be used to represent 3D objects like polyhedra
   - stl as stereolithography
   - they can be rendered in browser (wikipedia does that)
+
+### 2025_02_17
+
+- found out how to set table column alignment in markdown
+- found out how to make latex tables
+
+- created module to create latex table from computed chromatic numbers
+- added the latex table to bachelor thesis
+
+- had meeting with my supervisor
