@@ -19,13 +19,20 @@
 - [x] define other colorings and add examples on cubic graph / or octahedral graph
 - [x] define total coloring and add example
 
+### 2025_02_17
+
+- [ ] prepare questions to ask supervisor
+- [ ] sum up what I did since last meeting
+- [ ] put table with vtx and edge chromatic nums to the thesis
+- [ ] write definition of chromatic polynomial
+
 ## Main tasks
 
 - [ ] find nice visualisation for snub operation
 - [ ] write definitions of colorings
   - [x] vertex coloring
-  - [ ] edge coloring
-  - [ ] total coloring
+  - [x] edge coloring
+  - [x] total coloring
 - [ ] add examples of colorings on the tetrahedron
 
 ## Side tasks
