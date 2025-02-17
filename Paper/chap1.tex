@@ -45,7 +45,11 @@ In other words, coloring is an assignment of numbers to vertices, edges or both 
 \subsection{Vertex coloring}
 
 \begin{definition}
-    A \textit{vertex coloring} of a graph $G=(V,E)$ is a coloring $c : V \rightarrow \mathbb{N}$ belonging to family of colorings $F_V$ with the following coloring rule: $\forall u,v \in V$ if $\{u,v\} \in E$ then $c(u) \neq c(v)$ 
+    A \textit{vertex coloring} of a graph $G=(V,E)$ is a coloring $c : V \rightarrow \mathbb{N}$ belonging to family of colorings with the following coloring rule:
+    \begin{equation}
+        \forall u,v \in V, \quad \text{if } \{u,v\} \in E, \text{ then } c(u) \neq c(v). 
+        \tag{$R_V$}
+    \end{equation}
 \end{definition}
 
 In other words, vertex coloring is an assignment of colors to each vertex s.t. no two vertices connected by an edge share the same color.
