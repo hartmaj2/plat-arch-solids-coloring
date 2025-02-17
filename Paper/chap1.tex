@@ -46,10 +46,11 @@ In other words, coloring is an assignment of numbers to vertices, edges or both 
 
 \begin{definition}
     A \textit{vertex coloring} of a graph $G=(V,E)$ is a coloring $c : V \rightarrow \mathbb{N}$ belonging to family of colorings with the following coloring rule:
-    \begin{equation}
+    \begin{equation}\label{eqn:vtx_rule}
         \forall u,v \in V, \quad \text{if } \{u,v\} \in E, \text{ then } c(u) \neq c(v). 
         \tag{$R_V$}
     \end{equation}
+    We will denote this family of colorings by $F_V$.
 \end{definition}
 
 In other words, vertex coloring is an assignment of colors to each vertex s.t. no two vertices connected by an edge share the same color.
@@ -66,7 +67,12 @@ The graph in figure~\ref{fig:octahedral_vtx_coloring} has vertex chromatic numbe
 \subsection{Edge coloring}
 
 \begin{definition}
-    An \textit{edge coloring} of a graph $G=(V,E)$ is a coloring $c: E \rightarrow \mathbb{N}$ belonging to family of colorings $F_E$ where the coloring rule is: $\forall e,f \in E$ whenever $e \cap f \neq \emptyset$ then $c(e) \neq c(f)$
+    An \textit{edge coloring} of a graph $G=(V,E)$ is a coloring $c: E \rightarrow \mathbb{N}$ belonging to family of colorings for which the coloring rule is: 
+    \begin{equation}\label{eqn:edge_rule}
+     \forall e,f \in E, \quad \text{ whenever } e \cap f \neq \emptyset \text{ then } c(e) \neq c(f) \tag{$R_E$}
+    \end{equation}
+    We will denote this family of colorings by $F_E$.
+   
 \end{definition}
 
 What the definition above says is, that whenever two edges share an endpoint, they cannot share the same color. 
@@ -138,7 +144,11 @@ truncated tetrahedron & 3 & 3 \\
 \subsection{Total coloring}
 
 \begin{definition}
-    A \textit{total coloring} of graph $G=(V,E)$ is a coloring $c: V \cup E \rightarrow \mathbb{N}$ from family of colorings $F_T$ sharing both coloring rules of families $F_V$ and $F_E$ and the following additional rule: $\forall v \in V,  \forall e \in E$ if $\{v\} \cap e \neq \emptyset$ then $c(v) \neq c(e)$
+    A \textit{total coloring} of graph $G=(V,E)$ is a coloring $c: V \cup E \rightarrow \mathbb{N}$ from family of colorings sharing both coloring rules \ref{eqn:vtx_rule} and \ref{eqn:edge_rule} and the following additional rule: 
+    \begin{equation}\label{eqn:tot_rule}
+    \forall v \in V,  \forall e \in E, \text{ if } \{v\} \cap e \neq \emptyset \text{ then } c(v) \neq c(e) \tag{$R_T$}
+    \end{equation}
+    We will call this family $F_T$.
 \end{definition}
 
 \begin{figure}[H]
