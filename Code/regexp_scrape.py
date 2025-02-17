@@ -6,27 +6,27 @@ import table_printing
 
 # solids names to search for in the given url
 PLATONIC_SEARCH_STRINGS = [
-    'Tetrahedral',
-    'Cubical',
-    'Octahedral',
-    'Dodecahedral',
-    'Icosahedral'
+    "Tetrahedral",
+    "Cubical",
+    "Octahedral",
+    "Dodecahedral",
+    "Icosahedral"
 ]
 
 ARCHIMEDEAN_SEARCH_STRINGS = [
-    'Truncated tetrahedral',
-    'Cuboctahedral',
-    'Truncated cubical',
-    'Truncated octahedral',
-    'Rhombicuboctahedral',
-    'Truncated cuboctahedral',
-    'Snub cubical',
-    'Icosidodecahedral',
-    'Truncated dodecahedral',
-    'Truncated icosahedral',
-    'Rhombicosidodecahedral',
-    'Truncated icosidodecahedral',
-    'Snub dodecahedral'
+    "Truncated tetrahedral",
+    "Cuboctahedral",
+    "Truncated cubical",
+    "Truncated octahedral",
+    "Rhombicuboctahedral",
+    "Truncated cuboctahedral",
+    "Snub cubical",
+    "Icosidodecahedral",
+    "Truncated dodecahedral",
+    "Truncated icosahedral",
+    "Rhombicosidodecahedral",
+    "Truncated icosidodecahedral",
+    "Snub dodecahedral"
 ]
 
 # url to search
@@ -42,7 +42,7 @@ output_type = output_file
 def scrape_solid_data(solids_search_strings : list[str], solids_dict : dict):
 
     open_url = urllib.request.urlopen("https://en.wikipedia.org/wiki/List_of_graphs_by_edges_and_vertices")
-    content = open_url.read().decode('utf-8').replace("\n","")
+    content = open_url.read().decode("utf-8").replace("\n","")
     for solid in solids_search_strings:
         solids_dict[solid] = extract_chrom_nums_regexp(solid,content)
 
