@@ -29,7 +29,7 @@ JSON_EDGES_PROPERTY_KEY_NAME = "edges"
 # OUTPUT SETTING
 
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/output_sage.txt","w")
+output_file = open(ROOT_FOLDER + "/output_sage.md","w")
 output_type = output_file
 
 # output_type = sys.stdout

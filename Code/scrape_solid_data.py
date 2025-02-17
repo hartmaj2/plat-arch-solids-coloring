@@ -34,7 +34,7 @@ URL_TO_OPEN = "https://en.wikipedia.org/wiki/List_of_graphs_by_edges_and_vertice
 
 ROOT_FOLDER = "Code"
 
-output_file = open(ROOT_FOLDER + "/output_scraped_old.txt","w")
+output_file = open(ROOT_FOLDER + "/output_scraped_old.md","w")
 output_type = output_file
 # output_type = sys.stdout
 
