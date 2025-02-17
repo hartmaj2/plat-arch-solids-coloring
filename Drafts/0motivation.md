@@ -1,6 +1,16 @@
 # Motivation
 
-## Why coloring
+## Applications of the coloring problem
 
-- applications:
-  - time tabling, sequencing and scheduling problems
+TODO:
+
+## Applications of platonic/archimedean solids
+
+TODO:
+
+## Why study colorings of Platonic and Archimedean solids
+
+- highly symmetrical objects
+  - ask about colorings w.r.t. symmetries of the solids
+  - how many symmetric colorings exist?
+  - how many non-symmetric colorings exist?
