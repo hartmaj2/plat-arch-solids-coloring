@@ -12,7 +12,7 @@ from sage.graphs.graph_coloring import chromatic_number, edge_coloring
 import json
 import os
 
-import table_printing
+import md_table_printing as md_table_printing
 
 # INPUT FILE SETTINGS
 
@@ -63,13 +63,13 @@ archimedean = {}
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
 
-    solid_names = os.listdir(GRAPH_JSONS_PATH + '/' + table_printing.PLATONIC_FOLDER_NAME) # retrieves solid names in current folder
-    process_solids(table_printing.PLATONIC_FOLDER_NAME,solid_names,platonic)
-    table_printing.print_solids(platonic,table_printing.PLATONIC_FOLDER_NAME,output_type)
+    solid_names = os.listdir(GRAPH_JSONS_PATH + '/' + md_table_printing.PLATONIC_FOLDER_NAME) # retrieves solid names in current folder
+    process_solids(md_table_printing.PLATONIC_FOLDER_NAME,solid_names,platonic)
+    md_table_printing.print_solids(platonic,md_table_printing.PLATONIC_FOLDER_NAME,output_type)
     
-    solid_names = os.listdir(GRAPH_JSONS_PATH + '/' + table_printing.ARCHIMEDEAN_FOLDER_NAME) # retrieves solid names in current folder
-    process_solids(table_printing.ARCHIMEDEAN_FOLDER_NAME,solid_names,archimedean)
-    table_printing.print_solids(archimedean,table_printing.ARCHIMEDEAN_FOLDER_NAME,output_type)
+    solid_names = os.listdir(GRAPH_JSONS_PATH + '/' + md_table_printing.ARCHIMEDEAN_FOLDER_NAME) # retrieves solid names in current folder
+    process_solids(md_table_printing.ARCHIMEDEAN_FOLDER_NAME,solid_names,archimedean)
+    md_table_printing.print_solids(archimedean,md_table_printing.ARCHIMEDEAN_FOLDER_NAME,output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
