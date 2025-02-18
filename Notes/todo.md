@@ -21,31 +21,24 @@
 
 ### 2025_02_17
 
-- [ ] prepare questions to ask supervisor
-- [ ] sum up what I did since last meeting
-- [ ] put table with vtx and edge chromatic nums to the thesis
-- [ ] write definition of chromatic polynomial
+- [x] prepare questions to ask supervisor
+- [x] sum up what I did since last meeting
+- [x] put table with vtx and edge chromatic nums to the thesis
+
+- [x] add source to figures from Wikipedia
+- [x] fix definition wordings
+  - use inline definition and tag
+- [ ] Share overleaf link with supervisor + github repo link
+- [ ] implement colorings using layers in Ipe
+
 
 ## Main tasks
 
-- [ ] find nice visualisation for snub operation
-- [ ] write definitions of colorings
-  - [x] vertex coloring
-  - [x] edge coloring
-  - [x] total coloring
-- [ ] add examples of colorings on the tetrahedron
+- [ ] write definition of chromatic polynomial
 
 ## Side tasks
 
+- [ ] find nice visualisation for snub operation
+
 - [ ] build intuition about why there is only five platonic solids proof
   - then read [this](https://www.jstor.org/stable/27961672?seq=1)
-
-- [ ] create own visualisations of the operations using 3d software (Blender)
-  - maybe use [this page](https://drajmarsh.bitbucket.io/poly3d.html)
-    - read about conway notation
-
-- [ ] suggest tessera.lis:
-  - to offer a cantellating view on expansion operation (the size of the polyhedron will decrease)
-  - offer chamfer operation
-
-- [ ] implement web scraping using BeautifulSoap for cleaner code (maybe cleaner?)
