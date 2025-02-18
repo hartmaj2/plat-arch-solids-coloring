@@ -15,6 +15,10 @@ solution steps:
 
 - one face should fit roughly 28 pts (~10 mm) on the grid
 
+## Vertex coloring
+
+- use fdisk to have colored vertices with black boundary
+
 ## Edge coloring
 
 - use pen size 0.6
@@ -23,3 +27,9 @@ solution steps:
 
 - set origin using `org` and then the direction using `dir` on mac toolbar
   - tip: the direction set by `dir` is kept even if we choose a new point as origin using `org`
+
+## Layers and views
+
+- layers allow for organization of different parts of the objects on the scene
+- views can use a selection of layers to be displayed in the current view
+- `fn + arrows` to switch between views
