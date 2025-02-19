@@ -143,3 +143,10 @@
 - added the latex table to bachelor thesis
 
 - had meeting with my supervisor
+
+### 2025_02_19
+
+- thought about problems in: https://kam.mff.cuni.cz/~fiala/slides/Polya.pdf up to page 19
+  - resource for this is here: https://www.jstor.org/stable/2688047
+- found this useful resources (similar problem to what I will write about): https://www.jstor.org/stable/10.4169/mathhorizons.21.4.14
+  - this one has nice example of practical usefulness of Polya's theorem: https://www.jstor.org/stable/2690407
