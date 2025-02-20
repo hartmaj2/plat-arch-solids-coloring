@@ -150,3 +150,18 @@
   - resource for this is here: https://www.jstor.org/stable/2688047
 - found this useful resources (similar problem to what I will write about): https://www.jstor.org/stable/10.4169/mathhorizons.21.4.14
   - this one has nice example of practical usefulness of Polya's theorem: https://www.jstor.org/stable/2690407
+
+### 2025_02_20
+
+- defined a `highlight` environment using conditional variable `useHighlights` to highlight new text for the supervisor
+- found out it is effective to click on rendered file in overleaf on the part of the text where I want to focus in my code editor on the corresponding part
+
+- wrote a definition of `k-coloring` and used it in the subsequent definitions
+- wrote a definition of what it means for two colorings to be `different`
+- wrote a definition of `chromatic polynomial` and added example
+
+- added sample code that displays a planar drawing of a graph and saves it to a file
+
+- tried to find out what is the explicit formula for `chromatic polynomial` of octahedron
+  - harder than it seems
+  - found out number of 3 and 4 colorings and tested using SageMath
