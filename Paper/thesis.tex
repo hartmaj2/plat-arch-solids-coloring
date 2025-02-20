@@ -34,19 +34,27 @@
 \usepackage{amssymb}
 \usepackage{xcolor}
 
+% PACKAGES ADDED BY ME
 \usepackage{float} % [H] syntax to stop certain elems from floating
 \usepackage{amsmath} % Definition environment
+
+%% TODO NOTES
 \setlength{\marginparwidth}{2cm} % for todonotes to work correctly
 \usepackage{todonotes}
 
-% \usepackage{tikz} % Draw graphs with automatical positioning
-% \usepackage{pgf}
-% \usetikzlibrary {graphs, graphdrawing} % For drawing graphs in tikz
-% \usetikzlibrary{graphs.standard} % To be able to use the subgraph notation
-% \usegdlibrary{force}
+% MY ENVIRONMENTS
 
 \newtheorem{definition}{Definition}
 \newtheorem{assumption}{Assumption}
+
+% RED ENVIRONMENT
+
+\newboolean{useHighlights}
+\setboolean{useHighlights}{true} % uncomment to toggle highlights
+
+\newenvironment{highlight}{
+\ifthenelse{\boolean{useHighlights}}{\color{red}}{}
+}{}
 
 %% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
 %% ale hlavně ho používáme k uložení metadat do PDF (včetně obsahu).
