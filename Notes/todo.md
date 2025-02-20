@@ -28,17 +28,27 @@
 - [x] add source to figures from Wikipedia
 - [x] fix definition wordings
   - use inline definition and tag
-- [ ] Share overleaf link with supervisor + github repo link
+- [x] Share overleaf link with supervisor + github repo link
 - [ ] implement colorings using layers in Ipe
 
+### 2025_02_20
+
+- [x] write definition of chromatic polynomial
+- [ ] find out how hard it is to find a formula of chromatic polynomial in general
+  - what are some methods to calculate by hand?
+  - read the definition inside "Chromatic Graph Theory" book
+
+- [ ] consider, how the number of colorings of tetrahedral graph changes (the chromatic polynomial) when taking difference only up to symmetries
+- [ ] what does it mean for colorings to be different up to symmetries?
 
 ## Main tasks
 
-- [ ] write definition of chromatic polynomial
+- [ ] what do operations on the Platonic solids do on the graphs?
 
 ## Side tasks
 
+- [ ] read useful resources found on 19.2.2025
+
 - [ ] find nice visualisation for snub operation
 
-- [ ] build intuition about why there is only five platonic solids proof
-  - then read [this](https://www.jstor.org/stable/27961672?seq=1)
+- [ ] animate polyhedra operations in blender
