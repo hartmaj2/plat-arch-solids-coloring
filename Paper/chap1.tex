@@ -29,20 +29,43 @@ As we will be working with many different colorings, to avoid repetition, we wil
 In other words, coloring is an assignment of numbers to vertices, edges or both s.t. based on the coloring rule, certain vertices or edges cannot share the same color. The coloring rule is usually independent on the choice of graph.
 
 \begin{definition}
-    Let the set of all colorings sharing the same coloring rule $R$ be called a \textit{family of colorings}
-\end{definition}
-
-\begin{definition}
-    For a graph $G=(V,E)$ and a family of colorings $F$, if there exists a coloring $c \in F$ s.t. $c: V \cup E \rightarrow \{1,\ldots,k\}$ for some $k \in \mathbb{N}$ then we say that $G$ is \textit{k-colorable}
+    Let the set of all colorings sharing the same coloring rule $R$ be called a \textit{family of colorings}.
 \end{definition}
 
 \begin{highlight}
-A typical question we ask ourselves when considering colorings of graph is: What is the least amount of colors we can use to color the graph, without breaking the coloring rule? This leads to a definition of so called \textit{chromatic number}. 
+\begin{definition}
+    Let $G=(V,E)$, let $F$ be a family of colorings, let $k \in \mathbb{N}$. \\ A function $c \in F$ such that $c: V \cup E \rightarrow \{1,\ldots,k\}$ is called a \textit{k-coloring} of $G$.
+\end{definition}
+
+Note that a $k$-coloring does not necessarily have to use all of the $k$ available colors. Mathematically speaking, a $k$-coloring is not necesserily a surjective function.
+
+\begin{definition}
+    For a graph $G=(V,E)$, family of colorings $F$ and a natural number $k$, if there exists a k-coloring of $G$ then we say that $G$ is \textit{k-colorable}.
+\end{definition}
+
+    A typical question we ask ourselves when considering colorings of graph is: What is the least amount of colors we can use to color the graph, without breaking the coloring rule? This leads to a definition of so called \textit{chromatic number}. 
 \end{highlight}
 
 \begin{definition}
-    For a graph $G=(V,E)$ and a family of colorings $F$, let \textit{chromatic number} $\chi ^F (G)$ be the minimum $k \in \mathbb{N}$ s.t. $G$ is k-colorable.
+    For a graph $G$ and a family of colorings $F$, let \textit{chromatic number} $\chi ^F (G)$ be the minimum $k \in \mathbb{N}$ s.t. $G$ is k-colorable.
 \end{definition}
+
+\begin{highlight}
+    Once we know a graph is k-colorable, there is another interesting property of the graph we can examine. We can ask about how many different colorings with k colors there exists for the given graph. A closely related concept to this question is the \textit{chromatic polynomial}.
+
+    \begin{definition}
+        Given a graph $G=(V,E)$, family of colorings $F$ and k-colorings $c_1,c_2 \in F$: $c_1$ and $c_2$ are different if there exists $x \in V \cup E$ s.t. $c_1(x) \neq c_2(x)$.
+    \end{definition}
+
+    The definition above states, that if two colorings assign some element a different color, then the colorings are considered different. Note that this does not take into account any symmetries of the graph.
+
+    \begin{definition}
+        For graph $G$ and a family of colorings $F$, the \textit{chromatic polynomial} denoted by $P^{F}_G(x)$ is a function s.t. $\forall k \in \mathbb{N} : P^{F}_G(k) = n$, where $n$ is the number of different k-colorings of $G$.
+    \end{definition}
+
+    For example, given the graph of tetrahedron $K_4$, the chromatic polynomial $P^{F_V}_G(x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
+    
+\end{highlight}
 
 \section{Concrete colorings}
 
