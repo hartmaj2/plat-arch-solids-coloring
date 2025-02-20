@@ -14,16 +14,13 @@ from sage.graphs.graph_coloring import chromatic_number, edge_coloring
 import json
 import os
 
-import latex_table_printing as latex_table_printing
+import md_table_printing as md_table_printing
 
 # INPUT FILE SETTINGS
 
 ROOT_FOLDER = "Code"
 INPUT_FOLDER_PATH = ROOT_FOLDER + "/JsonGraphs"
 OUTPUT_DEBUG_FILE_PATH = ROOT_FOLDER + "/sage_graphs.txt"
-
-GRAPH_JSONS_PATH = f"{os.getcwd()}/{INPUT_FOLDER_PATH}"
-GRAPH_JSONS_FOLDERS = os.listdir(GRAPH_JSONS_PATH)
 
 JSON_NAME_PROPERTY_KEY_NAME = "name"
 JSON_EDGES_PROPERTY_KEY_NAME = "edges"
@@ -65,13 +62,13 @@ archimedean = {}
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
 
-    solid_names = os.listdir(GRAPH_JSONS_PATH + '/' + latex_table_printing.PLATONIC_FOLDER_NAME) # retrieves solid names in current folder
-    process_solids(latex_table_printing.PLATONIC_FOLDER_NAME,solid_names,platonic)
-    latex_table_printing.print_solids(platonic,latex_table_printing.PLATONIC_FOLDER_NAME,output_type)
+    solid_names = os.listdir(INPUT_FOLDER_PATH + '/' + md_table_printing.PLATONIC_FOLDER_NAME) # retrieves solid names in current folder
+    process_solids(md_table_printing.PLATONIC_FOLDER_NAME,solid_names,platonic)
+    md_table_printing.print_solids(platonic,md_table_printing.PLATONIC_FOLDER_NAME,output_type)
     
-    solid_names = os.listdir(GRAPH_JSONS_PATH + '/' + latex_table_printing.ARCHIMEDEAN_FOLDER_NAME) # retrieves solid names in current folder
-    process_solids(latex_table_printing.ARCHIMEDEAN_FOLDER_NAME,solid_names,archimedean)
-    latex_table_printing.print_solids(archimedean,latex_table_printing.ARCHIMEDEAN_FOLDER_NAME,output_type)
+    solid_names = os.listdir(INPUT_FOLDER_PATH + '/' + md_table_printing.ARCHIMEDEAN_FOLDER_NAME) # retrieves solid names in current folder
+    process_solids(md_table_printing.ARCHIMEDEAN_FOLDER_NAME,solid_names,archimedean)
+    md_table_printing.print_solids(archimedean,md_table_printing.ARCHIMEDEAN_FOLDER_NAME,output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
