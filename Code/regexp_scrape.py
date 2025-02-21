@@ -1,6 +1,6 @@
 import urllib.request
 import re
-import md_table_printing as md_table_printing
+import md_table_printing as mdp
 
 # This program web scrapes wikipedia web page for chromatic numbers of platonic and archimedean graphs
 
@@ -60,9 +60,9 @@ archimedean = {}
 
 def main():
     scrape_solid_data(PLATONIC_SEARCH_STRINGS,platonic)
-    md_table_printing.print_solids(platonic,md_table_printing.PLATONIC_FOLDER_NAME,output_type)
+    mdp.print_solids(platonic,mdp.PLATONIC_FOLDER_NAME,output_type)
     scrape_solid_data(ARCHIMEDEAN_SEARCH_STRINGS,archimedean)
-    md_table_printing.print_solids(archimedean,md_table_printing.ARCHIMEDEAN_FOLDER_NAME,output_type)
+    mdp.print_solids(archimedean,mdp.ARCHIMEDEAN_FOLDER_NAME,output_type)
 
 if __name__ == "__main__":
     main()
