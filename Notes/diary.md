@@ -165,3 +165,17 @@
 - tried to find out what is the explicit formula for `chromatic polynomial` of octahedron
   - harder than it seems
   - found out number of 3 and 4 colorings and tested using SageMath
+
+### 2025_02_21
+
+- built stronger intuition about why the combinatorial graph theory proof that there are only 5 platonic solids holds
+  - did an overview (big idea) of what facts are used and what are the key observations to make
+
+- found out that Tutte's polynome is a generalization of chromatic polynomial: https://en.wikipedia.org/wiki/Tutte_polynomial#:~:text=analysing%20these%20quantities.-,Chromatic%20polynomial,-%5Bedit%5D
+
+- calculated chromatic polynomial of octahedron by hand to build intuition
+  - graph here: https://www.desmos.com/calculator/r9nqeute7w
+  - the terms in front of K_n polys come from Pascal's triangle
+
+- found it is possible to calculate chrom polys using SageMath
+  - following function: https://github.com/sagemath/sage/blob/develop/src/sage/graphs/chrompoly.pyx
