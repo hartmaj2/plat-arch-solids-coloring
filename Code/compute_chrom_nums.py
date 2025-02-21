@@ -35,23 +35,20 @@ def calculate_chromatic_numbers(solid_edges : list[tuple]) -> tuple[int,int] :
     return vtx_chrom_num, edge_chrom_num
 
 # processes all solids and loads corresponding data to the dict
-def process_solids(solid_edges : dict, solids_dict : dict):
+def get_chrom_nums_dict(solid_edges : dict):
+    solid_computed_data = {}
     for solid_name in solid_edges.keys():
-        solids_dict[solid_name] = calculate_chromatic_numbers(solid_edges[solid_name])
-
-
-# dictionaries to store graph data
-platonic_data = {}
-archimedean_data = {}
+        solid_computed_data[solid_name] = calculate_chromatic_numbers(solid_edges[solid_name])
+    return solid_computed_data
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
     platonic_edges = sdp.get_platonic_edges_dict()
-    process_solids(platonic_edges,platonic_data)
+    platonic_data = get_chrom_nums_dict(platonic_edges)
     mdp.print_solids(platonic_data,sdp.PLATONIC_FOLDER_NAME)
     
     archimedean_edges = sdp.get_archimedean_edges_dict()
-    process_solids(archimedean_edges,archimedean_data)
+    archimedean_data = get_chrom_nums_dict(archimedean_edges)
     mdp.print_solids(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
