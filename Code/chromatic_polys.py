@@ -1,17 +1,11 @@
 #!/usr/local/bin/sage -python
 
-# Checks number of colorings given the k := the amount of colors which have to be used 
-# (no less and no more colors can be used)
-
-# IMPORTANT: the function output is different than the amount of k-colorings by standard definition
-# standard definition consideres also colorings which use less colors (surjectivity not required)
+# Computes chromatic polynomials using SageMath function here: https://github.com/sagemath/sage/blob/develop/src/sage/graphs/chrompoly.pyx
 
 # IMPORTS
 
 from sage.all import Graph
 from sage.all import *
-from sage.graphs.graph_coloring import number_of_n_colorings
-
 
 import md_table_printing as mdp
 import solids_dict_prep as sdp
@@ -26,7 +20,8 @@ ROOT_FOLDER = "Code"
 output_file = open(ROOT_FOLDER + "/output_sage.md","w")
 output_type = output_file
 
-# output_type = sys.stdout
+import sys
+output_type = sys.stdout
 
 
 # calls sage code on given data
@@ -46,11 +41,11 @@ def get_chrom_polys_dict(solid_edges : dict):
 def main():
     platonic_edges = sdp.get_platonic_edges_dict()
     platonic_data = get_chrom_polys_dict(platonic_edges)
-    mdp.print_solid_one_col_data(platonic_data,sdp.PLATONIC_FOLDER_NAME)
+    mdp.print_solid_one_col_data(platonic_data,sdp.PLATONIC_FOLDER_NAME,output_type=output_type)
     
     archimedean_edges = sdp.get_archimedean_edges_dict()
     archimedean_data = get_chrom_polys_dict(archimedean_edges)
-    mdp.print_solid_one_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME)
+    mdp.print_solid_one_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME,output_type=output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
