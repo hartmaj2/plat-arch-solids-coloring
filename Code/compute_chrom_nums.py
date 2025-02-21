@@ -11,19 +11,13 @@
 
 from sage.all import Graph
 from sage.graphs.graph_coloring import chromatic_number, edge_coloring
-import json
-import os
 
-import md_table_printing as md_table_printing
+import md_table_printing as mdp
+import solids_dict_prep as sdp
 
 # INPUT FILE SETTINGS
 
 ROOT_FOLDER = "Code"
-INPUT_FOLDER_PATH = ROOT_FOLDER + "/JsonGraphs"
-OUTPUT_DEBUG_FILE_PATH = ROOT_FOLDER + "/sage_graphs.txt"
-
-JSON_NAME_PROPERTY_KEY_NAME = "name"
-JSON_EDGES_PROPERTY_KEY_NAME = "edges"
 
 # OUTPUT SETTING
 
@@ -33,14 +27,6 @@ output_type = output_file
 
 # output_type = sys.stdout
 
-# retrieves data from json files necessary to create sage graphs
-def get_solid_data(folder_name: str, solid_filename : str) -> tuple[str,list]:
-    with open(f"{INPUT_FOLDER_PATH}/{folder_name}/{solid_filename}","r") as file:
-        graph_data : dict = json.load(file)
-        edges = graph_data[JSON_EDGES_PROPERTY_KEY_NAME]
-        name = graph_data[JSON_NAME_PROPERTY_KEY_NAME]
-        return name,[tuple(edge) for edge in edges] # convert: list of lists -> list of tuples
-
 # calls sage code on given data
 def calculate_chromatic_numbers(solid_edges : list[tuple]) -> tuple[int,int] :
     g = Graph(solid_edges)
@@ -49,26 +35,24 @@ def calculate_chromatic_numbers(solid_edges : list[tuple]) -> tuple[int,int] :
     return vtx_chrom_num, edge_chrom_num
 
 # processes all solids and loads corresponding data to the dict
-def process_solids(folder_name : str, solid_names : list[str], solids_dict : dict):
-    for solid_filename in solid_names:
-        solid_name, solid_edges = get_solid_data(folder_name,solid_filename)
-        solids_dict[solid_name] = calculate_chromatic_numbers(solid_edges)
+def process_solids(solid_edges : dict, solids_dict : dict):
+    for solid_name in solid_edges.keys():
+        solids_dict[solid_name] = calculate_chromatic_numbers(solid_edges[solid_name])
 
 
 # dictionaries to store graph data
-platonic = {}
-archimedean = {}
+platonic_data = {}
+archimedean_data = {}
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
-
-    solid_names = os.listdir(INPUT_FOLDER_PATH + '/' + md_table_printing.PLATONIC_FOLDER_NAME) # retrieves solid names in current folder
-    process_solids(md_table_printing.PLATONIC_FOLDER_NAME,solid_names,platonic)
-    md_table_printing.print_solids(platonic,md_table_printing.PLATONIC_FOLDER_NAME,output_type)
+    platonic_edges = sdp.get_platonic_edges_dict()
+    process_solids(platonic_edges,platonic_data)
+    mdp.print_solids(platonic_data,sdp.PLATONIC_FOLDER_NAME)
     
-    solid_names = os.listdir(INPUT_FOLDER_PATH + '/' + md_table_printing.ARCHIMEDEAN_FOLDER_NAME) # retrieves solid names in current folder
-    process_solids(md_table_printing.ARCHIMEDEAN_FOLDER_NAME,solid_names,archimedean)
-    md_table_printing.print_solids(archimedean,md_table_printing.ARCHIMEDEAN_FOLDER_NAME,output_type)
+    archimedean_edges = sdp.get_archimedean_edges_dict()
+    process_solids(archimedean_edges,archimedean_data)
+    mdp.print_solids(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
