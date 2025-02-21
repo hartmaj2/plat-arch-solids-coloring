@@ -60,9 +60,9 @@ archimedean = {}
 
 def main():
     scrape_solid_data(PLATONIC_SEARCH_STRINGS,platonic)
-    mdp.print_solids(platonic,mdp.PLATONIC_FOLDER_NAME,output_type)
+    mdp.print_solid_chrom_nums(platonic,mdp.PLATONIC_FOLDER_NAME,output_type)
     scrape_solid_data(ARCHIMEDEAN_SEARCH_STRINGS,archimedean)
-    mdp.print_solids(archimedean,mdp.ARCHIMEDEAN_FOLDER_NAME,output_type)
+    mdp.print_solid_chrom_nums(archimedean,mdp.ARCHIMEDEAN_FOLDER_NAME,output_type)
 
 if __name__ == "__main__":
     main()
