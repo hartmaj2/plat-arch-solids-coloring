@@ -11,7 +11,7 @@ Here we state mathematical definitions, that should not be surprising in any way
 \end{definition}
 
 \begin{assumption}
-    For any graph $G=(V,E)$ we will assume $V \cap E = \emptyset$ 
+    For any graph $G=(V,E)$ we will assume $V \cap E = \emptyset$. 
 \end{assumption}
 
 \begin{definition}
@@ -19,12 +19,28 @@ Here we state mathematical definitions, that should not be surprising in any way
 \end{definition}
 
 \section{General coloring}
+\todo[inline]{JF: Co třeba General concept of coloring nebo Common properties of colorings nebo Concept of coloring?
+
+General coloring zní jako byste chtěl studovat to jedno barvení, které se nazývá "obecné barvení"}
 
 As we will be working with many different colorings, to avoid repetition, we will define the notion of an abstract coloring which all the concrete colorings will share.
+
+\todo[inline]{JF: nevím, jestli někdy nebudete chtít barvit i stěny třeba v tzv. perfect coloring.
+Pěkný přehled o barveních je zde: \url{https://fs.unm.edu/IJMC/Graph_Coloring,Types_and_Applications_A_Survey.pdf}
+
+Jinak, co přečtu, tomu zakomentuji {\tt $\{$highlight$\}$} OK?
+}
 
 \begin{definition}
     For $k \in \mathbb{N}$ and a graph $G=(V,E)$ \textit{coloring} of $G$ is a partial function $c: V \cup E \rightarrow \{1,\ldots,k\}$ with a coloring rule $R$ that restricts, which elements of the graph cannot share the same color.
 \end{definition}
+
+\todo[inline]{JF: Zvažte, jestli obecné obarvení neuvést třeba nějak jako:
+
+The concept of coloring is in mathematical sense equivalent to the concept of mapping, when the domain --- the set of colors --- is usually a finite set without any further structure. So the only relevant characteristic is, whether two elements are mapped on the same target, or to phrase less colloquially: colored by the same color.
+
+Hence we may without loss of generality assume that the domain is a set of positive integers, however sometimes we use usual colors like \emph{red}, \emph{blue}, etc, to visualize some particular colorings in more accessible way.
+}
 
 In other words, coloring is an assignment of numbers to vertices, edges or both s.t. based on the coloring rule, certain vertices or edges cannot share the same color. The coloring rule is usually independent on the choice of graph.
 
@@ -32,7 +48,7 @@ In other words, coloring is an assignment of numbers to vertices, edges or both 
     Let the set of all colorings sharing the same coloring rule $R$ be called a \textit{family of colorings}.
 \end{definition}
 
-\begin{highlight}
+%\begin{highlight}
 \begin{definition}
     Let $G=(V,E)$, let $F$ be a family of colorings, let $k \in \mathbb{N}$. \\ A function $c \in F$ such that $c: V \cup E \rightarrow \{1,\ldots,k\}$ is called a \textit{k-coloring} of $G$.
 \end{definition}
@@ -44,13 +60,13 @@ Note that a $k$-coloring does not necessarily have to use all of the $k$ availab
 \end{definition}
 
     A typical question we ask ourselves when considering colorings of graph is: What is the least amount of colors we can use to color the graph, without breaking the coloring rule? This leads to a definition of so called \textit{chromatic number}. 
-\end{highlight}
+%\end{highlight}
 
 \begin{definition}
     For a graph $G$ and a family of colorings $F$, let \textit{chromatic number} $\chi ^F (G)$ be the minimum $k \in \mathbb{N}$ s.t. $G$ is k-colorable.
 \end{definition}
 
-\begin{highlight}
+%\begin{highlight}
     Once we know a graph is k-colorable, there is another interesting property of the graph we can examine. We can ask about how many different colorings with k colors there exists for the given graph. A closely related concept to this question is the \textit{chromatic polynomial}.
 
     \begin{definition}
@@ -65,9 +81,9 @@ Note that a $k$-coloring does not necessarily have to use all of the $k$ availab
 
     For example, given the graph of tetrahedron $K_4$, the chromatic polynomial $P^{F_V}_G(x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
     
-\end{highlight}
+%\end{highlight}
 
-\section{Concrete colorings}
+\section{Specific colorings}
 
 \subsection{Vertex coloring}
 
@@ -113,12 +129,16 @@ What the definition above says is, that whenever two edges share an endpoint, th
 
 \subsection{Computed vertex and edge chromatic numbers}
 
-The vertex and edge chromatic numbers can be computed in little time using \textit{SageMath} software. The following two tables provide overview of vertex chromatic numbers $\chi(G)$ and edge chromatic numbers $\chi^{'}(G)$ for Platonic and Archimedean solids.
+The vertex and edge chromatic numbers can be computed in little time using \textit{SageMath} software. The following two tables provide overview of vertex chromatic numbers $\chi(G)$ and edge chromatic numbers $\chi'(G)$ for Platonic and Archimedean solids.
+
+\begin{highlight}
+The edge chromatic number $\chi'(G)$ is often called the \textit{chromatic index}.
+\end{highlight}
 
 \begin{center}
 \begin{tabular}{|l|c|c|}
 \hline
-Platonic & $\chi(G)$ & $\chi^{'}(G)$ \\
+Platonic & $\chi(G)$ & $\chi'(G)$ \\
 \hline\hline
 cube & 2 & 3 \\
 \hline
@@ -136,7 +156,7 @@ tetrahedron & 4 & 3 \\
 \begin{center}
 \begin{tabular}{|l|c|c|}
 \hline
-Archimedean & $\chi(G)$ & $\chi^{'}(G)$ \\
+Archimedean & $\chi(G)$ & $\chi'(G)$ \\
 \hline\hline
 cuboctahedron & 3 & 4 \\
 \hline
@@ -191,4 +211,6 @@ truncated tetrahedron & 3 & 3 \\
     \caption{Total coloring of octahedral graph using five colors}
     \label{fig:octahedral_tot_coloring}
 \end{figure}
+
+\todo[inline]{Rainbow coloring a magic labeling -  těmto konceptům se věnovat nejspíš nebudeme, ale bylo by dobré je zmínit někde v úvodu jako barvení, kde jsou ještě další podmínky, resp. kdy hraje roli, jakou hodnotu mají použité barvy.}
 
