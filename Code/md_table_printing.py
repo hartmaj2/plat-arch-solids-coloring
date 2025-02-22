@@ -33,7 +33,7 @@ def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid
     print(header_line_string,file=output_type)
     print(header_separator_string,file=output_type)
     for solid_name in sorted(solid_data_dict.keys()):
-        solid_data = solid_data_dict[solid_name]
+        solid_data = str(solid_data_dict[solid_name])
         table_entry_row = f"{TABLE_COLS_SEPARATOR} {solid_name:^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR} {solid_data:^{data_col_size}} {TABLE_COLS_SEPARATOR}"
         print(table_entry_row,file=output_type)
     print(file=output_type)
