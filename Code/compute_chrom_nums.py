@@ -12,7 +12,7 @@
 from sage.all import Graph
 from sage.graphs.graph_coloring import chromatic_number, edge_coloring
 
-import md_table_printing as mdp
+import md_table_printing as printing
 import solids_dict_prep as sdp
 
 # INPUT FILE SETTINGS
@@ -45,11 +45,11 @@ def get_chrom_nums_dict(solid_edges : dict):
 def main():
     platonic_edges = sdp.get_platonic_edges_dict()
     platonic_data = get_chrom_nums_dict(platonic_edges)
-    mdp.print_solid_chrom_nums(platonic_data,sdp.PLATONIC_FOLDER_NAME)
+    printing.print_solid_chrom_nums(platonic_data,sdp.PLATONIC_FOLDER_NAME)
     
     archimedean_edges = sdp.get_archimedean_edges_dict()
     archimedean_data = get_chrom_nums_dict(archimedean_edges)
-    mdp.print_solid_chrom_nums(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME)
+    printing.print_solid_chrom_nums(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
