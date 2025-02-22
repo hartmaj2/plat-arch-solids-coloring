@@ -18,17 +18,12 @@ Here we state mathematical definitions, that should not be surprising in any way
     A \textit{partial function} is a function $f:X \rightarrow Y$ s.t. $\forall x \in X$ we have $f(x) \in Y$ or $f(x)$ is undefined.
 \end{definition}
 
-\section{General coloring}
-\todo[inline]{JF: Co třeba General concept of coloring nebo Common properties of colorings nebo Concept of coloring?
+\section{The general concept of coloring}
 
-General coloring zní jako byste chtěl studovat to jedno barvení, které se nazývá "obecné barvení"}
-
-As we will be working with many different colorings, to avoid repetition, we will define the notion of an abstract coloring which all the concrete colorings will share.
+As we will be working with many different colorings, to avoid repetition, we will define the notion of an abstract coloring which all the particular colorings will share.
 
 \todo[inline]{JF: nevím, jestli někdy nebudete chtít barvit i stěny třeba v tzv. perfect coloring.
-Pěkný přehled o barveních je zde: \url{https://fs.unm.edu/IJMC/Graph_Coloring,Types_and_Applications_A_Survey.pdf}
-
-Jinak, co přečtu, tomu zakomentuji {\tt $\{$highlight$\}$} OK?
+Pěkný přehled o barveních je zde: \url{https://fs.unm.edu/IJMC/Graph_Coloring,Types_and_Applications_A_Survey.pdf} 
 }
 
 \begin{definition}
@@ -66,24 +61,23 @@ Note that a $k$-coloring does not necessarily have to use all of the $k$ availab
     For a graph $G$ and a family of colorings $F$, let \textit{chromatic number} $\chi ^F (G)$ be the minimum $k \in \mathbb{N}$ s.t. $G$ is k-colorable.
 \end{definition}
 
-%\begin{highlight}
-    Once we know a graph is k-colorable, there is another interesting property of the graph we can examine. We can ask about how many different colorings with k colors there exists for the given graph. A closely related concept to this question is the \textit{chromatic polynomial}.
+\begin{highlight}
+Once we know a graph is k-colorable, there is another interesting property of the graph we can examine. We can ask about how many different colorings with k colors there exists for the given graph. A closely related concept to this question is the \textit{chromatic polynomial}. But first, we need to define what it means for to colorings to be different.
+\end{highlight}
 
-    \begin{definition}
-        Given a graph $G=(V,E)$, family of colorings $F$ and k-colorings $c_1,c_2 \in F$: $c_1$ and $c_2$ are different if there exists $x \in V \cup E$ s.t. $c_1(x) \neq c_2(x)$.
-    \end{definition}
+\begin{definition}
+    Given a graph $G=(V,E)$, family of colorings $F$ and k-colorings $c_1,c_2 \in F$: $c_1$ and $c_2$ are different if there exists $x \in V \cup E$ s.t. $c_1(x) \neq c_2(x)$.
+\end{definition}
 
-    The definition above states, that if two colorings assign some element a different color, then the colorings are considered different. Note that this does not take into account any symmetries of the graph.
+The definition above states, that if two colorings assign some element a different color, then the colorings are considered different. Note that this does not take into account any symmetries of the graph.
 
-    \begin{definition}
-        For graph $G$ and a family of colorings $F$, the \textit{chromatic polynomial} denoted by $P^{F}_G(x)$ is a function s.t. $\forall k \in \mathbb{N} : P^{F}_G(k) = n$, where $n$ is the number of different k-colorings of $G$.
-    \end{definition}
+\begin{definition}
+    For graph $G$ and a family of colorings $F$, the \textit{chromatic polynomial} denoted by $P^{F}_G(x)$ is a function s.t. $\forall k \in \mathbb{N} : P^{F}_G(k) = n$, where $n$ is the number of different k-colorings of $G$.
+\end{definition}
 
-    For example, given the graph of tetrahedron $K_4$, the chromatic polynomial $P^{F_V}_G(x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
-    
-%\end{highlight}
+For example, given the graph of tetrahedron $K_4$, the chromatic polynomial $P^{F_V}_G(x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
 
-\section{Specific colorings}
+\section{Particular types of colorings}
 
 \subsection{Vertex coloring}
 
@@ -134,58 +128,67 @@ What the definition above says is, that whenever two edges share an endpoint, th
 The vertex and edge chromatic numbers can be computed in little time using \textit{SageMath} functions \cite{sagemath-chromatic-number} \cite{sagemath-chromatic-index}. The following two tables provide overview of vertex chromatic numbers $\chi(G)$  and edge chromatic numbers $\chi'(G)$ for Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
 \end{highlight}
 
-\begin{center}
-\begin{tabular}{|l|c|c|}
-\hline
-Platonic & $\chi(G)$ & $\chi'(G)$ \\
-\hline\hline
-cube & 2 & 3 \\
-\hline
-dodecahedron & 3 & 3 \\
-\hline
-icosahedron & 4 & 5 \\
-\hline
-octahedron & 3 & 4 \\
-\hline
-tetrahedron & 4 & 3 \\
-\hline
-\end{tabular}
-\end{center}
+\begin{table}[H]
+    \centering
+    \label{tab:platonic-chrom-nums}
+    \begin{tabular}{|l|c|c|}
+    \hline
+    Platonic & $\chi(G)$ & $\chi'(G)$ \\
+    \hline\hline
+    cube & 2 & 3 \\
+    \hline
+    dodecahedron & 3 & 3 \\
+    \hline
+    icosahedron & 4 & 5 \\
+    \hline
+    octahedron & 3 & 4 \\
+    \hline
+    tetrahedron & 4 & 3 \\
+    \hline
+    \end{tabular}
+    \caption{Vertex and edge chromatic numbers of Platonic graphs}
+\end{table}
 
-\begin{center}
-\begin{tabular}{|l|c|c|}
-\hline
-Archimedean & $\chi(G)$ & $\chi'(G)$ \\
-\hline\hline
-cuboctahedron & 3 & 4 \\
-\hline
-icosidodecahedron & 3 & 4 \\
-\hline
-rhombicosidodecahedron & 3 & 4 \\
-\hline
-rhombicuboctahedron & 3 & 4 \\
-\hline
-snub cube & 3 & 5 \\
-\hline
-snub dodecahedron & 4 & 5 \\
-\hline
-truncated cube & 3 & 3 \\
-\hline
-truncated cuboctahedron & 2 & 3 \\
-\hline
-truncated dodecahedron & 3 & 3 \\
-\hline
-truncated icosahedron & 3 & 3 \\
-\hline
-truncated icosidodecahedron & 2 & 3 \\
-\hline
-truncated octahedron & 2 & 3 \\
-\hline
-truncated tetrahedron & 3 & 3 \\
-\hline
-\end{tabular}
-\end{center}
+\begin{table}[H]
+    \centering
+    \label{tab:archimedean-chrom-nums}
+    \begin{tabular}{|l|c|c|}
+    \hline
+    Archimedean & $\chi(G)$ & $\chi'(G)$ \\
+    \hline\hline
+    cuboctahedron & 3 & 4 \\
+    \hline
+    icosidodecahedron & 3 & 4 \\
+    \hline
+    rhombicosidodecahedron & 3 & 4 \\
+    \hline
+    rhombicuboctahedron & 3 & 4 \\
+    \hline
+    snub cube & 3 & 5 \\
+    \hline
+    snub dodecahedron & 4 & 5 \\
+    \hline
+    truncated cube & 3 & 3 \\
+    \hline
+    truncated cuboctahedron & 2 & 3 \\
+    \hline
+    truncated dodecahedron & 3 & 3 \\
+    \hline
+    truncated icosahedron & 3 & 3 \\
+    \hline
+    truncated icosidodecahedron & 2 & 3 \\
+    \hline
+    truncated octahedron & 2 & 3 \\
+    \hline
+    truncated tetrahedron & 3 & 3 \\
+    \hline
+    \end{tabular}
+    \caption{Vertex and edge chromatic numbers of Archimedean graphs}
+\end{table}
 
+\begin{highlight}
+Note that from the tables above we see that indeed all the above graphs have $\chi(G)$ at most 4. This is due to the famous \textit{Four Color Theorem} \cite{appelhaken76} for planar graphs.
+\end{highlight}
 
 \subsection{Total coloring}
 
