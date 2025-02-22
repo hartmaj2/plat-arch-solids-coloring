@@ -7,7 +7,7 @@ TABULAR_BEGIN = r"\begin{tabular}"
 TABULAR_END = r"\end{tabular}"
 
 VTX_CHROM_NUM_HEADER = r"$\chi(G)$"
-EDG_CHROM_NUM_HEADER = r"$\chi^{'}(G)$"
+EDG_CHROM_NUM_HEADER = r"$\chi'(G)$"
 
 TABLE_VERTICAL_LINE_MARKER = '|'
 ALIGNMENT_CHAR_CENTER = 'c'
