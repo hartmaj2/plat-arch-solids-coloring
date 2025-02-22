@@ -192,5 +192,14 @@
 - added note about The Four Color Theorem under the tables with calculated chromatic numbers
 
 - automatized bibliography references using resources.bib file
+  - need to add the following lines:
+    - `\bibliographystyle{plain}`
+    - `\bibliography{Resources/references}`
 
 - computed some tractable chromatic polynomials (prly won't add to the thesis but I can consult this with supervisor)
+
+- automatized list of tables printing 
+  - use `\listoftables` with the `table` environment
+  - each table must have `caption` attribute
+  
+- added bibliography and list of tables to table of contents using `\addcontentsline{toc}{chapter}{Bibliography}`
