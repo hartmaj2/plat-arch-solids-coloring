@@ -179,3 +179,18 @@
 
 - found it is possible to calculate chrom polys using SageMath
   - following function: https://github.com/sagemath/sage/blob/develop/src/sage/graphs/chrompoly.pyx
+
+### 2025_02_22
+
+- added references to SageMath used functions
+
+- fixed wordings based on recommendation of supervisor
+  - "Concrete colorings" -> "The general concept of coloring"
+  - "General coloring" -> "Common properties of colorings"`
+  - fixed latex typing of `\chi'(G)`
+
+- added note about The Four Color Theorem under the tables with calculated chromatic numbers
+
+- automatized bibliography references using resources.bib file
+
+- computed some tractable chromatic polynomials (prly won't add to the thesis but I can consult this with supervisor)
