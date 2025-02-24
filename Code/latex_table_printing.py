@@ -1,11 +1,16 @@
 # IMPORTS 
 
 import sys
+import re
 
 # TABLE VISUALS
 
 NAME_COL_SIZE : int = 30
 CHROM_NO_COL_SIZE : int = 9
+
+TABLE_BEGIN_HERE = r"\begin{table}[H]"
+TABLE_END = r"\end{table}"
+CENTERING = r"\centering"
 
 TABULAR_BEGIN = r"\begin{tabular}"
 TABULAR_END = r"\end{tabular}"
@@ -32,6 +37,8 @@ ARCHIMEDEAN_OUTPUT_NAMES = ["truncated icosidodecahedron","truncated cube","icos
 
 def print_solids(solid_dict : dict, solid_category : str, output_type = sys.stdout):
     tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_CENTER}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_CENTER}{TABLE_VERTICAL_LINE_MARKER}{CURLY_BRACE_RIGHT}"
+    print(TABLE_BEGIN_HERE,file=output_type)
+    print(CENTERING,file=output_type)
     print(tabular_format_string,file=output_type)
     print(LATEX_HORIZONTAL_LINE,file=output_type)
     header_line_string = f"{solid_category} {LATEX_COL_SEPARATOR} {VTX_CHROM_NUM_HEADER} {LATEX_COL_SEPARATOR} {EDG_CHROM_NUM_HEADER} {LATEX_NEWLINE}"
@@ -43,19 +50,30 @@ def print_solids(solid_dict : dict, solid_category : str, output_type = sys.stdo
         print(table_entry_row,file=output_type)
         print(LATEX_HORIZONTAL_LINE,file=output_type)
     print(TABULAR_END,file=output_type)
-
+    print(TABLE_END,file=output_type)
 
 # prints latex table given the dictionary of data for the given solid
-def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid", data_col_name = "data", output_type = sys.stdout):
-    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_CENTER}{TABLE_VERTICAL_LINE_MARKER}{CURLY_BRACE_RIGHT}"
+def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid", data_col_name = "data", data_alignment = ALIGNMENT_CHAR_CENTER, output_type = sys.stdout, transform = lambda x : str(x)):
+    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}{data_alignment}{TABLE_VERTICAL_LINE_MARKER}{CURLY_BRACE_RIGHT}"
+    print(TABLE_BEGIN_HERE,file=output_type)
+    print(CENTERING,file=output_type)
     print(tabular_format_string,file=output_type)
     print(LATEX_HORIZONTAL_LINE,file=output_type)
-    header_line_string = f"{solid_category_name} {LATEX_COL_SEPARATOR} {str(data_col_name)} {LATEX_NEWLINE}"
+    header_line_string = f"{solid_category_name} {LATEX_COL_SEPARATOR} {data_col_name} {LATEX_NEWLINE}"
     print(header_line_string,file=output_type)
     print(LATEX_HORIZONTAL_LINE + LATEX_HORIZONTAL_LINE,file=output_type)
     for solid_name in sorted(solid_data_dict.keys()):
-        solid_data = str(solid_data_dict[solid_name])
+        solid_data = transform(solid_data_dict[solid_name])
         table_entry_row = f"{solid_name} {LATEX_COL_SEPARATOR} {solid_data} {LATEX_NEWLINE}"
         print(table_entry_row,file=output_type)
         print(LATEX_HORIZONTAL_LINE,file=output_type)
     print(TABULAR_END,file=output_type)
+    print(TABLE_END,file=output_type)
+
+def print_solid_one_col_poly(solid_data_dict: dict, solid_category_name = "solid", data_col_name = "data", data_alignment = "p{0.5\\linewidth}",output_type = sys.stdout):
+    print_solid_one_col_data(solid_data_dict,solid_category_name,data_col_name,data_alignment,output_type,poly_to_latex)
+
+# converts polynomial sage object to a string and then replaces the necessary part with proper latex syntax and wraps in equation environment
+def poly_to_latex(polynomial):
+    str_with_wrong_superscripts =  "$" + str(polynomial).replace("*","") + "$"
+    return re.sub(r'\^(\d+)',"^{\\1}",str_with_wrong_superscripts) # replaces x^123 with x^{123} for example

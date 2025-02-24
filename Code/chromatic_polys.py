@@ -16,8 +16,10 @@ ROOT_FOLDER = "Code"
 
 # OUTPUT SETTING
 
+DATA_COLUMN_HEADER = "chromatic polynomial"
+
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/output_sage.md","w")
+output_file = open(ROOT_FOLDER + "/chrom_polys.md","w")
 output_type = output_file
 
 # import sys
@@ -50,11 +52,11 @@ def get_chrom_polys_dict(solid_edges : dict):
 def main():
     platonic_edges = sdp.get_platonic_edges_dict()
     platonic_data = get_chrom_polys_dict(platonic_edges)
-    printing.print_solid_one_col_data(platonic_data,sdp.PLATONIC_FOLDER_NAME,output_type=output_type)
+    printing.print_solid_one_col_poly(platonic_data,sdp.PLATONIC_FOLDER_NAME,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
     
     archimedean_edges = sdp.get_archimedean_edges_dict()
     archimedean_data = get_chrom_polys_dict(archimedean_edges)
-    printing.print_solid_one_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME,output_type=output_type)
+    printing.print_solid_one_col_poly(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
