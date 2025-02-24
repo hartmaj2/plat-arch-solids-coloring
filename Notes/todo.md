@@ -65,6 +65,10 @@
 
 - [ ] fix the general definition of colorings
 
+## 2025_02_24
+
+- [ ] add paragraph about all Platonic and Archimedean solids being in Vizing class one (show degrees of the graphs in the table as well)
+
 ## Main tasks
 
 - [ ] what do operations on the Platonic solids do on the graphs?
@@ -78,3 +82,6 @@
 - [ ] find nice visualisation for snub operation
 
 - [ ] animate polyhedra operations in blender
+
+- [ ] why the construction for Platonic solids below works (why after construction, the graph can't be still in class one?):
+  - "In contrast, he observed that for any maximum degree in the range from two to five, there exist planar graphs of class two. For degree two, any odd cycle is such a graph, and for degree three, four, and five, these graphs can be constructed from platonic solids by replacing a single edge by a path of two adjacent edges."
