@@ -203,3 +203,10 @@
   - each table must have `caption` attribute
   
 - added bibliography and list of tables to table of contents using `\addcontentsline{toc}{chapter}{Bibliography}`
+
+### 3035_02_24
+
+- found out why calculation of chromial of octahedron in terms of complete graphs yields Pascal's triangle
+  - see: [here](../Resources/Handwritten/octahedron_chrom_poly_pascal.pdf)
+
+- 
