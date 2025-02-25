@@ -3,7 +3,6 @@ import solids_dict_prep as sdp
 
 DATA_COLUMN_HEADER = "vtx deg"
 
-
 # since all vertices have same degree, we can wlog count the degree of the first one
 def get_degree_of_first_vtx(solid_data : list[list],solid_name : str):
     deg = 0
@@ -14,11 +13,11 @@ def get_degree_of_first_vtx(solid_data : list[list],solid_name : str):
                 count += 1
         # print(f"degree of {vtx} in {solid_name} has degree {count}")
         if deg != 0 and count != deg:
-            print(f"Vertex {vtx} has different degree than some other vertex in {solid_name}") # DEBUG
+            print(f"Vertex {vtx} has different degree than some other vertex in {solid_name}") # DEBUG: sanity check if all the vertices really have same degree
         deg = count
     return deg
 
-# just count degrees of all the solids
+# count degrees of all the solids
 def get_degree_dict(solid_data_dict : dict):
     solid_to_degree = {}
     for solid in solid_data_dict.keys():
