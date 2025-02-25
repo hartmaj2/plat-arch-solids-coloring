@@ -62,9 +62,7 @@ Note that a $k$-coloring does not necessarily have to use all of the $k$ availab
 \end{definition}
 
 %\todo[inline]{JH: Přidána poslední věta}
-%\begin{highlight}
 Once we know a graph is k-colorable, there is another interesting property of the graph we can examine. We can ask about how many different colorings with k colors there exists for the given graph. A closely related concept to this question is the \textit{chromatic polynomial}. But first, we need to define what it means for to colorings to be different.
-%\end{highlight}
 
 \begin{definition}
     Given a graph $G=(V,E)$, family of colorings $F$ and k-colorings $c_1,c_2 \in F$: $c_1$ and $c_2$ are different if there exists $x \in V \cup E$ s.t. $c_1(x) \neq c_2(x)$.
@@ -187,9 +185,13 @@ The vertex and edge chromatic numbers can be computed in little time using \text
     \caption{Vertex and edge chromatic numbers of Archimedean graphs}
 \end{table}
 
-%\begin{highlight}
 Note, that from the tables above, we see that indeed all the above graphs have $\chi(G)$ at most 4. This is due to the famous \textit{Four Color Theorem} \cite{appelhaken76} for planar graphs.
-%\end{highlight}
+
+\begin{highlight}
+As a consequence of \textit{Vizing's theorem} \cite{misra92}, for every graph $G$ with maximum degree $\Delta(G)$, we have $\Delta(G) \leq \chi'(G) \leq \Delta(G) + 1$. This implies two classes of graphs. Class one are graphs s.t. $\chi'(G) = \Delta(G)$. Class two are then graphs s.t. $\chi'(G) = \Delta(G) + 1$. What class are graphs of Platonic and Archimedean solids?
+
+It turns out, that according to the tables above, all the solids are of class one.
+\end{highlight}
 
 \subsection{Total coloring}
 
