@@ -129,6 +129,8 @@ The vertex and edge chromatic numbers can be computed in little time using \text
 
 \begin{table}[H]
     \centering
+    \caption{Vertex and edge chromatic numbers of Platonic graphs}
+    \vspace{5pt}
     \label{tab:platonic-chrom-nums}
     \begin{tabular}{|l|c|c|}
     \hline
@@ -145,11 +147,12 @@ The vertex and edge chromatic numbers can be computed in little time using \text
     tetrahedron & 4 & 3 \\
     \hline
     \end{tabular}
-    \caption{Vertex and edge chromatic numbers of Platonic graphs}
 \end{table}
 
 \begin{table}[H]
     \centering
+    \caption{Vertex and edge chromatic numbers of Archimedean graphs}
+    \vspace{5pt}
     \label{tab:archimedean-chrom-nums}
     \begin{tabular}{|l|c|c|}
     \hline
@@ -182,15 +185,16 @@ The vertex and edge chromatic numbers can be computed in little time using \text
     truncated tetrahedron & 3 & 3 \\
     \hline
     \end{tabular}
-    \caption{Vertex and edge chromatic numbers of Archimedean graphs}
 \end{table}
 
 Note, that from the tables above, we see that indeed all the above graphs have $\chi(G)$ at most 4. This is due to the famous \textit{Four Color Theorem} \cite{appelhaken76} for planar graphs.
 
 \begin{highlight}
+
 As a consequence of \textit{Vizing's theorem} \cite{misra92}, for every graph $G$ with maximum degree $\Delta(G)$, we have $\Delta(G) \leq \chi'(G) \leq \Delta(G) + 1$. This implies two classes of graphs. Class one are graphs s.t. $\chi'(G) = \Delta(G)$. Class two are then graphs s.t. $\chi'(G) = \Delta(G) + 1$. What class are graphs of Platonic and Archimedean solids?
 
-It turns out, that according to the tables above, all the solids are of class one.
+Let us compare the degrees at each vertex of the solids as shown in tables \ref{tab:platonic-basic-props} and \ref{tab:archimedean-basic-props} with their calculated chromatic indices in the tables above. It turns out, that all the solids are of Vizing class one. Note that this is not the case for all planar graphs. In fact, there exist planar graphs with $\Delta(G)$ up to 5 such that they are class two.
+
 \end{highlight}
 
 \subsection{Total coloring}
