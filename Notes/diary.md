@@ -204,9 +204,12 @@
   
 - added bibliography and list of tables to table of contents using `\addcontentsline{toc}{chapter}{Bibliography}`
 
-### 3035_02_24
+### 2025_02_24
 
 - found out why calculation of chromial of octahedron in terms of complete graphs yields Pascal's triangle
   - see: [here](../Resources/Handwritten/octahedron_chrom_poly_pascal.pdf)
 
-- 
+### 2025_02_25
+
+- finished revising Vizing's proof for chromatic index upper bound
+  - nice video: [here](https://www.youtube.com/watch?v=OZWZpQmGp0g&ab_channel=TomS)
