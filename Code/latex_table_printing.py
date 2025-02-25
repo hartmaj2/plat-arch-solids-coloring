@@ -54,6 +54,7 @@ def print_solids(solid_dict : dict, solid_category : str, output_type = sys.stdo
 
 # prints latex table given the dictionary of data for the given solid
 def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid", data_col_name = "data", data_alignment = ALIGNMENT_CHAR_CENTER, output_type = sys.stdout, transform = lambda x : str(x)):
+    # PRINT HEADER AND ENVIRONMENT THINGIES
     tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}{data_alignment}{TABLE_VERTICAL_LINE_MARKER}{CURLY_BRACE_RIGHT}"
     print(TABLE_BEGIN_HERE,file=output_type)
     print(CENTERING,file=output_type)
@@ -62,9 +63,38 @@ def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid
     header_line_string = f"{solid_category_name} {LATEX_COL_SEPARATOR} {data_col_name} {LATEX_NEWLINE}"
     print(header_line_string,file=output_type)
     print(LATEX_HORIZONTAL_LINE + LATEX_HORIZONTAL_LINE,file=output_type)
+    # END OF HEADER PRINTING
     for solid_name in sorted(solid_data_dict.keys()):
         solid_data = transform(solid_data_dict[solid_name])
         table_entry_row = f"{solid_name} {LATEX_COL_SEPARATOR} {solid_data} {LATEX_NEWLINE}"
+        print(table_entry_row,file=output_type)
+        print(LATEX_HORIZONTAL_LINE,file=output_type)
+    print(TABULAR_END,file=output_type)
+    print(TABLE_END,file=output_type)
+
+# prints md table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
+def print_solid_mult_col_data(solid_data_dict: dict, solid_category_name : str, data_col_headrs : list[str], data_col_size = 9, output_type = sys.stdout):
+    # PRINT HEADER AND ENVIRONMENT THINGIES
+    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}"
+    header_line_string = f"{solid_category_name}"
+    for col_headr in data_col_headrs:
+        tabular_format_string += f"{ALIGNMENT_CHAR_CENTER}{TABLE_VERTICAL_LINE_MARKER}"
+        header_line_string += f" {LATEX_COL_SEPARATOR} {col_headr}"
+    tabular_format_string += f"{CURLY_BRACE_RIGHT}"
+    header_line_string += f" {LATEX_NEWLINE}"
+    print(TABLE_BEGIN_HERE,file=output_type)
+    print(CENTERING,file=output_type)
+    print(tabular_format_string,file=output_type)
+    print(LATEX_HORIZONTAL_LINE,file=output_type)
+    print(header_line_string,file=output_type)
+    print(LATEX_HORIZONTAL_LINE + LATEX_HORIZONTAL_LINE,file=output_type)
+    # END OF HEADER PRINTING
+    for solid_name in sorted(solid_data_dict.keys()):
+        solid_data_cols = solid_data_dict[solid_name]
+        table_entry_row = f"{solid_name}"
+        for solid_data_entry in solid_data_cols:
+            table_entry_row += f" {LATEX_COL_SEPARATOR} {solid_data_entry}"
+        table_entry_row += f" {LATEX_NEWLINE}"
         print(table_entry_row,file=output_type)
         print(LATEX_HORIZONTAL_LINE,file=output_type)
     print(TABULAR_END,file=output_type)
