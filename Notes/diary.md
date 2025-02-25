@@ -219,3 +219,8 @@
   - see proof: [here](../Resources/Handwritten/class_two_from_plat.pdf)
 
 - improved vtx degree counting program by including a sanity check
+
+- improved md and latex printers to be able to print for each solid data with variable amount of columns given the list of names of the columns and corresponding dictionary with the right amount of data entries per each element of the dictionary
+
+- added table with amount of vertices, edges, faces and degree at all vertices into the thesis
+- added a short text about Vizing theorem and Vizing class of plat and arch solids
