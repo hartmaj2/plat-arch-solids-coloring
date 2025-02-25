@@ -39,6 +39,7 @@ def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid
     print(file=output_type)
 
 # prints md table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
+# on input we expect list of header names passed to `data_col_headrs`
 def print_solid_mult_col_data(solid_data_dict: dict, solid_category_name : str, data_col_headrs : list[str], data_col_size = 9, output_type = sys.stdout):
     header_line_string = f"{TABLE_COLS_SEPARATOR} {solid_category_name:^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR}"
     header_separator_string = f"{TABLE_COLS_SEPARATOR} {TABLE_ROWS_SEPARATOR:{TABLE_ROWS_SEPARATOR}^{NAME_COL_SIZE}} {TABLE_COLS_SEPARATOR}"

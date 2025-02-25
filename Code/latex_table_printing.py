@@ -72,7 +72,8 @@ def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid
     print(TABULAR_END,file=output_type)
     print(TABLE_END,file=output_type)
 
-# prints md table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
+# prints latex table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
+# on input we expect list of header names passed to `data_col_headrs`
 def print_solid_mult_col_data(solid_data_dict: dict, solid_category_name : str, data_col_headrs : list[str], data_col_size = 9, output_type = sys.stdout):
     # PRINT HEADER AND ENVIRONMENT THINGIES
     tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}"
