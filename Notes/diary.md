@@ -213,3 +213,9 @@
 
 - finished revising Vizing's proof for chromatic index upper bound
   - nice video: [here](https://www.youtube.com/watch?v=OZWZpQmGp0g&ab_channel=TomS)
+
+- proved why the construction of Vizing class two graphs from Platonic solids works:
+  - see construction: [here](https://en.wikipedia.org/wiki/Vizing%27s_theorem#:~:text=al.%20(1988).-,Planar%20graphs,-%5Bedit%5D)
+  - see proof: [here](../Resources/Handwritten/class_two_from_plat.pdf)
+
+- improved vtx degree counting program by including a sanity check
