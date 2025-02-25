@@ -1,4 +1,4 @@
-import md_table_printing as printing
+import latex_table_printing as printing
 import solids_dict_prep as sdp
 
 DATA_COLUMN_HEADER = "vtx deg"
