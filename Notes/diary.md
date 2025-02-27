@@ -224,3 +224,12 @@
 
 - added table with amount of vertices, edges, faces and degree at all vertices into the thesis
 - added a short text about Vizing theorem and Vizing class of plat and arch solids
+
+### 2025_02_26
+
+- wrote definition of drawing of a graph, plane graph and a planar graph
+
+### 2025_02_27
+
+- edited definitions for colorings to be able to color faces as well
+- added a definition of face coloring including a figure with an example on a octahedral graph
