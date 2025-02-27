@@ -42,80 +42,73 @@ A drawing of a graph might split the plane $\mathbb{R}^2$ into multiple separate
 \end{definition}
 
 \begin{definition}
-    A \textit{plane graph} $G' = (V,E,F)$ is a drawing of a planar graph $G=(V,E)$ into plane $\mathbb{R}^2$ where $F$ is the set of all regions of this drawing. 
+    A \textit{plane graph} $G' = (V,E,F)$ is a drawing of a planar graph $G=(V,E)$ into plane $\mathbb{R}^2$ where $F$ is the set of all regions of this drawing. We will also use the notation $V(G'), E(G'), F(G')$ to refer to sets $V,E,F$ respectively.
 \end{definition}
 
 \end{highlight}
 
 \section{The general concept of coloring}
 
-As we will be working with many different colorings, to avoid repetition, we will define the notion of an abstract coloring which all the particular colorings will share.
-
-\todo[inline]{JF: nevím, jestli někdy nebudete chtít barvit i stěny třeba v tzv. perfect coloring.
-Pěkný přehled o barveních je zde: \url{https://fs.unm.edu/IJMC/Graph_Coloring,Types_and_Applications_A_Survey.pdf} 
-}
+As we will be working with many different colorings, to avoid repetition, we will define the notion of an abstract coloring which all the particular colorings will share. \begin{highlight} Also, since in this thesis we're interested in planar graphs only, we will define this concept for plane graphs instead of defining it for abstract graphs.
 
 \begin{definition}
-    For $k \in \mathbb{N}$ and a graph $G=(V,E)$ \textit{coloring} of $G$ is a partial function $c: V \cup E \rightarrow \{1,\ldots,k\}$ with a coloring rule $R$ that restricts, which elements of the graph cannot share the same color.
+    Let $S$ be a set and $G=(V,E,F)$ a plane graph. We define \textit{coloring} of $G$ as a partial function $c: V \cup E \cup F \rightarrow S$ with a coloring rule $R$ that restricts, which elements of the graph cannot be mapped to same element in S.
 \end{definition}
 
-\todo[inline]{JF: Zvažte, jestli obecné obarvení neuvést třeba nějak jako:
 
-The concept of coloring is in mathematical sense equivalent to the concept of mapping, when the domain --- the set of colors --- is usually a finite set without any further structure. So the only relevant characteristic is, whether two elements are mapped on the same target, or to phrase less colloquially: colored by the same color.
 
-Hence we may without loss of generality assume that the domain is a set of positive integers, however sometimes we use usual colors like \emph{red}, \emph{blue}, etc, to visualize some particular colorings in more accessible way.
-}
-
-In other words, coloring is an assignment of numbers to vertices, edges or both s.t. based on the coloring rule, certain vertices or edges cannot share the same color. The coloring rule is usually independent on the choice of graph.
+In other words, coloring is an assignment of elements in $S$ to vertices, edges or faces of some plane graph. We can think of elements of $S$ as colors but usually, we will use numbers instead. What is especially important to us is, whether any two elements are mapped onto a same target i.e. colored by the same color. The coloring rule then prevents some assignments to be considered valid. This makes the coloring problem non-trivial.
+\end{highlight}
 
 \begin{definition}
     Let the set of all colorings sharing the same coloring rule $R$ be called a \textit{family of colorings}.
 \end{definition}
 
-%\begin{highlight}
+\begin{highlight}
+    
 \begin{definition}
-    Let $G=(V,E)$, let $F$ be a family of colorings, let $k \in \mathbb{N}$. \\ A function $c \in F$ such that $c: V \cup E \rightarrow \{1,\ldots,k\}$ is called a \textit{k-coloring} of $G$.
+    Let $G=(V,E,F)$ a plane graph. Let $C$ be a family of colorings. Let $S$ be a set s.t. $|S| = k$ for some $k \in \mathbb{N}$. A function $c \in C$ such that $c: V \cup E \cup F \rightarrow S$ is called a \textit{k-coloring} of $G$.
 \end{definition}
-
+\end{highlight}
 Note that a $k$-coloring does not necessarily have to use all of the $k$ available colors. Mathematically speaking, a $k$-coloring is not necesserily a surjective function.
 
 \begin{definition}
-    For a graph $G=(V,E)$, family of colorings $F$ and a natural number $k$, if there exists a k-coloring of $G$ then we say that $G$ is \textit{k-colorable}.
+    For a plane graph $G$, family of colorings $C$ and a natural number $k$, if there exists a k-coloring of $G$ then we say that $G$ is \textit{k-colorable}.
 \end{definition}
 
-    A typical question we ask ourselves when considering colorings of graph is: What is the least amount of colors we can use to color the graph, without breaking the coloring rule? This leads to a definition of so called \textit{chromatic number}. 
-%\end{highlight}
+A typical question we ask ourselves when considering colorings of graph is: What is the least amount of colors we can use to color the graph, without breaking the coloring rule? This leads to a definition of so called \textit{chromatic number}. 
+
 
 \begin{definition}
-    For a graph $G$ and a family of colorings $F$, let \textit{chromatic number} $\chi ^F (G)$ be the minimum $k \in \mathbb{N}$ s.t. $G$ is k-colorable.
+    For a plane graph $G$ and a family of colorings $C$, let \textit{chromatic number} $\chi ^C (G)$ be the minimum $k \in \mathbb{N}$ s.t. $G$ is k-colorable.
 \end{definition}
 
 %\todo[inline]{JH: Přidána poslední věta}
 Once we know a graph is k-colorable, there is another interesting property of the graph we can examine. We can ask about how many different colorings with k colors there exists for the given graph. A closely related concept to this question is the \textit{chromatic polynomial}. But first, we need to define what it means for to colorings to be different.
 
 \begin{definition}
-    Given a graph $G=(V,E)$, family of colorings $F$ and k-colorings $c_1,c_2 \in F$: $c_1$ and $c_2$ are different if there exists $x \in V \cup E$ s.t. $c_1(x) \neq c_2(x)$.
+    Given a plane graph $G=(V,E,F)$, family of colorings $C$ and k-colorings $c_1,c_2 \in C$: $c_1$ and $c_2$ are different if there exists $x \in V \cup E \cup F$ s.t. $c_1(x) \neq c_2(x)$.
 \end{definition}
 
 The definition above states, that if two colorings assign some element a different color, then the colorings are considered different. Note that this does not take into account any symmetries of the graph.
 
 \begin{definition}
-    For graph $G$ and a family of colorings $F$, the \textit{chromatic polynomial} denoted by $P^{F}_G(x)$ is a function s.t. $\forall k \in \mathbb{N} : P^{F}_G(k) = n$, where $n$ is the number of different k-colorings of $G$.
+    For graph $G$ and a family of colorings $C$, the \textit{chromatic polynomial} denoted by $P_{C}(G,x)$ is a function s.t. $\forall k \in \mathbb{N} : P_C(G,k) = n$, where $n$ is the number of different k-colorings of $G$.
 \end{definition}
 
-For example, given the graph of tetrahedron $K_4$, the chromatic polynomial $P^{F_V}_G(x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
+For example, given the graph of tetrahedron $K_4$ and $X$ the family of proper vertex colorings. The chromatic polynomial $P_{X}(K_4,x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
 
 \section{Particular types of colorings}
 
 \subsection{Vertex coloring}
 
 \begin{definition}
-    A \textit{vertex coloring} of a graph $G=(V,E)$ is a coloring $c : V \rightarrow \mathbb{N}$ belonging to family of colorings with the following coloring rule:
+    Given set $S$ a \textit{vertex coloring} of a plane graph $G=(V,E,F)$ is any coloring $c : V \rightarrow S$ belonging to family of colorings with the following coloring rule:
     \begin{equation}\label{eqn:vtx_rule}
         \forall u,v \in V, \quad \text{if } \{u,v\} \in E, \text{ then } c(u) \neq c(v). 
         \tag{$R_V$}
     \end{equation}
-    We will denote this family of colorings by $F_V$.
+    We will denote this family of colorings by $X$.
 \end{definition}
 
 In other words, vertex coloring is an assignment of colors to each vertex s.t. no two vertices connected by an edge share the same color.
@@ -132,11 +125,11 @@ The graph in figure~\ref{fig:octahedral_vtx_coloring} has vertex chromatic numbe
 \subsection{Edge coloring}
 
 \begin{definition}
-    An \textit{edge coloring} of a graph $G=(V,E)$ is a coloring $c: E \rightarrow \mathbb{N}$ belonging to family of colorings for which the coloring rule is: 
+    Let $S$ be a set. An \textit{edge coloring} of a plane graph $G=(V,E,F)$ is a coloring $c: E \rightarrow S$ belonging to family of colorings for which the coloring rule is: 
     \begin{equation}\label{eqn:edge_rule}
      \forall e,f \in E, \quad \text{ whenever } e \cap f \neq \emptyset \text{ then } c(e) \neq c(f) \tag{$R_E$}
     \end{equation}
-    We will denote this family of colorings by $F_E$.
+    We will denote this family of colorings by $X'$.
    
 \end{definition}
 
@@ -149,12 +142,66 @@ What the definition above says is, that whenever two edges share an endpoint, th
     \label{fig:cubical_edge_coloring}
 \end{figure}
 
+
+
+\subsection{Total coloring}
+
+\begin{definition}
+    For some set $S$ a \textit{total coloring} of a plane graph $G=(V,E,F)$ is a coloring $c: V \cup E \rightarrow S$ from family of colorings sharing both coloring rules \ref{eqn:vtx_rule} and \ref{eqn:edge_rule} and the following additional rule: 
+    \begin{equation}\label{eqn:tot_rule}
+    \forall v \in V,  \forall e \in E, \text{ if } \{v\} \cap e \neq \emptyset \text{ then } c(v) \neq c(e) \tag{$R_T$}
+    \end{equation}
+    We will call this family $X''$.
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/cubical_tot_colr.pdf}
+    \caption{Total coloring of cubical graph using five colors}
+    \label{fig:cubical_tot_coloring}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/octahedral_tot_colr.pdf}
+    \caption{Total coloring of octahedral graph using five colors}
+    \label{fig:octahedral_tot_coloring}
+\end{figure}
+
+\begin{highlight}
+\subsection{Face coloring}
+
+Since we consider planar graphs, we can also color faces of the corresponding plane graphs.
+
+\begin{definition}
+    For a plane graph $G=(V,E,F)$ and a region $R \in F$ we define $bnd(R)$ as the set of all edges constituting the boundary of $R$.
+\end{definition}
+
+\begin{definition}
+    For a set $S$ and a plane graph $G=(V,E,F)$ we define \textit{face coloring} as any function $c: F \rightarrow S$ s.t. it belongs to a family of colorings with the following coloring rule:
+    \begin{equation}\label{eqn:face_rule}
+     \forall R_1,R_2 \in F, \quad \text{ if } bnd(R_1) \cap bnd(R_2) \neq \emptyset \text{ then } c(R_1) \neq c(R_2) \tag{$R_F$}
+    \end{equation}
+    We will denote this family of colorings by $X^F$.
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/octahedral_face_colr.pdf}
+    \caption{Face coloring of octahedral graph using two colors (1 and 2)}
+    \label{fig:face_tot_coloring}
+\end{figure}
+
+\end{highlight}
+
+\todo[inline]{TODO: Rainbow coloring a magic labeling -  těmto konceptům se věnovat nejspíš nebudeme, ale bylo by dobré je zmínit někde v úvodu jako barvení, kde jsou ještě další podmínky, resp. kdy hraje roli, jakou hodnotu mají použité barvy.}
+
+\todo{JF: Námět: popsat jak lze od složitějších přecházet ke klasickému vrcholovému - přes linegraf, graf incidencí, duál  apod., kdyžtak vysvětlím zítra. Možná se ukáže, že to pro sage bude snazší redukovat na vrcholové obarvení, možná i se zkoumáním symetrií.}
+
 \subsection{Computed vertex and edge chromatic numbers}
 
-%\todo[inline]{JH: Přidány odkazy na použité funkce a poslední věta zmiňující chromatic index}
-%\begin{highlight}
 The vertex and edge chromatic numbers can be computed in little time using \textit{SageMath} functions \cite{sagemath-chromatic-number} \cite{sagemath-chromatic-index}. The following two tables provide overview of vertex chromatic numbers $\chi(G)$  and edge chromatic numbers $\chi'(G)$ for Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
-%\end{highlight}
+
 
 \begin{table}[H]
     \centering
@@ -222,40 +269,9 @@ Note, that from the tables above, we see that indeed all the above graphs have $
 
 As a consequence of \textit{Vizing's theorem} \cite{misra92}, for every graph $G$ with maximum degree $\Delta(G)$, we have $\Delta(G) \leq \chi'(G) \leq \Delta(G) + 1$. This implies two classes of graphs. Class one are graphs s.t. $\chi'(G) = \Delta(G)$. Class two are then graphs s.t. $\chi'(G) = \Delta(G) + 1$. What class are graphs of Platonic and Archimedean solids?
 
-Let us compare the degrees at each vertex of the solids as shown in tables \ref{tab:platonic-basic-props} and \ref{tab:archimedean-basic-props} with their calculated chromatic indices in the tables above. It turns out, that all the solids are of Vizing class one. Note that this is not the case for all planar graphs. In fact, there exist planar graphs with $\Delta(G)$ up to 5 such that they are class two.
+Let us compare the degrees at each vertex of the solids as shown in tables \ref{tab:platonic-basic-props} and \ref{tab:archimedean-basic-props} with their calculated chromatic indices in the tables above. We can observe, that all the solids are of Vizing class one. Note that this is not the case for all planar graphs. In fact, there exist planar graphs with $\Delta(G)$ from 2 up to 5 such that they are class two.
 
 \end{highlight}
-
-\subsection{Total coloring}
-
-\begin{definition}
-    A \textit{total coloring} of graph $G=(V,E)$ is a coloring $c: V \cup E \rightarrow \mathbb{N}$ from family of colorings sharing both coloring rules \ref{eqn:vtx_rule} and \ref{eqn:edge_rule} and the following additional rule: 
-    \begin{equation}\label{eqn:tot_rule}
-    \forall v \in V,  \forall e \in E, \text{ if } \{v\} \cap e \neq \emptyset \text{ then } c(v) \neq c(e) \tag{$R_T$}
-    \end{equation}
-    We will call this family $F_T$.
-\end{definition}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.2\textwidth]{../Resources/Figs/cubical_tot_colr.pdf}
-    \caption{Total coloring of cubical graph using five colors}
-    \label{fig:cubical_tot_coloring}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.2\textwidth]{../Resources/Figs/octahedral_tot_colr.pdf}
-    \caption{Total coloring of octahedral graph using five colors}
-    \label{fig:octahedral_tot_coloring}
-\end{figure}
-
-\todo[inline]{TODO: Rainbow coloring a magic labeling -  těmto konceptům se věnovat nejspíš nebudeme, ale bylo by dobré je zmínit někde v úvodu jako barvení, kde jsou ještě další podmínky, resp. kdy hraje roli, jakou hodnotu mají použité barvy.}
-
-\todo{JF: Námět: popsat jak lze od složitějších přecházet ke klasickému vrcholovému - přes linegraf, graf incidencí, duál  apod., kdyžtak vysvětlím zítra. Možná se ukáže, že to pro sage bude snazší redukovat na vrcholové obarvení, možná i se zkoumáním symetrií.}
-
-
-
 
 \subsection{Some calculated chromatic polynomials}
 \todo[inline]{NOTE: The following tables will most likely not be in the final thesis. Since there is not much interesting that one can see from them.}
