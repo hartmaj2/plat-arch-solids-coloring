@@ -192,6 +192,32 @@ Since we consider planar graphs, we can also color faces of the corresponding pl
     \label{fig:face_tot_coloring}
 \end{figure}
 
+\subsection{Rainbow coloring}
+
+So far, the particular colorings we have considered were all quite similar to each other. In what sense? All of their coloring rules were based of the notion of adjacency of some elements. Neighboring vertices could not have same color, incident edges etc. There exists other types of colorings, where the coloring rules are based on other concepts such as connectivity or the particular values of the colors. One such example is the \textit{rainbow coloring}.
+
+\begin{definition}
+    Let $S$ be a set. A \textit{rainbow coloring} of a plane graph $G=(V,E,F)$ is a coloring $c: E \rightarrow S$ belonging to family of colorings for which the coloring rule is: 
+    \begin{equation}\label{eqn:rainbow_rule}
+     \forall u,v \in V, \exists uv \text{-path } (u,e_1,w_1, \ldots ,w_{n-1},e_n,v) \text{ s.t. } \forall i \neq j : c(e_i) \neq c(e_j) \tag{$R_R$}
+    \end{equation}
+    We will denote this family of colorings by $X^R$.
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/cubical_edg_colr.pdf}
+    \caption{Rainbow coloring of cubical graph. Let us appreciate the fact, that it is also an edge coloring.}
+    \label{fig:cubical_rainbow_coloring}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/octahedral_rainbow_colr.pdf}
+    \caption{Rainbow coloring of octahedral graph. Note, that it is not a valid edge coloring.}
+    \label{fig:octahedral_rainbow_coloring}
+\end{figure}
+
 \end{highlight}
 
 \todo[inline]{TODO: Rainbow coloring a magic labeling -  těmto konceptům se věnovat nejspíš nebudeme, ale bylo by dobré je zmínit někde v úvodu jako barvení, kde jsou ještě další podmínky, resp. kdy hraje roli, jakou hodnotu mají použité barvy.}
