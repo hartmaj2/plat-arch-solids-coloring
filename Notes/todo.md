@@ -59,19 +59,27 @@
   - [ ] List Coloring
   - [ ] π-Coloring and Incident Vertex π-Coloring
 
-- [ ] read about different coloring types where value of color matters
-  - [ ] rainbow coloring
-  - [ ] magic labeling
-
-- [ ] fix the general definition of colorings
+- [x] fix the general definition of colorings
 
 ## 2025_02_24
 
-- [ ] add paragraph about all Platonic and Archimedean solids being in Vizing class one (show degrees of the graphs in the table as well)
+- [x] add paragraph about all Platonic and Archimedean solids being in Vizing class one (show degrees of the graphs in the table as well)
+
+## 2025_03_01
+
+- [ ] read about different coloring types where value of color matters
+  - [ ] rainbow coloring (more to do with connectivity of graph, the value does not actually matter)
+  - [ ] magic labeling
+
+- [ ] write definitions of the colorings above and add example figures
 
 ## Main tasks
 
 - [ ] what do operations on the Platonic solids do on the graphs?
+
+- [ ] how to convert special colorings to vertex coloring by transforming the graph to a different graph
+  - [ ] describe and add figures to visualize
+  - [ ] implement in python and compute the chromatic numbers for these colorings
 
 ## Side tasks
 
