@@ -194,7 +194,7 @@ Since we consider planar graphs, we can also color faces of the corresponding pl
 
 \subsection{Rainbow coloring}
 
-So far, the particular colorings we have considered were all quite similar to each other. In what sense? All of their coloring rules were based of the notion of adjacency of some elements. Neighboring vertices could not have same color, incident edges etc. There exists other types of colorings, where the coloring rules are based on other concepts such as connectivity or the particular values of the colors. One such example is the \textit{rainbow coloring}.
+So far, the particular colorings we have considered were all quite similar to each other. In what sense? All of their coloring rules were based of the notion of adjacency of some elements i.e. neighboring vertices, incident edges etc. could not share the same color. There exists other types of colorings, where the coloring rules are based on other concepts such as connectivity. One such example is the \textit{rainbow coloring}.
 
 \begin{definition}
     Let $S$ be a set. A \textit{rainbow coloring} of a plane graph $G=(V,E,F)$ is a coloring $c: E \rightarrow S$ belonging to family of colorings for which the coloring rule is: 
@@ -218,9 +218,19 @@ So far, the particular colorings we have considered were all quite similar to ea
     \label{fig:octahedral_rainbow_coloring}
 \end{figure}
 
+\subsection{Magic labeling}
+
+There exists also coloring rules, that are based on the actual values of the colors. In that case, the colors cannot be any set of arbitrary elements, but must correspond to a subset of natural numbers, where we have a meaningful definition of addition operation on the colors. In that case, the colorings are usually referred to as \textit{labelings}.
+
+All of the labelings share a notion of assigning a \textit{weight} to the elements of a graph. For element $x$, we denote this weight by $w(g)$. Using this notation, we can define \textit{edge-labeling} more precisely as a function $l:E \rightarrow \mathbb{N}$ s.t. $\exists k \in \mathbb{N} : \forall v \in V:w(v) = k$ where $w$ is an arbitrary function in terms of $l$.
+
+For example, we might define $w(v) = \sum_{uv \in E}l(uv)$.
+This definition can be analogously extended to an \textit{vertex-labeling}, where vertices are labeled instead.
+
 \end{highlight}
 
-\todo[inline]{TODO: Rainbow coloring a magic labeling -  těmto konceptům se věnovat nejspíš nebudeme, ale bylo by dobré je zmínit někde v úvodu jako barvení, kde jsou ještě další podmínky, resp. kdy hraje roli, jakou hodnotu mají použité barvy.}
+\vspace{5pt}
+\todo[inline]{TODO: Add visualisation of how edge-labeling can be translated to magic squares}
 
 \todo{JF: Námět: popsat jak lze od složitějších přecházet ke klasickému vrcholovému - přes linegraf, graf incidencí, duál  apod., kdyžtak vysvětlím zítra. Možná se ukáže, že to pro sage bude snazší redukovat na vrcholové obarvení, možná i se zkoumáním symetrií.}
 
