@@ -8,7 +8,6 @@ As we will be working with many different colorings, to avoid repetition, we wil
     A \textit{partial function} is a function $f:X \rightarrow Y$ s.t. $\forall x \in X$ we have $f(x) \in Y$ or $f(x)$ is undefined.
 \end{definition}
 
-\begin{highlight} 
 Since we will be working with graphs of Platonic and Archimedean solids, which are all planar. We can define the coloring directly on their plane graphs, as they are drawn on the plane, instead of considering their abstract graphs.
 
 \begin{definition}
@@ -16,18 +15,15 @@ Since we will be working with graphs of Platonic and Archimedean solids, which a
 \end{definition}
 
 In other words, coloring is an assignment of elements in $S$ to vertices, edges or faces of some plane graph. We can think of elements of $S$ as colors but usually, we will use numbers instead. What is especially important to us is, whether any two elements are mapped onto a same target i.e. colored by the same color. The coloring rule then prevents some assignments to be considered valid. This makes the coloring problem non-trivial.
-\end{highlight}
 
 \begin{definition}
     Let the set of all colorings sharing the same coloring rule $R$ be called a \textit{family of colorings}.
 \end{definition}
 
-\begin{highlight}
-    
 \begin{definition}
     Let $G=(V,E,F)$ a plane graph. Let $C$ be a family of colorings. Let $S$ be a set s.t. $|S| = k$ for some $k \in \mathbb{N}$. A function $c \in C$ such that $c: V \cup E \cup F \rightarrow S$ is called a \textit{k-coloring} of $G$.
 \end{definition}
-\end{highlight}
+
 Note that a $k$-coloring does not necessarily have to use all of the $k$ available colors. Mathematically speaking, a $k$-coloring is not necesserily a surjective function.
 
 \begin{definition}
@@ -109,7 +105,7 @@ By combining the colorings above and extending by another restriction, we get a 
 \begin{definition}
     For some set $S$ a \textit{total coloring} of a plane graph $G=(V,E,F)$ is a coloring $c: V \cup E \rightarrow S$ from family of colorings sharing both coloring rules \ref{eqn:vtx_rule} and \ref{eqn:edge_rule} and the following additional rule: 
     \begin{equation}\label{eqn:tot_rule}
-    \forall v \in V,  \forall e \in E, \text{ if } \{v\} \cap e \neq \emptyset \text{ then } c(v) \neq c(e) \tag{$R_T$}
+    \forall v \in V,  \forall e \in E, \text{ if } v \in e \text{ then } c(v) \neq c(e) \tag{$R_T$}
     \end{equation}
     We will call this family $X''$.
 \end{definition}
@@ -128,19 +124,18 @@ By combining the colorings above and extending by another restriction, we get a 
     \label{fig:octahedral_tot_coloring}
 \end{figure}
 
-\begin{highlight}
 \subsection{Face coloring}
 
 Since we consider planar graphs, we can also color faces of the corresponding plane graphs.
 
 \begin{definition}
-    For a plane graph $G=(V,E,F)$ and a region $R \in F$ we define $bnd(R)$ as the set of all edges constituting the boundary of $R$.
+    For a plane graph $G=(V,E,F)$ and a region $R \in F$ we define $\bnd(R)$ as the set of all edges constituting the boundary of $R$.
 \end{definition}
 
 \begin{definition}
     For a set $S$ and a plane graph $G=(V,E,F)$ we define \textit{face coloring} as any function $c: F \rightarrow S$ s.t. it belongs to a family of colorings with the following coloring rule:
     \begin{equation}\label{eqn:face_rule}
-     \forall R_1,R_2 \in F, \quad \text{ if } bnd(R_1) \cap bnd(R_2) \neq \emptyset \text{ then } c(R_1) \neq c(R_2) \tag{$R_F$}
+     \forall R_1,R_2 \in F, \quad \text{ if } \bnd(R_1) \cap \bnd(R_2) \neq \emptyset \text{ then } c(R_1) \neq c(R_2) \tag{$R_F$}
     \end{equation}
     We will denote this family of colorings by $X^F$.
 \end{definition}
@@ -187,10 +182,8 @@ All of the labelings share a notion of assigning a \textit{weight} to the elemen
 For example, we might define $w(v) = \sum_{uv \in E}l(uv)$.
 This definition can be analogously extended to an \textit{vertex-labeling}, where vertices are labeled instead.
 
-\end{highlight}
-
 \vspace{5pt}
 \todo[inline]{TODO: Add visualisation of how edge-labeling can be translated to magic squares}
 
-\todo{JF: Námět: popsat jak lze od složitějších přecházet ke klasickému vrcholovému - přes linegraf, graf incidencí, duál  apod., kdyžtak vysvětlím zítra. Možná se ukáže, že to pro sage bude snazší redukovat na vrcholové obarvení, možná i se zkoumáním symetrií.}
+\todo[JF]{Námět: popsat jak lze od složitějších přecházet ke klasickému vrcholovému - přes linegraf, graf incidencí, duál  apod. Možná se ukáže, že to pro sage bude snazší redukovat na vrcholové obarvení, možná i se zkoumáním symetrií.}
 

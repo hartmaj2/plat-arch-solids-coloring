@@ -1,7 +1,45 @@
 \chapter{Connections between colorings}
 
-\section{Section 1}
+Many times, we can reduce a particular mathematical problem to another one, which is less complex or has been studied for longer time. In this way, we can also convert some of the particular coloring problems to problems of vertex colorings, being the most researched of them all.
 
-In this chapter...
+In our case, it will be useful for us, that there exists a wide range of algorithms and known results for vertex coloring which we can leverage when working with the less traditional colorings.
 
-\section{Title of the second subchapter of the first chapter}
+Note, that the conversions themselves are not novel and are well known as well.
+
+\section{Edge coloring to vertex coloring}
+
+\begin{definition}
+    For a graph $G=(V,E)$ we define \textit{line graph} $G_L=(V_L,E_L)$ as follows:
+    \begin{enumerate}
+        \item $V_L := E$
+        \item $E_L := \{ \{e,f\} \in \binom{E}{2} :  e \cap f \neq \emptyset \}$
+    \end{enumerate}
+\end{definition}
+
+In other words, the vertices of the line graph are exactly the edges of the original graph. The new vertices in the line graph are connected if and only if their corresponding edges in the original graph share a common endpoint. Notice, how the defining property of set $E_L$ coincides with coloring rule for edge coloring \ref{eqn:edge_rule}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../Resources/Figs/cubical_line_graph.pdf}
+    \caption{Visualisation of conversion from edge coloring to vertex coloring using a line graph}
+    \label{fig:cubical_line_graph}
+\end{figure}
+
+Note that in the figure \ref{fig:cubical_line_graph} above, the operation of creating the line graph corresponds to the cube rectification operation. This took us from the graph of a cube to the graph of a cuboctahedron.
+
+\vspace{5pt}
+\todo[inline]{TODO: Elaborate more on why creating a line graph from 3-regular graph corresponds to the truncation operation}
+
+\section{Total coloring to vertex coloring}
+
+Intuitively, since total coloring assigns colors to both edges and the vertices, it makes sense that we will use a combination of the original graph with its line graph. Also, we can see, that we cannot just simply take these two graphs and apply vertex coloring on the resulting graph. The problem being, that we would lose the information about what vertex was incident with what edge. This brings us to a so called \textit{vertex-edge incidence graph}.
+
+\begin{definition}
+    For a graph $G=(V,E)$ we define its \textit{vertex-edge incidence graph} $G_I=(V_I,E_I)$ as follows:
+    \begin{enumerate}
+        \item $V_I := V \cup E$
+        \item $E_I = \{\{v,e\} : v \in V, e \in E, v \in e \}$
+    \end{enumerate}
+\end{definition}
+
+Again, note how the definition of $E_I$ corresponds to the coloring rule \ref{eqn:tot_rule}.

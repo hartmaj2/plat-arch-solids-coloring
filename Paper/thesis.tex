@@ -43,10 +43,16 @@
 \usepackage[backgroundcolor=white,textcolor=orange]{todonotes}
 \setuptodonotes{inline}
 
+\makeatletter
+\define@key{todonotes}{JF}[]{\setkeys{todonotes}{author=JF,textcolor=purple}}%
+\makeatother    
+
 % MY ENVIRONMENTS
 
 \newtheorem{definition}{Definition}
 \newtheorem{assumption}{Assumption}
+
+\newcommand{\bnd}{\operatorname{bnd}}
 
 % RED ENVIRONMENT
 
