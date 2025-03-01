@@ -62,15 +62,15 @@
 
 - [x] write definitions of the colorings above and add example figures
 
-- [ ] add bibliography resources for the definitions above
+- [x] add bibliography resources for the definitions above
 
 ## Main tasks
-
-- [ ] what do operations on the Platonic solids do on the graphs?
 
 - [ ] how to convert special colorings to vertex coloring by transforming the graph to a different graph
   - [ ] describe and add figures to visualize
   - [ ] implement in python and compute the chromatic numbers for these colorings
+
+- [ ] what do operations on the Platonic solids do on the graphs?
 
 ## Side tasks
 
