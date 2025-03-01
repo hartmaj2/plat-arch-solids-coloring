@@ -104,6 +104,8 @@ What the definition above says is, that whenever two edges share an endpoint, th
 
 \subsection{Total coloring}
 
+By combining the colorings above and extending by another restriction, we get a so called \textit{total coloring} \cite{behzad65}.
+
 \begin{definition}
     For some set $S$ a \textit{total coloring} of a plane graph $G=(V,E,F)$ is a coloring $c: V \cup E \rightarrow S$ from family of colorings sharing both coloring rules \ref{eqn:vtx_rule} and \ref{eqn:edge_rule} and the following additional rule: 
     \begin{equation}\label{eqn:tot_rule}
@@ -152,7 +154,7 @@ Since we consider planar graphs, we can also color faces of the corresponding pl
 
 \subsection{Rainbow coloring}
 
-So far, the particular colorings we have considered were all quite similar to each other. In what sense? All of their coloring rules were based of the notion of adjacency of some elements i.e. neighboring vertices, incident edges etc. could not share the same color. There exists other types of colorings, where the coloring rules are based on other concepts such as connectivity. One such example is the \textit{rainbow coloring}.
+So far, the particular colorings we have considered were all quite similar to each other. In what sense? All of their coloring rules were based of the notion of adjacency of some elements i.e. neighboring vertices, incident edges etc. could not share the same color. There exists other types of colorings, where the coloring rules are based on other concepts such as connectivity. One such example is the \textit{rainbow coloring} \cite{chartrand08}.
 
 \begin{definition}
     Let $S$ be a set. A \textit{rainbow coloring} of a plane graph $G=(V,E,F)$ is a coloring $c: E \rightarrow S$ belonging to family of colorings for which the coloring rule is: 
