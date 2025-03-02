@@ -55,6 +55,12 @@ def calculate_edg_chrom_num_lg(solid_data : dict[list]) -> int:
     l = Graph(line_graph[EDGES])
     return chromatic_number(l)  
 
+# calculates total chromatic number using conversion to total graph
+def calculate_tot_chrom_num(solid_data : dict[str,list]) -> int:
+    tot_graph = gc.create_total_graph(solid_data)
+    tg = Graph(tot_graph[EDGES])
+    return chromatic_number(tg)
+
 # processes all solids and loads corresponding data to the dict
 def get_chrom_nums_dict(solid_data : dict[dict]):
     solid_computed_data = {}
