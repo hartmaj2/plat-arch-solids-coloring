@@ -11,6 +11,7 @@
 
 from sage.all import Graph
 from sage.graphs.graph_coloring import chromatic_number, edge_coloring
+from sage.graphs.line_graph import line_graph
 
 import md_table_printing as printing
 import solids_dict_prep as sdp
@@ -41,6 +42,12 @@ def calculate_vtx_chrom_num(solid_data : dict[list]) -> int:
 def calculate_edg_chrom_num(solid_data : dict[list]) -> int:
     g = Graph(solid_data[EDGES])
     return edge_coloring(g,value_only=True)
+
+# # calculates edge chromatic number using SAGE conversion to line graph
+def calculate_edg_chrom_num_sage_lg(solid_data : dict[list]) -> int:
+    g = Graph(solid_data[EDGES])
+    l = g.line_graph()
+    return chromatic_number(l)
 
 # calculates edge chromatic number using conversion to line graph
 def calculate_edg_chrom_num_lg(solid_data : dict[list]) -> int:
