@@ -48,11 +48,18 @@ def get_name_vtcs_edgs(folder_name: str, solid_filename : str) -> tuple[str,list
         name = graph_data[JSON_NAME]
         return name,[i for i in range(len(vertices))],[tuple(edge) for edge in edges] # convert1: list of coordinates -> list of indices, convert2: list of lists -> list of tuples 
 
+# sorts the edges lexicographically in ascending order
+def lexisort(edges : list[tuple]):
+    # we sort in two passes using the fact that the sort is stable
+    edges.sort(key = lambda e : e[1]) 
+    edges.sort(key = lambda e : e[0])
+    
 # returns a dictionary indexed by solid name with elements being a dictionary indexed by property name ("vertices" or "edges")
 def get_solid_data_dict(folder_name : str, solid_names : list[str]):
     solid_dict = {} # solid_name -> solids_edges
     for solid_filename in solid_names:
         solid_name, solid_vertices, solid_edges = get_name_vtcs_edgs(folder_name,solid_filename)
+        lexisort(solid_edges) # for convenience of later usage, we sort the edges lexicographically in ascending order
         solid_dict[solid_name] = { JSON_VERTICES : solid_vertices, JSON_EDGES : solid_edges } # it is a dict of dicts
     return solid_dict
 
