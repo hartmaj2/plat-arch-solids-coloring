@@ -233,3 +233,18 @@
 
 - edited definitions for colorings to be able to color faces as well
 - added a definition of face coloring including a figure with an example on a octahedral graph
+
+## March
+
+### 2025_03_01
+
+- restructured chapters into more meaningful ordering
+
+- added definitions of rainbow coloring and magic labeling
+  - added references
+
+- started working on chapter about conversions between the colorings
+
+### 2025_03_02
+
+- fixed point 4 in definition of graph drawing
