@@ -1,3 +1,6 @@
+# Supervisor suggestions
+
+## 1
 JF: Zvaˇzte, jestli obecn´e obarven´ı neuv´est tˇreba nˇejak jako:
 The concept of coloring is in mathematical sense equivalent to the concept
 of mapping, when the domain — the set of colors — is usually a finite set
@@ -7,3 +10,6 @@ colored by the same color.
 Hence we may without loss of generality assume that the domain is a set of
 positive integers, however sometimes we use usual colors like red, blue, etc, to
 visualize some particular colorings in more accessible way.
+
+## 2
+\todo[JF]{Stupeň se sází {\tt $\backslash$deg}, podobně jsem Vám připravil {\tt $\backslash$bnd}.}
