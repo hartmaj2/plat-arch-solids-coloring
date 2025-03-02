@@ -248,3 +248,7 @@
 ### 2025_03_02
 
 - fixed point 4 in definition of graph drawing
+
+- added visualizations of total coloring
+
+- added definition of face coloring with visualisation

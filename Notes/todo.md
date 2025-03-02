@@ -66,8 +66,8 @@
 
 ## Main tasks
 
-- [ ] how to convert special colorings to vertex coloring by transforming the graph to a different graph
-  - [ ] describe and add figures to visualize
+- [x] how to convert special colorings to vertex coloring by transforming the graph to a different graph
+  - [x] describe and add figures to visualize
   - [ ] implement in python and compute the chromatic numbers for these colorings
 
 - [ ] what do operations on the Platonic solids do on the graphs?
