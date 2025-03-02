@@ -15,7 +15,7 @@ from sage.graphs.line_graph import line_graph
 
 import md_table_printing as printing
 import solids_dict_prep as sdp
-import line_graph as lg
+import graph_conversions as gc
 
 VERTICES = sdp.JSON_VERTICES
 EDGES = sdp.JSON_EDGES
@@ -51,7 +51,7 @@ def calculate_edg_chrom_num_sage_lg(solid_data : dict[list]) -> int:
 
 # calculates edge chromatic number using conversion to line graph
 def calculate_edg_chrom_num_lg(solid_data : dict[list]) -> int:
-    line_graph = lg.create_line_graph(solid_data)
+    line_graph = gc.create_line_graph(solid_data)
     l = Graph(line_graph[EDGES])
     return chromatic_number(l)  
 
