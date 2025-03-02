@@ -21,6 +21,9 @@ VERTICES = sdp.JSON_VERTICES
 EDGES = sdp.JSON_EDGES
 NAME = sdp.JSON_NAME
 
+# OUTPUT SETTINGS
+DATA_HEADERS = ["X(G)","X'(G)","X''(G)"]
+
 # INPUT FILE SETTINGS
 
 ROOT_FOLDER = "Code"
@@ -67,18 +70,19 @@ def get_chrom_nums_dict(solid_data : dict[dict]):
     for solid_name in solid_data.keys():
         vtx_chrom_num = calculate_vtx_chrom_num(solid_data[solid_name])
         edg_chrom_num = calculate_edg_chrom_num_lg(solid_data[solid_name])
-        solid_computed_data[solid_name] = vtx_chrom_num, edg_chrom_num
+        tot_chrom_num = calculate_tot_chrom_num(solid_data[solid_name])
+        solid_computed_data[solid_name] = vtx_chrom_num, edg_chrom_num, tot_chrom_num
     return solid_computed_data
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
     platonic_edges = sdp.get_platonic_solid_dict()
     platonic_data = get_chrom_nums_dict(platonic_edges)
-    printing.print_solid_chrom_nums(platonic_data,sdp.PLATONIC_FOLDER)
+    printing.print_solid_mult_col_data(platonic_data,sdp.PLATONIC_FOLDER,DATA_HEADERS)
     
     archimedean_edges = sdp.get_archimedean_solid_dict()
     archimedean_data = get_chrom_nums_dict(archimedean_edges)
-    printing.print_solid_chrom_nums(archimedean_data,sdp.ARCHIMEDEAN_FOLDER)
+    printing.print_solid_mult_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,DATA_HEADERS)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
