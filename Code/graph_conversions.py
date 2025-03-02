@@ -3,7 +3,7 @@ import solids_dict_prep as sdp
 VERTICES = sdp.JSON_VERTICES
 EDGES = sdp.JSON_EDGES
 NAME = sdp.JSON_NAME
-platonic = sdp.get_platonic_solid_dict()
+# platonic = sdp.get_platonic_solid_dict()
 # archimedean = sdp.get_archimedean_solid_dict()
 
 # creates adjacency list from the dictionary of vertices [0,...,n-1]
@@ -67,4 +67,10 @@ def create_total_graph(solid : dict[str,dict]):
 
 # for name in platonic.keys():
 #     tg = create_total_graph(platonic[name])
+#     print(f"{name}\nm={len(tg[EDGES])}")
+
+# print()
+
+# for name in archimedean.keys():
+#     tg = create_total_graph(archimedean[name])
 #     print(f"{name}\nm={len(tg[EDGES])}")
