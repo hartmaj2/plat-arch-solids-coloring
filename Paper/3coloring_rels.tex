@@ -50,3 +50,29 @@ Again, note how the definition of $E_I$ corresponds to the coloring rule \ref{eq
     \caption{Example of incidence graph of a cubical graph}
     \label{fig:cubical_incid_graph}
 \end{figure}
+
+Now we have all the necessary tools to define a \textit{total graph} which will have the property, that its vertex coloring corresponds exactly to total coloring of the original graph.
+
+\begin{definition}
+    Let $G=(V,E)$ be a graph. Let $G_L =(V_L,E_L)$ and $G_I=(V_I,E_I)$ be its line graph and incidence graphs respectively. We define its \textit{total graph} $G_T=(V_T,E_T)$ as follows:
+    \begin{enumerate}
+        \item $V_T := V_I$
+        \item $E_T := E \cup E_L \cup E_I$
+    \end{enumerate}
+\end{definition}
+
+In natural language, what we do is, that we start with the vertices and edges of the incidence graph. Then we add the edges of original graph between the vertices that correspond to the original graph. Lastly we interconnect the vertices corresponding to the line graph vertices with the edges of the line graph.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../Resources/Figs/cubical_total_graph.pdf}
+    \caption{Visualisation of total graph construction from the original graph, incidence graph and line graph respectively.}
+    \label{fig:cubical_total_graph}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{../Resources/Figs/cubical_tot_g_clring.pdf}
+    \caption{Correspondence between total coloring of original graph and vertex coloring of its total graph.}
+    \label{fig:cubical_tot_g_clring}
+\end{figure}
