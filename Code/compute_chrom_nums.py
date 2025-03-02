@@ -45,11 +45,11 @@ def get_chrom_nums_dict(solid_edges : dict):
 def main():
     platonic_edges = sdp.get_platonic_edges_dict()
     platonic_data = get_chrom_nums_dict(platonic_edges)
-    printing.print_solid_chrom_nums(platonic_data,sdp.PLATONIC_FOLDER_NAME)
+    printing.print_solid_chrom_nums(platonic_data,sdp.PLATONIC_FOLDER)
     
     archimedean_edges = sdp.get_archimedean_edges_dict()
     archimedean_data = get_chrom_nums_dict(archimedean_edges)
-    printing.print_solid_chrom_nums(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME)
+    printing.print_solid_chrom_nums(archimedean_data,sdp.ARCHIMEDEAN_FOLDER)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()

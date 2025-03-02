@@ -52,11 +52,11 @@ def get_chrom_polys_dict(solid_edges : dict):
 def main():
     platonic_edges = sdp.get_platonic_edges_dict()
     platonic_data = get_chrom_polys_dict(platonic_edges)
-    printing.print_solid_one_col_poly(platonic_data,sdp.PLATONIC_FOLDER_NAME,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
+    printing.print_solid_one_col_poly(platonic_data,sdp.PLATONIC_FOLDER,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
     
     archimedean_edges = sdp.get_archimedean_edges_dict()
     archimedean_data = get_chrom_polys_dict(archimedean_edges)
-    printing.print_solid_one_col_poly(archimedean_data,sdp.ARCHIMEDEAN_FOLDER_NAME,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
+    printing.print_solid_one_col_poly(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
