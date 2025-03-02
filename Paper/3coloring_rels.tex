@@ -76,3 +76,22 @@ In natural language, what we do is, that we start with the vertices and edges of
     \caption{Correspondence between total coloring of original graph and vertex coloring of its total graph.}
     \label{fig:cubical_tot_g_clring}
 \end{figure}
+
+\section{Face coloring to vertex coloring}
+
+For conversion from face coloring to vertex coloring, we apply the same idea as we did when constructing line graphs. But since the elements colored are faces and not edges, we need to encode incidence of faces into the new graph by adding new edges where necessary. The resulting graph is called a \textit{dual graph}.
+
+\begin{definition}
+    For a plane graph $G=(V,E,F)$ we define its \textit{dual graph} $G_D=(V_D,E_D)$ as follows:
+    \begin{enumerate}
+        \item $V_D := F$
+        \item $E_D := \{ \{R_1,R_2\} \in \binom{F}{2}: \bnd(R_1) \cap \bnd(R_2) \neq \emptyset \}$
+    \end{enumerate}
+\end{definition}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../Resources/Figs/cubical_dual_graph.pdf}
+    \caption{Visualisation of conversion from face coloring to vertex coloring using a dual graph}
+    \label{fig:cubical_dual_graph}
+\end{figure}
