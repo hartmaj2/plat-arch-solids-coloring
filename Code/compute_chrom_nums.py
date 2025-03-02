@@ -14,6 +14,7 @@ from sage.graphs.graph_coloring import chromatic_number, edge_coloring
 
 import md_table_printing as printing
 import solids_dict_prep as sdp
+import line_graph as lg
 
 VERTICES = sdp.JSON_VERTICES
 EDGES = sdp.JSON_EDGES
@@ -31,18 +32,29 @@ output_type = output_file
 
 # output_type = sys.stdout
 
-# calls sage code on given data
-def calculate_chromatic_numbers(solid_edges : list[tuple]) -> tuple[int,int] :
-    g = Graph(solid_edges)
-    vtx_chrom_num : int = chromatic_number(g)
-    edge_chrom_num : int = edge_coloring(g,value_only=True)
-    return vtx_chrom_num, edge_chrom_num
+# calculates vertex chromatic number using sage chromatic_number() function
+def calculate_vtx_chrom_num(solid_data : dict[list]) -> int:
+    g = Graph(solid_data[EDGES])
+    return chromatic_number(g)
+
+# calculates edge chromatic number using sage edge_coloring()
+def calculate_edg_chrom_num(solid_data : dict[list]) -> int:
+    g = Graph(solid_data[EDGES])
+    return edge_coloring(g,value_only=True)
+
+# calculates edge chromatic number using conversion to line graph
+def calculate_edg_chrom_num_lg(solid_data : dict[list]) -> int:
+    line_graph = lg.create_line_graph(solid_data)
+    l = Graph(line_graph[EDGES])
+    return chromatic_number(l)  
 
 # processes all solids and loads corresponding data to the dict
 def get_chrom_nums_dict(solid_data : dict[dict]):
     solid_computed_data = {}
     for solid_name in solid_data.keys():
-        solid_computed_data[solid_name] = calculate_chromatic_numbers(solid_data[solid_name][EDGES])
+        vtx_chrom_num = calculate_vtx_chrom_num(solid_data[solid_name])
+        edg_chrom_num = calculate_edg_chrom_num_lg(solid_data[solid_name])
+        solid_computed_data[solid_name] = vtx_chrom_num, edg_chrom_num
     return solid_computed_data
 
 # main loop over folders with different solid types (Platonic, Archimedean)
