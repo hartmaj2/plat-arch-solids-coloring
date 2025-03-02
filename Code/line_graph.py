@@ -3,7 +3,8 @@ import solids_dict_prep as sdp
 VERTICES = sdp.JSON_VERTICES
 EDGES = sdp.JSON_EDGES
 NAME = sdp.JSON_NAME
-platonic = sdp.get_platonic_solid_dict()
+# platonic = sdp.get_platonic_solid_dict()
+# archimedean = sdp.get_archimedean_solid_dict()
 
 # creates adjacency list from the dictionary of vertices [0,...,n-1]
 def create_adj_list(solid : dict[dict]) -> list:
@@ -42,14 +43,5 @@ def create_line_graph(solid: dict[dict]):
     lg[EDGES] = lg_edges
     return lg
 
-print(platonic["tetrahedron"])
-print()
-print(create_adj_list(platonic["tetrahedron"]))
-print(create_edge_map(platonic["tetrahedron"]))
-print()
-line_graph = create_line_graph(platonic["tetrahedron"])
-print(line_graph)
-print(f"Num of vertices: {len(line_graph[VERTICES])}")
-print(f"Num of edges: {len(line_graph[EDGES])}")
 
 
