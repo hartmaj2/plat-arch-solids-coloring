@@ -13,7 +13,7 @@ from sage.all import Graph
 from sage.graphs.graph_coloring import chromatic_number, edge_coloring
 from sage.graphs.line_graph import line_graph
 
-import latex_table_printing as printing
+import md_table_printing as printing
 import solids_dict_prep as sdp
 import graph_conversions as gc
 
@@ -22,9 +22,14 @@ VERTICES = sdp.JSON_VERTICES
 EDGES = sdp.JSON_EDGES
 NAME = sdp.JSON_NAME
 
-# OUTPUT SETTINGS
+# OUTPUT TABLE SETTINGS
 DATA_HEADERS_MD = ["X(G)","X'(G)","X''(G)"]
 DATA_HEADERS_LATEX = [r"$\chi(G)$",r"$\chi'(G)$",r"$\chi''(G)$"]
+data_headers = DATA_HEADERS_MD
+
+# uncomment following to use latex data headers
+# data_headers = DATA_HEADERS_LATEX 
+
 PLAT_CAPTION = "Vertex and edge chromatic numbers of Platonic graphs"
 PLAT_LABEL = "tab:platonic-chrom-nums"
 ARCH_CAPTION = "Vertex and edge chromatic numbers of Archimedean graphs"
@@ -38,10 +43,11 @@ ROOT_FOLDER = "Code"
 # OUTPUT SETTING
 
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/output_sage.md","w")
-output_type = output_file
+# output_file = open(ROOT_FOLDER + "/output_sage.md","w")
+# output_type = output_file
 
-# output_type = sys.stdout
+import sys
+output_type = sys.stdout
 
 # calculates vertex chromatic number using sage chromatic_number() function
 def calculate_vtx_chrom_num(solid_data : dict[list]) -> int:
@@ -85,11 +91,11 @@ def get_chrom_nums_dict(solid_data : dict[dict]):
 def main():
     platonic_edges = sdp.get_platonic_solid_dict()
     platonic_data = get_chrom_nums_dict(platonic_edges)
-    printing.print_solid_mult_col_data(platonic_data,sdp.PLATONIC_FOLDER,DATA_HEADERS_LATEX,caption=PLAT_CAPTION,label=PLAT_LABEL,output_type=output_type)
+    printing.print_solid_mult_col_data(platonic_data,sdp.PLATONIC_FOLDER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,output_type=output_type)
     
     archimedean_edges = sdp.get_archimedean_solid_dict()
     archimedean_data = get_chrom_nums_dict(archimedean_edges)
-    printing.print_solid_mult_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,DATA_HEADERS_LATEX,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
+    printing.print_solid_mult_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,data_headers,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
