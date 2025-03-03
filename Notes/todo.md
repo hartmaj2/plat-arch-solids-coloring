@@ -66,14 +66,15 @@
 
 ## 2025_03_03
 
-- [ ] comment the results for total chromatic number
-  - [ ] check if correct for tetrahedron
+- [x] comment the results for total chromatic number
+  - [x] check if correct for tetrahedron
 
 - [x] prune unused code in the printers
   - [x] for compatibility add caption and label params to md printer as well (can just be ignored)
   - (i don't need the specific printers anymore)
 
-- [ ] check what format the Bachelor thesis must have
+- [ ] change format of Bachelor thesis to the correct new one
+  - [link](https://gitlab.mff.cuni.cz/teaching/thesis-templates/thesis-en)
 
 ## Main tasks
 
