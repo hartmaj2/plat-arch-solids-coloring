@@ -4,66 +4,67 @@
 
 The vertex and edge chromatic numbers can be computed in little time using \textit{SageMath} functions \cite{sagemath-chromatic-number} \cite{sagemath-chromatic-index}. The following two tables provide overview of vertex chromatic numbers $\chi(G)$  and edge chromatic numbers $\chi'(G)$ for Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
 
-
 \begin{table}[H]
-    \centering
-    \caption{Vertex and edge chromatic numbers of Platonic graphs}
-    \vspace{5pt}
-    \label{tab:platonic-chrom-nums}
-    \begin{tabular}{|l|c|c|}
-    \hline
-    Platonic & $\chi(G)$ & $\chi'(G)$ \\
-    \hline\hline
-    cube & 2 & 3 \\
-    \hline
-    dodecahedron & 3 & 3 \\
-    \hline
-    icosahedron & 4 & 5 \\
-    \hline
-    octahedron & 3 & 4 \\
-    \hline
-    tetrahedron & 4 & 3 \\
-    \hline
-    \end{tabular}
+\centering
+\caption{Vertex and edge chromatic numbers of Platonic graphs}
+\vspace{5pt}
+\label{tab:platonic-chrom-nums}
+\begin{tabular}{|l|c|c|c|}
+\hline
+Platonic & $\chi(G)$ & $\chi'(G)$ & $\chi''(G)$ \\
+\hline\hline
+cube & 2 & 3 & 4 \\
+\hline
+dodecahedron & 3 & 3 & 4 \\
+\hline
+icosahedron & 4 & 5 & 6 \\
+\hline
+octahedron & 3 & 4 & 5 \\
+\hline
+tetrahedron & 4 & 3 & 5 \\
+\hline
+\end{tabular}
 \end{table}
 
 \begin{table}[H]
-    \centering
-    \caption{Vertex and edge chromatic numbers of Archimedean graphs}
-    \vspace{5pt}
-    \label{tab:archimedean-chrom-nums}
-    \begin{tabular}{|l|c|c|}
-    \hline
-    Archimedean & $\chi(G)$ & $\chi'(G)$ \\
-    \hline\hline
-    cuboctahedron & 3 & 4 \\
-    \hline
-    icosidodecahedron & 3 & 4 \\
-    \hline
-    rhombicosidodecahedron & 3 & 4 \\
-    \hline
-    rhombicuboctahedron & 3 & 4 \\
-    \hline
-    snub cube & 3 & 5 \\
-    \hline
-    snub dodecahedron & 4 & 5 \\
-    \hline
-    truncated cube & 3 & 3 \\
-    \hline
-    truncated cuboctahedron & 2 & 3 \\
-    \hline
-    truncated dodecahedron & 3 & 3 \\
-    \hline
-    truncated icosahedron & 3 & 3 \\
-    \hline
-    truncated icosidodecahedron & 2 & 3 \\
-    \hline
-    truncated octahedron & 2 & 3 \\
-    \hline
-    truncated tetrahedron & 3 & 3 \\
-    \hline
-    \end{tabular}
+\centering
+\caption{Vertex and edge chromatic numbers of Archimedean graphs}
+\vspace{5pt}
+\label{tab:archimedean-chrom-nums}
+\begin{tabular}{|l|c|c|c|}
+\hline
+Archimedean & $\chi(G)$ & $\chi'(G)$ & $\chi''(G)$ \\
+\hline\hline
+cuboctahedron & 3 & 4 & 5 \\
+\hline
+icosidodecahedron & 3 & 4 & 5 \\
+\hline
+rhombicosidodecahedron & 3 & 4 & 5 \\
+\hline
+rhombicuboctahedron & 3 & 4 & 5 \\
+\hline
+snub cube & 3 & 5 & 6 \\
+\hline
+snub dodecahedron & 4 & 5 & 6 \\
+\hline
+truncated cube & 3 & 3 & 4 \\
+\hline
+truncated cuboctahedron & 2 & 3 & 4 \\
+\hline
+truncated dodecahedron & 3 & 3 & 4 \\
+\hline
+truncated icosahedron & 3 & 3 & 4 \\
+\hline
+truncated icosidodecahedron & 2 & 3 & 4 \\
+\hline
+truncated octahedron & 2 & 3 & 4 \\
+\hline
+truncated tetrahedron & 3 & 3 & 4 \\
+\hline
+\end{tabular}
 \end{table}
+
+a
 
 Note, that from the tables above, we see that indeed all the above graphs have $\chi(G)$ at most 4. This is due to the famous \textit{Four Color Theorem} \cite{appelhaken76} for planar graphs.
 
@@ -129,4 +130,17 @@ truncated tetrahedron & $x^{12} - 18x^{11} + 149x^{10} - 752x^{9} + 2586x^{8} - 
 \end{tabular}
 \end{table}
 
-\todo[JF]{Okomentujte, co znamená None, resp. proč to nešlo spočítat.}
+\todo[JF]{Případně okomentujte, co znamená None, resp. proč to nešlo spočítat.}
+
+\iffalse
+%\else
+%% JF pokus o jiné formátování, ale ani to není nijak zvlášť přehledné
+% https://tex.stackexchange.com/questions/483300/how-to-format-a-long-polynomial
+\begin{description}
+   \item[truncated octahedron] \hfill\\ 
+$x^{24} - 36x^{23} + 630x^{22} - 7134x^{21} + 58707x^{20} - 373816x^{19} + 1914823x^{18} - 8098890x^{17} + 28806937x^{16} - 87308340x^{15} + 227623087x^{14} - 513887650x^{13} + 1008990864x^{12} - 1726780052x^{11} + 2576178723x^{10} - 3343211267x^{9} + 3755216148x^{8} - 3618864524x^{7} + 2949553512x^{6} - 1987203924x^{5} + 1066396109x^{4} - 427989031x^{3} + 114056146x^{2} - 15071023x$
+   
+   \item[truncated tetrahedron] \hfill\\
+$x^{12} - 18x^{11} + 149x^{10} - 752x^{9} + 2586x^{8} - 6408x^{7} + 11774x^{6} - 16189x^{5} + 16468x^{4} - 11869x^{3} + 5442x^{2} - 1184x$   
+\end{description}
+\fi
