@@ -69,9 +69,11 @@
 - [ ] comment the results for total chromatic number
   - [ ] check if correct for tetrahedron
 
-- [ ] prune unused code in the printers
-  - [ ] for compatibility add caption and label params to md printer as well (can just be ignored)
+- [x] prune unused code in the printers
+  - [x] for compatibility add caption and label params to md printer as well (can just be ignored)
   - (i don't need the specific printers anymore)
+
+- [ ] check what format the Bachelor thesis must have
 
 ## Main tasks
 
