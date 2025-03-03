@@ -13,3 +13,7 @@ visualize some particular colorings in more accessible way.
 
 ## 2
 \todo[JF]{Stupeň se sází {\tt $\backslash$deg}, podobně jsem Vám připravil {\tt $\backslash$bnd}.}
+
+## 3
+
+\todo[JF]{Námět: popsat jak lze od složitějších přecházet ke klasickému vrcholovému - přes linegraf, graf incidencí, duál  apod. Možná se ukáže, že to pro sage bude snazší redukovat na vrcholové obarvení, možná i se zkoumáním symetrií.}
