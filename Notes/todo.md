@@ -64,11 +64,20 @@
 
 - [x] add bibliography resources for the definitions above
 
+## 2025_03_03
+
+- [ ] comment the results for total chromatic number
+  - [ ] check if correct for tetrahedron
+
+- [ ] prune unused code in the printers
+  - [ ] for compatibility add caption and label params to md printer as well (can just be ignored)
+  - (i don't need the specific printers anymore)
+
 ## Main tasks
 
 - [x] how to convert special colorings to vertex coloring by transforming the graph to a different graph
   - [x] describe and add figures to visualize
-  - [ ] implement in python and compute the chromatic numbers for these colorings
+  - [x] implement in python and compute the chromatic numbers for these colorings
 
 - [ ] what do operations on the Platonic solids do on the graphs?
 
