@@ -252,3 +252,18 @@
 - added visualizations of total coloring
 
 - added definition of face coloring with visualisation
+
+- created conversion from a graph to its line graph
+  - edge coloring is faster using the conversion
+  - tested, if even faster when using sage line_graph conversion (running time seems to be the same as for my conversion)
+- created conversion from a graph to total graph
+  - computed total chromatic numbers using this conversion
+
+### 2025_03_03
+
+- improved latex printing function for variable column amount tables
+
+- tried to calculate total chromatic number using distance graph conversion
+  - unfortunately, no function for distance graph seems to exist in Sage
+
+-  
