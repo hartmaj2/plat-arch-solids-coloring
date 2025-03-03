@@ -75,6 +75,13 @@
 
 - [ ] change format of Bachelor thesis to the correct new one
   - [link](https://gitlab.mff.cuni.cz/teaching/thesis-templates/thesis-en)
+  - first create new overleaf project and make sure everything works properly
+    - links
+    - supervisor todo environment
+    - tables 
+    - figures
+    - references
+  - when that really works, move the documents from the temporary project to the main project
 
 ## Main tasks
 
