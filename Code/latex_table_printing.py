@@ -11,9 +11,9 @@ CHROM_NO_COL_SIZE : int = 9
 TABLE_BEGIN_HERE = r"\begin{table}[H]"
 TABLE_END = r"\end{table}"
 CENTERING = r"\centering"
-CAPTION_PLACEHOLDER = r"\caption{Enter caption here.}"
+CAPTION_PLACEHOLDER = "Enter caption here."
 VERTICAL_SPACE = r"\vspace{5pt}"
-LABEL_PLACEHOLDER = r"\label{tab:enter-custom-label-here}"
+LABEL_PLACEHOLDER = "tab:enter-custom-label-here"
 
 TABULAR_BEGIN = r"\begin{tabular}"
 TABULAR_END = r"\end{tabular}"
@@ -42,9 +42,14 @@ def print_solids(solid_dict : dict, solid_category : str, output_type = sys.stdo
     tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_CENTER}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_CENTER}{TABLE_VERTICAL_LINE_MARKER}{CURLY_BRACE_RIGHT}"
     print(TABLE_BEGIN_HERE,file=output_type)
     print(CENTERING,file=output_type)
-    print(CAPTION_PLACEHOLDER,file=output_type)
+    print(r"\caption{",file=output_type,end="")
+    print(CAPTION_PLACEHOLDER,file=output_type,end="")
+    print(r"}",file=output_type)
     print(VERTICAL_SPACE,file=output_type)
-    print(LABEL_PLACEHOLDER,file=output_type)
+    print()
+    print(r"\label{",file=output_type,end="")
+    print(LABEL_PLACEHOLDER,file=output_type,end="")
+    print(r"}",file=output_type)
     print(tabular_format_string,file=output_type)
     print(LATEX_HORIZONTAL_LINE,file=output_type)
     header_line_string = f"{solid_category} {LATEX_COL_SEPARATOR} {VTX_CHROM_NUM_HEADER} {LATEX_COL_SEPARATOR} {EDG_CHROM_NUM_HEADER} {LATEX_NEWLINE}"
@@ -83,7 +88,7 @@ def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid
 
 # prints latex table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
 # on input we expect list of header names passed to `data_col_headrs`
-def print_solid_mult_col_data(solid_data_dict: dict, solid_category_name : str, data_col_headrs : list[str], data_col_size = 9, output_type = sys.stdout):
+def print_solid_mult_col_data(solid_data_dict: dict, solid_category_name : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout):
     # PRINT HEADER AND ENVIRONMENT THINGIES
     tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}"
     header_line_string = f"{solid_category_name}"
@@ -94,9 +99,13 @@ def print_solid_mult_col_data(solid_data_dict: dict, solid_category_name : str, 
     header_line_string += f" {LATEX_NEWLINE}"
     print(TABLE_BEGIN_HERE,file=output_type)
     print(CENTERING,file=output_type)
-    print(CAPTION_PLACEHOLDER,file=output_type)
+    print(r"\caption{",file=output_type,end="")
+    print(caption,file=output_type,end="")
+    print(r"}",file=output_type)
     print(VERTICAL_SPACE,file=output_type)
-    print(LABEL_PLACEHOLDER,file=output_type)
+    print(r"\label{",file=output_type,end="")
+    print(label,file=output_type,end="")
+    print(r"}",file=output_type)
     print(tabular_format_string,file=output_type)
     print(LATEX_HORIZONTAL_LINE,file=output_type)
     print(header_line_string,file=output_type)
@@ -112,6 +121,7 @@ def print_solid_mult_col_data(solid_data_dict: dict, solid_category_name : str, 
         print(LATEX_HORIZONTAL_LINE,file=output_type)
     print(TABULAR_END,file=output_type)
     print(TABLE_END,file=output_type)
+    print(file=output_type)
 
 def print_solid_one_col_poly(solid_data_dict: dict, solid_category_name = "solid", data_col_name = "data", data_alignment = "p{0.5\\linewidth}",output_type = sys.stdout):
     print_solid_one_col_data(solid_data_dict,solid_category_name,data_col_name,data_alignment,output_type,poly_to_latex)
