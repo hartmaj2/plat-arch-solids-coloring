@@ -64,6 +64,12 @@
 
 - [x] add bibliography resources for the definitions above
 
+## 2025_03_02
+
+- [x] how to convert special colorings to vertex coloring by transforming the graph to a different graph
+  - [x] describe and add figures to visualize
+  - [x] implement in python and compute the chromatic numbers for these colorings
+
 ## 2025_03_03
 
 - [x] comment the results for total chromatic number
@@ -73,7 +79,7 @@
   - [x] for compatibility add caption and label params to md printer as well (can just be ignored)
   - (i don't need the specific printers anymore)
 
-- [ ] change format of Bachelor thesis to the correct new one
+- [x] change format of Bachelor thesis to the correct new one
   - [link](https://gitlab.mff.cuni.cz/teaching/thesis-templates/thesis-en)
   - first create new overleaf project and make sure everything works properly
     - links
@@ -83,15 +89,22 @@
     - references
   - when that really works, move the documents from the temporary project to the main project
 
+## 2025_03_04
+
+- [ ] finish reading Polya from supervisor
+
 ## Main tasks
 
-- [x] how to convert special colorings to vertex coloring by transforming the graph to a different graph
-  - [x] describe and add figures to visualize
-  - [x] implement in python and compute the chromatic numbers for these colorings
+- [ ] finish reading Polya from supervisor
 
-- [ ] what do operations on the Platonic solids do on the graphs?
+- [ ] compute how many arrangments of k independent sets exist on various solids (start with tetrahedron, cube etc.)
+
+- [ ] revise what Brook's theorem about coloring says
+  - [ ] mention it in my thesis under vertex coloring
 
 ## Side tasks
+
+- [ ] what do operations on the Platonic solids do on the graphs?
 
 - [ ] read useful resources found on 19.2.2025
 

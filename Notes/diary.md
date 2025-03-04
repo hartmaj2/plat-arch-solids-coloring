@@ -266,4 +266,12 @@
 - tried to calculate total chromatic number using distance graph conversion
   - unfortunately, no function for distance graph seems to exist in Sage
 
--  
+### 2025_03_04
+
+- converted bachelor thesis format to the correct standard (I had the old one before)
+  - the new standard has advantages:
+    - links to figures & tables jump to the right places (so the figure is actually visible)
+    - the metadata is propagated to all places where it should go without having to repeat yourself
+    - title page is separate from thesis.tex (the preamble + just the ordering of the documents containing the actual content)
+
+- 
