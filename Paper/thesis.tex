@@ -42,8 +42,7 @@
 % \setlength\headheight{0mm}
 % \let\openright=\clearpage
 
-%% Generate PDF/A-2u
-\usepackage[a-2u]{pdfx}
+%% ORIGINAL PLACE OF \usepackage[a-2u]{pdfx}
 
 %% Prefer Latin Modern fonts
 \usepackage{lmodern}
@@ -73,20 +72,23 @@
 			    % of contents
 \usepackage{xcolor}         % typesetting in color
 
+%% Generate PDF/A-2u (MOVED HERE FROM OTHER PLACE TO AVOID ERROR WITH XCOLOR PACKAGE)
+\usepackage[a-2u]{pdfx}
+
 % The hyperref package for clickable links in PDF and also for storing
 % metadata to PDF (including the table of contents).
 % Most settings are pre-set by the pdfx package.
 \hypersetup{unicode}
 \hypersetup{breaklinks=true}
 
-% Packages for computer science theses
-\usepackage{algpseudocode}  % part of algorithmicx package
-\usepackage{algorithm}
-\usepackage{fancyvrb}       % improved verbatim environment
-\usepackage{listings}       % pretty-printer of source code
+%%% BEGIN: Packages for computer science theses
+% \usepackage{algpseudocode}  % part of algorithmicx package
+% \usepackage{algorithm}
+% \usepackage{fancyvrb}       % improved verbatim environment
+% \usepackage{listings}       % pretty-printer of source code
+%%% END: Packages for computer science theses
 
-%%%%
-% PACKAGES ADDED BY ME
+%%% BEGIN: PACKAGES ADDED BY ME
 \usepackage{float} % [H] syntax to stop certain elems from floating
 
 %% TODO NOTES
@@ -115,7 +117,7 @@
 \ifthenelse{\boolean{useHighlights}}{\color{red}}{}
 }{}
 
-%%%%
+%%% END: PACKAGES ADDED BY ME
 
 % You might want to use cleveref for references
 % \usepackage{cleveref}
