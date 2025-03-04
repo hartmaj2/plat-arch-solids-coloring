@@ -1,42 +1,93 @@
-%%% Hlavní soubor. Zde se definují základní parametry a odkazuje se na ostatní části. %%%
+%%% The main file. It contains definitions of basic parameters and includes all other parts.
 
-%% Verze pro jednostranný tisk:
-% Okraje: levý 40mm, pravý 25mm, horní a dolní 25mm
-% (ale pozor, LaTeX si sám přidává 1in)
+% Meta-data of your thesis (please edit)
+\input metadata.tex
+
+% Generate metadata in XMP format for use by the pdfx package
+\input xmp.tex
+
+%% Settings for single-side (simplex) printing
+% Margins: left 40mm, right 25mm, top and bottom 25mm
+% (but beware, LaTeX adds 1in=25.4mm implicitly)
 \documentclass[12pt,a4paper]{report}
 \setlength\textwidth{145mm}
 \setlength\textheight{247mm}
-\setlength\oddsidemargin{15mm}
-\setlength\evensidemargin{15mm}
+\setlength\oddsidemargin{14.6mm}
+\setlength\evensidemargin{14.6mm}
 \setlength\topmargin{0mm}
 \setlength\headsep{0mm}
 \setlength\headheight{0mm}
-% \openright zařídí, aby následující text začínal na pravé straně knihy
+% \openright makes the following text appear on a right-hand page
 \let\openright=\clearpage
 
-%% Pokud tiskneme oboustranně:
+%% Settings for two-sided (duplex) printing
 % \documentclass[12pt,a4paper,twoside,openright]{report}
 % \setlength\textwidth{145mm}
 % \setlength\textheight{247mm}
-% \setlength\oddsidemargin{15mm}
+% \setlength\oddsidemargin{14.6mm}
 % \setlength\evensidemargin{0mm}
 % \setlength\topmargin{0mm}
 % \setlength\headsep{0mm}
 % \setlength\headheight{0mm}
 % \let\openright=\cleardoublepage
 
-%% Použité kódování znaků: obvykle latin2, cp1250 nebo utf8:
-% \usepackage[utf8]{inputenc} % Not necessary since using LuaLaTeX
+%% If the thesis has no printed version, symmetric margins look better
+% \documentclass[12pt,a4paper]{report}
+% \setlength\textwidth{145mm}
+% \setlength\textheight{247mm}
+% \setlength\oddsidemargin{7.1mm}
+% \setlength\evensidemargin{7.1mm}
+% \setlength\topmargin{0mm}
+% \setlength\headsep{0mm}
+% \setlength\headheight{0mm}
+% \let\openright=\clearpage
 
-%% Ostatní balíčky
-\usepackage{graphicx}
-\usepackage{amsthm}
-\usepackage{amssymb}
-\usepackage{xcolor}
+%% Generate PDF/A-2u
+\usepackage[a-2u]{pdfx}
 
+%% Prefer Latin Modern fonts
+\usepackage{lmodern}
+% If we are not using LuaTeX, we need to set up character encoding:
+\usepackage{iftex}
+\ifpdftex
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\fi
+
+%% Further useful packages (included in most LaTeX distributions)
+\usepackage{amsmath}        % extensions for typesetting of math
+\usepackage{amsfonts}       % math fonts
+\usepackage{amsthm}         % theorems, definitions, etc.
+\usepackage{bm}             % boldface symbols (\bm)
+\usepackage{booktabs}       % improved horizontal lines in tables
+\usepackage{caption}        % custom captions of floating objects
+\usepackage{dcolumn}        % improved alignment of table columns
+\usepackage{floatrow}       % custom float environments
+\usepackage{graphicx}       % embedding of pictures
+\usepackage{indentfirst}    % indent the first paragraph of a chapter
+\usepackage[nopatch=item]{microtype}   % micro-typographic refinement
+\usepackage{paralist}       % improved enumerate and itemize
+\usepackage[nottoc]{tocbibind} % makes sure that bibliography and the lists
+			    % of figures/tables are included in the table
+			    % of contents
+\usepackage{xcolor}         % typesetting in color
+
+% The hyperref package for clickable links in PDF and also for storing
+% metadata to PDF (including the table of contents).
+% Most settings are pre-set by the pdfx package.
+\hypersetup{unicode}
+\hypersetup{breaklinks=true}
+
+% Packages for computer science theses
+\usepackage{algpseudocode}  % part of algorithmicx package
+\usepackage{algorithm}
+\usepackage{fancyvrb}       % improved verbatim environment
+\usepackage{listings}       % pretty-printer of source code
+
+%%%%
 % PACKAGES ADDED BY ME
 \usepackage{float} % [H] syntax to stop certain elems from floating
-\usepackage{amsmath} % Definition environment
 
 %% TODO NOTES
 \setlength{\marginparwidth}{2cm} % for todonotes to work correctly
@@ -49,12 +100,13 @@
 
 % MY ENVIRONMENTS
 
+%% MATHEMATICAL
+
 \newtheorem{definition}{Definition}
-\newtheorem{assumption}{Assumption}
 
 \newcommand{\bnd}{\operatorname{bnd}}
 
-% RED ENVIRONMENT
+%% RED ENVIRONMENT
 
 \newboolean{useHighlights}
 \setboolean{useHighlights}{true} % uncomment to toggle highlights
@@ -63,241 +115,87 @@
 \ifthenelse{\boolean{useHighlights}}{\color{red}}{}
 }{}
 
-%% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
-%% ale hlavně ho používáme k uložení metadat do PDF (včetně obsahu).
-%% POZOR, nezapomeňte vyplnit jméno práce a autora.
-% IMPORTANT: for table references to work, labels must be below captions!
-\usepackage[unicode]{hyperref}   % Musí být za všemi ostatními balíčky
-\hypersetup{pdftitle=Coloring of Platonic and Archimedean solids}
-\hypersetup{pdfauthor=Jan Hartman}
+%%%%
 
-%%% Drobné úpravy stylu
+% You might want to use cleveref for references
+% \usepackage{cleveref}
 
-% Tato makra přesvědčují mírně ošklivým trikem LaTeX, aby hlavičky kapitol
-% sázel příčetněji a nevynechával nad nimi spoustu místa. Směle ignorujte.
-\makeatletter
-\def\@makechapterhead#1{
-  {\parindent \z@ \raggedright \normalfont
-   \Huge\bfseries \thechapter. #1
-   \par\nobreak
-   \vskip 20\p@
-}}
-\def\@makeschapterhead#1{
-  {\parindent \z@ \raggedright \normalfont
-   \Huge\bfseries #1
-   \par\nobreak
-   \vskip 20\p@
-}}
-\makeatother
+% Set up formatting of bibliography (references to literature)
+% Details can be adjusted in macros.tex.
+%
+% BEWARE: Different fields of research and different university departments
+% have their own customs regarding bibliography. Consult the bibliography
+% format with your supervisor.
+%
+% The basic format according to the ISO 690 standard with numbered references
+\usepackage[natbib,style=iso-numeric,sorting=none]{biblatex}
+% ISO 690 with alphanumeric references (abbreviations of authors' names)
+%\usepackage[natbib,style=iso-alphabetic]{biblatex}
+% ISO 690 with references Author (year)
+%\usepackage[natbib,style=iso-authoryear]{biblatex}
+%
+% Some fields of research prefer a simple format with numbered references
+% (sorting=none tells that bibliography should be listed in citation order)
+%\usepackage[natbib,style=numeric,sorting=none]{biblatex}
+% Numbered references, but [1,2,3,4,5] is compressed to [1-5]
+%\usepackage[natbib,style=numeric-comp,sorting=none]{biblatex}
+% A simple format with alphanumeric references:
+%\usepackage[natbib,style=alphabetic]{biblatex}
 
-% Toto makro definuje kapitolu, která není očíslovaná, ale je uvedena v obsahu.
-\def\chapwithtoc#1{
-\chapter*{#1}
-\addcontentsline{toc}{chapter}{#1}
-}
+% Load the file with bibliography entries
+\addbibresource{bibliography.bib}
 
+% Our definitions of macros (see description inside)
+\input macros.tex
+
+%%% Title page and various mandatory informational pages
 \begin{document}
+\include{title}
 
-% Trochu volnější nastavení dělení slov, než je default.
-\lefthyphenmin=2
-\righthyphenmin=2
+%%% A page with automatically generated table of contents of the thesis
 
-%%% Titulní strana práce
-
-\pagestyle{empty}
-\begin{center}
-
-\large
-
-Charles University in Prague
-
-\medskip
-
-Faculty of Mathematics and Physics
-
-\vfill
-
-{\bf\Large BACHELOR THESIS}
-
-\vfill
-
-\centerline{\mbox{\includegraphics[width=60mm]{../Resources/Figs/logo.eps}}}
-
-\vfill
-\vspace{5mm}
-
-{\LARGE Jan Hartman}
-
-\vspace{15mm}
-
-% Název práce přesně podle zadání
-{\LARGE\bfseries Coloring of Platonic and Archimedean solids}
-
-\vfill
-
-% Název katedry nebo ústavu, kde byla práce oficiálně zadána
-% (dle Organizační struktury MFF UK)
-Department of Applied Mathematics
-
-\vfill
-
-\begin{tabular}{rl}
-
-Supervisor of the bachelor thesis: & doc. RNDr. Jiří Fiala, Ph.D. \\
-\noalign{\vspace{2mm}}
-Study programme: & Computer Science \\
-\noalign{\vspace{2mm}}
-Specialization: & Obecná informatika \\
-\end{tabular}
-
-\vfill
-
-% Zde doplňte rok
-Prague \the\year
-
-\end{center}
-
-\newpage
-
-%%% Následuje vevázaný list -- kopie podepsaného "Zadání bakalářské práce".
-%%% Toto zadání NENÍ součástí elektronické verze práce, nescanovat.
-
-%%% Na tomto místě mohou být napsána případná poděkování (vedoucímu práce,
-%%% konzultantovi, tomu, kdo zapůjčil software, literaturu apod.)
-
-\openright
-
-\noindent
-Dedication.
-
-\newpage
-
-%%% Strana s čestným prohlášením k bakalářské práci
-
-\vglue 0pt plus 1fill
-
-\noindent
-I declare that I carried out this bachelor thesis independently, and only with the cited
-sources, literature and other professional sources.
-
-\medskip\noindent
-I understand that my work relates to the rights and obligations under the Act No.
-121/2000 Coll., the Copyright Act, as amended, in particular the fact that the Charles
-University in Prague has the right to conclude a license agreement on the use of this
-work as a school work pursuant to Section 60 paragraph 1 of the Copyright Act.
-
-\vspace{10mm}
-
-\hbox{\hbox to 0.5\hsize{%
-In ........ date ............
-\hss}\hbox to 0.5\hsize{%
-signature of the author
-\hss}}
-
-\vspace{20mm}
-\newpage
-
-%%% Povinná informační strana bakalářské práce
-
-\vbox to 0.5\vsize{
-\setlength\parindent{0mm}
-\setlength\parskip{5mm}
-
-Název práce:
-Barvení platónských a archimédovských těles
-% přesně dle zadání
-
-Autor:
-Jan Hartman
-
-Katedra:  % Případně Ústav:
-Katedra aplikované matematiky
-% dle Organizační struktury MFF UK
-
-Vedoucí bakalářské práce:
-doc. RNDr. Jiří Fiala, Ph.D.
-% dle Organizační struktury MFF UK, případně plný název pracoviště mimo MFF UK
-
-Abstrakt:
-% abstrakt v rozsahu 80-200 slov; nejedná se však o opis zadání bakalářské práce
-
-Klíčová slova:
-% 3 až 5 klíčových slov
-
-\vss}\nobreak\vbox to 0.49\vsize{
-\setlength\parindent{0mm}
-\setlength\parskip{5mm}
-
-Title:
-% přesný překlad názvu práce v angličtině
-Coloring of Platonic and Archimedean solids
-
-Author:
-Jan Hartman
-
-Department:
-Department of Applied Mathematics
-% dle Organizační struktury MFF UK v angličtině
-
-Supervisor:
-doc. RNDr. Jiří Fiala, Ph.D.
-% dle Organizační struktury MFF UK, případně plný název pracoviště
-% mimo MFF UK v angličtině
-
-Abstract:
-% abstrakt v rozsahu 80-200 slov v angličtině; nejedná se však o překlad
-% zadání bakalářské práce
-
-Keywords:
-% 3 až 5 klíčových slov v angličtině
-
-\vss}
-
-\newpage
-
-%%% Strana s automaticky generovaným obsahem bakalářské práce. U matematických
-%%% prací je přípustné, aby seznam tabulek a zkratek, existují-li, byl umístěn
-%%% na začátku práce, místo na jejím konci.
-
-\openright
-\pagestyle{plain}
-\setcounter{page}{1}
 \tableofcontents
 
-%%% Jednotlivé kapitoly práce jsou pro přehlednost uloženy v samostatných souborech
+%%% Each chapter is kept in a separate file
 \include{Paper/0preface}
 \include{Paper/1geo_to_graphs}
 \include{Paper/2colorings}
 \include{Paper/3coloring_rels}
 \include{Paper/4computations}
-
-% Ukázka použití některých konstrukcí LateXu (odkomentujte, chcete-li)
-% UNCOMMENT FOLLOWING TO SEE EXAMPLES
-% \include{example} 
-
 \include{Paper/9epilog}
 
-%%% Seznam použité literatury
-%%% Je zpracován podle platných standardů. Povinnou citační
-%%% normou pro bakalářskou práci je ISO 690. Jména časopisů lze uvádět zkráceně, ale jen
-%%% v kodifikované podobě. Všechny použité zdroje a prameny musí být řádně citovány.
-\bibliographystyle{plain}
-\bibliography{Resources/references}
-\addcontentsline{toc}{chapter}{Bibliography} % FOR SOME REASON SHOULD BE AT THE END OF THE CHAPTER?
+%%% Bibliography
+\include{bibliography}
 
-%%% Tabulky v bakalářské práci, existují-li.
+%%% Figures used in the thesis (consider if this is needed)
+\listoffigures
 
-\listoftables % automatically generates list of tables
-% tables must be enclosed in `table` nevironment and must have a `caption` attribute
-\addcontentsline{toc}{chapter}{List of Tables}
+%%% Tables used in the thesis (consider if this is needed)
+%%% In mathematical theses, it could be better to move the list of tables to the beginning of the thesis.
+\listoftables
 
-%%% Použité zkratky v bakalářské práci, existují-li, včetně jejich vysvětlení.
+%%% Abbreviations used in the thesis, if any, including their explanation
+%%% In mathematical theses, it could be better to move the list of abbreviations to the beginning of the thesis.
 \chapwithtoc{List of Abbreviations}
 
-%%% Přílohy k bakalářské práci, existují-li (různé dodatky jako výpisy programů,
-%%% diagramy apod.). Každá příloha musí být alespoň jednou odkazována z vlastního
-%%% textu práce. Přílohy se číslují.
-\chapwithtoc{Attachments}
+%%% Doctoral theses must contain a list of author's publications
+\ifx\ThesisType\TypePhD
+\chapwithtoc{List of Publications}
+\fi
 
-\openright
+%%% Attachments to the thesis, if any. Each attachment must be referred to
+%%% at least once from the text of the thesis. Attachments are numbered.
+%%%
+%%% The printed version should preferably contain attachments, which can be
+%%% read (additional tables and charts, supplementary text, examples of
+%%% program output, etc.). The electronic version is more suited for attachments
+%%% which will likely be used in an electronic form rather than read (program
+%%% source code, data files, interactive charts, etc.). Electronic attachments
+%%% should be uploaded to SIS. Allowed file formats are specified in provision
+%%% of the rector no. 72/2017. Exceptions can be approved by faculty's coordinator.
+\appendix
+\chapter{Attachments}
+
+\section{First Attachment}
+
 \end{document}
