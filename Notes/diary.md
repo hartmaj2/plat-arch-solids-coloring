@@ -274,4 +274,19 @@
     - the metadata is propagated to all places where it should go without having to repeat yourself
     - title page is separate from thesis.tex (the preamble + just the ordering of the documents containing the actual content)
 
-- 
+### 2025_03_05
+
+- read further from Polya.pdf from my supervisor
+  - built a bit more intuition 
+    - why transformations on square form a group
+    - why transformation that preserve a certain coloring form a subgroup 
+    - why the set of all colorings that I can get by applying transformation to some coloring form an equivalence class
+  - revised notation
+    - fixpoint - for a transformation it is the set of all elements that are immune to the transformation 
+    - stabilizer - for some element it is the set of all transformation that leave him untouched
+    - orbit - equivalence class of a under the relation defined by "all the elements I can get to from a by applying transformations on it"
+- unanswered questions: 
+  - why every transformation in G can be obtained as a left coset of some rotation with a subgroup defined as the transformations preserving some coloring?
+  - why -||- as a right coset of one rotation and all the subgroups defined by transformations perserving the colorings in the "orbit"
+
+### 2025_03_06
