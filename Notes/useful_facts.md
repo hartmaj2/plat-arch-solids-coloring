@@ -12,7 +12,7 @@
 - Lagrange's theorem
   - if I have a subgroup of a group, its size always divides the size of the group
 
-- thinks to graphs intuitively
+- things to grasp intuitively
   - why cosets of a subgroup are disjoint in general?
     - the concrete example of this -> when I take cosets based on the rotation, they must also be disjoint
     - good question for later: why will they cover all elements of the group?
