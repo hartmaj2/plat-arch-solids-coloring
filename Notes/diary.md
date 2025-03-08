@@ -286,7 +286,39 @@
     - stabilizer - for some element it is the set of all transformation that leave him untouched
     - orbit - equivalence class of a under the relation defined by "all the elements I can get to from a by applying transformations on it"
 - unanswered questions: 
-  - why every transformation in G can be obtained as a left coset of some rotation with a subgroup defined as the transformations preserving some coloring?
-  - why -||- as a right coset of one rotation and all the subgroups defined by transformations perserving the colorings in the "orbit"
+  - (a) why every transformation in G can be obtained as a left coset of some rotation with a subgroup defined as the transformations preserving some coloring?
+  - (b) why -||- as a right coset of one rotation and all the subgroups defined by transformations perserving the colorings in the "orbit"
 
 ### 2025_03_06
+
+- discovered answer to the question (a) above:
+  - (a) this comes from the way how bijection between left cosets (using their representatives) and elements of the orbit is defined
+    - this bijection is defined as mapping from gH_a -> g(a) (maps the representant of the coset to the element/coloring to which the representants transformation takes us)
+    - because that mapping is a valid bijection, each transformation that takes me to a different coloring (inside of the same orbit) must be representant of a different coset
+
+- read chapter about Lagrange's theorem and Burnside's lemma in [algebra 1 notes](https://www.karlin.mff.cuni.cz/~zemlicka/24-25/Algebra_1_translation.pdf)
+  - wrote a summary about what are key arguments of the proof of Burnside's lemma
+  - thought about where exactly is Lagrange's theorem used (in the part where we show that # of cosets of a stabilizer of c is same as the # of orbits of c to get equation: |stab(c)| * |orb(c)| = |G|)
+  - where in the proof do we need counting two ways (not necessary if we don't need to express the amount of orbits using fixpoints)
+
+### 2025_03_08
+
+- tried to find out some pattern in how chromatic poly of cube can be expressed as chromatic poly of trees using the recursive rool (contracting or removing an edge)
+  - found out, that contracting an edge e can remove multiple other edges; removes 1 + (# of tricycles that e lies on) edges
+  - the point above holds because we use the fact that parallel edges can be removed
+
+- analyzed what defines a rotation
+  - how can I find out all possible rotations?
+  - rotation:
+    - must have an axis x
+    - x must go through centroid of the solid
+    - x must go through centre of vertex/edge/face ?
+
+- tried to figure out what is the difference between reflection and rotation
+  - axis of rotation seems to always be an object with 2 less dimensions than the object we're rotating
+  - axis of reflection -||- 1 less dimension -||-
+  - what a reflection does in n-dim space can be done using some rotation of the object when embedded into (n+1)-dim space
+  - unanswered questions:
+    - what is the general difference between rotation and reflection?
+      - what property of the solid is not preserved when reflecting?
+      - what properties are preserved when only rotating?
