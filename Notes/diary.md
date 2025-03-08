@@ -301,6 +301,9 @@
   - thought about where exactly is Lagrange's theorem used (in the part where we show that # of cosets of a stabilizer of c is same as the # of orbits of c to get equation: |stab(c)| * |orb(c)| = |G|)
   - where in the proof do we need counting two ways (not necessary if we don't need to express the amount of orbits using fixpoints)
 
+- unanswered questions:
+  - what characterizes the permutations that correspond to reflection or a rotation?
+
 ### 2025_03_08
 
 - tried to find out some pattern in how chromatic poly of cube can be expressed as chromatic poly of trees using the recursive rool (contracting or removing an edge)
