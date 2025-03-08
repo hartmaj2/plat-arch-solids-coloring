@@ -325,3 +325,6 @@
     - what is the general difference between rotation and reflection?
       - what property of the solid is not preserved when reflecting?
       - what properties are preserved when only rotating?
+    - why rotations and reflections of a graph correspond to automorphisms?
+
+- checked that automorphisms w/ composition indeed form a group

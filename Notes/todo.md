@@ -102,6 +102,14 @@
 - [ ] revise what Brook's theorem about coloring says
   - [ ] mention it in my thesis under vertex coloring
 
+- [ ] write an introduction to the chapter about symmetries
+  - [ ] how do we define symmetry
+  - [ ] how will we work with symmetry throughout my thesis
+  - [ ] define, what it means for two colorings to be different up to taking symmetries
+    - using equivalence classes of transitivity relation (group actions)
+
+- [ ] figure out how I can show that all rotations can be described by picking an axis of rotation and performing some rotation on that (even when the transformation is composed from multiple rotations in succession)
+
 ## Side tasks
 
 - [ ] what do operations on the Platonic solids do on the graphs?
@@ -112,4 +120,9 @@
 
 - [ ] consider, how the number of colorings of tetrahedral graph changes (the chromatic polynomial) when taking difference only up to symmetries
 
-- [ ] what does it mean for colorings to be different up to symmetries?
+- [ ] figure out nice proof why automorphisms correspond exactly to valid transformation of the objects
+  - [ ] what does it mean for a transformation of 2d-shape/solid to be valid?
+    - (no tearing edges etc.)
+
+- [ ] what is the dividing property between rotations and reflections?
+  - rotations seem to disallow flipping the shape/solid using one more dimension than the dimension that the shape/solid lives in (think about 2d square being reflected is as if it was rotated by axis that exists only when considering 3d)
