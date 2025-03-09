@@ -353,3 +353,11 @@
 
 - calculated that for 2 colors, the amount of orbits when considering reflections also is 22 instead of 23
   - that agrees with the fact, that I found two cube configurations from supervisors slides, that can be obtained from one another by performing a reflection
+
+- experimented with conda but realized I don't need it
+  - removed both conda and miniforge
+
+- installed sympy simply using pip
+
+- calculated the expansion of polya polynomial for transformations of cube for 2 colors
+  - [link](../Code/polya_cube.py)
