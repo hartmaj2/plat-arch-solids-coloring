@@ -348,3 +348,8 @@
   - probably not in the same orbit if considering only rotations and not reflections
 
 - UAQ: why supervisor chose to exclude reflections (are they not automorphisms as well?)
+
+- understood how size of fixpoint of automorphism can be calculated using the number of cycles of the automorphism
+
+- calculated that for 2 colors, the amount of orbits when considering reflections also is 22 instead of 23
+  - that agrees with the fact, that I found two cube configurations from supervisors slides, that can be obtained from one another by performing a reflection
