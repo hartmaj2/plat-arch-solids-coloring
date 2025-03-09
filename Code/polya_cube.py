@@ -1,6 +1,3 @@
-# necessary to use conda environment with sympy installed
-# to run: ./cenv/bin/python ./Code/polya_cube.py 
-
 import sympy
 
 x = sympy.Symbol('x')
