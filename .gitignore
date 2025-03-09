@@ -5,5 +5,4 @@
 *.fdb_latexmk
 *.log
 
-cenv/
 env/
