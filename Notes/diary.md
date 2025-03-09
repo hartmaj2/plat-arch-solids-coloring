@@ -354,6 +354,9 @@
 - calculated that for 2 colors, the amount of orbits when considering reflections also is 22 instead of 23
   - that agrees with the fact, that I found two cube configurations from supervisors slides, that can be obtained from one another by performing a reflection
 
+- made calculation of orbits by Burnside's lemma for 48 automorphisms in Desmos
+  - [link](https://www.desmos.com/calculator/mmruacwjl6)
+
 - experimented with conda but realized I don't need it
   - removed both conda and miniforge
 
