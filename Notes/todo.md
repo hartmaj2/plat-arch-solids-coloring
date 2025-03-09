@@ -91,19 +91,19 @@
 
 ## 2025_03_04
 
-- [ ] finish reading Polya from supervisor
+- [x] finish reading Polya from supervisor
 
 ## 2025_03_09
 
-- [ ] find out why my computation leads to 48 automorphisms of cube instead of 24 as in Polya.pdf
+- [x] find out why my computation leads to 48 automorphisms of cube instead of 24 as in Polya.pdf
 
-- [ ] find out what result I get when I use my 48 automorphisms
+- [x] find out what result I get when I use my 48 automorphisms
 
 - [ ] sum up all my questions so far and prepare them in the document for next meeting
 
 ## Main tasks
 
-- [ ] finish reading Polya from supervisor
+- [x] finish reading Polya from supervisor
 
 - [ ] compute how many arrangments of k independent sets exist on various solids (start with tetrahedron, cube etc.)
 
@@ -115,8 +115,6 @@
   - [ ] how will we work with symmetry throughout my thesis
   - [ ] define, what it means for two colorings to be different up to taking symmetries
     - using equivalence classes of transitivity relation (group actions)
-
-- [ ] figure out how I can show that all rotations can be described by picking an axis of rotation and performing some rotation on that (even when the transformation is composed from multiple rotations in succession)
 
 ## Side tasks
 
