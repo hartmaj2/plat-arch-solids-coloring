@@ -93,6 +93,14 @@
 
 - [ ] finish reading Polya from supervisor
 
+## 2025_03_09
+
+- [ ] find out why my computation leads to 48 automorphisms of cube instead of 24 as in Polya.pdf
+
+- [ ] find out what result I get when I use my 48 automorphisms
+
+- [ ] sum up all my questions so far and prepare them in the document for next meeting
+
 ## Main tasks
 
 - [ ] finish reading Polya from supervisor

@@ -1,5 +1,7 @@
 # Diary of work progress
 
+- UAQ := unanswered question
+
 ## December
 
 ### 2024_12_12
@@ -328,3 +330,21 @@
     - why rotations and reflections of a graph correspond to automorphisms?
 
 - checked that automorphisms w/ composition indeed form a group
+
+### 2025_03_09
+
+- found a constructive way to count automorphisms
+  - 1. compute how many ways the first vertex can be mapped
+    - each such way must result in a different automorphism
+  - 2. then compute how many ways the neighbors can be mapped
+    - this might already be the last step since when the neighbors are mapped, the rest might follow from the constraints given on them by the edges between them
+    - UAQ: if they have no edges between them, is it possible to map them arbitrarily?
+
+  - IMPORTANT: in step (2) if I want to consider rotations only
+    - rotations are characterized by the fact, that they preserve orientations of the cycles
+    - so the after on neighbor is picked the second must already follow from the orientation of the cycle in the original labeling
+
+- found two examples of colorings of cube in supervisors Polya.pdf that seem to belong to the same orbit
+  - probably not in the same orbit if considering only rotations and not reflections
+
+- UAQ: why supervisor chose to exclude reflections (are they not automorphisms as well?)
