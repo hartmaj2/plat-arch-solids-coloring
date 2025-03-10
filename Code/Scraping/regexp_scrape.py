@@ -1,6 +1,6 @@
 import urllib.request
 import re
-import md_table_printing as printing
+import t_printing.md_table_printing as printing
 
 # This program web scrapes wikipedia web page for chromatic numbers of platonic and archimedean graphs
 

@@ -1,4 +1,4 @@
-import solids_dict_prep as sdp
+import solids_prep.solids_dict_prep as sdp
 
 VERTICES = sdp.JSON_VERTICES
 EDGES = sdp.JSON_EDGES

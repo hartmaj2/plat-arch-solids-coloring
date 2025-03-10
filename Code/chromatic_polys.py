@@ -7,8 +7,8 @@
 from sage.all import Graph
 from sage.all import *
 
-import latex_table_printing as printing
-import solids_dict_prep as sdp
+import t_printing.latex_table_printing as printing
+import solids_prep.solids_dict_prep as sdp
 
 # INPUT FILE SETTINGS
 

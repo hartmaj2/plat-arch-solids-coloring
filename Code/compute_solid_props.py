@@ -1,5 +1,5 @@
-import md_table_printing as printing
-import solids_dict_prep as sdp
+import t_printing.md_table_printing as printing
+import solids_prep.solids_dict_prep as sdp
 
 DATA_COLUMN_HEADER = "vtx deg"
 DATA_HEADERS = ["v","e","f","d"]
