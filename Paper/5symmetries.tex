@@ -1,0 +1,25 @@
+\begin{highlight}
+
+\chapter{Colorings and symmetries}
+
+In the previous chapters, we computed, how many proper colorings of Platonic and Archimedean solids exists. We used an approach, which didn't take into account, that some colorings can be obtained from the other by simply rotating or reflecting the solids i.e. by applying some geometric transformation on it. It makes good sense, to regard these colorings as identical. This comes from the fact that their structure will be the same or ,as in case of reflections, at least very similar. An analogy from chemistry could be, that the properties of a chemical compound do not change, when we rotate it. Thus it is reasonable, to consider all its rotations as being the same compound. 
+
+In order to be able to say, which colorings should be considered identical, we need to define some kind of equivalence relation, that will group all the different transformations of same coloring together. In mathematics, we call this relation a \textit{transitivity relation} and its equivalence classes are typically referred to as its \textit{orbits}. The transitivity relation is defined using the set of underlying objects, in our case the colorings, and the group that acts on these objects, the transformations.
+
+Using the mathematical language above, our task boils down to counting the amount of orbits of the transitivity relation, defined on colorings of our solid using the group of transformations of the solid.
+
+To be able to use the transformations of the solids in our computations, we need a mathematical way of describing them. As we are working with graphs of the solids, we then also need to be able to describe these transformations as transformations on these graphs.
+
+\section{Describing solid transformations}
+
+How do we define a solid transformation in 3d-space? Imagine fixing a vertex $v$ of the solid and looking at our solid from the direction of that vertex. What does it mean to rotate or reflect the solid? What a rotation or a reflection does is, that the vertices are moved around to places, where other vertices used to be. So in fact, we can think of it just as a permutation of the vertices. 
+
+\subsection{Rotations and reflections}
+
+Let us denote this permutation by $\pi : V \rightarrow V$ where $\pi(u) = v$ means, that after applying the permutation $\pi$ on the solid, vertex $u$ ended up at a location, where vertex $v$ was before applying $\pi$ on the solid. Beware, that $\pi$ cannot be just an arbitrary permutation. Because applying a rotation or a reflection should leave the structure unchanged, we only consider $\pi$ a valid transformation if for every two vertices $u$ and $v$, then $\pi(u)$ and $\pi(v)$ are connected by an edge if and only if $u$ and $v$ were connected by an edge. This property is enough to characterize exactly rotations and reflections.
+
+\subsection{Rotations only}
+
+On the other hand, if we limit ourselves only to rotations while disallowing reflections, we need one more property to be preserved. This property being the ordering of the edges around cycles they form. Let us take an example of the simplest Platonic solid, the tetrahedron. If we require only the edge connectedness property mentioned above, all $4!$ permutations of its vertices will be valid. Let us now consider any face and label its vertices $1$,$2$ and $3$ in order as they go around the tricycle. We can denote this cycle as a triple $(1,2,3)$. There is no way to rotate the tetrahedron in a way, that we interchange vertices $1$ and $2$ and leave the remaining vertices where they were. The reason is, that this would involve changing the ordering of the vertices around the cycle to $(2,1,3)$. Note that this transformation can be achieved using a single reflection.
+
+\end{highlight}
