@@ -1,6 +1,8 @@
 # Results of calculated chromatic polynomials of selected graphs
 
-## Rhombicuboctahedron
+## Selection
+
+### Rhombicuboctahedron
 
 rhombicuboctahedron
 starting_time=1741617726.7058072
@@ -8,6 +10,24 @@ x^24 - 48*x^23 + 1120*x^22 - 16910*x^21 + 185518*x^20 - 1574420*x^19 + 10743365*
 end_time=1741618250.9538078
 duration=524.2480006217957
 
-## Snub cube
+### Snub cube
 
-## Icosidodecahedron
+edges: [(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (1, 6), (1, 7), (1, 8), (2, 3), (2, 8), (2, 9), (3, 4), (3, 10), (3, 11), (4, 5), (4, 11), (4, 12), (5, 6), (5, 12), (5, 13), (6, 7), (6, 13), (6, 14), (7, 8), (7, 14), (7, 15), (8, 9), (8, 16), (9, 10), (9, 16), (9, 17), (10, 11), (10, 17), (10, 18), (11, 18), (11, 19), (12, 13), (12, 19), (12, 20), (13, 14), (13, 20), (14, 15), (14, 21), (15, 16), (15, 21), (15, 22), (16, 17), (16, 22), (17, 18), (17, 22), (18, 19), (18, 23), (19, 20), (19, 23), (20, 21), (20, 23), (21, 22), (21, 23), (22, 23)]
+
+### Icosidodecahedron
+
+...
+
+## Code to get edges dict for given poly
+
+```py
+import solids_prep.solids_dict_prep as sdp
+
+solids = sdp.get_all_solids_dict()
+solid_name = "snub cube"
+
+edges = solids[solid_name][sdp.JSON_EDGES]
+
+print(solid_name)
+print(edges)
+```
