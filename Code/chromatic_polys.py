@@ -19,7 +19,7 @@ ROOT_FOLDER = "Code"
 DATA_COLUMN_HEADER = "chromatic polynomial"
 
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/Results/chrom_polys.md","w")
+output_file = open(ROOT_FOLDER + "/Results/chrom_polys2.md","w")
 output_type = output_file
 
 # import sys
@@ -37,25 +37,25 @@ def compute_chromatic_polynomial(solid_edges : list[tuple]):
     return poly
 
 # processes all solids and loads corresponding data to the dict
-def get_chrom_polys_dict(solid_edges : dict):
+def get_chrom_polys_dict(solid_dict : dict):
     solid_computed_data = {}
-    for solid_name in solid_edges.keys():
+    for solid_name in solid_dict.keys():
         if solid_name in polys_to_skip:
             solid_computed_data[solid_name] = None
             print(f"skipping chromial of {solid_name}")
         else:
             print(f"calculating chromial of {solid_name}")
-            solid_computed_data[solid_name] = compute_chromatic_polynomial(solid_edges[solid_name])
+            solid_computed_data[solid_name] = compute_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])
     return solid_computed_data
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
-    platonic_edges = sdp.get_platonic_edges_dict()
-    platonic_data = get_chrom_polys_dict(platonic_edges)
+    platonic = sdp.get_platonic_solid_dict()
+    platonic_data = get_chrom_polys_dict(platonic)
     printing.print_solid_one_col_poly(platonic_data,sdp.PLATONIC_FOLDER,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
     
-    archimedean_edges = sdp.get_archimedean_edges_dict()
-    archimedean_data = get_chrom_polys_dict(archimedean_edges)
+    archimedean = sdp.get_archimedean_solid_dict()
+    archimedean_data = get_chrom_polys_dict(archimedean)
     printing.print_solid_one_col_poly(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
