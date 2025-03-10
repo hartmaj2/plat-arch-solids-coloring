@@ -97,7 +97,19 @@
 
 - [x] find out why my computation leads to 48 automorphisms of cube instead of 24 as in Polya.pdf
 
-- [x] find out what result I get when I use my 48 automorphisms
+- [x] find out what result I get when I use all 48 automorphisms of cube
+
+## 2025_03_10
+
+- [ ] check if automorphism calculations for platonic solids correct
+
+- [ ] start writing chapter outline
+  - symmetries
+  - operations on platonic solids interpreted on graphs
+
+- [ ] use Burnside/Polya to calculate only valid colorings of the objects
+
+- [ ] find out how I can enumerate automorphisms of some objects and get their cycle counts and lengths
 
 - [ ] sum up all my questions so far and prepare them in the document for next meeting
 
