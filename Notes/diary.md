@@ -382,3 +382,8 @@
 
 - found a nice operator to merge dictionaries in python 
   - `merged_dict = dict1 | dict2`
+
+- simplified code of solids prep program
+  - removed specific functions for getting edges only
+  - added function to get merged dicts for combined plat and arch solids
+  - used this to prepare edges set for `snub cube` for its chrom poly to be computed on faculty HPC

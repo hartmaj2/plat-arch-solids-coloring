@@ -146,3 +146,5 @@
 
 - [ ] what is the dividing property between rotations and reflections?
   - rotations seem to disallow flipping the shape/solid using one more dimension than the dimension that the shape/solid lives in (think about 2d square being reflected is as if it was rotated by axis that exists only when considering 3d)
+
+- [ ] simplify table printing (don't have multiple functions for printing one col and mult col data)
