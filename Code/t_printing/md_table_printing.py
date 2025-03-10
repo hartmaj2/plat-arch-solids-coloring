@@ -24,6 +24,10 @@ def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid
         print(table_entry_row,file=output_type)
     print(file=output_type)
 
+# for compatibility with chromatic_polys.py latex printing
+def print_solid_one_col_poly(solid_data_dict: dict, solid_category_name = "solid", data_col_name = "data", data_alignment = "",output_type = sys.stdout):
+    print_solid_one_col_data(solid_data_dict,solid_category_name,data_col_name,output_type=output_type)
+
 # prints md table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
 # on input we expect list of header names passed to `data_col_headrs`
 def print_solid_mult_col_data(solid_data_dict: dict, solid_category_name : str, data_col_headrs : list[str], data_col_size = DEFAULT_COL_SIZE, caption = CAPTION_PLACEHOLDER, label = "",output_type = sys.stdout):

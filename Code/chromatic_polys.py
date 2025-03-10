@@ -7,7 +7,7 @@
 from sage.all import Graph
 from sage.all import *
 
-import t_printing.latex_table_printing as printing
+import t_printing.md_table_printing as printing
 import solids_prep.solids_dict_prep as sdp
 
 # INPUT FILE SETTINGS
@@ -19,7 +19,7 @@ ROOT_FOLDER = "Code"
 DATA_COLUMN_HEADER = "chromatic polynomial"
 
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/chrom_polys.md","w")
+output_file = open(ROOT_FOLDER + "/Results/chrom_polys.md","w")
 output_type = output_file
 
 # import sys
