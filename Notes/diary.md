@@ -364,3 +364,12 @@
 
 - calculated the expansion of polya polynomial for transformations of cube for 2 colors
   - [link](../Code/polya_cube.py)
+
+### 2025_03_10
+
+- thought about # of automorphism of Platonic solids, got the following results:
+  - tetrahedron - 24 (4!)
+  - cube - 48 (8*3*2)
+  - octahedron - 48 (6*4*2)
+  - dodecahedron - 120 (20*3*2)
+  - icosahedron - 120 (12*5*2)
