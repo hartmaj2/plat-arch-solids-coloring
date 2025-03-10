@@ -373,3 +373,12 @@
   - octahedron - 48 (6*4*2)
   - dodecahedron - 120 (20*3*2)
   - icosahedron - 120 (12*5*2)
+
+- tested that the counts above were correct using Sage
+  - [link to code used here](../Code/automorphisms.py)
+
+- had a meeting with supervisor
+  - [link to notes](../Meetings/meet_25_03_10.md)
+
+- found a nice operator to merge dictionaries in python 
+  - `merged_dict = dict1 | dict2`
