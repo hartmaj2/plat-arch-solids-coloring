@@ -113,6 +113,7 @@
 
 - [ ] find out how I can enumerate automorphisms of some objects and get their cycle counts and lengths
 
+- [ ] calculate chrom poly of `snub cube` using faculty HPC
 
 ## Main tasks
 
