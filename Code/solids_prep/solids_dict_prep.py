@@ -13,32 +13,6 @@ JSON_EDGES = "edges"
 ARCHIMEDEAN_FOLDER = "Archimedean"
 PLATONIC_FOLDER = "Platonic"
 
-# retrieves data from json files necessary to create sage graphs
-def get_name_and_edges(folder_name: str, solid_filename : str) -> tuple[str,list]:
-    with open(f"{INPUT_FOLDER_PATH}/{folder_name}/{solid_filename}","r") as file:
-        graph_data : dict = json.load(file)
-        edges = graph_data[JSON_EDGES]
-        name = graph_data[JSON_NAME]
-        return name,[tuple(edge) for edge in edges] # convert: list of lists -> list of tuples
-
-# processes all solids and return dictionary of their edge set (list of tuples)
-def get_edges_dict(folder_name : str, solid_names : list[str]):
-    edges_dict = {} # solid_name -> solids_edges
-    for solid_filename in solid_names:
-        solid_name, solid_edges = get_name_and_edges(folder_name,solid_filename)
-        edges_dict[solid_name] = solid_edges
-    return edges_dict
-
-# returns dict of edges for platonic solids
-def get_platonic_edges_dict():
-    solid_names = os.listdir(INPUT_FOLDER_PATH + '/' + PLATONIC_FOLDER) # retrieves solid names in current folder
-    return get_edges_dict(PLATONIC_FOLDER,solid_names)
-
-# returns dict of edges for archimedean solids
-def get_archimedean_edges_dict():
-    solid_names = os.listdir(INPUT_FOLDER_PATH + '/' + ARCHIMEDEAN_FOLDER) # retrieves solid names in current folder
-    return get_edges_dict(ARCHIMEDEAN_FOLDER,solid_names)
-
 # retrieves the data for the given solid consisting of the name of the solid indices of vertices and the list of edges
 def get_name_vtcs_edgs(folder_name: str, solid_filename : str) -> tuple[str,list,list]:
     with open(f"{INPUT_FOLDER_PATH}/{folder_name}/{solid_filename}","r") as file:
@@ -83,3 +57,7 @@ def get_platonic_solid_dict():
 def get_archimedean_solid_dict():
     solid_names = os.listdir(INPUT_FOLDER_PATH + '/' + ARCHIMEDEAN_FOLDER) # retrieves solid names in current folder
     return get_solid_data_dict(ARCHIMEDEAN_FOLDER,solid_names)
+
+# returns dict of all solids created by merging results of the separate functions
+def get_all_solids_dict():
+    return get_platonic_solid_dict() | get_archimedean_solid_dict()
