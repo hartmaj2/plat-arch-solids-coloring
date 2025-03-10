@@ -43,11 +43,11 @@ ROOT_FOLDER = "Code"
 # OUTPUT SETTING
 
 # uncomment following 2 lines to output to a folder
-# output_file = open(ROOT_FOLDER + "/output_sage.md","w")
-# output_type = output_file
+output_file = open(ROOT_FOLDER + "/chrom_nums.md","w")
+output_type = output_file
 
-import sys
-output_type = sys.stdout
+# import sys
+# output_type = sys.stdout
 
 # calculates vertex chromatic number using sage chromatic_number() function
 def calculate_vtx_chrom_num(solid_data : dict[list]) -> int:
