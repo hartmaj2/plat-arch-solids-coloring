@@ -43,7 +43,7 @@ ROOT_FOLDER = "Code"
 # OUTPUT SETTING
 
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/chrom_nums.md","w")
+output_file = open(ROOT_FOLDER + "/Results/chrom_nums.md","w")
 output_type = output_file
 
 # import sys
