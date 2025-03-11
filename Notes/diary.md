@@ -387,3 +387,9 @@
   - removed specific functions for getting edges only
   - added function to get merged dicts for combined plat and arch solids
   - used this to prepare edges set for `snub cube` for its chrom poly to be computed on faculty HPC
+
+### 2025_03_11
+
+- proofread chapter named `Colorings and symmetries`
+
+- revised Burnside's lemma and prepared plan of attack on counting orbits of proper colorings
