@@ -115,6 +115,12 @@
 
 - [ ] calculate chrom poly of `snub cube` using faculty HPC
 
+## 2025_03_12
+
+- [ ] write down relevant chapters from `Graph Coloring Problems`
+
+- [ ] test if my proposed contraction method for calculating fixpoint sizes yields sensible results (on C4 and 3 colrs)
+
 ## Main tasks
 
 - [x] finish reading Polya from supervisor

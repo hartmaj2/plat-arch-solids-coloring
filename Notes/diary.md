@@ -408,3 +408,5 @@
 - got idea: instead of computing chromatic polynomial of `snub cube`
   - try to calculate # of proper n colorings up to the # of vertices and then interpolate a polynomial
   - first I can experiment if the same procedure would work on `rhombicuboctahedron`
+
+- mentioned Brook's theorem in the thesis and added reference to magic labeling definitions
