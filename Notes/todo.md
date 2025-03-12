@@ -119,7 +119,7 @@
 
 - [ ] write down relevant chapters from `Graph Coloring Problems`
 
-- [ ] test if my proposed contraction method for calculating fixpoint sizes yields sensible results (on C_4 and 3 colrs)
+- [x] test if my proposed contraction method for calculating fixpoint sizes yields sensible results (on C_4 and 3 colrs)
 
 ## Main tasks
 

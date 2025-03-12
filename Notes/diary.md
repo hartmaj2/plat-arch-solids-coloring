@@ -413,3 +413,7 @@
 - mentioned Brook's theorem in the thesis and added reference to magic labeling definitions
 
 - PY: found a useful python function `enumerate(iterable)` that returns a pair `index,elem` where elem is element of the iterable and index its index
+  - added sage to path analysis by adding this line to settings.json: `"python.analysis.extraPaths": ["/private/var/tmp/sage-10.5-current/local/var/lib/sage/venv-python3.12.5/lib/python3.12/site-packages"],`
+
+- created a program that generates graph coloring plots and merges them into a single file
+  - this will be used later for checking that my calculations make sense
