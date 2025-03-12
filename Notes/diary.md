@@ -393,3 +393,18 @@
 - proofread chapter named `Colorings and symmetries`
 
 - revised Burnside's lemma and prepared plan of attack on counting orbits of proper colorings
+
+### 2025_03_12
+
+- thought about how to compute fixpoint sizes for each transformation when counting only proper colorings
+  - got following observations:
+    - if transformation has cycle s.t. any two vertices on the cycle are connected -> fixpoint size = 0
+    - otherwise, we contract all vertices on cycle into one vertex (this simulates that they must have same color)
+    - then we just calculate # of colorings irrespective of symmetries of the resulting graph
+      - any proper coloring of cycles will be a fixpoint
+
+- borrowed book `Graph Coloring Problems`
+
+- got idea: instead of computing chromatic polynomial of `snub cube`
+  - try to calculate # of proper n colorings up to the # of vertices and then interpolate a polynomial
+  - first I can experiment if the same procedure would work on `rhombicuboctahedron`
