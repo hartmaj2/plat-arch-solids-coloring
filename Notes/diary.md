@@ -1,6 +1,7 @@
 # Diary of work progress
 
 - UAQ := unanswered question
+- PY := python trick/useful concept
 
 ## December
 
@@ -81,7 +82,7 @@
 
 ### 2025_02_14
 
-- found out more about regexp in python
+- PY: found out more about regexp in python
   - `search` vs `match`
     - search: matches even if the match is somewhere in between the string
     - match: matches only if the match is somewhere starting from the beginning of the string
@@ -90,7 +91,7 @@
 - regexp in general
   - `x{n}` - exactly n occurences of x
 
-- python in general
+- PY: python in general
   - `r"some_string\n"` interprets the string without considering \ as escape character (r as for raw string)
 
 ### 2025_02_15
@@ -380,7 +381,7 @@
 - had a meeting with supervisor
   - [link to notes](../Meetings/meet_25_03_10.md)
 
-- found a nice operator to merge dictionaries in python 
+- PY: found a nice operator to merge dictionaries in python 
   - `merged_dict = dict1 | dict2`
 
 - simplified code of solids prep program
@@ -410,3 +411,5 @@
   - first I can experiment if the same procedure would work on `rhombicuboctahedron`
 
 - mentioned Brook's theorem in the thesis and added reference to magic labeling definitions
+
+- PY: found a useful python function `enumerate(iterable)` that returns a pair `index,elem` where elem is element of the iterable and index its index
