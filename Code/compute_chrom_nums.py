@@ -15,7 +15,7 @@ from sage.graphs.line_graph import line_graph
 
 import t_printing.md_table_printing as printing
 import solids_prep.solids_dict_prep as sdp
-import graph_conversions as gc
+import graph_utils.graph_conversions as gc
 
 # CONSTANT RENAME FOR CONVENIENCE
 VERTICES = sdp.JSON_VERTICES
