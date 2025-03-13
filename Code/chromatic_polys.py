@@ -9,6 +9,7 @@ from sage.all import *
 
 import t_printing.md_table_printing as printing
 import solids_prep.solids_dict_prep as sdp
+import graph_utils.orbital_chrompoly as orbchrom
 
 # INPUT FILE SETTINGS
 
@@ -16,10 +17,12 @@ ROOT_FOLDER = "Code"
 
 # OUTPUT SETTING
 
-DATA_COLUMN_HEADER = "chromatic polynomial"
+# DATA_COLUMN_HEADER = "chromatic polynomial"
+DATA_COLUMN_HEADER = "orbital chromatic polynomial"
 
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/Results/chrom_polys2.md","w")
+# output_file = open(ROOT_FOLDER + "/Results/chrom_polys.md","w")
+output_file = open(ROOT_FOLDER + "/Results/orbital_chrom_polys.md","w")
 output_type = output_file
 
 # import sys
@@ -36,6 +39,11 @@ def compute_chromatic_polynomial(solid_edges : list[tuple]):
     poly = G.chromatic_polynomial()
     return poly
 
+def compute_orbital_chromatic_polynomial(solid_edges : list[tuple]):
+    G = Graph(solid_edges)
+    poly = orbchrom.orbital_chromatic_polynomial(G)
+    return poly
+
 # processes all solids and loads corresponding data to the dict
 def get_chrom_polys_dict(solid_dict : dict):
     solid_computed_data = {}
@@ -46,6 +54,7 @@ def get_chrom_polys_dict(solid_dict : dict):
         else:
             print(f"calculating chromial of {solid_name}")
             solid_computed_data[solid_name] = compute_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])
+            # solid_computed_data[solid_name] = compute_orbital_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])
     return solid_computed_data
 
 # main loop over folders with different solid types (Platonic, Archimedean)
