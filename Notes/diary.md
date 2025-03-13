@@ -417,3 +417,14 @@
 
 - created a program that generates graph coloring plots and merges them into a single file
   - this will be used later for checking that my calculations make sense
+
+
+### 2025_03_13
+
+- calculated chromatic polynomial of rhombicuboctahedron using HPC cluster
+  - was 2x faster than on my computer
+
+- found out that there exists a polynomial that counts the number of colorings using x colors up to symmetries -> the `orbital chromatic polynomial`
+  - 
+  - implemented a function that computes it
+  - used it to compute the orbital chromatic polynomial for all the graphs for which calculating ordinary chromatic polynomial was fast
