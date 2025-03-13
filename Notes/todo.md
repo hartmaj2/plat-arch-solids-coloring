@@ -132,15 +132,10 @@
 - [x] finish reading Polya from supervisor
 
 - [ ] compute how many arrangments of k independent sets exist on various solids (start with tetrahedron, cube etc.)
+  - [ ] read about calculating number of graph colorings up to order of colours
+    - [link](https://webspace.maths.qmul.ac.uk/p.j.cameron/csgnotes/countcols.pdf)
 
-- [ ] revise what Brook's theorem about coloring says
-  - [ ] mention it in my thesis under vertex coloring
-
-- [ ] write an introduction to the chapter about symmetries
-  - [ ] how do we define symmetry
-  - [ ] how will we work with symmetry throughout my thesis
-  - [ ] define, what it means for two colorings to be different up to taking symmetries
-    - using equivalence classes of transitivity relation (group actions)
+- [ ] calculate # of such colorings for C_4 and cube
 
 ## Side tasks
 
@@ -149,14 +144,5 @@
 - [ ] read useful resources found on 19.2.2025
 
 - [ ] find nice visualisation for snub operation
-
-- [ ] consider, how the number of colorings of tetrahedral graph changes (the chromatic polynomial) when taking difference only up to symmetries
-
-- [ ] figure out nice proof why automorphisms correspond exactly to valid transformation of the objects
-  - [ ] what does it mean for a transformation of 2d-shape/solid to be valid?
-    - (no tearing edges etc.)
-
-- [ ] what is the dividing property between rotations and reflections?
-  - rotations seem to disallow flipping the shape/solid using one more dimension than the dimension that the shape/solid lives in (think about 2d square being reflected is as if it was rotated by axis that exists only when considering 3d)
 
 - [ ] simplify table printing (don't have multiple functions for printing one col and mult col data)
