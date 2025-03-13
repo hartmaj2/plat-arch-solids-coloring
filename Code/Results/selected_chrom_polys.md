@@ -29,3 +29,14 @@ g = Graph([(0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (1, 2), (1, 6), (1, 7), (1, 8
 ## Code to get edges dict for given poly
 
 [link](../../Code/edges_extract.py)
+
+## Graphs used in calculation of orbital chromatic poly of Petersen graph
+
+FIRST:
+(0,1),(1,2),(2,3),(3,4),(4,0)  ... outer cycle
+(0,5),(5,6),(6,2),(6,3) ... inner edges
+
+`g = Graph([(0,1),(1,2),(2,3),(3,4),(4,0),(0,5),(5,6),(6,2),(6,3)])`
+
+SECOND:
+`g = Graph([(0,1),(0,2),(1,2),(2,3)])`
