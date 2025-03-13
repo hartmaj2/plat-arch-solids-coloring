@@ -4,7 +4,6 @@ import solids_prep.solids_dict_prep as sdp
 import t_printing.md_table_printing as printing
 
 from sage.all import Graph
-import sage.groups
 
 # INPUT
 VERTICES = sdp.JSON_VERTICES
