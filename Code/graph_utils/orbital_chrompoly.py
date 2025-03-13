@@ -1,6 +1,9 @@
 from sage.all import Graph
 from sage.all import PolynomialRing, ZZ
 
+# Computes orbital chromatic polynomial of the given graph
+# method for calculation can be found here: https://webspace.maths.qmul.ac.uk/p.j.cameron/csgnotes/countcols.pdf
+
 def orbital_chromatic_polynomial(g : Graph):  
 
     R = PolynomialRing(ZZ, 'x') # create a polynomial ring of integers where the resulting polynomial will live

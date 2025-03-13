@@ -1,5 +1,7 @@
 #!/usr/local/bin/sage -python
 
+# Prints a table that shows how many automorphisms the platonic and archimedean solids have
+
 import solids_prep.solids_dict_prep as sdp
 import t_printing.md_table_printing as printing
 

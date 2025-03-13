@@ -1,6 +1,8 @@
 import t_printing.md_table_printing as printing
 import solids_prep.solids_dict_prep as sdp
 
+# Creates a table showing basic properties of the archimedean solids like # of vertices, edges, faces, and the degree of each vertex
+
 # OUTPUT TABLE SETTINGS
 DATA_COLUMN_HEADER = "vtx deg"
 DATA_HEADERS = ["v","e","f","d"]

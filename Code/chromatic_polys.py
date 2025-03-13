@@ -1,6 +1,7 @@
 #!/usr/local/bin/sage -python
 
 # Computes chromatic polynomials using SageMath function here: https://github.com/sagemath/sage/blob/develop/src/sage/graphs/chrompoly.pyx
+# Can compute also orbital chromatic polynomials using my function from graph_utils
 
 # IMPORTS
 

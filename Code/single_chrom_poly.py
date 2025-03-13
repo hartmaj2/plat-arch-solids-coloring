@@ -1,6 +1,6 @@
 #!/usr/local/bin/sage -python
 
-# Computes chromatic polynomials using SageMath function here: https://github.com/sagemath/sage/blob/develop/src/sage/graphs/chrompoly.pyx
+# Computes chromatic polynomial of given polyhedron and times how much time it took the program to calculate it
 
 # IMPORTS
 
