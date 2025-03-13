@@ -121,6 +121,12 @@
 
 - [x] test if my proposed contraction method for calculating fixpoint sizes yields sensible results (on C_4 and 3 colrs)
 
+## 2025_03_13
+
+- [x] calculate how my method works on cube
+
+- [x] implement algorithm to calculate that automatically
+
 ## Main tasks
 
 - [x] finish reading Polya from supervisor
