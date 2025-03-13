@@ -26,7 +26,9 @@ collage_name = "collage"
 
 # INPUT SETTINGS
 max_clrs = 3
-g = graphs.CycleGraph(4)
+solid_name = "cube"
+edges = sdp.get_all_solids_dict()[solid_name][sdp.JSON_EDGES]
+g = Graph(edges)
 
 # removes the leftover image from last round
 def clean_folder():
