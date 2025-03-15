@@ -135,10 +135,10 @@
 
 - [x] make md table printing also compatible with chrompoly computing program and remove one col data printer
 
-- [ ] iplement function in solid dict prep to give me just selected solids
+- [x] iplement function in solid dict prep to give me just selected solids
   - will take list of names of solids I want
 
-- [ ] change chromatic poly table to include only the short polys (cube, octahedron, tetrahedron)
+- [x] change chromatic poly table to include only the short polys (cube, octahedron, tetrahedron)
 
 - [ ] comment the results of the chromatic polynomial table
   - why only selected included?
@@ -159,3 +159,7 @@
 - [ ] what do operations on the Platonic solids do on the graphs?
 
 - [ ] read useful resources found on 19.2.2025
+
+- [ ] remove the definition of graph drawing and just add reference to a book where it is defined and state that we will understand graph drawing in the same way
+
+- [ ] check if mathematical definitions cannot be made so that the term being defined is clearly visible

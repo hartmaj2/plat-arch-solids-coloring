@@ -437,4 +437,9 @@
 
 - added vertex configurations to the general graph props table
 
-- created a visualisation of the snub operation and added it to the thesis
+- better visualisations
+  - created a visualisation of the snub operation and added it to the thesis
+  - unified the look of all the visualisations with Inkscape
+
+- added text about how chromatic polynomial can be computed using a recursive formula
+  - referenced the book "Chromatic Graph Theory" by Chartrand and Zhang
