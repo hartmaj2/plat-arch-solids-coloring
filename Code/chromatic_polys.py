@@ -20,16 +20,24 @@ ROOT_FOLDER = "Code"
 
 # OUTPUT SETTING
 
+## ALL SOLIDS PRINTING
 DATA_COLUMN_HEADERS = ["Chromatic polynomial"]
 
 NOT_COMPUTED_SYMBOL = r'\dag'
 
-PLAT_CAPTION = f"Chromatic polynomials of Platonic graphs."
+PLAT_CAPTION = "Chromatic polynomials of Platonic graphs."
 PLAT_LABEL = "tab:platonic-chrom-polys"
 
 ARCH_CAPTION = f"Chromatic polynomials of Archimedean graphs. The ${NOT_COMPUTED_SYMBOL}$ symbol means the computation took too much time. This comes from the fact, that the time complexity increases with amount of edges of the graph."
 ARCH_LABEL = "tab:archimedean-chrom-polys"
-# DATA_COLUMN_HEADER = "orbital chromatic polynomial"
+
+## SELECTION OF SOLIDS PRINTING
+
+TEXT_COLUMN_HEADER = "Solid"
+CAPTION = "Chromatic polynomial of selected solids. For other solids, the polynomial coefficients were too large and would not print nicely."
+LABEL = "tab:selected-chrom-polys"
+selected_solids = ["cube","octahedron","tetrahedron"]
+
 
 # uncomment following 2 lines to output to a folder
 output_file = open(ROOT_FOLDER + "/Results/chrom_polys2.md","w")
@@ -76,13 +84,9 @@ def get_chrom_polys_dict(solid_dict : dict) -> dict[str,list]:
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
-    platonic = sdp.get_platonic_solid_dict()
-    platonic_data = get_chrom_polys_dict(platonic)
-    printing.print_solid_mult_col_data(platonic_data,sdp.PLATONIC_FOLDER,DATA_COLUMN_HEADERS,PLAT_CAPTION,PLAT_LABEL,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
-    
-    archimedean = sdp.get_archimedean_solid_dict()
-    archimedean_data = get_chrom_polys_dict(archimedean)
-    printing.print_solid_mult_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,DATA_COLUMN_HEADERS,ARCH_CAPTION,ARCH_LABEL,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
+    solids = sdp.get_selected_solids_dict(selected_solids)
+    solid_data = get_chrom_polys_dict(solids)
+    printing.print_solid_mult_col_data(solid_data,TEXT_COLUMN_HEADER,DATA_COLUMN_HEADERS,CAPTION,LABEL,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()

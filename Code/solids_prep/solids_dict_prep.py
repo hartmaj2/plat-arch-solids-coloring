@@ -72,3 +72,12 @@ def get_archimedean_solid_dict():
 # returns dict of all solids created by merging results of the separate functions
 def get_all_solids_dict():
     return get_platonic_solid_dict() | get_archimedean_solid_dict()
+
+# filters the dict of all solids to include only the ones whose names are contained in the selected solids list
+def get_selected_solids_dict(selected_solids : list[str]):
+    all_solids = get_all_solids_dict()
+    selected_dict = {}
+    for solid_name in all_solids.keys():
+        if solid_name in selected_solids:
+            selected_dict[solid_name] = all_solids[solid_name]
+    return selected_dict
