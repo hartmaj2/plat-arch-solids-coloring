@@ -66,7 +66,7 @@ Similarly, for total coloring, Vizing's conjecture \cite{vizing68} states, that 
 
 \begin{highlight}
 
-Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using the following fact: When we fix two vertices $u$, $v$ s.t. $\{u,v\} \notin E$, we can split all colorings of $G$ into two disjoint groups. Let $d$ be the amount of colorings of $G$ in which $u$ and $v$ are colored by different color and let $s$ be the amount of colorings in which $u$ and $v$ are colored by same colors. Then the amount of all colorings $P(G,x) = d + s$. Let $G+\{u,v\}$ be graph $G$ s.t. its set of edges is $E \cup \{u,v\}$. Let $G \cdot \{u,v\}$ be the graph $G + \{u,v\}$ where the edge $\{u,v\}$ is contracted into a single vertex. Then we can see that $d = P(G + \{u,v\},x)$ and $s = P(G \cdot \{u,v\},x)$. This fact yields the following formula:
+Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using the following fact: When we fix two vertices $u$, $v$ s.t. $\{u,v\} \notin E$, we can split all colorings of $G$ into two disjoint groups. Let $d$ be the amount of colorings of $G$ in which $u$ and $v$ are colored by different color and let $s$ be the amount of colorings in which $u$ and $v$ are colored by same colors. Then the amount of all colorings $P(G,x) = d + s$. Let $G+\{u,v\}$ be graph $G$ s.t. its set of edges is $E \cup \{u,v\}$. Let $G \cdot \{u,v\}$ be the graph $G + \{u,v\}$ where the edge $\{u,v\}$ is contracted into a single vertex. Then we can see that $d = P(G + \{u,v\},x)$ and $s = P(G \cdot \{u,v\},x)$. This fact yields the following formula \cite{chartrand2019}:
 \begin{equation}\label{eqn:chrom_poly_nonedge}
  P(G,x) = P(G + \{u,v\},x) + P(G \cdot \{u,v\},x) \tag{$P$}
 \end{equation}
@@ -76,9 +76,6 @@ The formula above serves as the recursive case of our computation i.e. when the 
 \end{highlight}
 
 Consider this example: Given the graph of tetrahedron $K_4$ and $X$ the family of proper vertex colorings. The chromatic polynomial $P_{X}(K_4,x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
-
-
-
 
 \begin{table}[H]
 \centering
