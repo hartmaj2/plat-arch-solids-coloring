@@ -443,3 +443,5 @@
 
 - added text about how chromatic polynomial can be computed using a recursive formula
   - referenced the book "Chromatic Graph Theory" by Chartrand and Zhang
+
+- removed my definition of a graph drawing and referenced the one from "Invitation to Discrete Mathematics" by Matousek and Nesetril 

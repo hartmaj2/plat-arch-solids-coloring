@@ -140,6 +140,10 @@
 
 - [x] change chromatic poly table to include only the short polys (cube, octahedron, tetrahedron)
 
+- [x] remove the definition of graph drawing and just add reference to a book where it is defined and state that we will understand graph drawing in the same way
+
+- [ ] change keywords in definitions to `\emph{keyword}` instead of `\textbf{keyword}`
+
 - [ ] comment the results of the chromatic polynomial table
   - why only selected included?
   - mention that some polys took too long to compute (for 48 edges took ten minutes, for 60 edges did not finish)
@@ -160,6 +164,6 @@
 
 - [ ] read useful resources found on 19.2.2025
 
-- [ ] remove the definition of graph drawing and just add reference to a book where it is defined and state that we will understand graph drawing in the same way
-
 - [ ] check if mathematical definitions cannot be made so that the term being defined is clearly visible
+
+- [ ] simplify the chapter about symmetries
