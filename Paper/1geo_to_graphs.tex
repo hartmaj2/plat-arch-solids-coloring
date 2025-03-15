@@ -46,30 +46,21 @@ Here we state mathematical definitions, that should not be surprising in any way
     An \textit{undirected graph} $G$ is an ordered pair $G=(V,E)$ where $V$ is a set of vertices of the graph and $E \subseteq \binom{V}{2}$ is the set of its edges. 
 \end{definition}
 
-Since we are interested in Platonic and Archimedean solids, whose graphs are all planar, it is useful to define the notion of a \textit{plane graph}. This notion will correspond to a drawing of a particular graph onto a plane with one special property: the edges as they are drawn do not cross.
+Since we are interested in Platonic and Archimedean solids, whose graphs are all planar, it is useful to define the notion of a \textit{plane graph}. This notion will correspond to a drawing of a particular graph onto a plane with one special property: the edges as they are drawn do not cross. 
 
-\begin{definition}
-    Let $G=(V,E)$ be a graph. We call function $\varphi : V \cup E \rightarrow \mathbb{R}^2$ a \textit{drawing} of $G$ if it satisfies the following properties:
-    \begin{enumerate}
-    
-        \item $\forall e=\{u,v\} \in E : \varphi(e)$ is a continuous line $\gamma$ whose endpoints are $\varphi(u)$ and $\varphi(v)$ such that $\gamma$ does not cross itself.
-        
-        \item (different vertices not drawn on same point) \\ $\forall u,v \in V : u \neq v \implies \varphi(u) \neq \varphi(v)$
-        
-        \item (edges not drawn onto non-endpoint vertices) \\ $\forall v \in V, \forall e \in E: v \notin e \implies \varphi(v) \notin \varphi(e)$
-        
-        \item (different edges can share only their common endpoints) \\ $\forall e \neq f \in E : x \in \varphi(e) \cap \varphi(f) \implies \exists v \in V: x = \varphi(v)$ and $v = e \cap f$
-    \end{enumerate}
-\end{definition}
+\begin{highlight}
+To avoid getting into too much detail, we will simply borrow the definition of a \textit{drawing} of a graph from the book \textit{Invitation to Discrete Mathematics} by Jaroslav Nešetřil and Jiří Matoušek \cite{matousek2009}.
 
-A drawing of a graph might split the plane $\mathbb{R}^2$ into multiple separate segments. We will call these segments \textit{regions} of a drawing of graph $G$.
+\end{highlight}
+
+A drawing of a graph might split the plane into multiple separate segments. We will call these segments \textit{faces} of a drawing of graph $G$.
 
 \begin{definition}
     A graph $G$ is \textit{planar} if there exists a drawing of $G$ into a plane.
 \end{definition}
 
 \begin{definition}
-    A \textit{plane graph} $G' = (V,E,F)$ is a drawing of a planar graph $G=(V,E)$ into plane $\mathbb{R}^2$ where $F$ is the set of all regions of this drawing. We will also use the notation $V(G'), E(G'), F(G')$ to refer to sets $V,E,F$ respectively.
+    A \textit{plane graph} $G' = (V,E,F)$ is a drawing of a planar graph $G=(V,E)$ into plane where $F$ is the set of all faces of this drawing. We will also use the notation $V(G'), E(G'), F(G')$ to refer to sets $V,E,F$ respectively.
 \end{definition}
 
 In this thesis, we assume for any plane graph $G=(V,E,F)$ that the sets $V$, $E$ and $F$ are pairwise disjoint.
