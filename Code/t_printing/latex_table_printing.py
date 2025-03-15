@@ -9,17 +9,21 @@ TABLE_BEGIN_HERE = r"\begin{table}[H]"
 TABLE_END = r"\end{table}"
 CENTERING = r"\centering"
 CAPTION_PLACEHOLDER = "Enter caption here."
-VERTICAL_SPACE = r"\vspace{5pt}"
 LABEL_PLACEHOLDER = "tab:enter-custom-label-here"
 
 TABULAR_BEGIN = r"\begin{tabular}"
 TABULAR_END = r"\end{tabular}"
 
-TABLE_VERTICAL_LINE_MARKER = '|'
 ALIGNMENT_CHAR_CENTER = 'c'
 ALIGNMENT_CHAR_LEFT = 'l'
 
-LATEX_HORIZONTAL_LINE = r"\hline"
+BOLDTEXT = r"\textbf{"
+HORIZ_SPACE = r"@{\hspace{1.5cm}}"
+
+TOPRULE = r"\toprule"
+MIDRULE = r"\midrule"
+BOTTOMRULE = r"\bottomrule"
+
 LATEX_NEWLINE = r"\\"
 LATEX_COL_SEPARATOR = '&'
 
@@ -29,70 +33,54 @@ CURLY_BRACE_RIGHT = r"}"
 PLATONIC_OUTPUT_NAMES = ["tetrahedron","cube","octahedron","dodecahedron","icosahedron"]
 ARCHIMEDEAN_OUTPUT_NAMES = ["truncated icosidodecahedron","truncated cube","icosidodecahedron","rhombicuboctahedron","truncated icosahedron","truncated octahedron","snub cube","truncated cuboctahedron","truncated tetrahedron","cuboctahedron","snub dodecahedron","truncated dodecahedron","rhombicosidodecahedron"]
 
-# prints latex table given the dictionary of data for the given solid
-def print_solid_one_col_data(solid_data_dict: dict, solid_category_name = "solid", data_col_name = "data", data_alignment = ALIGNMENT_CHAR_CENTER, output_type = sys.stdout, transform = lambda x : str(x)):
-    # PRINT HEADER AND ENVIRONMENT THINGIES
-    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}{data_alignment}{TABLE_VERTICAL_LINE_MARKER}{CURLY_BRACE_RIGHT}"
-    print(TABLE_BEGIN_HERE,file=output_type)
-    print(CENTERING,file=output_type)
-    print(CAPTION_PLACEHOLDER,file=output_type)
-    print(VERTICAL_SPACE,file=output_type)
-    print(LABEL_PLACEHOLDER,file=output_type)
-    print(tabular_format_string,file=output_type)
-    print(LATEX_HORIZONTAL_LINE,file=output_type)
-    header_line_string = f"{solid_category_name} {LATEX_COL_SEPARATOR} {data_col_name} {LATEX_NEWLINE}"
-    print(header_line_string,file=output_type)
-    print(LATEX_HORIZONTAL_LINE + LATEX_HORIZONTAL_LINE,file=output_type)
-    # END OF HEADER PRINTING
-    for solid_name in sorted(solid_data_dict.keys()):
-        solid_data = transform(solid_data_dict[solid_name])
-        table_entry_row = f"{solid_name} {LATEX_COL_SEPARATOR} {solid_data} {LATEX_NEWLINE}"
-        print(table_entry_row,file=output_type)
-        print(LATEX_HORIZONTAL_LINE,file=output_type)
-    print(TABULAR_END,file=output_type)
-    print(TABLE_END,file=output_type)
-
 # prints latex table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
 # on input we expect list of header names passed to `data_col_headrs`
-def print_solid_mult_col_data(solid_data_dict: dict, solid_category_name : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout):
+# we can also specify transformation to be applied on ALL the data in the solid_data_dict (be default, this is just conversion to string)
+def print_solid_mult_col_data(key_data_dict: dict, text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER):
     # PRINT HEADER AND ENVIRONMENT THINGIES
-    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{TABLE_VERTICAL_LINE_MARKER}{ALIGNMENT_CHAR_LEFT}{TABLE_VERTICAL_LINE_MARKER}"
-    header_line_string = f"{solid_category_name}"
-    for col_headr in data_col_headrs:
-        tabular_format_string += f"{ALIGNMENT_CHAR_CENTER}{TABLE_VERTICAL_LINE_MARKER}"
-        header_line_string += f" {LATEX_COL_SEPARATOR} {col_headr}"
-    tabular_format_string += f"{CURLY_BRACE_RIGHT}"
-    header_line_string += f" {LATEX_NEWLINE}"
     print(TABLE_BEGIN_HERE,file=output_type)
     print(CENTERING,file=output_type)
-    print(r"\caption{",file=output_type,end="")
-    print(caption,file=output_type,end="")
-    print(r"}",file=output_type)
-    print(VERTICAL_SPACE,file=output_type)
-    print(r"\label{",file=output_type,end="")
-    print(label,file=output_type,end="")
-    print(r"}",file=output_type)
+    # PRINT TABULAR FORMAT STRING
+    tabular_format_string = get_tabular_format_string(data_col_headrs, data_alignment_str)
     print(tabular_format_string,file=output_type)
-    print(LATEX_HORIZONTAL_LINE,file=output_type)
+    print(TOPRULE,file=output_type)
+    # PRINT HEADER
+    header_line_string = get_header_line_string(text_col_header,data_col_headrs)
     print(header_line_string,file=output_type)
-    print(LATEX_HORIZONTAL_LINE + LATEX_HORIZONTAL_LINE,file=output_type)
+    print(MIDRULE,file=output_type)
     # END OF HEADER PRINTING
-    for solid_name in sorted(solid_data_dict.keys()):
-        solid_data_cols = solid_data_dict[solid_name]
+    for solid_name in sorted(key_data_dict.keys()):
+        solid_data_cols = key_data_dict[solid_name]
         table_entry_row = f"{solid_name}"
         for solid_data_entry in solid_data_cols:
-            table_entry_row += f" {LATEX_COL_SEPARATOR} {solid_data_entry}"
+            table_entry_row += f" {LATEX_COL_SEPARATOR} {transform(solid_data_entry)}"
         table_entry_row += f" {LATEX_NEWLINE}"
         print(table_entry_row,file=output_type)
-        print(LATEX_HORIZONTAL_LINE,file=output_type)
+    print(BOTTOMRULE,file=output_type)
     print(TABULAR_END,file=output_type)
+    # PRINT CAPTION AND LABEL
+    print_caption_and_label(caption,label,output_type)
     print(TABLE_END,file=output_type)
     print(file=output_type)
 
-def print_solid_one_col_poly(solid_data_dict: dict, solid_category_name = "solid", data_col_name = "data", data_alignment = "p{0.5\\linewidth}",output_type = sys.stdout):
-    print_solid_one_col_data(solid_data_dict,solid_category_name,data_col_name,data_alignment,output_type,poly_to_latex)
+def print_caption_and_label(caption : str, label : str, output_type):
+    print(r"\caption{",file=output_type,end="")
+    print(caption,file=output_type,end="")
+    print(r"}",file=output_type)
+    print(r"\label{",file=output_type,end="")
+    print(label,file=output_type,end="")
+    print(r"}",file=output_type)
 
-# converts polynomial sage object to a string and then replaces the necessary part with proper latex syntax and wraps in equation environment
-def poly_to_latex(polynomial):
-    str_with_wrong_superscripts =  "$" + str(polynomial).replace("*","") + "$"
-    return re.sub(r'\^(\d+)',"^{\\1}",str_with_wrong_superscripts) # replaces x^123 with x^{123} for example
+def get_tabular_format_string(data_col_headers : list[str], data_alignment_str):
+    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{ALIGNMENT_CHAR_LEFT}{HORIZ_SPACE}"
+    for _ in data_col_headers:
+        tabular_format_string += f"{data_alignment_str}"
+    tabular_format_string += f"{CURLY_BRACE_RIGHT}"
+    return tabular_format_string
+
+def get_header_line_string(text_col_header : str, data_col_headers : list[str]):
+    header_line_string = f"{BOLDTEXT}{text_col_header}{CURLY_BRACE_RIGHT}"
+    for col_headr in data_col_headers:
+        header_line_string += f" {LATEX_COL_SEPARATOR} {BOLDTEXT}{col_headr}{CURLY_BRACE_RIGHT}"
+    header_line_string += f" {LATEX_NEWLINE}"
+    return header_line_string

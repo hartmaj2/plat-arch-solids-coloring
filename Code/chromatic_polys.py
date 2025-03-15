@@ -8,9 +8,11 @@
 from sage.all import Graph
 from sage.all import *
 
-import t_printing.md_table_printing as printing
+import t_printing.latex_table_printing as printing
 import solids_prep.solids_dict_prep as sdp
 import graph_utils.orbital_chrompoly as orbchrom
+
+import re
 
 # INPUT FILE SETTINGS
 
@@ -18,12 +20,20 @@ ROOT_FOLDER = "Code"
 
 # OUTPUT SETTING
 
-# DATA_COLUMN_HEADER = "chromatic polynomial"
-DATA_COLUMN_HEADER = "orbital chromatic polynomial"
+DATA_COLUMN_HEADERS = ["Chromatic polynomial"]
+
+NOT_COMPUTED_SYMBOL = r'\dag'
+
+PLAT_CAPTION = f"Chromatic polynomials of Platonic graphs."
+PLAT_LABEL = "tab:platonic-chrom-polys"
+
+ARCH_CAPTION = f"Chromatic polynomials of Archimedean graphs. The ${NOT_COMPUTED_SYMBOL}$ symbol means the computation took too much time. This comes from the fact, that the time complexity increases with amount of edges of the graph."
+ARCH_LABEL = "tab:archimedean-chrom-polys"
+# DATA_COLUMN_HEADER = "orbital chromatic polynomial"
 
 # uncomment following 2 lines to output to a folder
-# output_file = open(ROOT_FOLDER + "/Results/chrom_polys.md","w")
-output_file = open(ROOT_FOLDER + "/Results/orbital_chrom_polys.md","w")
+output_file = open(ROOT_FOLDER + "/Results/chrom_polys2.md","w")
+# output_file = open(ROOT_FOLDER + "/Results/orbital_chrom_polys.md","w")
 output_type = output_file
 
 # import sys
@@ -33,6 +43,12 @@ output_type = output_file
 
 polys_to_skip = ["truncated icosidodecahedron","icosidodecahedron","rhombicuboctahedron","truncated icosahedron","snub cube","truncated cuboctahedron","snub dodecahedron","truncated dodecahedron","rhombicosidodecahedron"]
 
+# converts polynomial sage object to a string and then replaces the necessary part with proper latex syntax and wraps in equation environment
+def poly_to_latex(polynomial):
+    str_with_wrong_superscripts =  "$" + str(polynomial).replace("*","") + "$"
+    return re.sub(r'\^(\d+)',"^{\\1}",str_with_wrong_superscripts) # replaces x^123 with x^{123} for example
+
+ALIGNMENT_PAR_STYLE_WRAP = r"p{0.5\linewidth}"
 
 # calls sage code on given data
 def compute_chromatic_polynomial(solid_edges : list[tuple]):
@@ -46,27 +62,27 @@ def compute_orbital_chromatic_polynomial(solid_edges : list[tuple]):
     return poly
 
 # processes all solids and loads corresponding data to the dict
-def get_chrom_polys_dict(solid_dict : dict):
+def get_chrom_polys_dict(solid_dict : dict) -> dict[str,list]:
     solid_computed_data = {}
     for solid_name in solid_dict.keys():
         if solid_name in polys_to_skip:
-            solid_computed_data[solid_name] = None
+            solid_computed_data[solid_name] = [NOT_COMPUTED_SYMBOL] # IMPORTANT: needs to be packed in a list in order for the printing to work propertly
             print(f"skipping chromial of {solid_name}")
         else:
             print(f"calculating chromial of {solid_name}")
-            solid_computed_data[solid_name] = compute_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])
-            # solid_computed_data[solid_name] = compute_orbital_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])
+            solid_computed_data[solid_name] = [compute_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])] # IMPORTANT: needs to be packed in a list in order for the printing to work propertly 
+            # solid_computed_data[solid_name] = [compute_orbital_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])]
     return solid_computed_data
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
     platonic = sdp.get_platonic_solid_dict()
     platonic_data = get_chrom_polys_dict(platonic)
-    printing.print_solid_one_col_poly(platonic_data,sdp.PLATONIC_FOLDER,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
+    printing.print_solid_mult_col_data(platonic_data,sdp.PLATONIC_FOLDER,DATA_COLUMN_HEADERS,PLAT_CAPTION,PLAT_LABEL,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
     
     archimedean = sdp.get_archimedean_solid_dict()
     archimedean_data = get_chrom_polys_dict(archimedean)
-    printing.print_solid_one_col_poly(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,data_col_name=DATA_COLUMN_HEADER,output_type=output_type)
+    printing.print_solid_mult_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,DATA_COLUMN_HEADERS,ARCH_CAPTION,ARCH_LABEL,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
