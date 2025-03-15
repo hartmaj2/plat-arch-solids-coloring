@@ -9,18 +9,28 @@ INPUT_FOLDER_PATH = ROOT_FOLDER + "/JsonGraphs"
 JSON_NAME = "name"
 JSON_VERTICES = "vertices" # inside the json file, each vertex is a tuple containing the coordinates but we just need the amount
 JSON_EDGES = "edges"
+JSON_FACES = "faces"
 
 ARCHIMEDEAN_FOLDER = "Archimedean"
 PLATONIC_FOLDER = "Platonic"
 
 # retrieves the data for the given solid consisting of the name of the solid indices of vertices and the list of edges
-def get_name_vtcs_edgs(folder_name: str, solid_filename : str) -> tuple[str,list,list]:
+def get_processed_data(folder_name: str, solid_filename : str) -> tuple[str,list,list,list]:
     with open(f"{INPUT_FOLDER_PATH}/{folder_name}/{solid_filename}","r") as file:
         graph_data : dict = json.load(file)
-        vertices = graph_data[JSON_VERTICES]
-        edges = graph_data[JSON_EDGES]
+
         name = graph_data[JSON_NAME]
-        return name,[i for i in range(len(vertices))],[tuple(edge) for edge in edges] # convert1: list of coordinates -> list of indices, convert2: list of lists -> list of tuples 
+
+        vertices = graph_data[JSON_VERTICES]
+        vertices = [i for i in range(len(vertices))] # list of vtx coordinates -> list of vtx indices
+
+        edges = graph_data[JSON_EDGES]
+        edges = [tuple(edge) for edge in edges] # list of lists -> list of tuples 
+        
+        faces = graph_data[JSON_FACES]
+        faces = [tuple(face) for face in faces] # list of lists -> list of tuples 
+
+        return name,vertices,edges,faces
 
 # normalizes the edges to the format that for (i,j) edge i < j
 def get_normalized(edges : list[tuple]):
@@ -42,10 +52,11 @@ def lexisort(edges : list[tuple]):
 def get_solid_data_dict(folder_name : str, solid_names : list[str]):
     solid_dict = {} # solid_name -> solids_edges
     for solid_filename in solid_names:
-        solid_name, solid_vertices, solid_edges = get_name_vtcs_edgs(folder_name,solid_filename)
+        solid_name, solid_vertices, solid_edges, solid_faces  = get_processed_data(folder_name,solid_filename)
         solid_edges = get_normalized(solid_edges) # for convenience, make the edges in format (i,j) where always i < j
         lexisort(solid_edges) # also, we sort the edges lexicographically in ascending order
-        solid_dict[solid_name] = { JSON_VERTICES : solid_vertices, JSON_EDGES : solid_edges } # it is a dict of dicts
+        lexisort(solid_faces)
+        solid_dict[solid_name] = { JSON_VERTICES : solid_vertices, JSON_EDGES : solid_edges, JSON_FACES : solid_faces } # it is a dict of dicts
     return solid_dict
 
 # returns solid dict for platonic solids
