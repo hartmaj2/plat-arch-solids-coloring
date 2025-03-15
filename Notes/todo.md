@@ -127,6 +127,21 @@
 
 - [x] implement algorithm to calculate that automatically
 
+## 2025_03_15
+
+- [x] try to make my tables more presentable (correct format)
+
+- [ ] update visuals of the graph props table of the solids to new look
+
+- [ ] iplement function in solid dict prep to give me just selected solids
+  - will take list of names of solids I want
+
+- [ ] change chromatic poly table to include only the short polys (cube, octahedron, tetrahedron)
+
+- [ ] comment the results of the chromatic polynomial table
+  - why only selected included?
+  - mention that some polys took too long to compute (for 48 edges took ten minutes, for 60 edges did not finish)
+
 ## Main tasks
 
 - [x] finish reading Polya from supervisor
