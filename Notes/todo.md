@@ -131,7 +131,9 @@
 
 - [x] try to make my tables more presentable (correct format)
 
-- [ ] update visuals of the graph props table of the solids to new look
+- [x] update visuals of the graph props table of the solids to new look
+
+- [x] make md table printing also compatible with chrompoly computing program and remove one col data printer
 
 - [ ] iplement function in solid dict prep to give me just selected solids
   - will take list of names of solids I want
@@ -141,8 +143,6 @@
 - [ ] comment the results of the chromatic polynomial table
   - why only selected included?
   - mention that some polys took too long to compute (for 48 edges took ten minutes, for 60 edges did not finish)
-
-- [ ] make md table printing also compatible with chrompoly computing program and remove one col data printer
 
 ## Main tasks
 
@@ -159,7 +159,3 @@
 - [ ] what do operations on the Platonic solids do on the graphs?
 
 - [ ] read useful resources found on 19.2.2025
-
-- [ ] find nice visualisation for snub operation
-
-- [ ] simplify table printing (don't have multiple functions for printing one col and mult col data)

@@ -428,3 +428,13 @@
   - 
   - implemented a function that computes it
   - used it to compute the orbital chromatic polynomial for all the graphs for which calculating ordinary chromatic polynomial was fast
+
+### 2025_03_15
+
+- latex table printing
+  - generalized my function for latex printing so I don't need a special function to print the polynomials
+  - improved the look of latex tables to recommended format
+
+- added vertex configurations to the general graph props table
+
+- created a visualisation of the snub operation and added it to the thesis
