@@ -27,7 +27,7 @@ output_type = output_file
 # output_type = sys.stdout
 
 # since all vertices have same degree, we can wlog count the degree of the first one
-def get_degree_of_vtces(solid_data : dict[list], solid_name : str):
+def get_degree_of_vtces(solid_data : dict[str,list], solid_name : str):
     deg = 0
     for vtx in solid_data[sdp.JSON_VERTICES]:
         count = 0
@@ -40,14 +40,14 @@ def get_degree_of_vtces(solid_data : dict[list], solid_name : str):
         deg = count
     return deg
 
-def get_num_vtces(solid_data : dict[list]):
+def get_num_vtces(solid_data : dict[str,list]):
     return len(solid_data[sdp.JSON_VERTICES])
 
-def get_num_edges(solid_data : dict[list]):
+def get_num_edges(solid_data : dict[str,list]):
     return len(solid_data[sdp.JSON_EDGES])
 
 # compute number of faces using the fact that the graphs are planar -> Euler's formula: v + f = e + 2
-def get_num_faces(solid_data : dict[list]):
+def get_num_faces(solid_data : dict[str,list]):
     return 2 + get_num_edges(solid_data) - get_num_vtces(solid_data)
 
 # count degrees of all the solids
