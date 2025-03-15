@@ -167,3 +167,6 @@
 - [ ] check if mathematical definitions cannot be made so that the term being defined is clearly visible
 
 - [ ] simplify the chapter about symmetries
+
+- [ ] try to add list of Schlegel diagrams of the solid graphs as appendix
+  - [link_to_figs](https://en.wikipedia.org/wiki/Archimedean_graph)
