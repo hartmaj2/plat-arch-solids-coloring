@@ -449,3 +449,5 @@
 - improved definitions:
   - added name of the defined term next to the definition heading
   - used `\emph` instead of `\textbf`
+
+- updated `README.md`
