@@ -142,6 +142,8 @@
   - why only selected included?
   - mention that some polys took too long to compute (for 48 edges took ten minutes, for 60 edges did not finish)
 
+- [ ] make md table printing also compatible with chrompoly computing program and remove one col data printer
+
 ## Main tasks
 
 - [x] finish reading Polya from supervisor
