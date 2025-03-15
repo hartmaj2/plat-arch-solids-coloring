@@ -170,3 +170,5 @@
 
 - [ ] try to add list of Schlegel diagrams of the solid graphs as appendix
   - [link_to_figs](https://en.wikipedia.org/wiki/Archimedean_graph)
+
+- [ ] make graph coloring examples with cube and octahedron look unified (change size)
