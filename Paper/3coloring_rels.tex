@@ -9,8 +9,8 @@ Note, that the conversions themselves are not novel and are well known as well.
 
 \section{Edge coloring to vertex coloring}
 
-\begin{definition}
-    For a graph $G=(V,E)$ we define \textit{line graph} $G_L=(V_L,E_L)$ as follows:
+\begin{definition}[line graph]
+    For a graph $G=(V,E)$ we define \emph{line graph} $G_L=(V_L,E_L)$ as follows:
     \begin{enumerate}
         \item $V_L := E$
         \item $E_L := \{ \{e,f\} \in \binom{E}{2} :  e \cap f \neq \emptyset \}$
@@ -33,10 +33,10 @@ Note that in the figure \ref{fig:cubical_line_graph} above, the operation of cre
 
 \section{Total coloring to vertex coloring}
 
-Intuitively, since total coloring assigns colors to both edges and the vertices, it makes sense that we will use a combination of the original graph with its line graph. Also, we can see, that we cannot just simply take these two graphs and apply vertex coloring on the resulting graph. The problem being, that we would lose the information about what vertex was incident with what edge. This brings us to a so called \textit{vertex-edge incidence graph}.
+Intuitively, since total coloring assigns colors to both edges and the vertices, it makes sense that we will use a combination of the original graph with its line graph. Also, we can see, that we cannot just simply take these two graphs and apply vertex coloring on the resulting graph. The problem being, that we would lose the information about what vertex was incident with what edge. This brings us to a so called \textit{incidence graph}.
 
-\begin{definition}
-    For a graph $G=(V,E)$ we define its \textit{vertex-edge incidence graph} $G_I=(V_I,E_I)$ as follows:
+\begin{definition}[incidence graph]
+    For a graph $G=(V,E)$ we define its \emph{incidence graph} $G_I=(V_I,E_I)$ as follows:
     \begin{enumerate}
         \item $V_I := V \cup E$
         \item $E_I = \{\{v,e\} : v \in V, e \in E, v \in e \}$
@@ -54,8 +54,8 @@ Again, note how the definition of $E_I$ corresponds to the coloring rule \ref{eq
 
 Now we have all the necessary tools to define a \textit{total graph} which will have the property, that its vertex coloring corresponds exactly to total coloring of the original graph.
 
-\begin{definition}
-    Let $G=(V,E)$ be a graph. Let $G_L =(V_L,E_L)$ and $G_I=(V_I,E_I)$ be its line graph and incidence graphs respectively. We define its \textit{total graph} $G_T=(V_T,E_T)$ as follows:
+\begin{definition}[total graph]
+    Let $G=(V,E)$ be a graph. Let $G_L =(V_L,E_L)$ and $G_I=(V_I,E_I)$ be its line graph and incidence graphs respectively. We define its \emph{total graph} $G_T=(V_T,E_T)$ as follows:
     \begin{enumerate}
         \item $V_T := V_I$
         \item $E_T := E \cup E_L \cup E_I$
@@ -82,8 +82,8 @@ In natural language, what we do is, that we start with the vertices and edges of
 
 For conversion from face coloring to vertex coloring, we apply the same idea as we did when constructing line graphs. But since the elements colored are faces and not edges, we need to encode incidence of faces into the new graph by adding new edges where necessary. The resulting graph is called a \textit{dual graph}.
 
-\begin{definition}
-    For a plane graph $G=(V,E,F)$ we define its \textit{dual graph} $G_D=(V_D,E_D)$ as follows:
+\begin{definition}[dual graph]
+    For a plane graph $G=(V,E,F)$ we define its \emph{dual graph} $G_D=(V_D,E_D)$ as follows:
     \begin{enumerate}
         \item $V_D := F$
         \item $E_D := \{ \{R_1,R_2\} \in \binom{F}{2}: \bnd(R_1) \cap \bnd(R_2) \neq \emptyset \}$
