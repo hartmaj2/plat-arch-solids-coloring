@@ -50,23 +50,23 @@ output_type = output_file
 # output_type = sys.stdout
 
 # calculates vertex chromatic number using sage chromatic_number() function
-def calculate_vtx_chrom_num(solid_data : dict[list]) -> int:
+def calculate_vtx_chrom_num(solid_data : dict[str, list]) -> int:
     g = Graph(solid_data[EDGES])
     return chromatic_number(g)
 
 # calculates edge chromatic number using sage edge_coloring()
-def calculate_edg_chrom_num(solid_data : dict[list]) -> int:
+def calculate_edg_chrom_num(solid_data : dict[str, list]) -> int:
     g = Graph(solid_data[EDGES])
     return edge_coloring(g,value_only=True)
 
 # # calculates edge chromatic number using SAGE conversion to line graph
-def calculate_edg_chrom_num_sage_lg(solid_data : dict[list]) -> int:
+def calculate_edg_chrom_num_sage_lg(solid_data : dict[str, list]) -> int:
     g = Graph(solid_data[EDGES])
     l = g.line_graph()
     return chromatic_number(l)
 
 # calculates edge chromatic number using conversion to line graph
-def calculate_edg_chrom_num_lg(solid_data : dict[list]) -> int:
+def calculate_edg_chrom_num_lg(solid_data : dict[str, list]) -> int:
     line_graph = gc.create_line_graph(solid_data)
     l = Graph(line_graph[EDGES])
     return chromatic_number(l)  
@@ -78,7 +78,7 @@ def calculate_tot_chrom_num(solid_data : dict[str,list]) -> int:
     return chromatic_number(tg)
 
 # processes all solids and loads corresponding data to the dict
-def get_chrom_nums_dict(solid_data : dict[dict]):
+def get_chrom_nums_dict(solid_data : dict[str, dict]):
     solid_computed_data = {}
     for solid_name in solid_data.keys():
         vtx_chrom_num = calculate_vtx_chrom_num(solid_data[solid_name])

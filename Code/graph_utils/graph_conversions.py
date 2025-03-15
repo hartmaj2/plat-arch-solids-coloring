@@ -3,7 +3,7 @@ EDGES = "edges"
 NAME = "name"
 
 # creates adjacency list from the dictionary of vertices [0,...,n-1]
-def create_adj_list(solid : dict[str,dict]) -> list:
+def create_adj_list(solid : dict[str,list]) -> list:
     adj_list = [[] for vtx in solid[VERTICES]]
     for (i,j) in solid[EDGES]:
         adj_list[i].append(j)
@@ -12,7 +12,7 @@ def create_adj_list(solid : dict[str,dict]) -> list:
 
 # creates a map from edges of the original graph to their new labels {n,...,n+m-1}
 # IMPORTANT: we assume edges are lexicographically ordered
-def create_edge_map(solid : dict[str,dict]) -> dict:
+def create_edge_map(solid : dict[str,list]) -> dict:
     edge_map = {}
     current_index = len(solid[VERTICES])
     for edge in solid[EDGES]:
@@ -21,7 +21,7 @@ def create_edge_map(solid : dict[str,dict]) -> dict:
     return edge_map
 
 # creates a line graph using the adjacency list and the edge map
-def create_line_graph(solid: dict[str,dict]):
+def create_line_graph(solid: dict[str,list]):
     adj_list = create_adj_list(solid)
     edge_map = create_edge_map(solid)
     lg = {}
@@ -51,7 +51,7 @@ def get_incid_graph_edges(edges : list[tuple], edge_map : dict[tuple,int]):
     return ig_edges
 
 # creates total graph using the original graph vertices and edges, line graph vertices and edges and incidence graph edges
-def create_total_graph(solid : dict[str,dict]):
+def create_total_graph(solid : dict[str,list]):
     adj_list = create_adj_list(solid)
     edge_map = create_edge_map(solid)
     lg_edges = get_line_graph_edges(adj_list,edge_map)
