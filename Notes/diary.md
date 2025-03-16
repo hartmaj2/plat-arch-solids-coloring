@@ -2,6 +2,7 @@
 
 - UAQ := unanswered question
 - PY := python trick/useful concept
+- LTX := latex trick/useful concept
 
 ## December
 
@@ -65,7 +66,7 @@
 - learned how to convert images from .svg to .pdf using incscape
   - `inkscape ./path/to/picture.svg --export-filename="./path/to/picture.pdf"`
 
-- learned how to work with so called 'floating objects' in latex
+- LTX: learned how to work with so called 'floating objects' in latex
   - you an fix their position as it is in the source file by adding `[H]` option
   - for this you need to include float package: `\usepackage{float}`
 
@@ -190,22 +191,22 @@
 - fixed wordings based on recommendation of supervisor
   - "Concrete colorings" -> "The general concept of coloring"
   - "General coloring" -> "Common properties of colorings"`
-  - fixed latex typing of `\chi'(G)`
+  - LTX: fixed latex typing of `\chi'(G)`
 
 - added note about The Four Color Theorem under the tables with calculated chromatic numbers
 
-- automatized bibliography references using resources.bib file
+- LTX: automatized bibliography references using resources.bib file
   - need to add the following lines:
     - `\bibliographystyle{plain}`
     - `\bibliography{Resources/references}`
 
 - computed some tractable chromatic polynomials (prly won't add to the thesis but I can consult this with supervisor)
 
-- automatized list of tables printing 
+- LTX: automatized list of tables printing 
   - use `\listoftables` with the `table` environment
   - each table must have `caption` attribute
   
-- added bibliography and list of tables to table of contents using `\addcontentsline{toc}{chapter}{Bibliography}`
+- LTX: added bibliography and list of tables to table of contents using `\addcontentsline{toc}{chapter}{Bibliography}`
 
 ### 2025_02_24
 
@@ -451,3 +452,13 @@
   - used `\emph` instead of `\textbf`
 
 - updated `README.md`
+
+### 2025_03_16
+
+- PY: learned that inside f-string, escape `{` using `{{`
+
+- LTX: one can set spacing between rows by `\renewcommand{\arraystretch}{<ratio>}`
+
+- added table of selected orbital chromatic polynomials to the thesis
+  - also improved the chromatic poly printing code
+  - also added choice to set the row spacing ratio inside latex table printing function
