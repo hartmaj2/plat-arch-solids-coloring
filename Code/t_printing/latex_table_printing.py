@@ -30,13 +30,18 @@ LATEX_COL_SEPARATOR = '&'
 CURLY_BRACE_LEFT = r"{"
 CURLY_BRACE_RIGHT = r"}"
 
-PLATONIC_OUTPUT_NAMES = ["tetrahedron","cube","octahedron","dodecahedron","icosahedron"]
-ARCHIMEDEAN_OUTPUT_NAMES = ["truncated icosidodecahedron","truncated cube","icosidodecahedron","rhombicuboctahedron","truncated icosahedron","truncated octahedron","snub cube","truncated cuboctahedron","truncated tetrahedron","cuboctahedron","snub dodecahedron","truncated dodecahedron","rhombicosidodecahedron"]
+STRETCH_COMMAND = r'\renewcommand{\arraystretch}{'
+STRETCH_DEFAULT_VALUE = 1.0
 
 # prints latex table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
 # on input we expect list of header names passed to `data_col_headrs`
 # we can also specify transformation to be applied on ALL the data in the solid_data_dict (be default, this is just conversion to string)
-def print_solid_mult_col_data(key_data_dict: dict, text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER):
+def print_solid_mult_col_data(key_data_dict: dict, text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE):
+    
+    # MAYBE CHANGE ROW SPACING
+    if row_spacing != STRETCH_DEFAULT_VALUE:
+        print(f"{STRETCH_COMMAND}{row_spacing:.1f}{CURLY_BRACE_RIGHT}",file=output_type)
+
     # PRINT HEADER AND ENVIRONMENT THINGIES
     print(TABLE_BEGIN_HERE,file=output_type)
     print(CENTERING,file=output_type)
@@ -61,6 +66,11 @@ def print_solid_mult_col_data(key_data_dict: dict, text_col_header : str, data_c
     # PRINT CAPTION AND LABEL
     print_caption_and_label(caption,label,output_type)
     print(TABLE_END,file=output_type)
+
+    # MAYBE CHANGE ROW SPACING BACK TO DEFAULT
+    if row_spacing != STRETCH_DEFAULT_VALUE:
+        print(f"{STRETCH_COMMAND}{STRETCH_DEFAULT_VALUE}{CURLY_BRACE_RIGHT}",file=output_type)
+
     print(file=output_type)
 
 def print_caption_and_label(caption : str, label : str, output_type):

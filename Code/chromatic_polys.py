@@ -21,7 +21,8 @@ ROOT_FOLDER = "Code"
 # OUTPUT SETTING
 
 ## ALL SOLIDS PRINTING
-DATA_COLUMN_HEADERS = ["Chromatic polynomial"]
+CHROMPOLY_DATA_HEADER = ["Chromatic polynomial"]
+ORBCHROMPOLY_DATA_HEADER = ["Orbital chromatic polynomial"]
 
 NOT_COMPUTED_SYMBOL = r'\dag'
 
@@ -34,8 +35,13 @@ ARCH_LABEL = "tab:archimedean-chrom-polys"
 ## SELECTION OF SOLIDS PRINTING
 
 TEXT_COLUMN_HEADER = "Solid"
-CAPTION = "Chromatic polynomial of selected solids. For other solids, the polynomial coefficients were too large and would not print nicely."
-LABEL = "tab:selected-chrom-polys"
+
+CAPTION_CHROMPOLY = "Chromatic polynomial of selected solids. For other solids, the polynomial coefficients were too large and would not print nicely."
+LABEL_CHROMPOLY = "tab:selected-chrom-polys"
+
+CAPTION_ORBCHROMPOLY = "Orbital chromatic polynomial of selected solids. For other solids, the polynomial coefficients were too large and would not print nicely."
+LABEL_ORBCHROMPOLY = "tab:selected-orbital-chrom-polys"
+
 selected_solids = ["cube","octahedron","tetrahedron"]
 
 
@@ -53,12 +59,15 @@ polys_to_skip = ["truncated icosidodecahedron","icosidodecahedron","rhombicuboct
 
 # converts polynomial sage object to a string and then replaces the necessary part with proper latex syntax and wraps in equation environment
 def poly_to_latex(polynomial):
-    str_with_wrong_superscripts =  "$" + str(polynomial).replace("*","") + "$" # adds $...$ around and replaces k*x^n with kx^n 
-    str_with_maybe_bad_fractions =  re.sub(r'\^(\d+)',"^{\\1}",str_with_wrong_superscripts) # replaces x^123 with x^{123} for example
-    str_with_good_fractions = re.sub(r'(\d+)/(\d+)',r"\\frac{\1}{\2}",str_with_maybe_bad_fractions) # replacs k/qx^n with \frac{k}{q}x^n
-    return str_with_good_fractions
+    str_with_wrong_superscripts =  str(polynomial).replace("*","") # replaces k*x^n by kx^n 
+    str_with_maybe_bad_fractions =  re.sub(r'\^(\d+)',"^{\\1}",str_with_wrong_superscripts) # replaces x^123 by x^{123} for example
+    str_with_good_fractions = re.sub(r'(\d+)/(\d+)',r"\\frac{\1}{\2}",str_with_maybe_bad_fractions) # replacs k/qx^n by \frac{k}{q}x^n
+    return f"${str_with_good_fractions}$" # adds $...$ around and returns result
 
-ALIGNMENT_PAR_STYLE_WRAP = r"p{0.5\linewidth}"
+LINEWIDTH_ALIGNMENT_RATIO = 0.7
+ROW_SPACING_RATIO = 2.0
+# ALIGNMENT_PAR_STYLE_WRAP = r"p{0.5\linewidth}"
+ALIGNMENT_PAR_STYLE_WRAP = f"p{{{LINEWIDTH_ALIGNMENT_RATIO}\\linewidth}}"
 
 # calls sage code on given data
 def compute_chromatic_polynomial(solid_edges : list[tuple]):
@@ -81,14 +90,20 @@ def get_chrom_polys_dict(solid_dict : dict, chrom_poly_function) -> dict[str,lis
         else:
             print(f"calculating chromial of {solid_name}")
             solid_computed_data[solid_name] = [chrom_poly_function(solid_dict[solid_name][sdp.JSON_EDGES])] # IMPORTANT: needs to be packed in a list in order for the printing to work propertly 
-            # solid_computed_data[solid_name] = [compute_orbital_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])]
     return solid_computed_data
+
+def print_orbital_chrom_poly_table(solids : dict[str,dict]):
+    solid_data = get_chrom_polys_dict(solids,compute_orbital_chromatic_polynomial)
+    printing.print_solid_mult_col_data(solid_data,TEXT_COLUMN_HEADER,ORBCHROMPOLY_DATA_HEADER,CAPTION_ORBCHROMPOLY,LABEL_ORBCHROMPOLY,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP,ROW_SPACING_RATIO)
+
+def print_chrom_poly_table(solids : dict[str,dict]):
+    solid_data = get_chrom_polys_dict(solids,compute_chromatic_polynomial)
+    printing.print_solid_mult_col_data(solid_data,TEXT_COLUMN_HEADER,CHROMPOLY_DATA_HEADER,CAPTION_CHROMPOLY,LABEL_CHROMPOLY,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
     solids = sdp.get_selected_solids_dict(selected_solids)
-    solid_data = get_chrom_polys_dict(solids,compute_orbital_chromatic_polynomial)
-    printing.print_solid_mult_col_data(solid_data,TEXT_COLUMN_HEADER,DATA_COLUMN_HEADERS,CAPTION,LABEL,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
+    print_chrom_poly_table(solids)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
