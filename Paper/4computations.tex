@@ -105,4 +105,30 @@ So the only parameter that really matters is how many steps the recursive algori
 
 Now each branch of the recursion is simply a sequence of $3$ operations which can be either and addition of an edge, or identification of two vertices. Let us denote the edge addition operation as $\alpha$ and identification operation by $\iota$. Notice that each $\iota$ reduces the number of vertices of the resulting graph by $1$. Let $G_{o_1 \ldots o_n}$ be the graph resulting from $G$ when operations $o_1, \ldots o_n$ are performed on it in the corresponding order. Then for example $|V(G_{\alpha \iota\alpha})| = |V(G)| -1$ because the operation sequence contains exactly one of $\iota$. Since after $3$ steps, the graph has no more non-edges, we know that it is a complete graph $K_{|V(G)|-1}$. 
 
+\subsection{Formal proof of the argument above}
+
+In the following, let $\oplus$ denote the edge addition operation and let $\star$ denote the vertex identification operation. Let $G_{\oplus,\bar{e}}$ and $G_{\star,\bar{e}}$ describe the resulting graphs by applying the corresponding operation on some non-edge $\bar{e}$ of $G$. Let $\bar{E}$ denote the set of all non-edges of $G$.
+
+
+\begin{defn}[vertex identification operation]
+    For a graph $G=(V,E)$ and a non-edge $\{u,v\}$ we define the resulting graph $G_{\star,\{u,v\}} = (V',E')$ as follows:
+    \begin{enumerate}
+        \item $V' := (V \setminus \{u,v\}) \cup \{w\}$
+        \item $E' = (\binom{V'}{2} \cap E) \cup \{\{w,x\} : \{v,x\} \in E \vee \{u,x\} \in E\}$
+    \end{enumerate}
+    In the above, we assume that $w \notin V$.
+\end{defn}
+
+\begin{lemma}
+    Let $K_{k \times n}$ be a complete $k$-partite graph where each independent set has size $n$. Then for any non-edge $\bar{e}$ and $o \in \{\oplus,\star\}$ we have that \[|\bar{E}(G_{o,\bar{e}})| = |\bar{E}(G)| - 1\]
+\end{lemma}
+
+\begin{proof}
+    Let us consider any $\bar{e} \in \bar{E}$. The operation $\oplus$ removes $\bar{e}$ from $\bar{E}$ and keeps the other non-edges intact, so the lemma holds for this case. For the case of $\star$ operation, $\bar{E}(G_{\star,\bar{e}})$ will no longer contain the non-edge $\bar{e}=\{v,u\}$. Also, since the graph is complete $k$-partite, there exists no $w \in V(G) \setminus \{v,u\}$ s.t. $\{w,v\} \in \bar{E}$ or $\{w,u\} \in \bar{E}$. This means that after the $\star$ operation, all other non-edges will stay being non-edges. Also the $\star$ operation does not create any new non-edges. This concludes the proof.
+\end{proof}
+
+\begin{claim}
+    Let $K_{k \times n}$ be a complete $k$-partite graph where each independent set has size $n$. Then \[P(K_{k \times 2},x) = \sum_{i=0}^{k} \binom{k}{i} P(K_{2n-i},x)\]
+\end{claim}
+
 \end{highlight}
