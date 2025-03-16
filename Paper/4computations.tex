@@ -114,10 +114,12 @@ In the following, let $\oplus$ denote the edge addition operation and let $\star
     For a graph $G=(V,E)$ and a non-edge $\{u,v\}$ we define the resulting graph $G_{\star,\{u,v\}} = (V',E')$ as follows:
     \begin{enumerate}
         \item $V' := (V \setminus \{u,v\}) \cup \{w\}$
-        \item $E' = (\binom{V'}{2} \cap E) \cup \{\{w,x\} : \{v,x\} \in E \vee \{u,x\} \in E\}$
+        \item $E' = (\binom{V'}{2} \cap E) \cup \{\{w,x\} : \{u,x\} \in E \vee \{v,x\} \in E\}$
     \end{enumerate}
     In the above, we assume that $w \notin V$.
 \end{defn}
+
+Notice, for each $\bar{e} = \{u,v\}\in \bar{E}(G)$ it holds that $|\bar{E}(G_{\star,\bar{e}})| < |\bar{E}(G)|$. This is because $\{u,v\} \notin \bar{E}(G_{\star,\bar{e}})$ and also for the new vertex $w$, we have: \[\{w,x\} \in \bar{E}(G_{\star,\bar{e}}) \implies \{u,x\} \in \bar{E}(G) \wedge \{v,x\} \in \bar{E}(G)\]. In other words, the amount of non-edges after $\star$ operation always decreases.
 
 \begin{lemma}
     Let $K_{k \times n}$ be a complete $k$-partite graph where each independent set has size $n$. Then for any non-edge $\bar{e}$ and $o \in \{\oplus,\star\}$ we have that \[|\bar{E}(G_{o,\bar{e}})| = |\bar{E}(G)| - 1\]
