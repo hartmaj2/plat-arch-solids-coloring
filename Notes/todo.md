@@ -142,11 +142,19 @@
 
 - [x] remove the definition of graph drawing and just add reference to a book where it is defined and state that we will understand graph drawing in the same way
 
-- [ ] change keywords in definitions to `\emph{keyword}` instead of `\textbf{keyword}`
+- [x] change keywords in definitions to `\emph{keyword}` instead of `\textbf{keyword}`
+
+## 2025_03_16
+
+- [ ] improve the argument for computation of chromatic polynomial of the octahedron
+  - maybe label the graph resulting from the sequence of operations earlier so I can refer to it
+  - maybe state the result as lemma? or theorem?
 
 - [ ] comment the results of the chromatic polynomial table
   - why only selected included?
   - mention that some polys took too long to compute (for 48 edges took ten minutes, for 60 edges did not finish)
+
+- [ ] improve the chapter about symmetries to be less verbose
 
 ## Main tasks
 
