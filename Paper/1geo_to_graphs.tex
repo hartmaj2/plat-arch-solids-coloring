@@ -14,7 +14,7 @@ The Archimedean solids can then be obtained by performing one of the following n
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth]{../Resources/Figs/op_truncation.pdf}
-        \caption{Trunctation and rectification operations visualised \cite{wikimedia-cube-truncation}}
+        \caption{Trunctation and rectification of cube visualised \cite{wikimedia-cube-truncation}}
         \label{fig:op_truncation}
     \end{figure}
     \item[Expansion/Cantellation] All the facets are pulled out away from the centroid of the polyhedron by the same distance without rescaling. The empty spaces are then filled with regular polygons in the following way: Edges that used to be identical in the original polyhedron are connected by adding a new a square. All the vertices that corresponded to a single vertex $v$ in the original polyhedron are connected by adding a $d$-gon where $d=deg(v)$.
@@ -23,16 +23,16 @@ The Archimedean solids can then be obtained by performing one of the following n
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth]{../Resources/Figs/op_cantellation.pdf}
-        \caption{Cantellation operation visualised \cite{wikimedia-cube-cantellation}}
+        \caption{Cube cantellation visualised \cite{wikimedia-cube-cantellation}}
         \label{fig:op_cantellation}
     \end{figure}
     \begin{highlight}
-    \item[Snub] Is an application of expansion followed by splitting each new square in half in such a way, that we can twist the facets of the original Platonic solid.
+    \item[Snub] Is an application of expansion/cantellation followed by splitting each new square in half in such a way, that we can twist the facets of the original Platonic solid.
     \end{highlight}
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth]{../Resources/Figs/op_snub.pdf}
-        \caption{Snub operation visualised \cite{natal-polyhed-viewer}}
+        \caption{The twisting part of snub operation on cube visualised \cite{natal-polyhed-viewer}}
         \label{fig:op_snub}
     \end{figure}
     
@@ -42,9 +42,9 @@ The Archimedean solids can then be obtained by performing one of the following n
 
 Here we state mathematical definitions, that should not be surprising in any way i.e. can be considered standard. Also, we state any assumptions we will make, which will then hold for the rest of this thesis.
 
-\begin{definition}[undirected graph]
+\begin{defn}[undirected graph]
     An \emph{undirected graph} $G$ is an ordered pair $G=(V,E)$ where $V$ is a set of vertices of the graph and $E \subseteq \binom{V}{2}$ is the set of its edges. 
-\end{definition}
+\end{defn}
 
 Since we are interested in Platonic and Archimedean solids, whose graphs are all planar, it is useful to define the notion of a \textit{plane graph}. This notion will correspond to a drawing of a particular graph onto a plane with one special property: the edges as they are drawn do not cross. 
 
@@ -55,13 +55,13 @@ To avoid getting into too much detail, we will simply borrow the definition of a
 
 A drawing of a graph might split the plane into multiple separate segments. We will call these segments \textit{faces} of a drawing of graph $G$.
 
-\begin{definition}[planar graph]
+\begin{defn}[planar graph]
     A graph $G$ is \emph{planar} if there exists a drawing of $G$ into a plane.
-\end{definition}
+\end{defn}
 
-\begin{definition}[plane graph]
+\begin{defn}[plane graph]
     A \emph{plane graph} $G' = (V,E,F)$ is a drawing of a planar graph $G=(V,E)$ into plane where $F$ is the set of all faces of this drawing. We will also use the notation $V(G'), E(G'), F(G')$ to refer to sets $V,E,F$ respectively.
-\end{definition}
+\end{defn}
 
 In this thesis, we assume for any plane graph $G=(V,E,F)$ that the sets $V$, $E$ and $F$ are pairwise disjoint.
 
