@@ -462,3 +462,7 @@
 - added table of selected orbital chromatic polynomials to the thesis
   - also improved the chromatic poly printing code
   - also added choice to set the row spacing ratio inside latex table printing function
+
+- LTX: used regexp to replace all `\begin{definition}` and `\end{definition}` with `\begin{defn}` or `\end{defn}` correspondingly
+  - matching regexp: `\\([a-z]{3,5})\{definition\}`
+  - replacement regexp: `\$1{defn}`
