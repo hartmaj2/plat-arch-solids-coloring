@@ -53,8 +53,10 @@ polys_to_skip = ["truncated icosidodecahedron","icosidodecahedron","rhombicuboct
 
 # converts polynomial sage object to a string and then replaces the necessary part with proper latex syntax and wraps in equation environment
 def poly_to_latex(polynomial):
-    str_with_wrong_superscripts =  "$" + str(polynomial).replace("*","") + "$"
-    return re.sub(r'\^(\d+)',"^{\\1}",str_with_wrong_superscripts) # replaces x^123 with x^{123} for example
+    str_with_wrong_superscripts =  "$" + str(polynomial).replace("*","") + "$" # adds $...$ around and replaces k*x^n with kx^n 
+    str_with_maybe_bad_fractions =  re.sub(r'\^(\d+)',"^{\\1}",str_with_wrong_superscripts) # replaces x^123 with x^{123} for example
+    str_with_good_fractions = re.sub(r'(\d+)/(\d+)',r"\\frac{\1}{\2}",str_with_maybe_bad_fractions) # replacs k/qx^n with \frac{k}{q}x^n
+    return str_with_good_fractions
 
 ALIGNMENT_PAR_STYLE_WRAP = r"p{0.5\linewidth}"
 
@@ -70,7 +72,7 @@ def compute_orbital_chromatic_polynomial(solid_edges : list[tuple]):
     return poly
 
 # processes all solids and loads corresponding data to the dict
-def get_chrom_polys_dict(solid_dict : dict) -> dict[str,list]:
+def get_chrom_polys_dict(solid_dict : dict, chrom_poly_function) -> dict[str,list]:
     solid_computed_data = {}
     for solid_name in solid_dict.keys():
         if solid_name in polys_to_skip:
@@ -78,14 +80,14 @@ def get_chrom_polys_dict(solid_dict : dict) -> dict[str,list]:
             print(f"skipping chromial of {solid_name}")
         else:
             print(f"calculating chromial of {solid_name}")
-            solid_computed_data[solid_name] = [compute_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])] # IMPORTANT: needs to be packed in a list in order for the printing to work propertly 
+            solid_computed_data[solid_name] = [chrom_poly_function(solid_dict[solid_name][sdp.JSON_EDGES])] # IMPORTANT: needs to be packed in a list in order for the printing to work propertly 
             # solid_computed_data[solid_name] = [compute_orbital_chromatic_polynomial(solid_dict[solid_name][sdp.JSON_EDGES])]
     return solid_computed_data
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
     solids = sdp.get_selected_solids_dict(selected_solids)
-    solid_data = get_chrom_polys_dict(solids)
+    solid_data = get_chrom_polys_dict(solids,compute_orbital_chromatic_polynomial)
     printing.print_solid_mult_col_data(solid_data,TEXT_COLUMN_HEADER,DATA_COLUMN_HEADERS,CAPTION,LABEL,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
