@@ -63,7 +63,7 @@ Similarly, for total coloring, Vizing's conjecture \cite{vizing68} states, that 
 
 Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using the following fact: When we fix two vertices $u$, $v$ s.t. $\{u,v\} \notin E$, we can split all colorings of $G$ into two disjoint groups. Let $d$ be the amount of colorings of $G$ in which $u$ and $v$ are colored by different color and let $s$ be the amount of colorings in which $u$ and $v$ are colored by same colors. Then the amount of all colorings $P(G,x) = d + s$. Let $G+\{u,v\}$ be graph $G$ s.t. its set of edges is $E \cup \{u,v\}$. Let $G \cdot \{u,v\}$ be the graph $G + \{u,v\}$ where the edge $\{u,v\}$ is contracted into a single vertex. Then we can see that $d = P(G + \{u,v\},x)$ and $s = P(G \cdot \{u,v\},x)$. This fact yields the following formula \cite{chartrand2019}:
 \begin{equation}\label{eqn:chrom_poly_nonedge}
- P(G,x) = P(G + \{u,v\},x) + P(G \cdot \{u,v\},x) \tag{$P$}
+ P(G,x) = P(G + \{u,v\},x) + P(G \cdot \{u,v\},x)
 \end{equation}
 
 The formula above serves as the recursive case of our computation i.e. when the graph has some non-edge. In the other case, the base case, the graph has no non-edges and thus it is a complete graph $K_n$ for some $n \in \mathbb{N}$. Then the chromatic polynomial is $P(K_n,x) = x \cdot (x-1) \cdot \ldots \cdot (x-n+1)$.
@@ -131,8 +131,7 @@ In other words, the amount of non-edges after $\star$ operation always decreases
 
 \begin{claim}
     Let $K_{k \times 2}$ be a complete $k$-partite graph where each independent set has size $2$. Then it holds that: 
-    \begin{equation}
-        \label{eqn:chromatic-pascal}
+    \begin{equation}\label{eqn:chromatic-pascal}
         P(K_{k \times 2},x) = \sum_{i=0}^{k} \binom{k}{i} P(K_{2k-i},x)
     \end{equation}
 \end{claim}
@@ -145,7 +144,7 @@ In other words, the amount of non-edges after $\star$ operation always decreases
 \end{proof}
 
 
-A particular example that demonstrates the claim above is the graph of octahedron $K_{2,2,2}$. According to the formula, we have \[ P(K_{2,2,2},x) = P(K_6,x)+3P(K_5,x) + 3P(K_4,x)+P(K_3,x)\] as illustrated in the figure below.
+A particular example that demonstrates the claim above is the graph of octahedron $K_{2,2,2} = K_{3 \times 2}$. According to formula \ref{eqn:chromatic-pascal}, we have \[ P(K_{3 \times 2},x) = P(K_6,x)+3P(K_5,x) + 3P(K_4,x)+P(K_3,x)\] as illustrated in the figure below.
 
 \begin{figure}[H]
     \centering
