@@ -14,7 +14,7 @@ Since we will be working with graphs of Platonic and Archimedean solids, which a
     Let $S$ be a set and $G=(V,E,F)$ a plane graph. We define \emph{coloring} of $G$ as a partial function $c: V \cup E \cup F \rightarrow S$ with a coloring rule $R$ that restricts, which elements of the graph cannot be mapped to same element in S.
 \end{defn}
 
-In other words, coloring is an assignment of elements in $S$ to vertices, edges or faces of some plane graph. We can think of elements of $S$ as colors but usually, we will use numbers instead. What is especially important to us is, whether any two elements are mapped onto a same target i.e. colored by the same color. The coloring rule then prevents some assignments to be considered valid. This makes the coloring problem non-trivial.
+In other words, (proper) coloring is an assignment of elements in $S$ to vertices, edges or faces of some plane graph. We can think of elements of $S$ as colors but usually, we will use numbers instead. What is especially important to us is, whether any two elements are mapped onto a same target i.e. colored by the same color. The coloring rule then prevents some assignments to be considered valid. This makes the coloring problem non-trivial.
 
 \begin{defn}[family of colorings]
     Let the set of all colorings sharing the same coloring rule $R$ be called a \emph{family of colorings}.
@@ -66,7 +66,7 @@ In other words, vertex coloring is an assignment of colors to each vertex s.t. n
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.2\textwidth]{../Resources/Figs/octahedral_vtx_colr.pdf}
+    \includegraphics[width=0.20\textwidth]{../Resources/Figs/octahedral_vtx_colr.pdf}
     \caption{Vertex coloring of octahedral graph}
     \label{fig:octahedral_vtx_coloring}
 \end{figure}
@@ -109,14 +109,14 @@ By combining the colorings above and extending by another restriction, we get a 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.2\textwidth]{../Resources/Figs/cubical_tot_colr.pdf}
-    \caption{Total coloring of cubical graph using five colors}
+    \includegraphics[width=0.2\textwidth]{../Resources/Figs/cubical_tot_colr_opt.pdf}
+    \caption{Total coloring of cubical graph using four colors}
     \label{fig:cubical_tot_coloring}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.2\textwidth]{../Resources/Figs/octahedral_tot_colr.pdf}
+    \includegraphics[width=0.25\textwidth]{../Resources/Figs/octahedral_tot_colr.pdf}
     \caption{Total coloring of octahedral graph using five colors}
     \label{fig:octahedral_tot_coloring}
 \end{figure}
@@ -159,14 +159,14 @@ So far, the particular colorings we have considered were all quite similar to ea
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.2\textwidth]{../Resources/Figs/cubical_edg_colr.pdf}
-    \caption{Rainbow coloring of cubical graph. Let us appreciate the fact, that it is also an edge coloring.}
+    \caption{Rainbow coloring of cubical graph. Let us appreciate the fact, that it is also a proper edge coloring.}
     \label{fig:cubical_rainbow_coloring}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.2\textwidth]{../Resources/Figs/octahedral_rainbow_colr.pdf}
-    \caption{Rainbow coloring of octahedral graph. Note, that it is not a valid edge coloring.}
+    \includegraphics[width=0.25\textwidth]{../Resources/Figs/octahedral_rainbow_colr.pdf}
+    \caption{Rainbow coloring of octahedral graph. Note, that it is not a proper edge coloring.}
     \label{fig:octahedral_rainbow_coloring}
 \end{figure}
 
