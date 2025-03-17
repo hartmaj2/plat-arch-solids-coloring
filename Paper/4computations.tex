@@ -85,18 +85,7 @@ tetrahedron & $x^{4} - 6x^{3} + 11x^{2} - 6x$ \\
 \label{tab:selected-chrom-polys}
 \end{table}
 
-
-\subsection{Chromatic polynomial of octahedron}
-
-We get an interesting result when applying the recursive method for computing chromatic polynomial on the graph of octahedron. Note that this graph is in fact $K_{2,2,2}$, a complete tripartite graph. Let $A$ be one of the partitions and $u,v \in A$, then we have that $\{u,v\} \notin E$ but for every $w \in V \setminus A$, $\{u,w\} \in E$ and also $\{v,w\} \in E$. From this follows, that we have exactly one non-edge per partition.
-
-Let us now analyze the recursive method using formula \ref{eqn:chrom_poly_nonedge} on octahedron. Notice, that w.l.o.g. we can start the recursion with any non-edge, because the partitions are indistinguishable. In fact, this argument can be generalized to every step of the recursion. This means that the resulting graph will be the same independent of the order, in which we pick the non-edges, to add or identify.
-
-So the only parameter that really matters is how many steps the recursive algorithm will take, until we reach the base case. Since we have exactly $3$ partitions, and thus $3$ non edges, the recursion depth will also be $3$.
-
-Now each branch of the recursion is simply a sequence of $3$ operations which can be either and addition of an edge, or identification of two vertices. Let us denote the edge addition operation as $\alpha$ and identification operation by $\iota$. Notice that each $\iota$ reduces the number of vertices of the resulting graph by $1$. Let $G_{o_1 \ldots o_n}$ be the graph resulting from $G$ when operations $o_1, \ldots o_n$ are performed on it in the corresponding order. Then for example $|V(G_{\alpha \iota\alpha})| = |V(G)| -1$ because the operation sequence contains exactly one of $\iota$. Since after $3$ steps, the graph has no more non-edges, we know that it is a complete graph $K_{|V(G)|-1}$. 
-
-\subsection{Formal proof of the argument above}
+\subsection{Chromatic polynomial of complete k-partite graphs with partition size 2}
 
 In the following, let $\oplus$ denote the edge addition operation and let $\star$ denote the vertex identification operation. Let $G_{\oplus,\bar{e}}$ and $G_{\star,\bar{e}}$ describe the resulting graphs by applying the corresponding operation on some non-edge $\bar{e}$ of $G$. Let $\bar{E}$ denote the set of all non-edges of $G$.
 
@@ -141,13 +130,29 @@ In other words, the amount of non-edges after $\star$ operation always decreases
 \end{highlight}
 
 \begin{claim}
-    Let $K_{k \times n}$ be a complete $k$-partite graph where each independent set has size $n$. Then it holds that: \[P(K_{k \times 2},x) = \sum_{i=0}^{k} \binom{k}{i} P(K_{2n-i},x)\]
+    Let $K_{k \times 2}$ be a complete $k$-partite graph where each independent set has size $2$. Then it holds that: 
+    \begin{equation}
+        \label{eqn:chromatic-pascal}
+        P(K_{k \times 2},x) = \sum_{i=0}^{k} \binom{k}{i} P(K_{2k-i},x)
+    \end{equation}
 \end{claim}
 
 \begin{highlight}
 \begin{proof}
-    We base our proof on using the recursive algorithm for computing chromatic polynomials using the formula \ref{eqn:chrom_poly_nonedge} above. Let $G_{o_1,\ldots,o_n}$ be a graph resulting from applying operations $o_1$ to $o_n$ in the corresponding order. Using lemma \ref{lemma:indistinguishability} this graph is well defined, as the resulting graph is always the same irrespective of the particular choice of non-edges we apply the operations $o_1, \ldots,o_n$ to.
+    We base our proof on using the recursive algorithm for computing chromatic polynomials using the formula \ref{eqn:chrom_poly_nonedge} above. Let $G_{o_1,\ldots,o_n}$ be a graph resulting from applying operations $o_1$ to $o_n$ in the corresponding order. Using Lemma \ref{lemma:indistinguishability} this graph is well defined, as the resulting graph is always the same irrespective of the particular choice of non-edges we apply the operations $o_1, \ldots,o_n$ to.
+
+    In every step of the recursion, we split the problem of calculating $P(G,x)$ to calculating the sum of $P(G_{\oplus,\bar{e}},x)$ and $P(G_{\star,\bar{e}},x)$. The recursion stops when there exists no non-edge $\bar{e} \in \bar{E}$ i.e. $G$ is a complete graph. By Lemma \ref{lemma:non-edge_set_size}, the recursion depth is equal to the amount of non-edges of the original graph $K_{k\times 2}$ for every branch of the recursion. For $K_{k\times 2}$ this is equal to $k$. This means, that each branch of the recursion ends with a graph $G_{o_1,\ldots,o_k}$ where $o_i \in \{\oplus,\star\}$. For a sequence of operations $s=o_1,\ldots,o_k$ let us denote $s_{\star} = |\{ i : o_i   =\star\}|$ i.e. the amount of vertex identification operations performed throughout the sequence. Then we have $G_s = K_{2k-s_{\star}}$ because every $\star$ operation removes exactly one vertex from the original graph. Let $S$ be the set of all possible sequences of $k$ operations. Then for $G=K_{k\times 2}$, we have $P(G,x)= \sum_{s\in S}P(G_s,x)$. This follows from the fact, that there is a one-to-one correspondence between branches of the recursion and sequences in $S$. We get the final formula by identifying all sequences with the same amount of $\star$ operations, which yields the binomial coefficients in the final formula. 
 \end{proof}
+
+
+A particular example that demonstrates the claim above is the graph of octahedron $K_{2,2,2}$. According to the formula, we have \[ P(K_{2,2,2},x) = P(K_6,x)+3P(K_5,x) + 3P(K_4,x)+P(K_3,x)\] as illustrated in the figure below.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Resources/Figs/octahedral_demo.pdf}
+    \caption{Demonstration of formula \ref{eqn:chromatic-pascal} on the graph of octahedron}
+\end{figure}
+
 \end{highlight}
 
 
