@@ -27,7 +27,6 @@ def compute_orbital_chromatic_polynomial(solid_edges : list[tuple]):
     poly = orbchrom.orbital_chromatic_polynomial(G)
     return poly
 
-# main loop over folders with different solid types (Platonic, Archimedean)
 def main():
     solid_name = "cube"
     solid_dict = sdp.get_all_solids_dict()[solid_name]

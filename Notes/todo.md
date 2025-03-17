@@ -152,6 +152,8 @@
 
 ## 2025_03_17
 
+- [x] test the formula form computing chromial of complete k-partite graphs with partition size 2
+
 - [ ] comment the results of the chromatic polynomial table
   - why only selected included?
   - mention that some polys took too long to compute (for 48 edges took ten minutes, for 60 edges did not finish)
