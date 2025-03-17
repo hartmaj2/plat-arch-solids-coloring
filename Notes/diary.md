@@ -466,3 +466,12 @@
 - LTX: used regexp to replace all `\begin{definition}` and `\end{definition}` with `\begin{defn}` or `\end{defn}` correspondingly
   - matching regexp: `\\([a-z]{3,5})\{definition\}`
   - replacement regexp: `\$1{defn}`
+
+### 2025_03_17
+
+- took into account recommendations from supervisor for better formulations in the thesis text
+
+- LTX: labeled my lemmas in the formal proof of the formula for the chromatic polynomial of the complete k-partite graph. 
+  - `\label{lemma:name-of-lemma}` should be put right bellow the start of the lemma environment
+
+- also finished the formal proof of formula for chromatic polynomial of complete k-partite graph with partition size 2
