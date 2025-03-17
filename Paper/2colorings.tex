@@ -174,15 +174,11 @@ So far, the particular colorings we have considered were all quite similar to ea
 
 There exists also coloring rules, that are based on the actual values of the colors. In that case, the colors cannot be any set of arbitrary elements, but must correspond to a subset of natural numbers, where we have a meaningful definition of addition operation on the colors. In that case, the colorings are usually referred to as \textit{labelings}.
 
-\begin{highlight}
-
 All of the labelings share a notion of assigning a \textit{weight} to the elements of a graph. For element $x$, we denote this weight by $w(g)$. Using this notation, we can define \textit{edge-labeling} more precisely as a function $l:E \rightarrow \mathbb{N}$ and analogously \textit{vertex-labeling} as a function $l:V \rightarrow \mathbb{N}$
 
 Moreover we call an edge-labeling \textit{magic} if $\exists k \in \mathbb{N} : \forall v \in V:w(v) = k$ where $w$ is an arbitrary function in terms of $l$. In other words, the edge-labeling $l$ is magic if all the vertices have the same weight when the edges are labeled using $l$. For example, we might define $w(v) = \sum_{uv \in E}l(uv)$. Analogous definition holds for magic vertex-labeling.
 
 All the definitions of labelings above are based on a book called \textit{Magic Graphs} by Wallis \cite{marrwall2013}.
-
-\end{highlight}
 
 \vspace{5pt}
 \todo[inline]{IDEA: Add definition of perfect coloring}

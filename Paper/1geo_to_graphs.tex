@@ -26,9 +26,7 @@ The Archimedean solids can then be obtained by performing one of the following n
         \caption{Cube cantellation visualised \cite{wikimedia-cube-cantellation}}
         \label{fig:op_cantellation}
     \end{figure}
-    \begin{highlight}
     \item[Snub] Is an application of expansion/cantellation followed by splitting each new square in half in such a way, that we can twist the facets of the original Platonic solid.
-    \end{highlight}
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth]{../Resources/Figs/op_snub.pdf}
@@ -48,12 +46,7 @@ Here we state mathematical definitions, that should not be surprising in any way
 
 Since we are interested in Platonic and Archimedean solids, whose graphs are all planar, it is useful to define the notion of a \textit{plane graph}. This notion will correspond to a drawing of a particular graph onto a plane with one special property: the edges as they are drawn do not cross. 
 
-\begin{highlight}
-To avoid getting into too much detail, we will simply borrow the definition of a \textit{drawing} of a graph from the book \textit{Invitation to Discrete Mathematics} by Jaroslav Nešetřil and Jiří Matoušek \cite{matousek2009}.
-
-\end{highlight}
-
-A drawing of a graph might split the plane into multiple separate segments. We will call these segments \textit{faces} of a drawing of graph $G$.
+We use definition of a \textit{drawing} of a graph from the book \textit{Invitation to Discrete Mathematics} by Jaroslav Nešetřil and Jiří Matoušek \cite{matousek2009}. A drawing of a graph might split the plane into multiple separate segments. We call these segments the \textit{faces} of a drawing of graph $G$.
 
 \begin{defn}[planar graph]
     A graph $G$ is \emph{planar} if there exists a drawing of $G$ into a plane.
@@ -68,9 +61,9 @@ In this thesis, we assume for any plane graph $G=(V,E,F)$ that the sets $V$, $E$
 
 \section{Platonic and Archimedean graph properties}
 
-\begin{highlight}
-Here we would like to list some properties, that the graphs corresponding to the solids described above. Let $G=(V,E,F)$ be a plane graph of a solid with faces $F$. In the following tables $d$ is a number s.t. $\forall u \in V : \deg(u) = d$. The last column is a so called \textit{vertex configuration}, which denotes the amount of sides that the polygons incident with each vertex have. Note that the order of the numbers matters.
-\end{highlight}
+Here we would like to list some properties, that the graphs corresponding to the solids described above. Let $G=(V,E,F)$ be a plane graph of a solid with faces $F$. In the following tables $d$ is a number s.t. $\forall u \in V : \deg(u) = d$. 
+
+The last column is a so called \textit{vertex configuration}, which denotes the amount of sides that the polygons incident with each vertex have. Note that the numbers appear in the configuration exactly as the corresponding faces appear around the vertex. For example, the configuration $c_1 = 3.4.3.4$ is different from a hypothetical configuration $c_2 = 3.4.4.3$ even though the numbers $3$ and $4$ appear exactly twice in both cases. In $c_1$, each triangle is surrounded by two squares and vice versa. In $c_2$, each triangle or square has both a triangle and a square next to it. 
 
 \begin{table}[H]
 \centering

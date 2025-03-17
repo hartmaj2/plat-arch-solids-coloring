@@ -50,11 +50,7 @@ truncated tetrahedron & 3 & 3 & 4 \\
 
 Note, that from the tables above, we see that indeed all the above graphs have $\chi(G)$ at most 4. This is due to the famous \textit{Four Color Theorem} \cite{appelhaken76} for planar graphs.
 
-\begin{highlight}
-
-Another fact worth mentioning is that using the results of the \textit{Brook's theorem} \cite{brooks41}, we have that the only graph from the table above s.t. it has $\chi(G) = \Delta(G) + 1$ should be the tetrahedron which is indeed true by checking with tables \ref{tab:platonic-basic-props} and \ref{tab:archimedean-basic-props}. 
-
-\end{highlight}
+Note that by using the results of the \textit{Brook's theorem} \cite{brooks41}, we have that the only graph from the table above s.t. it has $\chi(G) = \Delta(G) + 1$ should be the tetrahedron. This observation is indeed true, as we can check by consulting tables \ref{tab:platonic-basic-props} and \ref{tab:archimedean-basic-props}. 
 
 As a consequence of \textit{Vizing's theorem} \cite{misra92}, for every graph $G$ with maximum degree $\Delta(G)$, we have $\Delta(G) \leq \chi'(G) \leq \Delta(G) + 1$. This implies two classes of graphs. Class one are graphs s.t. $\chi'(G) = \Delta(G)$. Class two are then graphs s.t. $\chi'(G) = \Delta(G) + 1$. What class are graphs of Platonic and Archimedean solids?
 
@@ -64,7 +60,6 @@ Similarly, for total coloring, Vizing's conjecture \cite{vizing68} states, that 
 
 \section{Computing chromatic polynomials}
 
-\begin{highlight}
 
 Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using the following fact: When we fix two vertices $u$, $v$ s.t. $\{u,v\} \notin E$, we can split all colorings of $G$ into two disjoint groups. Let $d$ be the amount of colorings of $G$ in which $u$ and $v$ are colored by different color and let $s$ be the amount of colorings in which $u$ and $v$ are colored by same colors. Then the amount of all colorings $P(G,x) = d + s$. Let $G+\{u,v\}$ be graph $G$ s.t. its set of edges is $E \cup \{u,v\}$. Let $G \cdot \{u,v\}$ be the graph $G + \{u,v\}$ where the edge $\{u,v\}$ is contracted into a single vertex. Then we can see that $d = P(G + \{u,v\},x)$ and $s = P(G \cdot \{u,v\},x)$. This fact yields the following formula \cite{chartrand2019}:
 \begin{equation}\label{eqn:chrom_poly_nonedge}
@@ -72,8 +67,6 @@ Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using 
 \end{equation}
 
 The formula above serves as the recursive case of our computation i.e. when the graph has some non-edge. In the other case, the base case, the graph has no non-edges and thus it is a complete graph $K_n$ for some $n \in \mathbb{N}$. Then the chromatic polynomial is $P(K_n,x) = x \cdot (x-1) \cdot \ldots \cdot (x-n+1)$.
-
-\end{highlight}
 
 Consider this example: Given the graph of tetrahedron $K_4$ and $X$ the family of proper vertex colorings. The chromatic polynomial $P_{X}(K_4,x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
 
@@ -92,8 +85,6 @@ tetrahedron & $x^{4} - 6x^{3} + 11x^{2} - 6x$ \\
 \label{tab:selected-chrom-polys}
 \end{table}
 
-
-\begin{highlight}
 
 \subsection{Chromatic polynomial of octahedron}
 
@@ -119,18 +110,45 @@ In the following, let $\oplus$ denote the edge addition operation and let $\star
     In the above, we assume that $w \notin V$.
 \end{defn}
 
-Notice, for each $\bar{e} = \{u,v\}\in \bar{E}(G)$ it holds that $|\bar{E}(G_{\star,\bar{e}})| < |\bar{E}(G)|$. This is because $\{u,v\} \notin \bar{E}(G_{\star,\bar{e}})$ and also for the new vertex $w$, we have: \[\{w,x\} \in \bar{E}(G_{\star,\bar{e}}) \implies \{u,x\} \in \bar{E}(G) \wedge \{v,x\} \in \bar{E}(G)\]. In other words, the amount of non-edges after $\star$ operation always decreases.
+Notice, for each $\bar{e} = \{u,v\}\in \bar{E}(G)$ it holds that $|\bar{E}(G_{\star,\bar{e}})| < |\bar{E}(G)|$. This is because $\{u,v\} \notin \bar{E}(G_{\star,\bar{e}})$ and also for the new vertex $w$, we have: \[\{w,x\} \in \bar{E}(G_{\star,\bar{e}}) \implies \{u,x\} \in \bar{E}(G) \wedge \{v,x\} \in \bar{E}(G)\]
+In other words, the amount of non-edges after $\star$ operation always decreases.
+
+\begin{highlight}
 
 \begin{lemma}
-    Let $K_{k \times n}$ be a complete $k$-partite graph where each independent set has size $n$. Then for any non-edge $\bar{e}$ and $o \in \{\oplus,\star\}$ we have that \[|\bar{E}(G_{o,\bar{e}})| = |\bar{E}(G)| - 1\]
+\label{lemma:non-edge_set_size}
+    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has size at most $n$. Then for any non-edge $\bar{e} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$ we have that: \[|\bar{E}(G_{o,\bar{e}})| = |\bar{E}(G)| - 1\]
 \end{lemma}
+
+\end{highlight}
 
 \begin{proof}
     Let us consider any $\bar{e} \in \bar{E}$. The operation $\oplus$ removes $\bar{e}$ from $\bar{E}$ and keeps the other non-edges intact, so the lemma holds for this case. For the case of $\star$ operation, $\bar{E}(G_{\star,\bar{e}})$ will no longer contain the non-edge $\bar{e}=\{v,u\}$. Also, since the graph is complete $k$-partite, there exists no $w \in V(G) \setminus \{v,u\}$ s.t. $\{w,v\} \in \bar{E}$ or $\{w,u\} \in \bar{E}$. This means that after the $\star$ operation, all other non-edges will stay being non-edges. Also the $\star$ operation does not create any new non-edges. This concludes the proof.
 \end{proof}
 
-\begin{claim}
-    Let $K_{k \times n}$ be a complete $k$-partite graph where each independent set has size $n$. Then \[P(K_{k \times 2},x) = \sum_{i=0}^{k} \binom{k}{i} P(K_{2n-i},x)\]
-\end{claim}
+\begin{highlight}
+    
+\begin{lemma}
+\label{lemma:indistinguishability}
+    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has size at most $n$. Then for any two non-edges $\bar{e},\bar{f} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$ we have that: 
+    \[ G_{o,\bar{e}} = G_{o,\bar{f}}\]
+\end{lemma}
+
+\begin{proof}
+    Both $\bar{e}$ and $\bar{f}$ are non-edges between vertices from partitions of size $2$. Such partitions are all indistinguishable so the resulting graph is the same in both case $G_{o,\bar{e}}$ and $G_{o,\bar{f}}$.
+\end{proof}
 
 \end{highlight}
+
+\begin{claim}
+    Let $K_{k \times n}$ be a complete $k$-partite graph where each independent set has size $n$. Then it holds that: \[P(K_{k \times 2},x) = \sum_{i=0}^{k} \binom{k}{i} P(K_{2n-i},x)\]
+\end{claim}
+
+\begin{highlight}
+\begin{proof}
+    We base our proof on using the recursive algorithm for computing chromatic polynomials using the formula \ref{eqn:chrom_poly_nonedge} above. Let $G_{o_1,\ldots,o_n}$ be a graph resulting from applying operations $o_1$ to $o_n$ in the corresponding order. Using lemma \ref{lemma:indistinguishability} this graph is well defined, as the resulting graph is always the same irrespective of the particular choice of non-edges we apply the operations $o_1, \ldots,o_n$ to.
+\end{proof}
+\end{highlight}
+
+
+
