@@ -146,9 +146,11 @@
 
 ## 2025_03_16
 
-- [ ] improve the argument for computation of chromatic polynomial of the octahedron
+- [x] improve the argument for computation of chromatic polynomial of the octahedron
   - maybe label the graph resulting from the sequence of operations earlier so I can refer to it
   - maybe state the result as lemma? or theorem?
+
+## 2025_03_17
 
 - [ ] comment the results of the chromatic polynomial table
   - why only selected included?
@@ -156,9 +158,9 @@
 
 - [ ] improve the chapter about symmetries to be less verbose
 
-## Main tasks
+- [ ] define the orbital chromatic polynomial
 
-- [x] finish reading Polya from supervisor
+## Main tasks
 
 - [ ] compute how many arrangments of k independent sets exist on various solids (start with tetrahedron, cube etc.)
   - [ ] read about calculating number of graph colorings up to order of colours
@@ -168,15 +170,15 @@
 
 ## Side tasks
 
-- [ ] what do operations on the Platonic solids do on the graphs?
-
-- [ ] read useful resources found on 19.2.2025
-
-- [ ] check if mathematical definitions cannot be made so that the term being defined is clearly visible
+- [ ] add demonstrative figures to the proof for formula of chromatic polynomial of complete k-partite graph with partition size 2
 
 - [ ] simplify the chapter about symmetries
+
+- [ ] what do operations on the Platonic solids do on the graphs?
 
 - [ ] try to add list of Schlegel diagrams of the solid graphs as appendix
   - [link_to_figs](https://en.wikipedia.org/wiki/Archimedean_graph)
 
-- [ ] make graph coloring examples with cube and octahedron look unified (change size)
+- [ ] distinguish between proper and improper colorings in the definitions
+
+- [ ] define the V(G) syntax

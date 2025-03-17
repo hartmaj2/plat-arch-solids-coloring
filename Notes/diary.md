@@ -475,3 +475,11 @@
   - `\label{lemma:name-of-lemma}` should be put right bellow the start of the lemma environment
 
 - also finished the formal proof of formula for chromatic polynomial of complete k-partite graph with partition size 2
+
+- had meeting with my supervisor
+
+- improved the look of visualisations of the colorings:
+  - removed black borders around vertices
+  - made lines of octahedral coloring to have same thickness as the ones for cubical for unified look
+
+- LTX: fixed wrong hyperrefs for equations (for some reason using a tag with label messes with the referencing)
