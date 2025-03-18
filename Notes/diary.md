@@ -483,3 +483,17 @@
   - made lines of octahedral coloring to have same thickness as the ones for cubical for unified look
 
 - LTX: fixed wrong hyperrefs for equations (for some reason using a tag with label messes with the referencing)
+
+### 2025_03_18
+
+- decided to scratch most of old text from the Symmetries chapter
+
+- wrote a definition of automorphism
+  - IMPORTANT: automorphism must be a **bijection**
+  - I am quite sure the it is enough to say it is a bijection $b: V \rightarrow V$ s.t. $\{u,v\} \in E$ implies $\{b(u),b(v)\} \in E$
+    - then the other implication follows from the fact that it is a bijection and when some non-edge would be mapped to an edge, then it would be impossible to map m other edges to m-1 edges because one edge was mapped to by this non-edge, and a pair of vertices cannot be mapped onto by two different pairs of vertices
+  - Kapitolky z DM have defn at page 117 at the bottom
+
+- wrote a definition of a group and checked it with definition from Hladik
+
+- thought about what the transitivity equivalence relation will mean to me in our scenario of colorings
