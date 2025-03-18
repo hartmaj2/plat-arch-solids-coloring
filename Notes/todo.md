@@ -154,9 +154,7 @@
 
 - [x] test the formula form computing chromial of complete k-partite graphs with partition size 2
 
-- [ ] comment the results of the chromatic polynomial table
-  - why only selected included?
-  - mention that some polys took too long to compute (for 48 edges took ten minutes, for 60 edges did not finish)
+## 2025_03_18
 
 - [ ] improve the chapter about symmetries to be less verbose
 
@@ -164,23 +162,40 @@
 
 ## Main tasks
 
+- [ ] finish chapter about symmetries and orbital chromatic polynomials
+  - [ ] what definitions are necessary?
+  - [ ] add references
+
+## Side tasks
+
+- [ ] simplify the chapter about symmetries
+
+### Definitions
+
+- [ ] distinguish between proper and improper colorings in the definitions
+
+- [ ] define the V(G) syntax
+
+### Basic chromatic polynomials
+
+- [ ] comment the results of the chromatic polynomial table
+  - what function was used to compute them?
+  - why only selected included?
+  - mention that some polys took too long to compute (for 48 edges took ten minutes, for 60 edges did not finish)
+
+- [ ] add demonstrative figures to the proof for formula of chromatic polynomial of complete k-partite graph with partition size 2
+
+### Independent sets
+
 - [ ] compute how many arrangments of k independent sets exist on various solids (start with tetrahedron, cube etc.)
   - [ ] read about calculating number of graph colorings up to order of colours
     - [link](https://webspace.maths.qmul.ac.uk/p.j.cameron/csgnotes/countcols.pdf)
 
 - [ ] calculate # of such colorings for C_4 and cube
 
-## Side tasks
-
-- [ ] add demonstrative figures to the proof for formula of chromatic polynomial of complete k-partite graph with partition size 2
-
-- [ ] simplify the chapter about symmetries
+### Misc
 
 - [ ] what do operations on the Platonic solids do on the graphs?
 
 - [ ] try to add list of Schlegel diagrams of the solid graphs as appendix
   - [link_to_figs](https://en.wikipedia.org/wiki/Archimedean_graph)
-
-- [ ] distinguish between proper and improper colorings in the definitions
-
-- [ ] define the V(G) syntax
