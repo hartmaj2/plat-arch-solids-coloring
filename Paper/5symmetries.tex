@@ -8,15 +8,17 @@ Using the terminology above, our task boils down to counting the amount of orbit
 
 To be able to use the transformations of the solids in our computations, we need a mathematical way of describing them. As we are working with graphs of the solids, we then also need to be able to describe these transformations as transformations on these graphs.
 
-\section{Graph automorphisms}
-
 \begin{highlight}
+
+\section{Useful facts and definitions}
 
 It turns out, that transformations of the solid that we consider correspond exactly to automorphisms of the corresponding graph of the solid.
 
 \begin{defn}[automorphism]
     Let $G=(V,E)$ be a graph. Then a function $f:V \rightarrow V$ is an \emph{automorphism} of $G$ if it is a bijection and for every $\{u,v\} \in E$ we have that $\{f(u),f(v)\} \in E$.
 \end{defn}
+
+For a graph $G$, we will denote the set of all automorphisms of $G$ by $\Aut(G)$.
 
 \begin{defn}(group)
     A \emph{group} is a pair $\mathcal{G}=(G,\circ)$ where $G$ is a set, $\circ:G^2 \rightarrow G$ a binary operation s.t. the following hold:
@@ -27,6 +29,29 @@ It turns out, that transformations of the solid that we consider correspond exac
     \end{enumerate}
 \end{defn}
 
+Now an important observation is, that for a graph $G$, the set of all automorphisms $\Aut(G)$ together with the function composition operation forms a group. 
+
+Now, with the notion of automorphism in hand, we can define the transitivity relation for our colorings.
+
+\begin{defn}(transitivity relation)
+        Let $G=(V,E)$ be a graph. Let $c_1,c_2 \in C$ be proper colorings of $G$ for some family of colorings $C$. We define $c_1 \sim c_2$ whenever exists an automorphism $\pi \in \Aut(G) : \forall v \in V : c_1(v)=c_2(\pi(v))$.
+\end{defn}
+
+Less formally, two colorings are related, when we can find an automorphism that maps vertices of any color in the first coloring, to vertices of the same color in the second coloring. 
+
+We can observe that for any coloring $c$ of $G$, we have $c \sim c$ by simply taking the identity automorphism $id \in \Aut(G)$. So the transitivity relation is \textit{reflexive}. It is also \textit{symmetric} by using the fact, that if $c_1 \sim c_2$ by existence of automorphism $\pi$, then we can use $\pi^{-1}$ to show that $c_2 \sim c_1$ as well. Lastly, we can also show that the relation $\sim$ is \textit{transitive}. This comes from the fact, that composing two automorphisms $\pi$ and $\psi$ yields an automorphism. So in fact, the transitivity relation defined above is an eqivalence relation.
+
+\begin{defn}(orbit)
+    For a coloring $c \in C$ of some graph $G$ we will call the eqivalence class $[c]_{\sim}$ an orbit and denote it by $\Orb(c)$.
+\end{defn}
+
+\begin{defn}(stabilizer)
+    For a coloring $c \in C$ of $G=(V,E)$, we will call the set $\Stab(c) = \{ \pi \in \Aut(G) \ | \ \forall v \in V : c(\pi(v)) = c(v) \}$ a \emph{stabilizer} of $c$. 
+\end{defn}
+
+Again, to say more coloquially, the stabilizer is the set of all automorphisms that when applied to a coloring will result in exactly the same coloring. What we mean by same colorings is, that all the vertices get the same color under both colorings.
+
+Now it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the amount of equivalence classes of the transitivity relation. It is the basis of the famous Burnside's lemma.
 \end{highlight}
 
 \subsection{Rotations and reflections}
