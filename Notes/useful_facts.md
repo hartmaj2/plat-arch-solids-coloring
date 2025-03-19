@@ -19,7 +19,7 @@
 
 - useful notation to remember:
   - transversal - defined for a subgroup
-    - I am a transversal if I apply all elements on the group and from their cosets, I have exactly one element in the intersection with each of them
+    - I am a transversal if I apply all elements on the group and form their cosets, I have exactly one element in the intersection with each of these cosets
   - index - defined for a subgroup
     - number of different cosets that can be formed by applying some element on the subgroup on them 
 
@@ -43,15 +43,15 @@
 - to get the number of orbits, Burnside's lemma gives us a very nice formula:
   - `sum{c in C}( |stab(c)| ) = |G| * |{orb(c) : c in C}|`
   - at first, this might seem very obscure
-  - for the formula to hold, one crusial relation must be established, that is a relation between the index of stabilizer of some element and the size of the orbit of that element
+  - for the formula to hold, one crucial relation must be established, that is a relation between the index of stabilizer of some element and the size of the orbit of that element
 
 - here we need to define, what an index is and for that, we need to define what a coset is
-- these are group concepts
+  - these are group concepts
 
 - cosets are sets that can be created by applying a given transformation from G on all choices of transformations from a subgroup H
 - by using algebra, it can be shown, that given a subgroup H (some chosen transformations that behave nicely), its cosets partition the set of all transformatins G into evenly sized sets => the size of a subgroup must always divide the size of the group
-- not we can define index
-  - index of a subgroup H is the amount of partitions that are form, when we take all cosets of H
+- now we can define index
+  - index of a subgroup H is the amount of partitions that are formed, when we take all cosets of H
   - we can think of H as a choice of some transformations that leave a given coloring c untouched (they form a subgroup stab(c)) 
   - then if we compose all other transformation with the transformations from the stabilizer, we get a partitioning of all the transformations from G
   - the index will then be the number of different cosets that will be created this way
@@ -59,7 +59,7 @@
 - now, we would like to show, that the number of different cosets of the stab(c) will be equal to the number of orbits |orb(c)|
   - if we show that we will be able to apply Lagrange's theorem on stab(c) (we can do that bcs stab(c) forms a subgroup) we will then obtain
   - `|G| = |stab(c)| * |orb(c)|`
-    - the important thing to notice about the equation above is, that it makes the result of taking ANY element and multiplying size of its stab(c) by size of orb(c) a constant so we get same result for any coloring we go through
+    - the important thing to notice about the equation above is, that it makes the result of taking ANY element and multiplying size of its stab(c) by size of orb(c) a CONSTANT so we get same result for any coloring we go through
 
 - so we have `sum{c in C}( |stab(c)| ) = sum{orb(c) in orbs}[sum{a in orb(c)}[|stab(c)|]] = sum{orb(c) in orbs}[sum{a in orb(c)}[|stab(c)|]]`
   - now I use the fact, that for all colorings in the same orbit, the size of their stabilizers is the same
