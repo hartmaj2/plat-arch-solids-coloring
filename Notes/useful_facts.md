@@ -69,3 +69,14 @@
 
 - note:
   - we can use coounting in two ways to also establish the formula from perspective of summing size of fixpoints over all possible transformations
+
+## Why is the number of cosets of a stabilizer of c same as the number of orbits?
+
+- i.e. why index of stabilizer of c same as # of orbits of c
+  - why: `[G:stab(c)] = |orb(c)|`
+
+- we need to form a bijection from all cosets `{ g * stab(c) : g in G} -> orb(c)`
+  - the mapping will be defined as: `g * stab(c) ~> g(c)`
+    - then we need to show that this map is well defined (i.e. that two representants of the same coset will map to same element)
+    - also show that it is surjective and injective (once we establish that it is well defined, the rest is easy)
+  - how to show that the mapping is well defined?
