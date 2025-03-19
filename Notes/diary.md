@@ -497,3 +497,7 @@
 - wrote a definition of a group and checked it with definition from Hladik
 
 - thought about what the transitivity equivalence relation will mean to me in our scenario of colorings
+
+### 2025_03_19
+
+- 

@@ -154,11 +154,15 @@
 
 - [x] test the formula form computing chromial of complete k-partite graphs with partition size 2
 
-## 2025_03_18
+## 2025_03_19
 
-- [ ] improve the chapter about symmetries to be less verbose
+- [ ] write down all definitions that are necessary before defining what an orbital polynomial is
+   - [ ] transitivity relation
+   - [ ] stabilizer and fixpoint
+   - [ ] Burnside's lemma
 
 - [ ] define the orbital chromatic polynomial
+  - [ ] contracted graph etc.
 
 ## Main tasks
 
