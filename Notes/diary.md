@@ -500,4 +500,12 @@
 
 ### 2025_03_19
 
-- 
+- wrote definitions of transitivity relation, orbit and stabilizer
+
+- in the evening managed to stab a knife into my palm (don't ask how) and then had to go to emergency and got some stitches so didn't do much more...
+
+### 2025_03_20 
+
+- wrote the formula for counting orbits using stabilizers, added notation for the set of all orbits
+
+- added tables with sizes of automorphism groups of graphs of Platonic and Archimedean solids
