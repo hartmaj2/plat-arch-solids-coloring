@@ -42,8 +42,14 @@ Less formally, two colorings are related, when we can find an automorphism that 
 We can observe that for any coloring $c$ of $G$, we have $c \sim c$ by simply taking the identity automorphism $id \in \Aut(G)$. So the transitivity relation is \textit{reflexive}. It is also \textit{symmetric} by using the fact, that if $c_1 \sim c_2$ by existence of automorphism $\pi$, then we can use $\pi^{-1}$ to show that $c_2 \sim c_1$ as well. Lastly, we can also show that the relation $\sim$ is \textit{transitive}. This comes from the fact, that composing two automorphisms $\pi$ and $\psi$ yields an automorphism. So in fact, the transitivity relation defined above is an eqivalence relation.
 
 \begin{defn}(orbit)
-    For a coloring $c \in C$ of some graph $G$ we will call the eqivalence class $[c]_{\sim}$ an orbit and denote it by $\Orb(c)$.
+    For a coloring $c \in C$ of some graph $G$ we will call the eqivalence class $[c]_{\sim}$ an \emph{orbit} and denote it by $\Orb(c)$.
 \end{defn}
+
+\begin{defn}(set of all orbits)
+    For a set $C$ of proper colorings of graph $G$, we denote $C/_\sim$ the set of all eqivalence classes of the transitivity relation $\sim$ on $C$.
+\end{defn}
+
+To caclulate the size of this set, $\abs{C/_\sim}$, is exactly our objective.
 
 \begin{defn}(stabilizer)
     For a coloring $c \in C$ of $G=(V,E)$, we will call the set $\Stab(c) = \{ \pi \in \Aut(G) \ | \ \forall v \in V : c(\pi(v)) = c(v) \}$ a \emph{stabilizer} of $c$. 
@@ -51,16 +57,57 @@ We can observe that for any coloring $c$ of $G$, we have $c \sim c$ by simply ta
 
 Again, to say more coloquially, the stabilizer is the set of all automorphisms that when applied to a coloring will result in exactly the same coloring. What we mean by same colorings is, that all the vertices get the same color under both colorings.
 
-Now it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the amount of equivalence classes of the transitivity relation. It is the basis of the famous Burnside's lemma.
+Now it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the amount of equivalence classes of the transitivity relation. Mathematically formulated, it allows us to derive the following equation: $$\sum_{c\in C}\abs{\Stab(c)} = \abs{\Aut(G)} \cdot \abs{C/_\sim}$$
+
+Usually, this formula is not suitable for practical calculations because the size of set $C$ can be quite large. In most cases, the set $\Aut(G)$ is much smaller and thus it is more reasonable, to sum over its elements instead. 
+
+For example, consider the graph of cube $G_{cube}$. Taking for $C$ the set of all colorings of $G_{cube}$ using at most $4$ colors, we get $\abs{C} = 2652$. This value can be obtained by plugging number $4$ to the chromatic polynomial of $G_{cube}$. On the other hand, by consulting table \ref{tab:plat-automorphisms} we have $\abs{\Aut(G_{cube})} = 48$ which is more than hundred times smaller number.
+
+\section{Size of automorphism groups of Platonic and Archimedean graphs}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{1.5cm}}c}
+\toprule
+\textbf{Platonic} & \textbf{$\abs{\Aut(G)}$} \\
+\midrule
+cube & 48 \\
+dodecahedron & 120 \\
+icosahedron & 120 \\
+octahedron & 48 \\
+tetrahedron & 24 \\
+\bottomrule
+\end{tabular}
+\caption{Sizes of automorphism groups of graphs of Platonic solids.}
+\label{tab:plat-automorphisms}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{1.5cm}}c}
+\toprule
+\textbf{Archimedean} & \textbf{$\abs{\Aut(G)}$} \\
+\midrule
+cuboctahedron & 48 \\
+icosidodecahedron & 120 \\
+rhombicosidodecahedron & 120 \\
+rhombicuboctahedron & 48 \\
+snub cube & 24 \\
+snub dodecahedron & 60 \\
+truncated cube & 48 \\
+truncated cuboctahedron & 48 \\
+truncated dodecahedron & 120 \\
+truncated icosahedron & 120 \\
+truncated icosidodecahedron & 120 \\
+truncated octahedron & 48 \\
+truncated tetrahedron & 24 \\
+\bottomrule
+\end{tabular}
+\caption{Sizes of automorphism groups of graphs of Archimedean solids.}
+\label{tab:arch-automorphisms}
+\end{table}
+
 \end{highlight}
-
-\subsection{Rotations and reflections}
-
-Let us denote this permutation by $\pi : V \rightarrow V$ where $\pi(u) = v$ means, that after applying the permutation $\pi$ on the solid, vertex $u$ ended up at a location, where vertex $v$ was before applying $\pi$ on the solid. Beware, that $\pi$ cannot be just an arbitrary permutation. Because applying a rotation or a reflection should leave the structure unchanged, we only consider $\pi$ a valid transformation if for every two vertices $u$ and $v$, then $\pi(u)$ and $\pi(v)$ are connected by an edge if and only if $u$ and $v$ were connected by an edge. This property is enough to characterize exactly rotations and reflections.
-
-\subsection{Rotations only}
-
-On the other hand, if we limit ourselves only to rotations while disallowing reflections, we need one more property to be preserved. This property being the ordering of the edges around cycles they form. Let us take an example of the simplest Platonic solid, the tetrahedron. If we require only the edge connectedness property mentioned above, all $4!$ permutations of its vertices will be valid. Let us now consider any face and label its vertices $1$,$2$ and $3$ in order as they go around the tricycle. We can denote this cycle as a triple $(1,2,3)$. There is no way to rotate the tetrahedron in a way, that we interchange vertices $1$ and $2$ and leave the remaining vertices where they were. The reason is, that this would involve changing the ordering of the vertices around the cycle to $(2,1,3)$. Note that this transformation can be achieved using a single reflection.
 
 \section{Calculating orbital chromatic polynomials}
 
