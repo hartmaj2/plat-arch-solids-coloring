@@ -1,6 +1,6 @@
 \chapter{Colorings and symmetries}
 
-In the previous chapters, we computed, how many proper colorings of Platonic and Archimedean solids exists using the notion of the chromatic polynomial. In that approach, we didn't take into account, that some colorings can be obtained from the other by simply rotating or reflecting the solids i.e. by applying some geometric transformation on it. When one coloring can be obtained from another one using some geometric transformation, then it makes good sense to regard these two colorings as identical. An analogy from chemistry could be, that the properties of a molecule do not change, when we rotate it. Thus it is reasonable, to consider all its rotations as being the same molecule. 
+In the previous chapters, we computed, how many proper colorings of Platonic and Archimedean solids exists using the notion of the chromatic polynomial. In that approach, we didn't take into account, that some colorings can be obtained from the other ones by simply rotating or reflecting the solid i.e. by applying some geometric transformation on it. When one coloring can be obtained from another one using some geometric transformation, then it makes good sense to regard these two colorings as identical. An analogy from chemistry is, that the properties of a molecule do not change, when we rotate it. Thus it is reasonable, to consider all its rotations as being the same molecule. 
 
 In order to be able to say, which colorings should be considered identical, we need to define some kind of equivalence relation, that will group all the different transformations of same coloring together. In mathematics, we call this relation a \textit{transitivity relation} and its equivalence classes are typically referred to as its \textit{orbits}. The transitivity relation is defined on a set of objects, in our case the colorings, and a group that acts on these objects, the transformations.
 
@@ -29,12 +29,18 @@ For a graph $G$, we will denote the set of all automorphisms of $G$ by $\Aut(G)$
     \end{enumerate}
 \end{defn}
 
-Now an important observation is, that for a graph $G$, the set of all automorphisms $\Aut(G)$ together with the function composition operation forms a group. 
+An important observation is, that for a graph $G$, the set of all automorphisms $\Aut(G)$ together with the function composition operation forms a group. 
 
-Now, with the notion of automorphism in hand, we can define the transitivity relation for our colorings.
+Before we define can define the transitivity relation, we also need to properly define the set of elements on which this relation will be defined:
+
+\begin{defn}[colorings with up to n colors]
+    For a graph $G$, natural number $n$ and a family of colorings $C$, we define the set $C_n \subseteq C$ the set of all proper colorings of $G$ by at most $n$ colors.
+\end{defn}
+
+The definition above restricts the colorings we will be working with to finite sets only. With the notion of automorphism and colorings in hand, we can define the transitivity relation for the colorings.
 
 \begin{defn}(transitivity relation)
-        Let $G=(V,E)$ be a graph. Let $c_1,c_2 \in C$ be proper colorings of $G$ for some family of colorings $C$. We define $c_1 \sim c_2$ whenever exists an automorphism $\pi \in \Aut(G) : \forall v \in V : c_1(v)=c_2(\pi(v))$.
+        Let $G=(V,E)$ be a graph and $n\in \mathbb{N}$. Let $c_1,c_2 \in C_n$. We define $c_1 \sim c_2$ whenever exists an automorphism $\pi \in \Aut(G) : \forall v \in V : c_1(v)=c_2(\pi(v))$.
 \end{defn}
 
 Less formally, two colorings are related, when we can find an automorphism that maps vertices of any color in the first coloring, to vertices of the same color in the second coloring. 
@@ -42,26 +48,61 @@ Less formally, two colorings are related, when we can find an automorphism that 
 We can observe that for any coloring $c$ of $G$, we have $c \sim c$ by simply taking the identity automorphism $id \in \Aut(G)$. So the transitivity relation is \textit{reflexive}. It is also \textit{symmetric} by using the fact, that if $c_1 \sim c_2$ by existence of automorphism $\pi$, then we can use $\pi^{-1}$ to show that $c_2 \sim c_1$ as well. Lastly, we can also show that the relation $\sim$ is \textit{transitive}. This comes from the fact, that composing two automorphisms $\pi$ and $\psi$ yields an automorphism. So in fact, the transitivity relation defined above is an eqivalence relation.
 
 \begin{defn}(orbit)
-    For a coloring $c \in C$ of some graph $G$ we will call the eqivalence class $[c]_{\sim}$ an \emph{orbit} and denote it by $\Orb(c)$.
+    For $n \in \mathbb{N}$ and a coloring $c \in C_n$ of some graph $G$ we will call the eqivalence class $[c]_{\sim}$ an \emph{orbit} of $c$ and denote it by $\Orb(c)$.
 \end{defn}
 
 \begin{defn}(set of all orbits)
-    For a set $C$ of proper colorings of graph $G$, we denote $C/_\sim$ the set of all eqivalence classes of the transitivity relation $\sim$ on $C$.
+    For $n \in \mathbb{N}$ and a set $C_n$ of proper colorings of graph $G$, we denote $C_n/_\sim$ the set of all eqivalence classes of the transitivity relation $\sim$ on $C_n$.
 \end{defn}
 
-To caclulate the size of this set, $\abs{C/_\sim}$, is exactly our objective.
+Here is a good place to point out, that it is exactly our objective, to calculate the size of this set, $\abs{C_n/_\sim}$.
 
 \begin{defn}(stabilizer)
-    For a coloring $c \in C$ of $G=(V,E)$, we will call the set $\Stab(c) = \{ \pi \in \Aut(G) \ | \ \forall v \in V : c(\pi(v)) = c(v) \}$ a \emph{stabilizer} of $c$. 
+    For $n \in \mathbb{N}$ and a coloring $c \in C_n$ of $G=(V,E)$, we will call the set $\Stab(c) = \{ \pi \in \Aut(G) \ | \ \forall v \in V : c(\pi(v)) = c(v) \}$ a \emph{stabilizer} of $c$. 
 \end{defn}
 
 Again, to say more coloquially, the stabilizer is the set of all automorphisms that when applied to a coloring will result in exactly the same coloring. What we mean by same colorings is, that all the vertices get the same color under both colorings.
 
-Now it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the amount of equivalence classes of the transitivity relation. Mathematically formulated, it allows us to derive the following equation: $$\sum_{c\in C}\abs{\Stab(c)} = \abs{\Aut(G)} \cdot \abs{C/_\sim}$$
+\section{Calculating the amount of orbits}
 
-Usually, this formula is not suitable for practical calculations because the size of set $C$ can be quite large. In most cases, the set $\Aut(G)$ is much smaller and thus it is more reasonable, to sum over its elements instead. 
+Now it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the amount of equivalence classes of the transitivity relation. Mathematically formulated, it allows us to derive the following equation:
 
-For example, consider the graph of cube $G_{cube}$. Taking for $C$ the set of all colorings of $G_{cube}$ using at most $4$ colors, we get $\abs{C} = 2652$. This value can be obtained by plugging number $4$ to the chromatic polynomial of $G_{cube}$. On the other hand, by consulting table \ref{tab:plat-automorphisms} we have $\abs{\Aut(G_{cube})} = 48$ which is more than hundred times smaller number.
+\begin{equation}\label{eqn:orbits-by-stab}
+    \sum_{c\in C_n}\abs{\Stab(c)} = \abs{\Aut(G)} \cdot \abs{C_n/_\sim} 
+\end{equation}
+
+
+Usually, this formula is not suitable for practical calculations because the size of set $C_n$ can be quite large. In most cases, the set $\Aut(G)$ is much smaller and thus it is more reasonable, to sum over its elements instead. 
+
+For example, consider the graph of cube $G_{cube}$. Taking for $C_4$ the set of all proper colorings of $G_{cube}$ by at most $4$ colors, we get $\abs{C_4} = 2652$. This value can be obtained by plugging number $4$ to the chromatic polynomial of $G_{cube}$. On the other hand, by consulting table \ref{tab:plat-automorphisms} below, we have $\abs{\Aut(G_{cube})} = 48$ which is more than hundred times smaller number.
+
+Before stating another important observation, we will need a following definition:
+
+\begin{defn}[fixpoint]
+    For a graph $G$, $n \in \mathbb{N}$, a set of its proper colorings $C_n$ and automorphism $\pi \in \Aut(G)$ we denote $\Fix(\pi)= \{ c \in C \ | \ \forall v \in V : c(\pi(v)) = c(v) \}$
+\end{defn}
+
+To get a formula which computes the same number but using a sum over the set $\Aut(G)$ instead, we use the following observation: The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the amount ordered pairs $(c,\pi)$ s.t. $\forall v \in V : c(\pi(v)) = c(v)$. Using the definition of fixpoint, we can calculate this amount also using the sum $\sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$ which yields the following important identity:
+\begin{equation}\label{eqn:two-way-counting}
+    \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)} = \sum_{c \in C_n}\abs{\Stab(c)}    
+\end{equation}
+
+By combining equations \ref{eqn:orbits-by-stab} and \ref{eqn:two-way-counting}, we get the following result which is a direct application of the famous \textit{Burnside's lemma} on our particular setting:
+
+\begin{thm}[application of Burnside's lemma]
+    For a graph $G$, $n \in \mathbb{N}$ and a set of its proper colorings $C_n$, we have:
+    $$\abs{C_n/_\sim} = \frac{1}{\abs{\Aut(G)}}\cdot \sum_{\pi \in \Aut(G)}\abs{\Fix(\pi)}$$
+\end{thm}
+
+\section{Orbital chromatic polynomial}
+
+We introduce a notion very similar to the one of the chromatic polynomial of a graph. Additionally, we take into account symmetries.
+
+\begin{defn}[orbital chromatic polynomial]
+    For a graph $G$ and a family of its proper coloring $C$ we define the \emph{orbital chromatic polynomial} $OP(G,x)$ as a polynomial s.t. $\forall k \in \mathbb{N} : OP(G,k)$ is equal to $\abs{C_k/_\sim}$
+\end{defn}
+
+The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$.
 
 \section{Size of automorphism groups of Platonic and Archimedean graphs}
 

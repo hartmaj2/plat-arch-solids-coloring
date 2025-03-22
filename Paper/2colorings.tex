@@ -17,11 +17,11 @@ Since we will be working with graphs of Platonic and Archimedean solids, which a
 In other words, (proper) coloring is an assignment of elements in $S$ to vertices, edges or faces of some plane graph. We can think of elements of $S$ as colors but usually, we will use numbers instead. What is especially important to us is, whether any two elements are mapped onto a same target i.e. colored by the same color. The coloring rule then prevents some assignments to be considered valid. This makes the coloring problem non-trivial.
 
 \begin{defn}[family of colorings]
-    Let the set of all colorings sharing the same coloring rule $R$ be called a \emph{family of colorings}.
+    For a graph $G$, let the set of all colorings of $G$ sharing the same coloring rule $R$ be called a \emph{family of colorings} of $G$.
 \end{defn}
 
 \begin{defn}[k-coloring]
-    Let $G=(V,E,F)$ a plane graph. Let $C$ be a family of colorings. Let $S$ be a set s.t. $|S| = k$ for some $k \in \mathbb{N}$. A function $c \in C$ such that $c: V \cup E \cup F \rightarrow S$ is called a \emph{k-coloring} of $G$.
+    Let $G=(V,E,F)$ a plane graph. Let $C$ be a family of colorings of $G$. Let $S$ be a set s.t. $|S| = k$ for some $k \in \mathbb{N}$. A function $c \in C$ such that $c: V \cup E \cup F \rightarrow S$ is called a \emph{k-coloring} of $G$.
 \end{defn}
 
 Note that a $k$-coloring does not necessarily have to use all of the $k$ available colors. Mathematically speaking, a $k$-coloring is not necesserily a surjective function.
