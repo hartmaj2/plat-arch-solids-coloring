@@ -156,13 +156,20 @@
 
 ## 2025_03_19
 
-- [ ] write down all definitions that are necessary before defining what an orbital polynomial is
-   - [ ] transitivity relation
-   - [ ] stabilizer and fixpoint
-   - [ ] Burnside's lemma
+- [x] write down all definitions that are necessary before defining what an orbital polynomial is
+   - [x] transitivity relation
+   - [x] stabilizer
 
-- [ ] define the orbital chromatic polynomial
-  - [ ] contracted graph etc.
+## 2025_03_22
+
+- [x] mention Burnside's lemma in the thesis
+  - [x] define fixpoint
+
+- [x] define the orbital chromatic polynomial
+
+- [ ] show how orbital chromatic polynomial is computed
+  - [ ] definition contracted graph
+  - [ ] source code for my implementation
 
 ## Main tasks
 

@@ -509,3 +509,11 @@
 - wrote the formula for counting orbits using stabilizers, added notation for the set of all orbits
 
 - added tables with sizes of automorphism groups of graphs of Platonic and Archimedean solids
+
+### 2025_03_22
+
+- bachelor thesis:
+  - defined fixpoints
+  - showed how two way counting used in Burnside's lemma
+  - added and used definition of set of colorings with up to n colors to avoid working with infinite sets
+  - added definition of orbital chromatic polynomial and a reference to Cameron's work
