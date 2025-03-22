@@ -152,6 +152,18 @@ A particular example that demonstrates the claim above is the graph of octahedro
     \caption{Demonstration of formula \ref{eqn:chromatic-pascal} on the graph of octahedron}
 \end{figure}
 
+\subsection{Chromatic polynomials of Platonic and Archimedean solids}
+
+Because the graphs of Platonic and Archimedean solids are all planar, it follows, that they are also sparse. Thus, it is not practical to use the recursive formula \ref{eqn:chrom_poly_nonedge} which has complete graphs as a base case. We can instead simply reorganize the terms and instead use the following formula:
+
+\begin{equation}\label{eqn:chrompoly-edge}
+    P(G,x) = P(G - \{u,v\},x) - P(G \cdot \{u,v\},x)
+\end{equation}
+
+where $G - \{u,v\}$ is a graph with edge $\{u,v\}$ deleted and $G \cdot \{u,v\}$ a graph with edge $\{u,v\}$ contracted. 
+
+Using the formula above, we can no longer use the complete graph as a base case. Instead we use the fact that for a tree on $n$ vertices $T_n$, we have $P(T_n,x) = x \cdot (x-1)^{n-1}$. This can be imagined by choosing a root vertex $r$ and directing all edges in $T_n$ towards $r$. Now we can color the vertices sequentially s.t. we start with $r$ and then we color direct children of $r$ and so on. This way, when coloring any vertex $v \neq r$, only its parent $p$ is colored which means that there are $x-1$ free colors for $v$. On the other hand, when coloring $r$ we have all $x$ colors free.
+
 \end{highlight}
 
 
