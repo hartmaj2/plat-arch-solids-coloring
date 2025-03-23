@@ -530,3 +530,5 @@
   - sent a mail to University of Waterloo to ask if they can provide me access to the paper
 
 - expanded the text about computing chromatic polynomials using the other formula and moved the table with selected chromatic polynomials
+
+- improved citation of SageMath to follow their official guidelines of how to cite it
