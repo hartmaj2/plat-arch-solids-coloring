@@ -512,8 +512,21 @@
 
 ### 2025_03_22
 
-- bachelor thesis:
+- bachelor thesis text:
   - defined fixpoints
   - showed how two way counting used in Burnside's lemma
   - added and used definition of set of colorings with up to n colors to avoid working with infinite sets
   - added definition of orbital chromatic polynomial and a reference to Cameron's work
+
+### 2025_03_23
+
+- read a paper about a method of calculating the chromatic polynomial of sparse graphs
+  - [link](https://www.researchgate.net/profile/Ramon-Figueroa-Centeno/publication/269396607_An_improved_Algorithm_for_the_Chromatic_Polynomial/links/54892a930cf2ef344790ac53/An-improved-Algorithm-for-the-Chromatic-Polynomial.pdf)
+  - unfortunately, this is not the paper that SageMath references as I realized later
+
+- wrote an issue on SageMath to provide me with the paper they reference
+  - used ChatGPT "Deep Research" function to look for the paper in the meantime
+  - found a paper that references the work as well, supposedly it should be from University of Waterloo
+  - sent a mail to University of Waterloo to ask if they can provide me access to the paper
+
+- expanded the text about computing chromatic polynomials using the other formula and moved the table with selected chromatic polynomials
