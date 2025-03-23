@@ -2,7 +2,11 @@
 
 \section{Computing chromatic numbers}
 
-The vertex and edge chromatic numbers can be computed in little time using \textit{SageMath} functions \cite{sagemath-chromatic-number} \cite{sagemath-chromatic-index}. Since as of time of writing this thesis, there exists no function for directly computing the total chromatic number $\chi''(G)$, the conversion to total graph mentioned in chapter \ref{chap:clring_conversions} must be used. 
+\begin{highlight}
+    
+The vertex, edge and total chromatic numbers can be computed in little time using the \textit{SageMath} \cite{sagemath} function called \verb|chromatic_number| and appropriate conversions from chapter \ref{chap:clring_conversions}.
+
+\end{highlight}
 
 The following two tables provide overview of vertex, edge and total chromatic numbers, denoted by $\chi(G)$, $\chi'(G)$ and $\chi''(G)$ respectively, for Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
 
@@ -69,21 +73,6 @@ Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using 
 The formula above serves as the recursive case of our computation i.e. when the graph has some non-edge. In the other case, the base case, the graph has no non-edges and thus it is a complete graph $K_n$ for some $n \in \mathbb{N}$. Then the chromatic polynomial is $P(K_n,x) = x \cdot (x-1) \cdot \ldots \cdot (x-n+1)$.
 
 Consider this example: Given the graph of tetrahedron $K_4$ and $X$ the family of proper vertex colorings. The chromatic polynomial $P_{X}(K_4,x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
-
-\begin{table}[H]
-\centering
-\begin{tabular}{lp{0.7\linewidth}}
-\toprule
-\textbf{Solid} & \textbf{Chromatic polynomial} \\
-\midrule
-cube & $x^{8} - 12x^{7} + 66x^{6} - 214x^{5} + 441x^{4} - 572x^{3} + 423x^{2} - 133x$ \\
-octahedron & $x^{6} - 12x^{5} + 58x^{4} - 137x^{3} + 154x^{2} - 64x$ \\
-tetrahedron & $x^{4} - 6x^{3} + 11x^{2} - 6x$ \\
-\bottomrule
-\end{tabular}
-\caption{Chromatic polynomial of selected solids. For other solids, the polynomial coefficients were too large and would not print nicely.}
-\label{tab:selected-chrom-polys}
-\end{table}
 
 \subsection{Chromatic polynomial of complete k-partite graphs with partition size 2}
 
@@ -162,7 +151,26 @@ Because the graphs of Platonic and Archimedean solids are all planar, it follows
 
 where $G - \{u,v\}$ is a graph with edge $\{u,v\}$ deleted and $G \cdot \{u,v\}$ a graph with edge $\{u,v\}$ contracted. 
 
-Using the formula above, we can no longer use the complete graph as a base case. Instead we use the fact that for a tree on $n$ vertices $T_n$, we have $P(T_n,x) = x \cdot (x-1)^{n-1}$. This can be imagined by choosing a root vertex $r$ and directing all edges in $T_n$ towards $r$. Now we can color the vertices sequentially s.t. we start with $r$ and then we color direct children of $r$ and so on. This way, when coloring any vertex $v \neq r$, only its parent $p$ is colored which means that there are $x-1$ free colors for $v$. On the other hand, when coloring $r$ we have all $x$ colors free.
+Using the formula above, we can no longer use the complete graph as a base case. Instead we use the fact that for a tree on $n$ vertices $T_n$, we have $P(T_n,x) = x \cdot (x-1)^{n-1}$. This can be imagined by choosing a root vertex $r$ and directing all edges in $T_n$ towards $r$. Now we can color the vertices sequentially s.t. we start with $r$ and then we color direct children of $r$ and so on. To color $r$, we can use all $x$ colors. For any other vertex $v \neq r$, only the \textit{unique} parent $p$ of $v$ is colored which means that there are $x-1$ free colors for $v$. 
+
+Note that we assume that the graph $G$ that we start with is connected. This assumption comes naturally as we are dealing only with graphs of 3-dimensional solids. We also assume that in the recursive step, we always pick an edge that lies on a cycle. This way, we will never create a disconnected graph. Finding such edge is in practice done using DFS.
+
+An algorithm, that uses formula \ref{eqn:chrompoly-edge} and the assumptions above is implemented in the \textit{SageMath} \cite{sagemath} software under the name \verb|chromatic_polynomial|. The time complexity of this algorithm is exponential in $E(G)$, the number of edges of the graph $G$ on input. By using this algorithm, it is possible to calculate chromatic polynomials of Platonic and Archimedean graphs with at most $48$ edges in the order of minutes. In the table below we provide example of some of the chromatic polynomials we computed.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lp{0.7\linewidth}}
+\toprule
+\textbf{Solid} & \textbf{Chromatic polynomial} \\
+\midrule
+cube & $x^{8} - 12x^{7} + 66x^{6} - 214x^{5} + 441x^{4} - 572x^{3} + 423x^{2} - 133x$ \\
+octahedron & $x^{6} - 12x^{5} + 58x^{4} - 137x^{3} + 154x^{2} - 64x$ \\
+tetrahedron & $x^{4} - 6x^{3} + 11x^{2} - 6x$ \\
+\bottomrule
+\end{tabular}
+\caption{Chromatic polynomial of selected solids. For other solids, the polynomial coefficients were too large and would not print nicely.}
+\label{tab:selected-chrom-polys}
+\end{table}
 
 \end{highlight}
 
