@@ -89,7 +89,7 @@ To get a formula which computes the same number but using a sum over the set $\A
 
 By combining equations \ref{eqn:orbits-by-stab} and \ref{eqn:two-way-counting}, we get the following result which is a direct application of the famous \textit{Burnside's lemma} on our particular setting:
 
-\begin{thm}[application of Burnside's lemma]
+\begin{thm}[application of Burnside's lemma] \label{thm:burnside}
     For a graph $G$, $n \in \mathbb{N}$ and a set of its proper colorings $C_n$, we have:
     $$\abs{C_n/_\sim} = \frac{1}{\abs{\Aut(G)}}\cdot \sum_{\pi \in \Aut(G)}\abs{\Fix(\pi)}$$
 \end{thm}
@@ -103,6 +103,50 @@ We introduce a notion very similar to the one of the chromatic polynomial of a g
 \end{defn}
 
 The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$.
+
+For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
+
+\begin{defn}[cycles of permutation]
+    Given a graph $G=(V,E)$ and an automorphism $\pi \in \Aut(G)$ we denote the set of cycles of $\pi$ by $\Cycles(\pi)$. By a cycle $O \in \Cycles(\pi)$, we mean the set of vertices of $G$ on the cycle $O$.
+\end{defn}
+
+\begin{defn}[vertex set identification]
+    For a graph $G=(V,E)$ a subset of vertices $S \subseteq V$ we define the identification of vertices $S$ into a new vertex $w \notin V$ as the operation that results in a graph $G_{\star,S}=(V',E')$ as follows:
+    \begin{enumerate}
+        \item $V' := (V \setminus S) \cup \{w\}$
+        \item $E' := ( \binom{V'}{2} \cap E) \cup \{ \{w,x\} \ | \ (\exists x \in V \setminus S)(\exists s \in S): \{x,s\} \in E\}$
+    \end{enumerate}
+\end{defn}
+
+Given a graph $G=(V,E)$ and a sequence of disjoints subsets $S_1, \ldots , S_n \subseteq V$, we denote $G_{\star,S_1,\ldots,S_n}$ the graph resulting from successive application of vertex set identification operation ont the sets $S_1$ up to $S_n$ and graph $G$.
+
+\begin{defn}[independent set]
+    For a graph $G=(V,E)$ and a subset of vertices $S \subseteq V$, we say that $S$ is independent if $\forall x,y \in S : \{x,y\} \notin E$.
+\end{defn}
+
+In the following definition, we extend the definition of an undirected graph to allow also \textit{loops}. By a loop $l \in \binom{E}{1}$, we mean an edge with both endpoints being an identical vertex. For any graph $G$ containing a loop $l$, we set the chromatic polynomial $P(G,x) = 0$.
+
+\begin{defn}[fixation graph]
+    Given a graph $G$ and automorphism $\pi \in \Aut(G)$. For $n = \abs{\Cycles(\pi)}$ let $O_1, \ldots ,O_n \subseteq \Cycles(\pi)$ be the sequence of cycles of $\pi$ in an arbitrary order. We define the \emph{fixation graph} $G /_{\pi}$ as $G_{\star,O_1, \ldots , O_n}$ s.t. additionally, we add a loop at every new vertex $w_i$ if $O_i$ was not an independent set.
+\end{defn}
+
+Now we are ready to state the following theorem:
+
+\begin{thm}[computation of orbital chromatic polynomial]
+    Let $G$ be a graph, then the following formula holds:
+    \begin{equation} \label{eqn:oribtal-chrompoly}
+        OP(G,x) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,x)
+    \end{equation}
+\end{thm}
+
+\begin{proof}
+    We show that for any natural number $n$ we have: $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,n)$$
+
+    Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
+    $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$$
+
+    In order to prove the equation above, it is enough to show that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. Formally, we need to find a bijection $f: \Fix(\pi) \rightarrow C'_n$ where $C'_n$ is the set of all colorings of $G/_{\pi}$ using at most $n$ colors. Given a coloring $c \in \Fix(\pi)$, what can we say about $c$?
+\end{proof}
 
 \section{Size of automorphism groups of Platonic and Archimedean graphs}
 
