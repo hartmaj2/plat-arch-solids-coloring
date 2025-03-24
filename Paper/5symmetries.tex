@@ -102,7 +102,7 @@ We introduce a notion very similar to the one of the chromatic polynomial of a g
     For a graph $G$ and a family of its proper coloring $C$ we define the \emph{orbital chromatic polynomial} $OP(G,x)$ as a polynomial s.t. $\forall k \in \mathbb{N} : OP(G,k)$ is equal to $\abs{C_k/_\sim}$
 \end{defn}
 
-The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$.
+The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007} but in this thesis, we provide a more rigorous proof of the method outlined in \cite{caka2007}. 
 
 For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
 
@@ -111,7 +111,7 @@ For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in t
 \end{defn}
 
 \begin{defn}[vertex set identification]
-    For a graph $G=(V,E)$ a subset of vertices $S \subseteq V$ we define the identification of vertices $S$ into a new vertex $w \notin V$ as the operation that results in a graph $G_{\star,S}=(V',E')$ as follows:
+    For a graph $G=(V,E)$ a subset of vertices $S \subseteq V$ we define the identification of vertices $S$ into a new vertex $w \notin V$ as the operation that results in a graph $G_{\star,S}=(V',E')$ defined as follows:
     \begin{enumerate}
         \item $V' := (V \setminus S) \cup \{w\}$
         \item $E' := ( \binom{V'}{2} \cap E) \cup \{ \{w,x\} \ | \ (\exists x \in V \setminus S)(\exists s \in S): \{x,s\} \in E\}$
@@ -132,7 +132,7 @@ In the following definition, we extend the definition of an undirected graph to 
 
 Now we are ready to state the following theorem:
 
-\begin{thm}[computation of orbital chromatic polynomial]
+\begin{thm}[computation of orbital chromatic polynomial] \label{thm:count-orb-chrompoly}
     Let $G$ be a graph, then the following formula holds:
     \begin{equation} \label{eqn:oribtal-chrompoly}
         OP(G,x) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,x)
@@ -145,7 +145,11 @@ Now we are ready to state the following theorem:
     Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
     $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$$
 
-    In order to prove the equation above, it is enough to show that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. Formally, we need to find a bijection $f: \Fix(\pi) \rightarrow C'_n$ where $C'_n$ is the set of all colorings of $G/_{\pi}$ using at most $n$ colors. Given a coloring $c \in \Fix(\pi)$, what can we say about $c$?
+    In order to prove the equation above, it is enough to show that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\pi)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\pi$ using at most $n$ colors. It will be helpful to denote $w_1, \ldots , w_n$ the new vertices corresponding to the cycles $O_1, \ldots ,O_n \in \Cycles(\pi)$ that were identified in $G$ to get the resulting graph $G/_\pi$.
+    
+    Because $c$ is fixed by $\pi$, it must hold that $\forall v \in V : c(\pi(v)) = c(v)$. By this condition, for a given cycle $O_i \in \Cycles(\pi)$ it must hold that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$ i.e. that all vertices on a cycle must have the same color $b_i$. By that observation we can map the coloring $c \in C_n$
+    
+    Now, if the set $O$ is not independent, then there exist vertices $u,v \in O$ s.t. $\{u,v\} \in E$. Thus, by definition of coloring $c(u) \neq c(v)$ which is a contradiction.
 \end{proof}
 
 \section{Size of automorphism groups of Platonic and Archimedean graphs}
