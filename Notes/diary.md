@@ -532,3 +532,12 @@
 - expanded the text about computing chromatic polynomials using the other formula and moved the table with selected chromatic polynomials
 
 - improved citation of SageMath to follow their official guidelines of how to cite it
+
+### 2025_03_24
+
+- wrote definitions needed to prove the formula for computing the orbital chromatic polynomial using the usual chromatic polynomial
+  - fixation graph
+  - independent set
+
+- started writing the proof for the computation of orbital chromatic polynomial
+  - one-to-one correspondence between colorings of original graph fixed by a permutation and the colorings of the fixation graph for the given permutation
