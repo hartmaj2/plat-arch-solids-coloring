@@ -145,11 +145,11 @@ Now we are ready to state the following theorem:
     Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
     $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$$
 
-    In order to prove the equation above, it is enough to show that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\pi)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\pi$ using at most $n$ colors. It will be helpful to denote $w_1, \ldots , w_n$ the new vertices corresponding to the cycles $O_1, \ldots ,O_n \in \Cycles(\pi)$ that were identified in $G$ to get the resulting graph $G/_\pi$.
+    In order to prove the equation above, it is enough to show that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\pi)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\pi = (V',E')$ using at most $n$ colors. It will be helpful, given that $k = \abs{\Cycles(\pi)}$, to denote $w_1, \ldots , w_k$ the new vertices corresponding to the cycles $O_1, \ldots ,O_k \in \Cycles(\pi)$ that were identified in $G$ to get the resulting graph $G/_\pi$.
     
-    Because $c$ is fixed by $\pi$, it must hold that $\forall v \in V : c(\pi(v)) = c(v)$. By this condition, for a given cycle $O_i \in \Cycles(\pi)$ it must hold that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$ i.e. that all vertices on a cycle must have the same color $b_i$. By that observation we can map the coloring $c \in C_n$
+    Let $c \in \Fix(\pi)$ be a coloring of $G$ that is fixed by $\pi$. Because $c$ is fixed by $\pi$, then by definition, it must hold that $\forall v \in V : c(\pi(v)) = c(v)$. By this condition, for a given cycle $O_i \in \Cycles(\pi)$, we have that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$ i.e. that all vertices on a cycle must have the same color $b_i$. Note that we allow for $i \neq j$ to have $b_i = b_j$. 
     
-    Now, if the set $O$ is not independent, then there exist vertices $u,v \in O$ s.t. $\{u,v\} \in E$. Thus, by definition of coloring $c(u) \neq c(v)$ which is a contradiction.
+    Now we can map the coloring $c \in C_n$ to a coloring $c' \in C'_n$ defined s.t. $\forall i \in \{1, \ldots ,k\} : c'(w_i) = b_i$. This results in a valid coloring since if for $i \neq j$ we have $\{w_i,w_j\} \in E'$ then there must exist vertices $u \in O_i$ and $v \in O_j$ s.t. $\{u,v\} \in E$ TODO: reference the definition of identification operation resulting graph TODO: this will force $b_i \neq b_j$.
 \end{proof}
 
 \section{Size of automorphism groups of Platonic and Archimedean graphs}
