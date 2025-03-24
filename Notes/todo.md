@@ -167,8 +167,13 @@
 
 - [x] define the orbital chromatic polynomial
 
+## 2025_03_24
+
+- [x] write defn of fixation graph
+
 - [ ] show how orbital chromatic polynomial is computed
-  - [ ] definition contracted graph
+  - [x] definition fixation graph
+  - [ ] finish proof for the formula
   - [ ] source code for my implementation
 
 ## Main tasks
@@ -181,7 +186,7 @@
 
 - [ ] simplify the chapter about symmetries
 
-### Definitions
+### Improve definitions
 
 - [ ] distinguish between proper and improper colorings in the definitions
 
