@@ -111,7 +111,7 @@ For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in t
 \end{defn}
 
 \begin{defn}[vertex set identification]
-    For a graph $G=(V,E)$ a subset of vertices $S \subseteq V$ we define the identification of vertices $S$ into a new vertex $w \notin V$ as the operation that results in a graph $G_{\star,S}=(V',E')$ defined as follows:
+    For a graph $G=(V,E)$ a subset of vertices $S \subseteq V$ we define the \emph{identification of vertex set $S$} into a new vertex $w \notin V$ as the operation that results in a graph $G_{\star,S}=(V',E')$ defined as follows:
     \begin{enumerate}
         \item $V' := (V \setminus S) \cup \{w\}$
         \item $E' := ( \binom{V'}{2} \cap E) \cup \{ \{w,x\} \ | \ (\exists x \in V \setminus S)(\exists s \in S): \{x,s\} \in E\}$
@@ -121,7 +121,7 @@ For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in t
 Given a graph $G=(V,E)$ and a sequence of disjoints subsets $S_1, \ldots , S_n \subseteq V$, we denote $G_{\star,S_1,\ldots,S_n}$ the graph resulting from successive application of vertex set identification operation ont the sets $S_1$ up to $S_n$ and graph $G$.
 
 \begin{defn}[independent set]
-    For a graph $G=(V,E)$ and a subset of vertices $S \subseteq V$, we say that $S$ is independent if $\forall x,y \in S : \{x,y\} \notin E$.
+    For a graph $G=(V,E)$ and a subset of vertices $S \subseteq V$, we say that $S$ is \emph{independent} if $\forall x,y \in S : \{x,y\} \notin E$.
 \end{defn}
 
 In the following definition, we extend the definition of an undirected graph to allow also \textit{loops}. By a loop $l \in \binom{E}{1}$, we mean an edge with both endpoints being an identical vertex. For any graph $G$ containing a loop $l$, we set the chromatic polynomial $P(G,x) = 0$.
@@ -145,11 +145,15 @@ Now we are ready to state the following theorem:
     Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
     $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$$
 
-    In order to prove the equation above, it is enough to show that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\pi)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\pi = (V',E')$ using at most $n$ colors. It will be helpful, given that $k = \abs{\Cycles(\pi)}$, to denote $w_1, \ldots , w_k$ the new vertices corresponding to the cycles $O_1, \ldots ,O_k \in \Cycles(\pi)$ that were identified in $G$ to get the resulting graph $G/_\pi$.
+    In order to prove the equation above, it is enough to show that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\pi)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\pi = (V',E')$ using at most $n$ colors. It will be helpful, for $k = \abs{\Cycles(\pi)}$, to denote $w_1, \ldots , w_k$ the new vertices corresponding to the cycles $O_1, \ldots ,O_k \in \Cycles(\pi)$ that were identified in $G$ to get the resulting graph $G/_\pi$.
     
-    Let $c \in \Fix(\pi)$ be a coloring of $G$ that is fixed by $\pi$. Because $c$ is fixed by $\pi$, then by definition, it must hold that $\forall v \in V : c(\pi(v)) = c(v)$. By this condition, for a given cycle $O_i \in \Cycles(\pi)$, we have that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$ i.e. that all vertices on a cycle must have the same color $b_i$. Note that we allow for $i \neq j$ to have $b_i = b_j$. 
+    Let $c \in \Fix(\pi)$ be a coloring of $G$ that is fixed by $\pi$. Because $c$ is fixed by $\pi$, then by definition, it must hold that $\forall v \in V : c(\pi(v)) = c(v)$. By this condition, for a given cycle $O_i \in \Cycles(\pi)$, we have that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$ i.e. all vertices on a cycle must have the same color $b_i$. Note that we allow for $i \neq j$ to have $b_i = b_j$. Now we map the proper coloring $c \in C_n$ to a coloring $c' \in C'_n$ defined s.t. $\forall i \in \{1, \ldots ,k\} : c'(w_i) = b_i$. This results in a proper coloring since if for any $i \neq j$ we have $\{w_i,w_j\} \in E'$ then there must exist vertices $u \in O_i$ and $v \in O_j$ s.t. $\{u,v\} \in E$ by the definition of vertex set identification operation. Thus we have $b_i \neq b_j$. So we have $c' \in C'_n$. 
     
-    Now we can map the coloring $c \in C_n$ to a coloring $c' \in C'_n$ defined s.t. $\forall i \in \{1, \ldots ,k\} : c'(w_i) = b_i$. This results in a valid coloring since if for $i \neq j$ we have $\{w_i,w_j\} \in E'$ then there must exist vertices $u \in O_i$ and $v \in O_j$ s.t. $\{u,v\} \in E$ TODO: reference the definition of identification operation resulting graph TODO: this will force $b_i \neq b_j$.
+    Now suppose that we have $c_1,c_2 \in C_n$ s.t. $c_1 \neq c_2$ then the images under this mapping $c'_1,c'_2 \in C'_n$ are different so the mapping is injective.
+
+    For surjectivity, suppose we have a proper coloring $c' \in C'_n$ of graph $G/_\pi$. Then the preimage of $c'$ is the coloring $c \in C_n$ as follows: $(\forall i \in \{1, \ldots, k\})( \forall v \in O_i) : c(v) = c'(w_i)$. Again by the definition of the vertex set identification if there exist $i \neq j$ and vertices $v_i \in O_i$, $v_j \in O_j$ s.t. $\{v_i,v_j\} \in E$ then also $\{w_i,w_j\} \in E'$ so $c'(w_i) \neq c'(w_j)$. Also note that if for any $O_i \in \Cycles{\pi}$ and non-equal $u,v \in O_i$ we have a loop $\{w_i\} \in E'$ which is contradiction with $c'$ being a proper coloring. So the coloring $c$ is proper and since $\forall O_i \in \Cycles(\pi)$ and any two $u,v \in O_i : c(u) = c(v)$ the coloring $c$ is also fixed by $\pi$ i.e. $c \in \Fix(\pi)$.
+
+    So we have that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$ which concludes the proof.
 \end{proof}
 
 \section{Size of automorphism groups of Platonic and Archimedean graphs}
