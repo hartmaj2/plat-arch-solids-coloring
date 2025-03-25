@@ -173,6 +173,10 @@
 
 - [ ] show how orbital chromatic polynomial is computed
   - [x] definition fixation graph
+
+## 2025_03_25
+
+- [ ] show how orbital chromatic polynomial is computed
   - [ ] finish proof for the formula
   - [ ] source code for my implementation
 
