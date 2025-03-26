@@ -151,58 +151,43 @@ Now we are ready to state the following theorem:
     
     Now suppose that we have $c_1,c_2 \in C_n$ s.t. $c_1 \neq c_2$ then the images under this mapping $c'_1,c'_2 \in C'_n$ are different so the mapping is injective.
 
-    For surjectivity, suppose we have a proper coloring $c' \in C'_n$ of graph $G/_\pi$. Then the preimage of $c'$ is the coloring $c \in C_n$ as follows: $(\forall i \in \{1, \ldots, k\})( \forall v \in O_i) : c(v) = c'(w_i)$. Again by the definition of the vertex set identification if there exist $i \neq j$ and vertices $v_i \in O_i$, $v_j \in O_j$ s.t. $\{v_i,v_j\} \in E$ then also $\{w_i,w_j\} \in E'$ so $c'(w_i) \neq c'(w_j)$. Also note that if for any $O_i \in \Cycles{\pi}$ and non-equal $u,v \in O_i$ we have a loop $\{w_i\} \in E'$ which is contradiction with $c'$ being a proper coloring. So the coloring $c$ is proper and since $\forall O_i \in \Cycles(\pi)$ and any two $u,v \in O_i : c(u) = c(v)$ the coloring $c$ is also fixed by $\pi$ i.e. $c \in \Fix(\pi)$.
+    For surjectivity, suppose we have a proper coloring $c' \in C'_n$ of graph $G/_\pi$. Then the preimage of $c'$ is the following coloring which we denote by $c \in C_n$: $(\forall O_i \in \Cycles(\pi))( \forall v \in O_i) : c(v) = c'(w_i)$. It is not hard to see, by the definition of the vertex set identification operation, that the coloring $c$ is a proper coloring of $G$. Note that we also have that $c \in \Fix(\pi)$ because we assigned all vertices on each cycle the same color.
 
-    So we have that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$ which concludes the proof.
+    So we have that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. 
+
+    \vspace{5pt}
+    \todo{TODO: Now we have to show that if for all $n \in \mathbb{N}$ the polynomials have equal value, then they are indeed equal. This would be true if we could somehow limit the degree of OP (the orbital chromatic polynomial)}
+     
 \end{proof}
 
-\section{Size of automorphism groups of Platonic and Archimedean graphs}
 
-\begin{table}[H]
-\centering
-\begin{tabular}{l@{\hspace{1.5cm}}c}
-\toprule
-\textbf{Platonic} & \textbf{$\abs{\Aut(G)}$} \\
-\midrule
-cube & 48 \\
-dodecahedron & 120 \\
-icosahedron & 120 \\
-octahedron & 48 \\
-tetrahedron & 24 \\
-\bottomrule
-\end{tabular}
-\caption{Sizes of automorphism groups of graphs of Platonic solids.}
-\label{tab:plat-automorphisms}
-\end{table}
-
-\begin{table}[H]
-\centering
-\begin{tabular}{l@{\hspace{1.5cm}}c}
-\toprule
-\textbf{Archimedean} & \textbf{$\abs{\Aut(G)}$} \\
-\midrule
-cuboctahedron & 48 \\
-icosidodecahedron & 120 \\
-rhombicosidodecahedron & 120 \\
-rhombicuboctahedron & 48 \\
-snub cube & 24 \\
-snub dodecahedron & 60 \\
-truncated cube & 48 \\
-truncated cuboctahedron & 48 \\
-truncated dodecahedron & 120 \\
-truncated icosahedron & 120 \\
-truncated icosidodecahedron & 120 \\
-truncated octahedron & 48 \\
-truncated tetrahedron & 24 \\
-\bottomrule
-\end{tabular}
-\caption{Sizes of automorphism groups of graphs of Archimedean solids.}
-\label{tab:arch-automorphisms}
-\end{table}
 
 \end{highlight}
 
 \section{Calculating orbital chromatic polynomials}
+
+Theorem \ref{thm:count-orb-chrompoly} can be used to derive a following algorithm:
+
+\begin{algorithm}
+    \caption{Algorithm based on Theorem \ref{thm:count-orb-chrompoly} for computing the orbital chromatic polynomial $OP(G,x)$ of a given graph $G$} 
+    \begin{algorithmic}[1]
+        \Function{OrbitalChromaticPoly}{$x$}
+            \State $p \gets 0$      
+            \For{$\pi \in \Aut(G)$}
+                \State $H \gets G$
+                \For{$O \in \Cycles(\pi)$}
+                    \If{$O$ not independent set}
+                        \State Continue with next permutation at step $3$
+                    \EndIf
+                    \State $H \gets H_{\star,O}$
+                \EndFor
+                \State $p \gets p + P(H,x)$
+            \EndFor   
+            \State \Return $p$
+        \EndFunction
+    \end{algorithmic}
+    \label{alg:orb-chrompoly}
+\end{algorithm}
 
 \renewcommand{\arraystretch}{2.0}
 \begin{table}[H]
