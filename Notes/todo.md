@@ -177,8 +177,12 @@
 ## 2025_03_25
 
 - [ ] show how orbital chromatic polynomial is computed
-  - [ ] finish proof for the formula
+  - [x] finish proof for the formula
   - [ ] source code for my implementation
+
+## 2025_03_26
+
+- [ ] add source code for my implementation of the orbital chromatic polynomial
 
 ## Main tasks
 
