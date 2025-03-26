@@ -541,3 +541,17 @@
 
 - started writing the proof for the computation of orbital chromatic polynomial
   - one-to-one correspondence between colorings of original graph fixed by a permutation and the colorings of the fixation graph for the given permutation
+
+### 2025_03_25
+
+- finished writing the proof
+  - realized that the proof to be valid should indeed define a bijection
+    - show injectivity, surjectivity and that it is a valid function
+
+### 2025_03_26
+
+- reviewed the proof again and simplified it
+  - added a todo for the missing argument:
+    - so far we know only that for any natural number, the polys have equal values but we need to show that they are indeed the same polynomials (but we don't need that in practice for the computations)
+
+- 
