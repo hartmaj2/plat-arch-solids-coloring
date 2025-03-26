@@ -554,4 +554,4 @@
   - added a todo for the missing argument:
     - so far we know only that for any natural number, the polys have equal values but we need to show that they are indeed the same polynomials (but we don't need that in practice for the computations)
 
-- 
+- started writing pseudocode for the orbital chromatic polynomial algorithm
