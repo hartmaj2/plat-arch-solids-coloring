@@ -168,7 +168,7 @@ Now we are ready to state the following theorem:
 
 Theorem \ref{thm:count-orb-chrompoly} can be used to derive a following algorithm:
 
-\begin{algorithm}
+\begin{algorithm}[H]
     \caption{Algorithm based on Theorem \ref{thm:count-orb-chrompoly} for computing the orbital chromatic polynomial $OP(G,x)$ of a given graph $G$} 
     \begin{algorithmic}[1]
         \Function{OrbitalChromaticPoly}{$x$}
@@ -188,6 +188,8 @@ Theorem \ref{thm:count-orb-chrompoly} can be used to derive a following algorith
     \end{algorithmic}
     \label{alg:orb-chrompoly}
 \end{algorithm}
+
+An implementation of the algorithm \ref{alg:orb-chrompoly} above is provided in the appendix.
 
 \renewcommand{\arraystretch}{2.0}
 \begin{table}[H]

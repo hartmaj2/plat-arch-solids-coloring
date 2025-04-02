@@ -1,0 +1,67 @@
+\chapter{Attachments}
+\section{Size of automorphism groups of Platonic and Archimedean graphs}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{1.5cm}}c}
+\toprule
+\textbf{Platonic} & \textbf{$\abs{\Aut(G)}$} \\
+\midrule
+cube & 48 \\
+dodecahedron & 120 \\
+icosahedron & 120 \\
+octahedron & 48 \\
+tetrahedron & 24 \\
+\bottomrule
+\end{tabular}
+\caption{Sizes of automorphism groups of graphs of Platonic solids.}
+\label{tab:plat-automorphisms}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{1.5cm}}c}
+\toprule
+\textbf{Archimedean} & \textbf{$\abs{\Aut(G)}$} \\
+\midrule
+cuboctahedron & 48 \\
+icosidodecahedron & 120 \\
+rhombicosidodecahedron & 120 \\
+rhombicuboctahedron & 48 \\
+snub cube & 24 \\
+snub dodecahedron & 60 \\
+truncated cube & 48 \\
+truncated cuboctahedron & 48 \\
+truncated dodecahedron & 120 \\
+truncated icosahedron & 120 \\
+truncated icosidodecahedron & 120 \\
+truncated octahedron & 48 \\
+truncated tetrahedron & 24 \\
+\bottomrule
+\end{tabular}
+\caption{Sizes of automorphism groups of graphs of Archimedean solids.}
+\label{tab:arch-automorphisms}
+\end{table}
+
+\section{SageMath programs}
+
+\begin{listing}
+\caption{Python implementation of algorithm \ref{alg:orb-chrompoly}}
+\begin{lstlisting}
+def orbital_chromatic_polynomial(g : Graph):  
+    R = PolynomialRing(ZZ, 'x')
+    p = R(0)
+    A = g.automorphism_group()
+    for a in A:
+        cycles = a.cycle_tuples()
+        if not all([g.is_independent_set(c) for c in cycles]):
+            continue
+        merged = g.copy()
+        for c in cycles:
+            merged.merge_vertices(c)
+        p += merged.chromatic_polynomial()
+    p = p / A.order()
+    return p
+\end{lstlisting}
+\label{prg:orb-chrompoly}
+\end{listing}
