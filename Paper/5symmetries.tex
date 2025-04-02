@@ -4,14 +4,12 @@ In the previous chapters, we computed, how many proper colorings of Platonic and
 
 In order to be able to say, which colorings should be considered identical, we need to define some kind of equivalence relation, that will group all the different transformations of same coloring together. In mathematics, we call this relation a \textit{transitivity relation} and its equivalence classes are typically referred to as its \textit{orbits}. The transitivity relation is defined on a set of objects, in our case the colorings, and a group that acts on these objects, the transformations.
 
-Using the terminology above, our task boils down to counting the amount of orbits of the transitivity relation, defined on colorings of our solid using the group of transformations of the solid.
+Using the terminology above, our task boils down to counting the number of orbits of the transitivity relation, defined on colorings of our solid using the group of transformations of the solid.
 
 To be able to use the transformations of the solids in our computations, we need a mathematical way of describing them. As we are working with graphs of the solids, we then also need to be able to describe these transformations as transformations on these graphs.
 
 
-\section{Useful facts and definitions}
-
-\todo[JF]{to se obvykle nazývá "Preliminaries"}
+\section{Preliminaries}
 
 It turns out, that transformations of the solid that we consider correspond exactly to automorphisms of the corresponding graph of the solid.
 
@@ -35,7 +33,7 @@ An important observation is, that for a graph $G$, the set of all automorphisms 
 Before we define can define the transitivity relation, we also need to properly define the set of elements on which this relation will be defined:
 
 \begin{defn}[colorings with up to n colors]
-    For a graph $G$, natural number $n$ and a family of colorings $C$, we define the set $C_n \subseteq C$ the set of all proper colorings of $G$ by at most $n$ colors.
+    For a graph $G$, positive integer $n$ and a family of colorings $C$, we define the set $C_n \subseteq C$ the set of all proper colorings of $G$ by at most $n$ colors.
 \end{defn}
 
 The definition above restricts the colorings we will be working with to finite sets only. With the notion of automorphism and colorings in hand, we can define the transitivity relation for the colorings.
@@ -64,11 +62,9 @@ Here is a good place to point out, that it is exactly our objective, to calculat
 
 Again, to say more coloquially, the stabilizer is the set of all automorphisms that when applied to a coloring will result in exactly the same coloring. What we mean by same colorings is, that all the vertices get the same color under both colorings.
 
-\section{Calculating the amount of orbits}
+\section{Calculating the number of orbits}
 
-\todo[JF]{míto amount (množství) pište  raději number (počet)}
-
-Now it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the amount of equivalence classes of the transitivity relation. Mathematically formulated, it allows us to derive the following equation:
+Now it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the number of equivalence classes of the transitivity relation. Mathematically formulated, it allows us to derive the following equation:
 
 \begin{equation}\label{eqn:orbits-by-stab}
     \sum_{c\in C_n}\abs{\Stab(c)} = \abs{\Aut(G)} \cdot \abs{C_n/_\sim} 
@@ -85,7 +81,7 @@ Before stating another important observation, we will need a following definitio
     For a graph $G$, $n \in \mathbb{N}$, a set of its proper colorings $C_n$ and automorphism $\pi \in \Aut(G)$ we denote $\Fix(\pi)= \{ c \in C \ | \ \forall v \in V : c(\pi(v)) = c(v) \}$
 \end{defn}
 
-To get a formula which computes the same number but using a sum over the set $\Aut(G)$ instead, we use the following observation: The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the amount ordered pairs $(c,\pi)$ s.t. $\forall v \in V : c(\pi(v)) = c(v)$. Using the definition of fixpoint, we can calculate this amount also using the sum $\sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$ which yields the following important identity:
+To get a formula which computes the same number but using a sum over the set $\Aut(G)$ instead, we use the following observation: The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the number of ordered pairs $(c,\pi)$ s.t. $\forall v \in V : c(\pi(v)) = c(v)$. Using the definition of fixpoint, we can calculate this number also using the sum $\sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$ which yields the following important identity:
 \begin{equation}\label{eqn:two-way-counting}
     \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)} = \sum_{c \in C_n}\abs{\Stab(c)}    
 \end{equation}
@@ -105,9 +101,9 @@ We introduce a notion very similar to the one of the chromatic polynomial of a g
     For a graph $G$ and a family of its proper coloring $C$ we define the \emph{orbital chromatic polynomial} $OP(G,x)$ as a polynomial s.t. $\forall k \in \mathbb{N} : OP(G,k)$ is equal to $\abs{C_k/_\sim}$
 \end{defn}
 
-The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007} but in this thesis, we provide a more rigorous proof of the method outlined in \cite{caka2007}. 
-
-\todo[JF]{more rigorous je netaktní, co třeba more detailed nebo more selfcontained}
+\begin{highlight}
+The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
+\end{highlight}
 
 For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
 
@@ -145,9 +141,7 @@ Now we are ready to state the following theorem:
 \end{thm}
 
 \begin{proof}
-    We show that for any natural number $n$ we have: $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,n)$$
-
-\todo[JF]{místo natural number bývá zvykem psát positive integer}
+    We show that for any positive integer $n$ we have: $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,n)$$
 
     Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
     $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$$

@@ -2,10 +2,11 @@
 
 \section{Computing chromatic numbers}
 
-    
-The vertex, edge and total chromatic numbers can be computed in little time using the \textit{SageMath} \cite{sagemath} function called \verb|chromatic_number| and appropriate conversions from chapter \ref{chap:clring_conversions}.
+\begin{highlight}
 
-\todo[JF, noinline]{? little time}
+The vertex, edge and total chromatic numbers can be computed using the \textit{SageMath} \cite{sagemath} function called \verb|chromatic_number| and appropriate conversions from chapter \ref{chap:clring_conversions}. Computing tables \ref{tab:platonic-chrom-nums} and \ref{tab:archimedean-chrom-nums} took less than five seconds on a computer with the Apple M2 chip.
+
+\end{highlight}
 
 The following two tables provide overview of vertex, edge and total chromatic numbers, denoted by $\chi(G)$, $\chi'(G)$ and $\chi''(G)$ respectively, for Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
 
@@ -64,7 +65,7 @@ Similarly, for total coloring, Vizing's conjecture \cite{vizing68} states, that 
 \section{Computing chromatic polynomials}
 
 
-Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using the following fact: When we fix two vertices $u$, $v$ s.t. $\{u,v\} \notin E$, we can split all colorings of $G$ into two disjoint groups. Let $d$ be the amount of colorings of $G$ in which $u$ and $v$ are colored by different color and let $s$ be the amount of colorings in which $u$ and $v$ are colored by same colors. Then the amount of all colorings $P(G,x) = d + s$. Let $G+\{u,v\}$ be graph $G$ s.t. its set of edges is $E \cup \{u,v\}$. Let $G \cdot \{u,v\}$ be the graph $G + \{u,v\}$ where the edge $\{u,v\}$ is contracted into a single vertex. Then we can see that $d = P(G + \{u,v\},x)$ and $s = P(G \cdot \{u,v\},x)$. This fact yields the following formula \cite{chartrand2019}:
+Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using the following fact: When we fix two vertices $u$, $v$ s.t. $\{u,v\} \notin E$, we can split all colorings of $G$ into two disjoint groups. Let $d$ be the number of colorings of $G$ in which $u$ and $v$ are colored by different color and let $s$ be the number of colorings in which $u$ and $v$ are colored by same colors. Then the number of all colorings $P(G,x) = d + s$. Let $G+\{u,v\}$ be graph $G$ s.t. its set of edges is $E \cup \{u,v\}$. Let $G \cdot \{u,v\}$ be the graph $G + \{u,v\}$ where the edge $\{u,v\}$ is contracted into a single vertex. Then we can see that $d = P(G + \{u,v\},x)$ and $s = P(G \cdot \{u,v\},x)$. This fact yields the following formula \cite{chartrand2019}:
 \begin{equation}\label{eqn:chrom_poly_nonedge}
  P(G,x) = P(G + \{u,v\},x) + P(G \cdot \{u,v\},x)
 \end{equation}
@@ -76,8 +77,11 @@ Consider this example: Given the graph of tetrahedron $K_4$ and $X$ the family o
 \subsection{Chromatic polynomial of complete k-partite graphs with partition size 2}
 
 In the following, let $\oplus$ denote the edge addition operation and let $\star$ denote the vertex identification operation. Let $G_{\oplus,\bar{e}}$ and $G_{\star,\bar{e}}$ describe the resulting graphs by applying the corresponding operation on some non-edge $\bar{e}$ of $G$. Let $\bar{E}$ denote the set of all non-edges of $G$.
-\todo[JF,noinline]{raději doplňte i formálně $\bar{E(G)}=...$}
-
+\begin{highlight}
+\begin{defn}[set of non-edges]
+    Let $G=(V,E)$ be a graph. We denote $\bar{E} = \bar{E}(G) = \binom{V}{2} \setminus E$ the set of non-edges of $G$.
+\end{defn}
+\end{highlight}
 
 \begin{defn}[vertex identification operation]
     For a graph $G=(V,E)$ and a non-edge $\{u,v\}$ we define the resulting graph $G_{\star,\{u,v\}} = (V',E')$ as follows:
@@ -89,7 +93,7 @@ In the following, let $\oplus$ denote the edge addition operation and let $\star
 \end{defn}
 
 Notice, for each $\bar{e} = \{u,v\}\in \bar{E}(G)$ it holds that $|\bar{E}(G_{\star,\bar{e}})| < |\bar{E}(G)|$. This is because $\{u,v\} \notin \bar{E}(G_{\star,\bar{e}})$ and also for the new vertex $w$, we have: \[\{w,x\} \in \bar{E}(G_{\star,\bar{e}}) \implies \{u,x\} \in \bar{E}(G) \wedge \{v,x\} \in \bar{E}(G)\]
-In other words, the amount of non-edges after $\star$ operation always decreases.
+In other words, the number of non-edges after $\star$ operation always decreases.
 
 \begin{lemma}
 \label{lemma:non-edge_set_size}
@@ -120,7 +124,7 @@ In other words, the amount of non-edges after $\star$ operation always decreases
 \begin{proof}
     We base our proof on using the recursive algorithm for computing chromatic polynomials using the formula \ref{eqn:chrom_poly_nonedge} above. Let $G_{o_1,\ldots,o_n}$ be a graph resulting from applying operations $o_1$ to $o_n$ in the corresponding order. By using Lemma \ref{lemma:indistinguishability} this graph is well defined, as the resulting graph is always the same irrespective of the particular choice of non-edges we apply the operations $o_1, \ldots,o_n$ to.
 
-    In every step of the recursion, we split the problem of calculating $P(G,x)$ to calculating the sum of $P(G_{\oplus,\bar{e}},x)$ and $P(G_{\star,\bar{e}},x)$. The recursion stops when there exists no non-edge $\bar{e} \in \bar{E}$ i.e. $G$ is a complete graph. By Lemma \ref{lemma:non-edge_set_size}, the recursion depth is equal to the amount of non-edges of the original graph $K_{k\times 2}$ for every branch of the recursion. For $K_{k\times 2}$ this is equal to $k$. This means, that each branch of the recursion ends with a graph $G_{o_1,\ldots,o_k}$ where $o_i \in \{\oplus,\star\}$. For a sequence of operations $s=o_1,\ldots,o_k$ let us denote $s_{\star} = |\{ i : o_i   =\star\}|$ i.e. the amount of vertex identification operations performed throughout the sequence. Then we have $G_s = K_{2k-s_{\star}}$ because every $\star$ operation removes exactly one vertex from the original graph. Let $S$ be the set of all possible sequences of $k$ operations. Then for $G=K_{k\times 2}$, we have $P(G,x)= \sum_{s\in S}P(G_s,x)$. This follows from the fact, that there is a one-to-one correspondence between branches of the recursion and sequences in $S$. We get the final formula by identifying all sequences with the same amount of $\star$ operations, which yields the binomial coefficients in the final formula. 
+    In every step of the recursion, we split the problem of calculating $P(G,x)$ to calculating the sum of $P(G_{\oplus,\bar{e}},x)$ and $P(G_{\star,\bar{e}},x)$. The recursion stops when there exists no non-edge $\bar{e} \in \bar{E}$ i.e. $G$ is a complete graph. By Lemma \ref{lemma:non-edge_set_size}, the recursion depth is equal to the number of non-edges of the original graph $K_{k\times 2}$ for every branch of the recursion. For $K_{k\times 2}$ this is equal to $k$. This means, that each branch of the recursion ends with a graph $G_{o_1,\ldots,o_k}$ where $o_i \in \{\oplus,\star\}$. For a sequence of operations $s=o_1,\ldots,o_k$ let us denote $s_{\star} = |\{ i : o_i   =\star\}|$ i.e. the number of vertex identification operations performed throughout the sequence. Then we have $G_s = K_{2k-s_{\star}}$ because every $\star$ operation removes exactly one vertex from the original graph. Let $S$ be the set of all possible sequences of $k$ operations. Then for $G=K_{k\times 2}$, we have $P(G,x)= \sum_{s\in S}P(G_s,x)$. This follows from the fact, that there is a one-to-one correspondence between branches of the recursion and sequences in $S$. We get the final formula by identifying all sequences with the same number of $\star$ operations, which yields the binomial coefficients in the final formula. 
 \end{proof}
 
 
@@ -159,7 +163,7 @@ octahedron & $x^{6} - 12x^{5} + 58x^{4} - 137x^{3} + 154x^{2} - 64x$ \\
 tetrahedron & $x^{4} - 6x^{3} + 11x^{2} - 6x$ \\
 \bottomrule
 \end{tabular}
-\caption{Chromatic polynomial of selected solids. For other solids, the polynomial coefficients were too large and would not print nicely.}
+\caption{Chromatic polynomial of selected solids.}
 \label{tab:selected-chrom-polys}
 \end{table}
 
