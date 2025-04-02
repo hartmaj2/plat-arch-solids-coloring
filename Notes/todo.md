@@ -184,6 +184,13 @@
 
 - [ ] add source code for my implementation of the orbital chromatic polynomial
 
+## 2025_04_02
+
+- [ ] take into account supervisor suggestions
+
+- [ ] check the pseudocode for computing orbital chromatic polynomial
+- [ ] add source code for my sage implementation of the orbital chromatic polynomial algorithm
+
 ## Main tasks
 
 - [ ] finish chapter about symmetries and orbital chromatic polynomials
