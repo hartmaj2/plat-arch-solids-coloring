@@ -177,44 +177,28 @@
 ## 2025_03_25
 
 - [ ] show how orbital chromatic polynomial is computed
-  - [x] finish proof for the formula
-  - [ ] source code for my implementation
-
-## 2025_03_26
-
-- [ ] add source code for my implementation of the orbital chromatic polynomial
+  - [x] finish (almost) proof for the formula
 
 ## 2025_04_02
 
-- [ ] take into account supervisor suggestions
+- [x] take into account supervisor suggestions
 
 - [ ] check the pseudocode for computing orbital chromatic polynomial
 - [ ] add source code for my sage implementation of the orbital chromatic polynomial algorithm
 
 ## Main tasks
 
-- [ ] finish chapter about symmetries and orbital chromatic polynomials
-  - [ ] what definitions are necessary?
-  - [ ] add references
+- [ ] visualize results of calculating the orbital chromatic polynomial
 
 ## Side tasks
-
-- [ ] simplify the chapter about symmetries
 
 ### Improve definitions
 
 - [ ] distinguish between proper and improper colorings in the definitions
 
-- [ ] define the V(G) syntax
-
 ### Basic chromatic polynomials
 
-- [ ] comment the results of the chromatic polynomial table
-  - what function was used to compute them?
-  - why only selected included?
-  - mention that some polys took too long to compute (for 48 edges took ten minutes, for 60 edges did not finish)
-
-- [ ] add demonstrative figures to the proof for formula of chromatic polynomial of complete k-partite graph with partition size 2
+- [ ] visualize it on some graph so I can compare with orbital chromatic polynomial
 
 ### Independent sets
 
