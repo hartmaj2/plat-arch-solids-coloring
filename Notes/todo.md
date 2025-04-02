@@ -183,12 +183,13 @@
 
 - [x] take into account supervisor suggestions
 
-- [ ] check the pseudocode for computing orbital chromatic polynomial
-- [ ] add source code for my sage implementation of the orbital chromatic polynomial algorithm
+- [x] check the pseudocode for computing orbital chromatic polynomial
+- [x] add source code for my sage implementation of the orbital chromatic polynomial algorithm
 
 ## Main tasks
 
 - [ ] visualize results of calculating the orbital chromatic polynomial
+- [ ] time how long orbpoly vs chrompoly run
 
 ## Side tasks
 
