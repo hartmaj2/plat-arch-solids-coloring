@@ -8,9 +8,10 @@ Using the terminology above, our task boils down to counting the amount of orbit
 
 To be able to use the transformations of the solids in our computations, we need a mathematical way of describing them. As we are working with graphs of the solids, we then also need to be able to describe these transformations as transformations on these graphs.
 
-\begin{highlight}
 
 \section{Useful facts and definitions}
+
+\todo[JF]{to se obvykle nazývá "Preliminaries"}
 
 It turns out, that transformations of the solid that we consider correspond exactly to automorphisms of the corresponding graph of the solid.
 
@@ -65,6 +66,8 @@ Again, to say more coloquially, the stabilizer is the set of all automorphisms t
 
 \section{Calculating the amount of orbits}
 
+\todo[JF]{míto amount (množství) pište  raději number (počet)}
+
 Now it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the amount of equivalence classes of the transitivity relation. Mathematically formulated, it allows us to derive the following equation:
 
 \begin{equation}\label{eqn:orbits-by-stab}
@@ -104,6 +107,8 @@ We introduce a notion very similar to the one of the chromatic polynomial of a g
 
 The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007} but in this thesis, we provide a more rigorous proof of the method outlined in \cite{caka2007}. 
 
+\todo[JF]{more rigorous je netaktní, co třeba more detailed nebo more selfcontained}
+
 For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
 
 \begin{defn}[cycles of permutation]
@@ -114,11 +119,11 @@ For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in t
     For a graph $G=(V,E)$ a subset of vertices $S \subseteq V$ we define the \emph{identification of vertex set $S$} into a new vertex $w \notin V$ as the operation that results in a graph $G_{\star,S}=(V',E')$ defined as follows:
     \begin{enumerate}
         \item $V' := (V \setminus S) \cup \{w\}$
-        \item $E' := ( \binom{V'}{2} \cap E) \cup \{ \{w,x\} \ | \ (\exists x \in V \setminus S)(\exists s \in S): \{x,s\} \in E\}$
+        \item $E' := \left( \binom{V'}{2} \cap E\right) \cup \{ \{w,x\} \ | \ (\exists x \in V \setminus S)(\exists s \in S): \{x,s\} \in E\}$
     \end{enumerate}
 \end{defn}
 
-Given a graph $G=(V,E)$ and a sequence of disjoints subsets $S_1, \ldots , S_n \subseteq V$, we denote $G_{\star,S_1,\ldots,S_n}$ the graph resulting from successive application of vertex set identification operation ont the sets $S_1$ up to $S_n$ and graph $G$.
+Given a graph $G=(V,E)$ and a sequence of disjoints subsets $S_1, \ldots , S_n \subseteq V$, we denote $G_{\star,S_1,\ldots,S_n}$ the graph resulting from successive application of vertex set identification operation on the sets $S_1$ up to $S_n$ and graph $G$.
 
 \begin{defn}[independent set]
     For a graph $G=(V,E)$ and a subset of vertices $S \subseteq V$, we say that $S$ is \emph{independent} if $\forall x,y \in S : \{x,y\} \notin E$.
@@ -142,6 +147,8 @@ Now we are ready to state the following theorem:
 \begin{proof}
     We show that for any natural number $n$ we have: $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,n)$$
 
+\todo[JF]{místo natural number bývá zvykem psát positive integer}
+
     Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
     $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$$
 
@@ -160,9 +167,8 @@ Now we are ready to state the following theorem:
      
 \end{proof}
 
+\todo[JF]{Nedá se to ilustrovat na obarvení nějakého malého grafu?}
 
-
-\end{highlight}
 
 \section{Calculating orbital chromatic polynomials}
 
