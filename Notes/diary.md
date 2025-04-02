@@ -572,3 +572,10 @@
       - `keyword` arguments must follow `non-keyword` arguments
 
 - implement some of the suggestions provided by my supervisor
+
+- implemented a module for benchmarking how long funcitons run
+  - pass a function with arguments
+  - receive original result and the running time as well
+
+- used the timing function mentioned above together with my table printing functions to nicely compare run times of the functions for each solid
+  - added a transform option to md table printing (can apply the transform on data before outputting it into the column)
