@@ -16,6 +16,10 @@ from sage.graphs.line_graph import line_graph
 import t_printing.md_table_printing as printing
 import solids_prep.solids_dict_prep as sdp
 import graph_utils.graph_conversions as gc
+import timing.timing as tmng
+
+# SHOULD TIME THE PROGRAM?
+timed = True
 
 # CONSTANT RENAME FOR CONVENIENCE
 VERTICES = sdp.JSON_VERTICES
@@ -43,7 +47,7 @@ ROOT_FOLDER = "Code"
 # OUTPUT SETTING
 
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/Results/chrom_nums.md","w")
+output_file = open(ROOT_FOLDER + "/Results/chrom_nums2.md","w")
 output_type = output_file
 
 # import sys
@@ -98,4 +102,7 @@ def main():
     printing.print_solid_mult_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,data_headers,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
-    main()
+    if timed:
+        tmng.run_timed(main)
+    else:
+        main()
