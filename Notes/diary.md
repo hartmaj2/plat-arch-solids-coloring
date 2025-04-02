@@ -555,3 +555,20 @@
     - so far we know only that for any natural number, the polys have equal values but we need to show that they are indeed the same polynomials (but we don't need that in practice for the computations)
 
 - started writing pseudocode for the orbital chromatic polynomial algorithm
+
+### 2025_04_02
+
+- want a reusable simple way to time my algorithms for bachelor thesis
+
+- create timing module containing function decorators that will time my functions
+  - PY: for decorators - use `*args` to be able to pass arguments even when I don't know how many there will be
+    - `*args` - arguments
+    - `**kwargs` - keyworded arguments
+    - when definning function:
+      - can provide `default arguments` to params but must follow the `non-default` parameters
+      - the caller must provide arguments for all the `non-default` params
+    - when calling function:
+      - i can add keyword to an argument
+      - `keyword` arguments must follow `non-keyword` arguments
+
+- implement some of the suggestions provided by my supervisor
