@@ -15,5 +15,3 @@ def get_pos_dict(name : str):
         for i in range(len(vtces)):
             pos[vtces[i]] = positions[i]
     return pos
-
-print(get_pos_dict("cube"))
