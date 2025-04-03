@@ -9,6 +9,7 @@
 # IMPORTS
 
 import solids_prep.solids_dict_prep as sdp
+import solids_prep.solids_layout_prep as slp
 
 import tempfile
 from PIL import Image
@@ -27,23 +28,24 @@ collage_name = "collage"
 max_clrs = 3
 solid_name = "cube"
 edges = sdp.get_all_solids_dict()[solid_name][sdp.JSON_EDGES]
-# g = Graph(edges)
+g = Graph(edges)
+positions = slp.get_pos_dict(solid_name)
 
 # CUBE
 # g = graphs.CubeGraph(3,2)
 
 # OCTAHEDRON
-g = graphs.OctahedralGraph()
+# g = graphs.OctahedralGraph()
 
 # creates separate images for all the colorings
 def create_images(graph : Graph, max_clrs : int) -> list[Image.Image]:
     images = []
-    
+
     for num_clrs in range(max_clrs+1):
         clrings = all_graph_colorings(graph,num_clrs,hex_colors=True)
 
         for c in clrings:
-            graphic = graph.plot(vertex_colors=c,vertex_labels=False)
+            graphic = graph.plot(vertex_colors=c,vertex_labels=True,pos=positions)
             
             # store each image in temporary file and then create corresponding PIL image
             with tempfile.NamedTemporaryFile(suffix=".png",delete=True) as tmp:
