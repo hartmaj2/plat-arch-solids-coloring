@@ -18,9 +18,6 @@ import solids_prep.solids_dict_prep as sdp
 import graph_utils.graph_conversions as gc
 import timing.timing as tmng
 
-# SHOULD TIME THE PROGRAM?
-timed = True
-
 # CONSTANT RENAME FOR CONVENIENCE
 VERTICES = sdp.JSON_VERTICES
 EDGES = sdp.JSON_EDGES
@@ -102,7 +99,4 @@ def main():
     printing.print_solid_mult_col_data(archimedean_data,sdp.ARCHIMEDEAN_FOLDER,data_headers,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
-    if timed:
-        tmng.run_timed(main)
-    else:
-        main()
+    main()
