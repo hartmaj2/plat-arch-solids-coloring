@@ -573,7 +573,7 @@
 
 - implement some of the suggestions provided by my supervisor
 
-- implemented a module for benchmarking how long funcitons run
+- implemented a module for benchmarking runtime of functions
   - pass a function with arguments
   - receive original result and the running time as well
 
