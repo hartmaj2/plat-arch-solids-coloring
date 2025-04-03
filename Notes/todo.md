@@ -186,6 +186,15 @@
 - [x] check the pseudocode for computing orbital chromatic polynomial
 - [x] add source code for my sage implementation of the orbital chromatic polynomial algorithm
 
+## 2025_04_03
+
+- [ ] change the orbchrompoly alg to also print the colorings?
+
+- [ ] find graph on which to visualize orbchrompoly
+  - [ ] either small graph and show all possible inputs for x
+  - [ ] bigger graph and show a certain coefficient
+  - [ ] maybe even use some non-platonic graph
+
 ## Main tasks
 
 - [ ] visualize results of calculating the orbital chromatic polynomial
@@ -195,7 +204,7 @@
 
 ### Improve definitions
 
-- [ ] distinguish between proper and improper colorings in the definitions
+- [ ] distinguish between proper and improper colorings in the definitionsf
 
 ### Basic chromatic polynomials
 
