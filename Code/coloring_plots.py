@@ -6,12 +6,11 @@
 # IMPORTANT: the i-colorings can only use i colors and cannot use the rest of (max_clrs - i) colors so we get fewer
 # results than what the chromatic polynomial tells us for that many colors
 
-# IMPORTANT2: make sure that in the Plots directory is nothing else than the {collage_name}.png file
-
 # IMPORTS
 
 import solids_prep.solids_dict_prep as sdp
-import os
+
+import tempfile
 from PIL import Image
 import math
 
@@ -28,25 +27,35 @@ collage_name = "collage"
 max_clrs = 3
 solid_name = "cube"
 edges = sdp.get_all_solids_dict()[solid_name][sdp.JSON_EDGES]
-g = Graph(edges)
+# g = Graph(edges)
 
-# removes the leftover image from last round
-def clean_folder():
-    if f"{collage_name}.png" in os.listdir(output_path):
-        os.remove(os.path.join(output_path,f"{collage_name}.png"))
+# CUBE
+# g = graphs.CubeGraph(3,2)
+
+# OCTAHEDRON
+g = graphs.OctahedralGraph()
 
 # creates separate images for all the colorings
-def create_images(graph, max_clrs):
-    clean_folder()
+def create_images(graph : Graph, max_clrs : int) -> list[Image.Image]:
+    images = []
+    
     for num_clrs in range(max_clrs+1):
         clrings = all_graph_colorings(graph,num_clrs,hex_colors=True)
-        for i,c in enumerate(clrings):
-            graph.plot(vertex_colors=c).save(f"{output_path}{filename_base}_{num_clrs}clrs_{i}.png")
+
+        for c in clrings:
+            graphic = graph.plot(vertex_colors=c,vertex_labels=False)
+            
+            # store each image in temporary file and then create corresponding PIL image
+            with tempfile.NamedTemporaryFile(suffix=".png",delete=True) as tmp:
+                graphic.save(tmp.name)
+                img_file = Image.open(tmp.name)
+                images.append(img_file.copy())
+                img_file.close()
+
+    return images
 
 # merges the images of the colorings in the directory into a single square-like collage
-def merge_images():
-    filenames = os.listdir(output_path)
-    images = [Image.open(os.path.join(output_path, img)) for img in sorted(filenames)]
+def merge_images(images : list[Image.Image]):
     print(f"merging {len(images)} images")
 
     imgs_per_row = math.ceil(math.sqrt(len(images)))
@@ -62,14 +71,11 @@ def merge_images():
         row = (i // imgs_per_row)
         y = row * (image_width + img_padding_size)
         collage.paste(img,(x,y))
-    
-    for filename in filenames:
-        os.remove(os.path.join(output_path, filename))
 
     collage.save(f"{output_path}{collage_name}.png")
 
 
 print("generating coloring images...")
-create_images(g,max_clrs)
+images = create_images(g,max_clrs)
 print("merging images...")
-merge_images()
+merge_images(images)
