@@ -197,9 +197,17 @@
     - put exponents into a curly brace
   - [x] use desmos to find out the numbers
 
-- [ ] test drawing graphs with hard coded layout in sage
+- [x] test drawing graphs with hard coded layout in sage
 
-- [ ] octahedron 3 colors
+- [x] octahedron 3 colors
+
+## 2025_04_05
+
+- [ ] label edges and draw the ones behind with different color / style
+
+- [ ] try if 3d plotting works good with data from Polyhedra Viewer
+  - coordinates [here](https://dmccooey.com/polyhedra/)
+
 - [ ] cuboctahedron 3 colors
 - [ ] icosahedron 4 colors
 
