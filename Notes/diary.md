@@ -579,3 +579,16 @@
 
 - used the timing function mentioned above together with my table printing functions to nicely compare run times of the functions for each solid
   - added a transform option to md table printing (can apply the transform on data before outputting it into the column)
+
+### 2025_04_03
+
+- wrote functions to print polynomials that are ready to paste into desmos
+
+- visualized polynomials in Desmos to see which have bearable number of colorings
+  - [link](https://www.desmos.com/calculator/mci9dnx1lk)
+
+- rewrote plotting program to not use actual files but temporary files for coloring pics before merge
+  - advantage: don't have to care about name collisions and removing the files manually
+
+- found out that platonic solid graphs have presets with the layout being already fixed
+  - unfortunately it seems like only the cube layout will be geometrically nice
