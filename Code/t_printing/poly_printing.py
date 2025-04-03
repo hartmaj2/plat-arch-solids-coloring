@@ -7,6 +7,9 @@ def poly_for_desmos(poly):
     poly = re.sub(r"\^(\d+)",r"^{\1}",poly) # groups the exponents so x^10 doesn't get parsed as x^1 * 0
     return poly
 
+def named_poly_for_desmos(poly,letter="p",id=0):
+    return f"{letter}_{{{id}}}(x) = {poly_for_desmos(poly)}"
+
 # converts polynomial sage object to a string and then replaces the necessary part with proper latex syntax and wraps in equation environment
 def poly_to_latex(polynomial):
     str_with_wrong_superscripts =  str(polynomial).replace("*","") # replaces k*x^n by kx^n 
