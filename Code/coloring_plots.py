@@ -26,7 +26,7 @@ collage_name = "collage"
 
 # INPUT SETTINGS
 max_clrs = 3
-solid_name = "octahedron"
+solid_name = "cube"
 edges = sdp.get_all_solids_dict()[solid_name][sdp.JSON_EDGES]
 g = Graph(edges)
 positions = slp.get_pos_dict(solid_name)
@@ -39,7 +39,7 @@ def create_images(graph : Graph, max_clrs : int) -> list[Image.Image]:
         clrings = all_graph_colorings(graph,num_clrs,hex_colors=True)
 
         for c in clrings:
-            graphic = graph.plot(vertex_colors=c,vertex_labels=True,pos=positions,edge_labels=True)
+            graphic = graph.plot(vertex_colors=c,vertex_labels=True,pos=positions,edge_labels=False)
             
             # store each image in temporary file and then create corresponding PIL image
             with tempfile.NamedTemporaryFile(suffix=".png",delete=True) as tmp:
