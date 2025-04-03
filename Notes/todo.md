@@ -191,14 +191,13 @@
 - [x] change the orbchrompoly alg to also print the colorings?
   - I don't think that would work
 
-- [ ] find graph on which to visualize orbchrompoly
+- [x] find graph on which to visualize orbchrompoly
   - [ ] improve md printing to print polynomials nicer for desmos
     - remove the asterisk
     - put exponents into a curly brace
-  - [ ] use desmos to find out the numbers
-  - [ ] either small graph and show all possible inputs for x
-  - [ ] bigger graph and show a certain coefficient
-  - [ ] maybe even use some non-platonic graph
+  - [x] use desmos to find out the numbers
+
+- [ ] test drawing graphs with hard coded layout in sage
 
 - [ ] octahedron 3 colors
 - [ ] cuboctahedron 3 colors
