@@ -3,7 +3,6 @@ import re
 # prepares polynomial for copy pasting into desmos
 def poly_for_desmos(poly):
     poly = str(poly)
-    print(poly)
     poly = poly.replace("*","") # replaces unnecessary multiplication symbols (desmos doesn't need them)
     poly = re.sub(r"\^(\d+)",r"^{\1}",poly) # groups the exponents so x^10 doesn't get parsed as x^1 * 0
     return poly
