@@ -41,7 +41,7 @@ def create_images(graph, max_clrs):
     for num_clrs in range(max_clrs+1):
         clrings = all_graph_colorings(graph,num_clrs,hex_colors=True)
         for i,c in enumerate(clrings):
-            graph.plot(vertex_colors=c).save(f"{output_path}{filename_base}_{num_clrs}crls_{i}.png")
+            graph.plot(vertex_colors=c).save(f"{output_path}{filename_base}_{num_clrs}clrs_{i}.png")
 
 # merges the images of the colorings in the directory into a single square-like collage
 def merge_images():
