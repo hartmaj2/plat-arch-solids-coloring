@@ -9,6 +9,7 @@ from sage.all import Graph
 from sage.all import *
 
 import t_printing.latex_table_printing as printing
+import t_printing.poly_printing as pp
 import solids_prep.solids_dict_prep as sdp
 import graph_utils.orbital_chrompoly as orbchrom
 
@@ -57,13 +58,6 @@ output_type = output_file
 
 polys_to_skip = ["truncated icosidodecahedron","icosidodecahedron","rhombicuboctahedron","truncated icosahedron","snub cube","truncated cuboctahedron","snub dodecahedron","truncated dodecahedron","rhombicosidodecahedron"]
 
-# converts polynomial sage object to a string and then replaces the necessary part with proper latex syntax and wraps in equation environment
-def poly_to_latex(polynomial):
-    str_with_wrong_superscripts =  str(polynomial).replace("*","") # replaces k*x^n by kx^n 
-    str_with_maybe_bad_fractions =  re.sub(r'\^(\d+)',"^{\\1}",str_with_wrong_superscripts) # replaces x^123 by x^{123} for example
-    str_with_good_fractions = re.sub(r'(\d+)/(\d+)',r"\\frac{\1}{\2}",str_with_maybe_bad_fractions) # replacs k/qx^n by \frac{k}{q}x^n
-    return f"${str_with_good_fractions}$" # adds $...$ around and returns result
-
 LINEWIDTH_ALIGNMENT_RATIO = 0.7
 ROW_SPACING_RATIO = 2.0
 # ALIGNMENT_PAR_STYLE_WRAP = r"p{0.5\linewidth}"
@@ -94,11 +88,11 @@ def get_chrom_polys_dict(solid_dict : dict, chrom_poly_function) -> dict[str,lis
 
 def print_orbital_chrom_poly_table(solids : dict[str,dict]):
     solid_data = get_chrom_polys_dict(solids,compute_orbital_chromatic_polynomial)
-    printing.print_solid_mult_col_data(solid_data,TEXT_COLUMN_HEADER,ORBCHROMPOLY_DATA_HEADER,CAPTION_ORBCHROMPOLY,LABEL_ORBCHROMPOLY,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP,ROW_SPACING_RATIO)
+    printing.print_solid_mult_col_data(solid_data,TEXT_COLUMN_HEADER,ORBCHROMPOLY_DATA_HEADER,CAPTION_ORBCHROMPOLY,LABEL_ORBCHROMPOLY,output_type,pp.poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP,ROW_SPACING_RATIO)
 
 def print_chrom_poly_table(solids : dict[str,dict]):
     solid_data = get_chrom_polys_dict(solids,compute_chromatic_polynomial)
-    printing.print_solid_mult_col_data(solid_data,TEXT_COLUMN_HEADER,CHROMPOLY_DATA_HEADER,CAPTION_CHROMPOLY,LABEL_CHROMPOLY,output_type,poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
+    printing.print_solid_mult_col_data(solid_data,TEXT_COLUMN_HEADER,CHROMPOLY_DATA_HEADER,CAPTION_CHROMPOLY,LABEL_CHROMPOLY,output_type,pp.poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP)
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
