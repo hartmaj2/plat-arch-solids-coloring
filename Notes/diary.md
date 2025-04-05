@@ -3,6 +3,7 @@
 - UAQ := unanswered question
 - PY := python trick/useful concept
 - LTX := latex trick/useful concept
+- VSC := vscode trick
 
 ## December
 
@@ -611,3 +612,9 @@
   - the reason I got to it is this: [link](https://doc.sagemath.org/html/en/reference/spkg/_prereq.html)
     - bcs I want to have newest version of SageMath
     - for that I would like to try to install SageMath from source
+
+- found out that the reason why `edge_styles` did not work for me was really bcs I had an old version of sage namely `SageMath 10.5` but that option was included in `SageMath 10.6`
+  - [link](https://github.com/sagemath/sage/pull/38823)
+
+- installed `SageMath 10.6` using the binary build as described [here](https://doc.sagemath.org/html/en/installation/index.html)
+  - VSC: change python analisys setting to new version of sage: `"python.analysis.extraPaths": ["/private/var/tmp/sage-10.6-current/local/var/lib/sage/venv-python3.12.5/lib/python3.12/site-packages"],`
