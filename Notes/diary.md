@@ -592,3 +592,16 @@
 
 - found out that platonic solid graphs have presets with the layout being already fixed
   - unfortunately it seems like only the cube layout will be geometrically nice
+
+### 2025_04_05
+
+- PY: found out how to type functions in
+  - `from collections.abc import Callable`
+  - `abc` stands for Abstract Base Class
+  - the function is then annotated as `Callable[[arg1,arg2,...,argN],ret]`
+
+- switched to yaml from json for config files for the graph plotting configs
+  - yaml offers:
+    - comments
+    - newlines matter (don't have to separate entries by commas)
+    - anchors and aliases for repeated values
