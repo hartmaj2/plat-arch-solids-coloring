@@ -618,3 +618,5 @@
 
 - installed `SageMath 10.6` using the binary build as described [here](https://doc.sagemath.org/html/en/installation/index.html)
   - VSC: change python analisys setting to new version of sage: `"python.analysis.extraPaths": ["/private/var/tmp/sage-10.6-current/local/var/lib/sage/venv-python3.12.5/lib/python3.12/site-packages"],`
+
+- added the generated octahedron 3-colorings figure to the thesis and added a commentary
