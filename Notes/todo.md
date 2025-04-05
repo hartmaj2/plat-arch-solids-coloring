@@ -203,7 +203,12 @@
 
 ## 2025_04_05
 
-- [ ] label edges and draw the ones behind with different color / style
+- [x] label edges and draw the ones behind with different color / style
+
+- [x] draw edges in behind in dotted style
+  - [x] if not work -> post issue on SageMath git
+
+- [ ] add octahedron example comparison of chrompoly and orbpoly using the generated plot
 
 - [ ] try if 3d plotting works good with data from Polyhedra Viewer
   - coordinates [here](https://dmccooey.com/polyhedra/)
