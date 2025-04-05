@@ -1,17 +1,63 @@
 import json
+import yaml
+from collections.abc import Callable
+from typing import Any, IO
 
 ROOT_FOLDER = "Code/JsonGraphs/Layouts/"
 
-JSON_NAME = "name"
-JSON_VERTICES = "vertices" # inside the json file, each vertex is a tuple containing the coordinates but we just need the amount
-JSON_POSITIONS = "pos"
+EDGES = "edges"
+VERTICES = "vertices" # inside the json file, each vertex is a tuple containing the coordinates but we just need the amount
+POSITIONS = "pos"
+EDGE_STYLES = "edge_styles"
+EDGE_COLORS = "edge_clrs"
 
-def get_pos_dict(name : str):
+EXTENSION = ".yaml"
+
+NOT_DICT_ERROR_MESSAGE = "Expected a dictionary but got something else"
+
+# load yaml prop dict
+def get_solid_data_dict(filename : str) -> dict:
+    with open(f"{ROOT_FOLDER}{filename}{EXTENSION}") as file:
+        data = yaml.safe_load(file)
+        if not isinstance(data,dict): # yaml parsed object does not have to be a dict necessarily
+            raise TypeError(NOT_DICT_ERROR_MESSAGE)
+        return data
+
+# loads the solid config data from the yaml file
+def get_pos_dict(filename : str) -> dict:
     pos = {}
-    with open(f"{ROOT_FOLDER}{name}.json") as file:
-        data = json.load(file)
-        vtces = data[JSON_VERTICES]
-        positions = data[JSON_POSITIONS]
-        for i in range(len(vtces)):
-            pos[vtces[i]] = positions[i]
+    data = get_solid_data_dict(filename)
+    vtces = data[VERTICES]
+    positions = data[POSITIONS]
+    for i in range(len(vtces)):
+        pos[vtces[i]] = positions[i]
     return pos
+
+# prepare a dict containing a dict of neighbors and edge labels for each vertex
+# the edges are labeled from 0,...,m in the order as they are defined in the YAML config document
+def get_labeled_neighbor_dict(filename : str) -> dict[int,dict]:
+    data = get_solid_data_dict(filename)
+    neighs = {}
+    for vtx in data[VERTICES]:
+        neighs[vtx] = {}
+    for i,edge in enumerate(data[EDGES]):
+        u,v = edge[0],edge[1]
+        neighs[u][v] = i
+    return neighs
+
+def get_labeled_edge_clrs(filename : str) -> dict[int,str]:
+    data = get_solid_data_dict(filename)
+    edges = data[EDGES]
+    colors = {}
+    for i,color in enumerate(data[EDGE_COLORS]):
+        if color not in colors:
+            colors[color] = []
+        colors[color].append((edges[i][0],edges[i][1],i))
+    return colors
+
+def get_labeled_edge_styles(filename : str) -> dict[int,str]:
+    data = get_solid_data_dict(filename)
+    styles = {}
+    for i,style in enumerate(data[EDGE_STYLES]):
+        styles[i] = style
+    return styles
