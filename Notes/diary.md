@@ -605,3 +605,9 @@
     - comments
     - newlines matter (don't have to separate entries by commas)
     - anchors and aliases for repeated values
+
+- found that there exists a command to check for MacOS updates through command line
+  - [link](https://ss64.com/mac/softwareupdate.html)
+  - the reason I got to it is this: [link](https://doc.sagemath.org/html/en/reference/spkg/_prereq.html)
+    - bcs I want to have newest version of SageMath
+    - for that I would like to try to install SageMath from source
