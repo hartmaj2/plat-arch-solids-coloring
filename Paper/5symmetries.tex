@@ -163,6 +163,7 @@ Now we are ready to state the following theorem:
 
 \todo[JF]{Nedá se to ilustrovat na obarvení nějakého malého grafu?}
 
+\begin{highlight}
 
 \section{Calculating orbital chromatic polynomials}
 
@@ -189,7 +190,7 @@ Theorem \ref{thm:count-orb-chrompoly} can be used to derive a following algorith
     \label{alg:orb-chrompoly}
 \end{algorithm}
 
-An implementation of the algorithm \ref{alg:orb-chrompoly} above is provided in the appendix.
+An implementation of the algorithm \ref{alg:orb-chrompoly} above is provided in the appendix. This implementation was used to calculate the polynomials that can be seen in table \ref{tab:selected-orbital-chrom-polys} below.
 
 \renewcommand{\arraystretch}{2.0}
 \begin{table}[H]
@@ -208,3 +209,20 @@ tetrahedron & $\frac{1}{24}x^{4} - \frac{1}{4}x^{3} + \frac{11}{24}x^{2} - \frac
 \end{table}
 \renewcommand{\arraystretch}{1.0}
 
+\subsection{Demonstrative example on graph of octahedron}
+
+The difference between chromatic and orbital chromatic polynomials can be demonstrated on the graph of octahedron $K_{3 \times 2}$. As can be seen in table \ref{tab:selected-chrom-polys} we have that: $$P(K_{3 \times 2},x) = x^{6} - 12x^{5} + 58x^{4} - 137x^{3} + 154x^{2} - 64x$$ whereas by \ref{tab:selected-orbital-chrom-polys} 
+ we have: $$OP(K_{3 \times 2},x) = \frac{1}{48}x^{6} - \frac{3}{16}x^{5} + \frac{37}{48}x^{4} - \frac{79}{48}x^{3} + \frac{41}{24}x^{2} - \frac{2}{3}x$$.
+
+Plugging in $3$ for $x$, we get the number of vertex colorings of the octahedron using at most $3$ colors. We get $P(K_{3 \times 2},3) = 6$. All these colorings can be enumerated using \textit{SageMath} \cite{sagemath} and its \verb|all_graph_colorings| function. On the figure below, we can see all of these $6$ colorings:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../Resources/Figs/octahedron_3-clrings.pdf}
+    \caption{All 3 colorings of octahedral graph}
+    \label{fig:octahedron-3-clrings}
+\end{figure}
+
+Now, an important observation is, that all of these $6$ colorings are equivalent when considered up to automorphisms. Indeed we can compute that $OP(K_{3 \times 2},3) = 1$.
+
+\end{highlight}
