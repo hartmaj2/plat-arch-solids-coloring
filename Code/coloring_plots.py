@@ -22,7 +22,7 @@ from sage.graphs.graph_coloring import all_graph_colorings
 # OUTPUT SETTING
 output_path = "Code/Plots/"
 filename_base = "res"
-collage_name = "collage_yaml"
+collage_name = "octahedron_3-clrings"
 
 VERTEX_LABEL = False
 EDGE_LABELS = False
@@ -33,8 +33,8 @@ solid_name = "octahedron"
 edges = sdp.get_all_solids_dict()[solid_name][sdp.JSON_EDGES]
 g = Graph(slp.get_labeled_neighbor_dict(solid_name))
 positions = slp.get_pos_dict(solid_name)
-# styles = slp.get_labeled_edge_styles(solid_name)
-colors = slp.get_labeled_edge_clrs(solid_name)
+styles = slp.get_labeled_edge_styles(solid_name)
+# colors = slp.get_labeled_edge_clrs(solid_name)
 
 # creates separate images for all the colorings
 def create_images(graph : Graph, max_clrs : int) -> list[Image.Image]:
@@ -44,7 +44,7 @@ def create_images(graph : Graph, max_clrs : int) -> list[Image.Image]:
         clrings = all_graph_colorings(graph,num_clrs,hex_colors=True)
 
         for c in clrings:
-            graphic = graph.plot(vertex_labels=VERTEX_LABEL,edge_labels=EDGE_LABELS,pos=positions,vertex_colors=c,edge_colors=colors)
+            graphic = graph.plot(vertex_labels=VERTEX_LABEL,edge_labels=EDGE_LABELS,pos=positions,vertex_colors=c,edge_styles=styles)
             # store each image in temporary file and then create corresponding PIL image
             with tempfile.NamedTemporaryFile(suffix=".png",delete=True) as tmp:
                 graphic.save(tmp.name)
