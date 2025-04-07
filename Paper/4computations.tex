@@ -2,11 +2,7 @@
 
 \section{Computing chromatic numbers}
 
-\begin{highlight}
-
 The vertex, edge and total chromatic numbers can be computed using the \textit{SageMath} \cite{sagemath} function called \verb|chromatic_number| and appropriate conversions from chapter \ref{chap:clring_conversions}. Computing tables \ref{tab:platonic-chrom-nums} and \ref{tab:archimedean-chrom-nums} took less than five seconds on a computer with the Apple M2 chip.
-
-\end{highlight}
 
 The following two tables provide overview of vertex, edge and total chromatic numbers, denoted by $\chi(G)$, $\chi'(G)$ and $\chi''(G)$ respectively, for Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
 
@@ -77,11 +73,9 @@ Consider this example: Given the graph of tetrahedron $K_4$ and $X$ the family o
 \subsection{Chromatic polynomial of complete k-partite graphs with partition size 2}
 
 In the following, let $\oplus$ denote the edge addition operation and let $\star$ denote the vertex identification operation. Let $G_{\oplus,\bar{e}}$ and $G_{\star,\bar{e}}$ describe the resulting graphs by applying the corresponding operation on some non-edge $\bar{e}$ of $G$. Let $\bar{E}$ denote the set of all non-edges of $G$.
-\begin{highlight}
 \begin{defn}[set of non-edges]
     Let $G=(V,E)$ be a graph. We denote $\bar{E} = \bar{E}(G) = \binom{V}{2} \setminus E$ the set of non-edges of $G$.
 \end{defn}
-\end{highlight}
 
 \begin{defn}[vertex identification operation]
     For a graph $G=(V,E)$ and a non-edge $\{u,v\}$ we define the resulting graph $G_{\star,\{u,v\}} = (V',E')$ as follows:
@@ -130,6 +124,8 @@ In other words, the number of non-edges after $\star$ operation always decreases
 
 A particular example that demonstrates the claim above is the graph of octahedron $K_{2,2,2} = K_{3 \times 2}$. According to formula \ref{eqn:chromatic-pascal}, we have \[ P(K_{3 \times 2},x) = P(K_6,x)+3P(K_5,x) + 3P(K_4,x)+P(K_3,x)\] as illustrated in the figure below.
 
+\todo[JF]{Tip: naznačit, kterým kontrakcím a přidáním které šipky odpovídají (vysvětlím osobně).}
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Resources/Figs/octahedral_pascal_demo.pdf}
@@ -153,9 +149,7 @@ Note that we assume that the graph $G$ that we start with is connected. This ass
 
 An algorithm, that uses formula \ref{eqn:chrompoly-edge} and the assumptions above is implemented in the \textit{SageMath} \cite{sagemath} software under the name \verb|chromatic_polynomial|. The time complexity of this algorithm is exponential in $E(G)$, the number of edges of the graph $G$ on input. By using this algorithm, it is possible to calculate chromatic polynomials of Platonic and Archimedean graphs with at most $48$ edges in the order of minutes.
 
-\begin{highlight}
 A more detailed description of how the algorithm is implemented can be found in a technical report by Read \cite{read1987chromatic}.
-\end{highlight}
 
 In the table below we provide examples of chromatic polynomials we computed.
 
@@ -173,7 +167,4 @@ tetrahedron & $x^{4} - 6x^{3} + 11x^{2} - 6x$ \\
 \caption{Chromatic polynomial of selected solids.}
 \label{tab:selected-chrom-polys}
 \end{table}
-
-\todo[JF]{"would not print nicely" není dobrý důvod}
-
 
