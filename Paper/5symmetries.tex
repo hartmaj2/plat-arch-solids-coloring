@@ -101,9 +101,7 @@ We introduce a notion very similar to the one of the chromatic polynomial of a g
     For a graph $G$ and a family of its proper coloring $C$ we define the \emph{orbital chromatic polynomial} $OP(G,x)$ as a polynomial s.t. $\forall k \in \mathbb{N} : OP(G,k)$ is equal to $\abs{C_k/_\sim}$
 \end{defn}
 
-\begin{highlight}
 The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
-\end{highlight}
 
 For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
 
@@ -163,7 +161,6 @@ Now we are ready to state the following theorem:
 
 \todo[JF]{Nedá se to ilustrovat na obarvení nějakého malého grafu?}
 
-\begin{highlight}
 
 \section{Calculating orbital chromatic polynomials}
 
@@ -225,4 +222,8 @@ Plugging in $3$ for $x$, we get the number of vertex colorings of the octahedron
 
 Now, an important observation is, that all of these $6$ colorings are equivalent when considered up to automorphisms. Indeed we can compute that $OP(K_{3 \times 2},3) = 1$.
 
-\end{highlight}
+\todo[JF]{Hezká ukázka, ale ne moc překvapivá. Co třeba kdybyste ještě přidal 3-obarvení krychle, nevyjde to zajímavěji? Nebo 3-obarvení dvanáctistěnu. 
+
+Kolik takových vlastně je? Možná by mělo smysl je dát do tabulky.
+Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
+
