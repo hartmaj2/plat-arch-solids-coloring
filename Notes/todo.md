@@ -210,18 +210,22 @@
 
 - [x] add octahedron example comparison of chrompoly and orbpoly using the generated plot
 
-- [ ] try if 3d plotting works good with data from Polyhedra Viewer
-  - coordinates [here](https://dmccooey.com/polyhedra/)
+## 2025_04_08
 
-- [ ] cuboctahedron 3 colors
-- [ ] icosahedron 4 colors
+- [ ] compute dicts of evaluated chromatic and orbital chromatic polynomials for PLATONIC SOLIDS ONLY
+  - best to have the polys for same solid right next to each other to see the difference nicely
+
+- [ ] add tables of evaluated chromatic polynomials compared with evaluated orbital chromatic polynomials
+  - figure out name of this chapter (comparing evaluations of chromatic and orbital chromatic polynomials)
 
 ## Main tasks
 
-- [ ] visualize results of calculating the orbital chromatic polynomial
-- [ ] time how long orbpoly vs chrompoly run
+- [ ] compute table with # of number of colorings using exactly n colors with respect to symmetries
+  - write a program that does this by the method we used at the meeting with supervisor
+  - describe how the method works
 
 ## Side tasks
+
 
 ### Improve definitions
 
@@ -240,6 +244,8 @@
 - [ ] calculate # of such colorings for C_4 and cube
 
 ### Misc
+
+- [ ] time how long orbpoly vs chrompoly run
 
 - [ ] what do operations on the Platonic solids do on the graphs?
 
