@@ -36,3 +36,7 @@ def orbital_chromatic_polynomial2(g : Graph):
         p += merged.chromatic_polynomial()
     p = p / A.order()
     return p
+
+# adapter for chromatic polynomial function to have the same API as orbital chromatic polynomial
+def chromatic_polynomial2(g : Graph):
+    return g.chromatic_polynomial()
