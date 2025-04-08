@@ -215,6 +215,8 @@
 - [ ] compute dicts of evaluated chromatic and orbital chromatic polynomials for PLATONIC SOLIDS ONLY
   - best to have the polys for same solid right next to each other to see the difference nicely
 
+- [ ] make table printing so I can define the order in which the solids appear in the table
+
 - [ ] add tables of evaluated chromatic polynomials compared with evaluated orbital chromatic polynomials
   - figure out name of this chapter (comparing evaluations of chromatic and orbital chromatic polynomials)
 
