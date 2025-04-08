@@ -227,3 +227,26 @@ Now, an important observation is, that all of these $6$ colorings are equivalent
 Kolik takových vlastně je? Možná by mělo smysl je dát do tabulky.
 Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
 
+\section{Comparison of evaluations of both types of polynomials}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\toprule
+\textbf{solid name} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\midrule
+cube OP & $1$ & $15$ & $154$ & $1115$ & $5955$ & $24836$ & $85260$ \\
+cube P & $2$ & $114$ & $2652$ & $29660$ & $198030$ & $932862$ & $3440024$ \\
+dodecahedron OP & $0$ & $75$ & $1404848$ & $\geq 10^{8}$ & $\geq 10^{11}$ & $\geq 10^{12}$ & $\geq 10^{14}$ \\
+dodecahedron P & $0$ & $7200$ & $\geq 10^{8}$ & $\geq 10^{11}$ & $\geq 10^{13}$ & $\geq 10^{14}$ & $\geq 10^{16}$ \\
+icosahedron OP & $0$ & $0$ & $2$ & $670$ & $33444$ & $640444$ & $6878900$ \\
+icosahedron P & $0$ & $0$ & $240$ & $80400$ & $4012560$ & $\geq 10^{7}$ & $\geq 10^{8}$ \\
+octahedron OP & $0$ & $1$ & $10$ & $55$ & $215$ & $665$ & $1736$ \\
+octahedron P & $0$ & $6$ & $96$ & $780$ & $4080$ & $15330$ & $45696$ \\
+tetrahedron OP & $0$ & $0$ & $1$ & $5$ & $15$ & $35$ & $70$ \\
+tetrahedron P & $0$ & $0$ & $24$ & $120$ & $360$ & $840$ & $1680$ \\
+\bottomrule
+\end{tabular}
+\caption{Evaluated chromials and orbital chromatic polynomials of platonic solids}
+\label{tab:platonic-polys-evals}
+\end{table}
