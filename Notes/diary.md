@@ -624,3 +624,6 @@
 ### 2025_04_08
 
 - implemented function to evaluate polynomial function of platonci solids at points 2 ... k
+
+- implemented a function that creates dict of all the evaluations and prints them somewhat nicely
+  - big numbers are written as >= 10^k where k is some number
