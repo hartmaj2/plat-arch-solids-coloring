@@ -225,10 +225,10 @@
 - [x] add tables of evaluated chromatic polynomials compared with evaluated orbital chromatic polynomials
   - figure out name of this chapter (comparing evaluations of chromatic and orbital chromatic polynomials)
 
-- [ ] adapt all tables to the new ordering of the solids
+- [x] adapt all tables to the new ordering of the solids
   - at this occasion also default to latex printing in all the programs
 
-- [ ] comment the figure visualizing pascals triangle recursion on octahedron
+- [x] comment the figure visualizing pascals triangle recursion on octahedron
 
 - [ ] write code that receives all computed n-colorings from SageMath and removes duplicates up to automorphisms
 
