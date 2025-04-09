@@ -55,7 +55,9 @@ def print_caption_and_label(caption : str, label : str, output_type):
     print(r"}",file=output_type)
 
 def get_tabular_format_string(data_col_headers : list[str], data_alignment_str, horiz_space_val : float):
-    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{ALIGNMENT_CHAR_LEFT}{HORIZ_SPACE_BEGIN}{horiz_space_val}{HORIZ_SPACE_END}"
+    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{ALIGNMENT_CHAR_LEFT}"
+    if horiz_space_val != 0: # only add the horiz space sequence if user entered some nonzero value 
+        tabular_format_string += f"{HORIZ_SPACE_BEGIN}{horiz_space_val}{HORIZ_SPACE_END}"
     for _ in data_col_headers:
         tabular_format_string += f"{data_alignment_str}"
     tabular_format_string += f"{CURLY_BRACE_RIGHT}"
