@@ -5,8 +5,9 @@ import re
 
 # TABLE VISUALS
 
-STD_PLAT_TABLE_ORDER = ['tetrahedron', 'cube', 'octahedron', 'dodecahedron', 'icosahedron']
-STD_ARCHIMEDEAN_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron', 'rhombicuboctahedron', 'icosidodecahedron', 'snub cube', 'truncated cuboctahedron', 'truncated icosahedron', 'truncated dodecahedron', 'rhombicosidodecahedron', 'snub dodecahedron', 'truncated icosidodecahedron']
+# the standard order sorts based on vertices -> edges -> faces
+STD_PLAT_TABLE_ORDER = ['tetrahedron', 'octahedron', 'cube', 'icosahedron', 'dodecahedron']
+STD_ARCH_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron', 'rhombicuboctahedron', 'snub cube', 'icosidodecahedron', 'truncated cuboctahedron', 'truncated icosahedron', 'truncated dodecahedron', 'rhombicosidodecahedron', 'snub dodecahedron', 'truncated icosidodecahedron']
 
 TABLE_BEGIN_HERE = r"\begin{table}[H]"
 TABLE_END = r"\end{table}"

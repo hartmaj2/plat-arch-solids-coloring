@@ -82,7 +82,7 @@ def main():
 
     archimedean = sdp.get_archimedean_solid_dict()
     arch_data = get_v_e_f_d_dict(archimedean)
-    tp.print_solid_mult_col_data(arch_data,tp.STD_ARCHIMEDEAN_TABLE_ORDER,sdp.ARCHIMEDEAN_FOLDER,data_headers,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
+    tp.print_solid_mult_col_data(arch_data,tp.STD_ARCH_TABLE_ORDER,sdp.ARCHIMEDEAN_FOLDER,data_headers,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
 
 if __name__ == "__main__":
     main()

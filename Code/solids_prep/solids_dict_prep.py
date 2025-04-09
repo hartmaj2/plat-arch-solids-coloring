@@ -88,10 +88,10 @@ def get_selected_solids_dict(selected_solids : list[str]):
 def get_std_ordered_key_list(solid_data_dict : dict):
     # get sorted array of keys for the dict
     keys = list(solid_data_dict.keys())
-    keys.sort(key = lambda name : len(solid_data_dict[name][JSON_FACES])) # second prioritize num of faces
-    keys.sort(key = lambda name : len(solid_data_dict[name][JSON_EDGES])) # first prioritize num of edges
+    keys.sort(key = lambda name : len(solid_data_dict[name][JSON_FACES])) # third prioritize num of faces
+    keys.sort(key = lambda name : len(solid_data_dict[name][JSON_EDGES])) # second prioritize num of faces
+    keys.sort(key = lambda name : len(solid_data_dict[name][JSON_VERTICES])) # first prioritize num of edges
     return keys
 
-# return a string corresponding to the constant that I can paste directly into code
-def print_string_array(constant_name: str, names : list[str]) -> None:
-    print(f"{constant_name} = {str(names)}")
+# print(get_std_ordered_key_list(get_platonic_solid_dict()))
+# print(get_std_ordered_key_list(get_archimedean_solid_dict()))

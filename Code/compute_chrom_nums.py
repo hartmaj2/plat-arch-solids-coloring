@@ -96,7 +96,7 @@ def main():
     
     archimedean_edges = sdp.get_archimedean_solid_dict()
     archimedean_data = get_chrom_nums_dict(archimedean_edges)
-    tp.print_solid_mult_col_data(archimedean_data,tp.STD_ARCHIMEDEAN_TABLE_ORDER,sdp.ARCHIMEDEAN_FOLDER,data_headers,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
+    tp.print_solid_mult_col_data(archimedean_data,tp.STD_ARCH_TABLE_ORDER,sdp.ARCHIMEDEAN_FOLDER,data_headers,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
 
 if __name__ == "__main__": # __name__ variable is either `__main__` or `json_to_sage`
     main()
