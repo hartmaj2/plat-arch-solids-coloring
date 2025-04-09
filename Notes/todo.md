@@ -230,7 +230,17 @@
 
 - [x] comment the figure visualizing pascals triangle recursion on octahedron
 
-- [ ] write code that receives all computed n-colorings from SageMath and removes duplicates up to automorphisms
+- [x] write code that receives all computed n-colorings from SageMath and removes duplicates up to automorphisms
+
+- [x] add preset colors based on their total amount to the plotting code
+
+## 2025_04_10
+
+- [ ] make cube printing have dotted lines where necessary
+
+- [ ] think about how I could remove colorings that are just permutations of colors through code
+
+- [ ] write about how to calculate colorings using exactly n-colors from the tables showing at most n-colors
 
 ## Main tasks
 
