@@ -45,7 +45,10 @@ def get_labeled_neighbor_dict(filename : str) -> dict[int,dict]:
         neighs[u][v] = i
     return neighs
 
-def get_labeled_edge_clrs(filename : str) -> dict[int,str]:
+# return a dictionary where key is color string and value is a list of edges of that color
+# color is a string in format '#FFFFFF'
+# edges are triples (vtx1,vtx2,edge_label)
+def get_labeled_edge_clrs(filename : str) -> dict[str,list]:
     data = get_solid_data_dict(filename)
     edges = data[EDGES]
     colors = {}
@@ -55,6 +58,7 @@ def get_labeled_edge_clrs(filename : str) -> dict[int,str]:
         colors[color].append((edges[i][0],edges[i][1],i))
     return colors
 
+# return a dictionary where for each edge with label i, it contains the corresponding style string ('solid','dotted',...)
 def get_labeled_edge_styles(filename : str) -> dict[int,str]:
     data = get_solid_data_dict(filename)
     styles = {}
