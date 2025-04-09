@@ -1,4 +1,4 @@
-import t_printing.latex_table_printing as printing
+import t_printing.latex_table_printing as tp
 import solids_prep.solids_dict_prep as sdp
 
 # Creates a table showing basic properties of the archimedean solids like # of vertices, edges, faces, and the degree of each vertex
@@ -20,11 +20,11 @@ ROOT_FOLDER = "Code"
 # OUTPUT SETTING
 
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/Results/graph_props2.md","w")
-output_type = output_file
+# output_file = open(ROOT_FOLDER + "/Results/graph_props2.md","w")
+# output_type = output_file
 
-# import sys
-# output_type = sys.stdout
+import sys
+output_type = sys.stdout
 
 # since all vertices have same degree, we can wlog count the degree of the first one
 def get_degree_of_vtces(solid_data : dict[str,list]):
@@ -78,11 +78,11 @@ def get_v_e_f_d_dict(solid_data_dict : dict):
 def main():
     platonic = sdp.get_platonic_solid_dict()
     plat_data = get_v_e_f_d_dict(platonic)
-    printing.print_solid_mult_col_data(plat_data,sdp.PLATONIC_FOLDER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,output_type=output_type)
+    tp.print_solid_mult_col_data(plat_data,tp.STD_PLAT_TABLE_ORDER,sdp.PLATONIC_FOLDER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,output_type=output_type)
 
     archimedean = sdp.get_archimedean_solid_dict()
     arch_data = get_v_e_f_d_dict(archimedean)
-    printing.print_solid_mult_col_data(arch_data,sdp.ARCHIMEDEAN_FOLDER,data_headers,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
+    tp.print_solid_mult_col_data(arch_data,tp.STD_ARCHIMEDEAN_TABLE_ORDER,sdp.ARCHIMEDEAN_FOLDER,data_headers,caption=ARCH_CAPTION,label=ARCH_LABEL,output_type=output_type)
 
 if __name__ == "__main__":
     main()
