@@ -648,3 +648,5 @@
 - cleaned files inside Code folder
   - removed some unnecessary programs
   - cleaned some existing ones
+
+- added .ipe source files for the figs to git
