@@ -17,3 +17,7 @@ visualize some particular colorings in more accessible way.
 ## 3
 
 \todo[JF]{Námět: popsat jak lze od složitějších přecházet ke klasickému vrcholovému - přes linegraf, graf incidencí, duál  apod. Možná se ukáže, že to pro sage bude snazší redukovat na vrcholové obarvení, možná i se zkoumáním symetrií.}
+
+## 4
+
+\todo[JF]{Tip: naznačit, kterým kontrakcím a přidáním které šipky odpovídají (vysvětlím osobně).}
