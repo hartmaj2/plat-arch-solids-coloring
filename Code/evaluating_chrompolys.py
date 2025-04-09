@@ -23,7 +23,7 @@ THIN_RULE = r"\specialrule{0.2pt}{0.65ex}{0.65ex}"
 
 data_headers = [str(x) for x in range(2,EVAL_NUM_LIMIT+1)]
 
-PLAT_CAPTION = f"Evaluated chromatic polynomial and orbital chromatic polynomial for platonic solids at points 2 to {EVAL_NUM_LIMIT}. For each solid, top row is the chromatic polynomial, bottom row is the orbital chromatic polynoial."
+PLAT_CAPTION = f"Evaluated chromatic polynomial and orbital chromatic polynomial for platonic solids at points 2 to {EVAL_NUM_LIMIT}. For each solid, the top row contains the chromatic polynomial, the bottom row contains the orbital chromatic polynoial."
 PLAT_LABEL = "tab:platonic-polys-evals"
 HEADER = "Platonic solid"
 
