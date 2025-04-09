@@ -5,6 +5,9 @@ import re
 
 # TABLE VISUALS
 
+STD_PLAT_TABLE_ORDER = ['tetrahedron', 'cube', 'octahedron', 'dodecahedron', 'icosahedron']
+STD_ARCHIMEDEAN_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron', 'rhombicuboctahedron', 'icosidodecahedron', 'snub cube', 'truncated cuboctahedron', 'truncated icosahedron', 'truncated dodecahedron', 'rhombicosidodecahedron', 'snub dodecahedron', 'truncated icosidodecahedron']
+
 TABLE_BEGIN_HERE = r"\begin{table}[H]"
 TABLE_END = r"\end{table}"
 CENTERING = r"\centering"
@@ -36,9 +39,9 @@ STRETCH_DEFAULT_VALUE = 1.0
 # prints latex table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
 # on input we expect list of header names passed to `data_col_headrs`
 # we can also specify transformation to be applied on ALL the data in the solid_data_dict (be default, this is just conversion to string)
-def print_solid_mult_col_data(key_data_dict: dict, text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE):
+def print_solid_mult_col_data(key_data_dict: dict, key_order : list[str], text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE):
     adapted_dict = adapt_dict_for_mult_row_data(key_data_dict)
-    print_solid_mult_row_data(adapted_dict,text_col_header,data_col_headrs,caption,label,output_type,transform,data_alignment_str,row_spacing,"")
+    print_solid_mult_row_data(adapted_dict,key_order,text_col_header,data_col_headrs,caption,label,output_type,transform,data_alignment_str,row_spacing,"")
 
 def print_caption_and_label(caption : str, label : str, output_type):
     print(r"\caption{",file=output_type,end="")
@@ -70,7 +73,7 @@ def adapt_dict_for_mult_row_data(key_data_dict : dict) -> dict:
 
 # same like mult col but for some key, there might be multiple rows after another
 # so now, the key_data_dict must contain for each key a list of rows where each row is the size of data_col_headrs
-def print_solid_mult_row_data(key_data_dict: dict, text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE,row_cluster_sep = MIDRULE):
+def print_solid_mult_row_data(key_data_dict: dict, key_order : list[str], text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE,row_cluster_sep = MIDRULE):
     
     # MAYBE CHANGE ROW SPACING
     if row_spacing != STRETCH_DEFAULT_VALUE:
@@ -88,7 +91,7 @@ def print_solid_mult_row_data(key_data_dict: dict, text_col_header : str, data_c
     print(header_line_string,file=output_type)
     print(MIDRULE,file=output_type)
     # END OF HEADER PRINTING
-    for i,solid_name in enumerate(sorted(key_data_dict.keys())):
+    for i,solid_name in enumerate(key_order):
         rows = key_data_dict[solid_name]
         for j,data_row in enumerate(rows):
             table_entry_row = ""

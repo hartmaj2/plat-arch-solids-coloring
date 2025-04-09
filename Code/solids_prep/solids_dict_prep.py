@@ -81,3 +81,17 @@ def get_selected_solids_dict(selected_solids : list[str]):
         if solid_name in selected_solids:
             selected_dict[solid_name] = all_solids[solid_name]
     return selected_dict
+
+
+# THE FOLLOWING WERE USED TO PRINT THE STANDARD KEY ORDER FOR THE SOLID GRAPHS FOR THE TABLE
+# to get the standard ordering of solid keys based on vertex count first and edge count second
+def get_std_ordered_key_list(solid_data_dict : dict):
+    # get sorted array of keys for the dict
+    keys = list(solid_data_dict.keys())
+    keys.sort(key = lambda name : len(solid_data_dict[name][JSON_FACES])) # second prioritize num of faces
+    keys.sort(key = lambda name : len(solid_data_dict[name][JSON_EDGES])) # first prioritize num of edges
+    return keys
+
+# return a string corresponding to the constant that I can paste directly into code
+def print_string_array(constant_name: str, names : list[str]) -> None:
+    print(f"{constant_name} = {str(names)}")

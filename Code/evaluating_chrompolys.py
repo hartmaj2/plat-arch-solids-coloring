@@ -98,7 +98,4 @@ preprocessed_dicts = [preprocess_for_print(d,TOO_LARGE_NUM_LIMIT) for d in dicts
 
 mult_row_dict = create_mult_row_dict(preprocessed_dicts)
 
-tp.print_solid_mult_row_data(mult_row_dict,HEADER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,transform=wrap_with_dollars,row_cluster_sep=THIN_RULE)
-
-
-
+tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,transform=wrap_with_dollars,row_cluster_sep=THIN_RULE)
