@@ -229,24 +229,32 @@ Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
 
 \section{Comparison of evaluations of both types of polynomials}
 
+It is interesting to compare the difference between chromatic polynomial and orbital chromatic polynomial for all the solids by looking at the values of the polynomials at certain points. This can be seen in table \ref{tab:platonic-polys-evals} below.
+
 \begin{table}[H]
 \centering
 \begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
 \toprule
-\textbf{solid name} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
 \midrule
-cube OP & $1$ & $15$ & $154$ & $1115$ & $5955$ & $24836$ & $85260$ \\
-cube P & $2$ & $114$ & $2652$ & $29660$ & $198030$ & $932862$ & $3440024$ \\
-dodecahedron OP & $0$ & $75$ & $1404848$ & $\geq 10^{8}$ & $\geq 10^{11}$ & $\geq 10^{12}$ & $\geq 10^{14}$ \\
-dodecahedron P & $0$ & $7200$ & $\geq 10^{8}$ & $\geq 10^{11}$ & $\geq 10^{13}$ & $\geq 10^{14}$ & $\geq 10^{16}$ \\
-icosahedron OP & $0$ & $0$ & $2$ & $670$ & $33444$ & $640444$ & $6878900$ \\
-icosahedron P & $0$ & $0$ & $240$ & $80400$ & $4012560$ & $\geq 10^{7}$ & $\geq 10^{8}$ \\
-octahedron OP & $0$ & $1$ & $10$ & $55$ & $215$ & $665$ & $1736$ \\
-octahedron P & $0$ & $6$ & $96$ & $780$ & $4080$ & $15330$ & $45696$ \\
-tetrahedron OP & $0$ & $0$ & $1$ & $5$ & $15$ & $35$ & $70$ \\
-tetrahedron P & $0$ & $0$ & $24$ & $120$ & $360$ & $840$ & $1680$ \\
+tetrahedron & $0$ & $0$ & $24$ & $120$ & $360$ & $840$ & $1680$ \\
+ & $0$ & $0$ & $1$ & $5$ & $15$ & $35$ & $70$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+cube & $2$ & $114$ & $2652$ & $29660$ & $198030$ & $932862$ & $3440024$ \\
+ & $1$ & $15$ & $154$ & $1115$ & $5955$ & $24836$ & $85260$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+octahedron & $0$ & $6$ & $96$ & $780$ & $4080$ & $15330$ & $45696$ \\
+ & $0$ & $1$ & $10$ & $55$ & $215$ & $665$ & $1736$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+ & $0$ & $75$ & $1404848$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+icosahedron & $0$ & $0$ & $240$ & $80400$ & $4012560$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+ & $0$ & $0$ & $2$ & $670$ & $33444$ & $640444$ & $6878900$ \\
 \bottomrule
 \end{tabular}
-\caption{Evaluated chromials and orbital chromatic polynomials of platonic solids}
+\caption{Evaluated chromatic polynomial and orbital chromatic polynomial for platonic solids at points 2 to 8. For each solid, top row is the chromatic polynomial, bottom row is the orbital chromatic polynoial.}
 \label{tab:platonic-polys-evals}
 \end{table}
+
+It is important to note, that in table \ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the amount of colorings with exactly $n$ colors but with at most $n$ colors. So also colorings that used only a proper subset of the $n$ available colors are counted as well.
