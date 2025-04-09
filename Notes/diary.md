@@ -627,3 +627,15 @@
 
 - implemented a function that creates dict of all the evaluations and prints them somewhat nicely
   - big numbers are written as >= 10^k where k is some number
+
+### 2025_04_09
+
+- tested a nicer formula for orbital chromatic polynomials of complete graphs
+  - [link](https://www.desmos.com/calculator/wzsfctkbso)
+
+- found out, that the recursive formula that is used to calculate the chromatic polynomial cannot be used for the orbital chromatic polynomial
+  - the reason is, that identifying vertices or adding an edge changes which colorings are same up to automorphism since the automorphism group is different for the resulting graph
+  - [link](https://www.desmos.com/calculator/wzsfctkbso)
+
+- made the table with evaluated chromatic polynomials in thesis nicer
+  - had to write a new function for t_printing where the dict has for each key multiple rows
