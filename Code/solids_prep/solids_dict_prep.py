@@ -95,3 +95,12 @@ def get_std_ordered_key_list(solid_data_dict : dict):
 
 # print(get_std_ordered_key_list(get_platonic_solid_dict()))
 # print(get_std_ordered_key_list(get_archimedean_solid_dict()))
+
+
+# FOLLOWING FUNCTION CAN BE USED TO GET A SAGE COMMAND THAT BUILDS A GIVEN GRAPH
+# useful when want to run a job in sage on the university pc and what to run just a single command on the graph
+def print_sage_graph_command(solid_name : str) -> None:
+    solids = get_all_solids_dict()
+    edges = solids[solid_name][JSON_EDGES]
+    print(solid_name)
+    print(f"g = Graph({edges})")
