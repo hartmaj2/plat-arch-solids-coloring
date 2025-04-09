@@ -34,11 +34,11 @@ ROOT_FOLDER = "Code"
 # OUTPUT SETTING
 
 # uncomment following 2 lines to output to a folder
-output_file = open(ROOT_FOLDER + "/Results/poly_evals.md","w")
-output_type = output_file
+# output_file = open(ROOT_FOLDER + "/Results/poly_evals.md","w")
+# output_type = output_file
 
-# import sys
-# output_type = sys.stdout
+import sys
+output_type = sys.stdout
 
 # returns some polynomial of platonic solids
 def get_platonic_poly_dict(poly_calc_func : Callable[[Graph],Any]) -> dict[str,Any]:
@@ -50,9 +50,6 @@ def get_platonic_poly_dict(poly_calc_func : Callable[[Graph],Any]) -> dict[str,A
         poly = poly_calc_func(g)
         plat_polys[name] = poly
     return plat_polys
-
-chrompolys = get_platonic_poly_dict(ocp.chromatic_polynomial2)
-orbchrompolys = get_platonic_poly_dict(ocp.orbital_chromatic_polynomial2)
 
 # evaluates the polynomials from 2 to k (start at 2 because obviously no graph can be 1 colored as long as it has some edge)
 def get_plat_poly_evaluations(poly_calc_func : Callable[[Graph],Any], k : int) -> dict [str,tuple]:
@@ -98,4 +95,4 @@ preprocessed_dicts = [preprocess_for_print(d,TOO_LARGE_NUM_LIMIT) for d in dicts
 
 mult_row_dict = create_mult_row_dict(preprocessed_dicts)
 
-tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,transform=wrap_with_dollars,row_cluster_sep=THIN_RULE)
+tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
