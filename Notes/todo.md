@@ -217,13 +217,16 @@
 
 ## 2025_04_09
 
-- [ ] make table printing so I can define the order in which the solids appear in the table
+- [x] make table printing so I can define the order in which the solids appear in the table
 
-- [ ] let user enter how much spacing they want next to the latex key column 
+- [x] let user enter how much spacing they want next to the latex key column 
   - best to make this compatible with md table printing as well (can just ignore the parameter)
 
-- [ ] add tables of evaluated chromatic polynomials compared with evaluated orbital chromatic polynomials
+- [x] add tables of evaluated chromatic polynomials compared with evaluated orbital chromatic polynomials
   - figure out name of this chapter (comparing evaluations of chromatic and orbital chromatic polynomials)
+
+- [ ] adapt all tables to the new ordering of the solids
+  - at this occasion also default to latex printing in all the programs
 
 - [ ] write code that receives all computed n-colorings from SageMath and removes duplicates up to automorphisms
 
