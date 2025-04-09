@@ -37,41 +37,8 @@ STRETCH_DEFAULT_VALUE = 1.0
 # on input we expect list of header names passed to `data_col_headrs`
 # we can also specify transformation to be applied on ALL the data in the solid_data_dict (be default, this is just conversion to string)
 def print_solid_mult_col_data(key_data_dict: dict, text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE):
-    
-    # MAYBE CHANGE ROW SPACING
-    if row_spacing != STRETCH_DEFAULT_VALUE:
-        print(f"{STRETCH_COMMAND}{row_spacing:.1f}{CURLY_BRACE_RIGHT}",file=output_type)
-
-    # PRINT HEADER AND ENVIRONMENT THINGIES
-    print(TABLE_BEGIN_HERE,file=output_type)
-    print(CENTERING,file=output_type)
-    # PRINT TABULAR FORMAT STRING
-    tabular_format_string = get_tabular_format_string(data_col_headrs, data_alignment_str)
-    print(tabular_format_string,file=output_type)
-    print(TOPRULE,file=output_type)
-    # PRINT HEADER
-    header_line_string = get_header_line_string(text_col_header,data_col_headrs)
-    print(header_line_string,file=output_type)
-    print(MIDRULE,file=output_type)
-    # END OF HEADER PRINTING
-    for solid_name in sorted(key_data_dict.keys()):
-        solid_data_cols = key_data_dict[solid_name]
-        table_entry_row = f"{solid_name}"
-        for solid_data_entry in solid_data_cols:
-            table_entry_row += f" {LATEX_COL_SEPARATOR} {transform(solid_data_entry)}"
-        table_entry_row += f" {LATEX_NEWLINE}"
-        print(table_entry_row,file=output_type)
-    print(BOTTOMRULE,file=output_type)
-    print(TABULAR_END,file=output_type)
-    # PRINT CAPTION AND LABEL
-    print_caption_and_label(caption,label,output_type)
-    print(TABLE_END,file=output_type)
-
-    # MAYBE CHANGE ROW SPACING BACK TO DEFAULT
-    if row_spacing != STRETCH_DEFAULT_VALUE:
-        print(f"{STRETCH_COMMAND}{STRETCH_DEFAULT_VALUE}{CURLY_BRACE_RIGHT}",file=output_type)
-
-    print(file=output_type)
+    adapted_dict = adapt_dict_for_mult_row_data(key_data_dict)
+    print_solid_mult_row_data(adapted_dict,text_col_header,data_col_headrs,caption,label,output_type,transform,data_alignment_str,row_spacing,"")
 
 def print_caption_and_label(caption : str, label : str, output_type):
     print(r"\caption{",file=output_type,end="")
@@ -94,3 +61,53 @@ def get_header_line_string(text_col_header : str, data_col_headers : list[str]):
         header_line_string += f" {LATEX_COL_SEPARATOR} {BOLDTEXT}{col_headr}{CURLY_BRACE_RIGHT}"
     header_line_string += f" {LATEX_NEWLINE}"
     return header_line_string
+
+def adapt_dict_for_mult_row_data(key_data_dict : dict) -> dict:
+    new = {}
+    for key,val in zip(key_data_dict.keys(),key_data_dict.values()):
+        new[key] = [val] # this creates a single row with the value val
+    return new
+
+# same like mult col but for some key, there might be multiple rows after another
+# so now, the key_data_dict must contain for each key a list of rows where each row is the size of data_col_headrs
+def print_solid_mult_row_data(key_data_dict: dict, text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE,row_cluster_sep = MIDRULE):
+    
+    # MAYBE CHANGE ROW SPACING
+    if row_spacing != STRETCH_DEFAULT_VALUE:
+        print(f"{STRETCH_COMMAND}{row_spacing:.1f}{CURLY_BRACE_RIGHT}",file=output_type)
+
+    # PRINT HEADER AND ENVIRONMENT THINGIES
+    print(TABLE_BEGIN_HERE,file=output_type)
+    print(CENTERING,file=output_type)
+    # PRINT TABULAR FORMAT STRING
+    tabular_format_string = get_tabular_format_string(data_col_headrs, data_alignment_str)
+    print(tabular_format_string,file=output_type)
+    print(TOPRULE,file=output_type)
+    # PRINT HEADER
+    header_line_string = get_header_line_string(text_col_header,data_col_headrs)
+    print(header_line_string,file=output_type)
+    print(MIDRULE,file=output_type)
+    # END OF HEADER PRINTING
+    for i,solid_name in enumerate(sorted(key_data_dict.keys())):
+        rows = key_data_dict[solid_name]
+        for j,data_row in enumerate(rows):
+            table_entry_row = ""
+            if j == 0: # only the first row in the cluster has the name of the solid there
+                table_entry_row += f"{solid_name}"
+            for solid_data_entry in data_row:
+                table_entry_row += f" {LATEX_COL_SEPARATOR} {transform(solid_data_entry)}"
+            table_entry_row += f" {LATEX_NEWLINE}"
+            print(table_entry_row,file=output_type)
+        if row_cluster_sep != "" and i != len(key_data_dict) - 1: # print the cluster separator only if there is some (can be a midrule or something similar)
+            print(row_cluster_sep)
+    print(BOTTOMRULE,file=output_type)
+    print(TABULAR_END,file=output_type)
+    # PRINT CAPTION AND LABEL
+    print_caption_and_label(caption,label,output_type)
+    print(TABLE_END,file=output_type)
+
+    # MAYBE CHANGE ROW SPACING BACK TO DEFAULT
+    if row_spacing != STRETCH_DEFAULT_VALUE:
+        print(f"{STRETCH_COMMAND}{STRETCH_DEFAULT_VALUE}{CURLY_BRACE_RIGHT}",file=output_type)
+
+    print(file=output_type)
