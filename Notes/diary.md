@@ -639,3 +639,12 @@
 
 - made the table with evaluated chromatic polynomials in thesis nicer
   - had to write a new function for t_printing where the dict has for each key multiple rows
+
+- added possibility to set the order in which the tables are solids
+  - can be std order or any other given order
+
+- added possibility to change the horiz space amount using a parameter
+
+- cleaned files inside Code folder
+  - removed some unnecessary programs
+  - cleaned some existing ones
