@@ -228,6 +228,8 @@
 - [ ] adapt all tables to the new ordering of the solids
   - at this occasion also default to latex printing in all the programs
 
+- [ ] comment the figure visualizing pascals triangle recursion on octahedron
+
 - [ ] write code that receives all computed n-colorings from SageMath and removes duplicates up to automorphisms
 
 ## Main tasks
