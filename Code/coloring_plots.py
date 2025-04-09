@@ -74,8 +74,51 @@ def merge_images(images : list[Image.Image]):
 
     collage.save(f"{output_path}{collage_name}.png")
 
+# converts a MathSage coloring into a list indexed by vertex and containing the value of the color at each position
+def all_graph_colorings2(g : Graph, num_clrs : int, *args):
+    n = len(g.vertices())
+    colorings = all_graph_colorings(g,num_clrs,*args) # coloring is represented as dict in format: color -> list of vertices with that color
+    clrings_list = []
+    for i,coloring in enumerate(colorings):
+        clring_as_list = [0 for _ in range(n)]
+        for color in coloring:
+            for vtx in coloring[color]:
+                clring_as_list[vtx] = color
+        clrings_list.append(clring_as_list)
+    return clrings_list
 
-print("generating coloring images...")
-images = create_images(g,max_clrs)
-print("merging images...")
-merge_images(images)
+# check if two colorings (represented as list) equivalent under given automorphism (represented as list of cycles)
+def check_eqiv_under_automorph(c1 : list[int], c2 : list[int], a : list[tuple]):
+    for cycle in a:
+        k = len(cycle)
+        for i in range(k):
+            if c1[cycle[i]] != c2[cycle[(i+1)%k]]:
+                return False
+    return True
+
+
+# TODO: make the following into a function
+solid_name = "octahedron"
+g = Graph(slp.get_labeled_neighbor_dict(solid_name))
+clrings = all_graph_colorings2(g,5)
+is_first_of_kind = [True for _ in clrings]
+
+for i in range(len(clrings)):
+    for j in range(i+1,len(clrings)):
+        c1 = clrings[i]
+        c2 = clrings[j]
+        is_equiv = False
+        for cycle in [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]: # important to set singletons to True!
+            if check_eqiv_under_automorph(c1,c2,cycle):
+                is_equiv = True
+                is_first_of_kind[j] = False
+
+# TODO: add function to prune colorings
+
+print(f"Uniqueness vector: {is_first_of_kind}")
+print(f"Eqivalence classes: {is_first_of_kind.count(True)}")
+
+# print("generating coloring images...")
+# images = create_images(g,max_clrs)
+# print("merging images...")
+# merge_images(images)
