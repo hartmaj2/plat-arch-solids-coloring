@@ -21,7 +21,9 @@ ALIGNMENT_CHAR_CENTER = 'c'
 ALIGNMENT_CHAR_LEFT = 'l'
 
 BOLDTEXT = r"\textbf{"
-HORIZ_SPACE = r"@{\hspace{1.5cm}}"
+HORIZ_SPACE_BEGIN = r"@{\hspace{"
+HORIZ_SPACE_END = r"cm}}"
+DEFAULT_HORIZ_SPACE_VAL = 1.5
 
 TOPRULE = r"\toprule"
 MIDRULE = r"\midrule"
@@ -39,9 +41,9 @@ STRETCH_DEFAULT_VALUE = 1.0
 # prints latex table given the dictionary of data, where the dictionary points from name -> [data1, ... , dataN]
 # on input we expect list of header names passed to `data_col_headrs`
 # we can also specify transformation to be applied on ALL the data in the solid_data_dict (be default, this is just conversion to string)
-def print_solid_mult_col_data(key_data_dict: dict, key_order : list[str], text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE):
+def print_solid_mult_col_data(key_data_dict: dict, key_order : list[str], text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, first_col_horiz_space = DEFAULT_HORIZ_SPACE_VAL,row_spacing = STRETCH_DEFAULT_VALUE):
     adapted_dict = adapt_dict_for_mult_row_data(key_data_dict)
-    print_solid_mult_row_data(adapted_dict,key_order,text_col_header,data_col_headrs,caption,label,output_type,transform,data_alignment_str,row_spacing,"")
+    print_solid_mult_row_data(adapted_dict,key_order,text_col_header,data_col_headrs,caption,label,output_type,transform,data_alignment_str,row_spacing,first_col_horiz_space,"")
 
 def print_caption_and_label(caption : str, label : str, output_type):
     print(r"\caption{",file=output_type,end="")
@@ -51,8 +53,8 @@ def print_caption_and_label(caption : str, label : str, output_type):
     print(label,file=output_type,end="")
     print(r"}",file=output_type)
 
-def get_tabular_format_string(data_col_headers : list[str], data_alignment_str):
-    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{ALIGNMENT_CHAR_LEFT}{HORIZ_SPACE}"
+def get_tabular_format_string(data_col_headers : list[str], data_alignment_str, horiz_space_val : float):
+    tabular_format_string = f"{TABULAR_BEGIN}{CURLY_BRACE_LEFT}{ALIGNMENT_CHAR_LEFT}{HORIZ_SPACE_BEGIN}{horiz_space_val}{HORIZ_SPACE_END}"
     for _ in data_col_headers:
         tabular_format_string += f"{data_alignment_str}"
     tabular_format_string += f"{CURLY_BRACE_RIGHT}"
@@ -73,7 +75,7 @@ def adapt_dict_for_mult_row_data(key_data_dict : dict) -> dict:
 
 # same like mult col but for some key, there might be multiple rows after another
 # so now, the key_data_dict must contain for each key a list of rows where each row is the size of data_col_headrs
-def print_solid_mult_row_data(key_data_dict: dict, key_order : list[str], text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE,row_cluster_sep = MIDRULE):
+def print_solid_mult_row_data(key_data_dict: dict, key_order : list[str], text_col_header : str, data_col_headrs : list[str], caption = CAPTION_PLACEHOLDER, label = LABEL_PLACEHOLDER, output_type = sys.stdout, transform = lambda x : str(x), data_alignment_str = ALIGNMENT_CHAR_CENTER, row_spacing = STRETCH_DEFAULT_VALUE,first_col_horiz_space=DEFAULT_HORIZ_SPACE_VAL,row_cluster_sep = MIDRULE):
     
     # MAYBE CHANGE ROW SPACING
     if row_spacing != STRETCH_DEFAULT_VALUE:
@@ -83,7 +85,7 @@ def print_solid_mult_row_data(key_data_dict: dict, key_order : list[str], text_c
     print(TABLE_BEGIN_HERE,file=output_type)
     print(CENTERING,file=output_type)
     # PRINT TABULAR FORMAT STRING
-    tabular_format_string = get_tabular_format_string(data_col_headrs, data_alignment_str)
+    tabular_format_string = get_tabular_format_string(data_col_headrs, data_alignment_str,first_col_horiz_space)
     print(tabular_format_string,file=output_type)
     print(TOPRULE,file=output_type)
     # PRINT HEADER
