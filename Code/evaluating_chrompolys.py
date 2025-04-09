@@ -18,10 +18,12 @@ NAME = sdp.JSON_NAME
 
 # OUTPUT TABLE SETTINGS
 EVAL_NUM_LIMIT = 8
+TOO_LARGE_NUM_LIMIT = 10_000_000
+THIN_RULE = r"\specialrule{0.2pt}{0.65ex}{0.65ex}"
 
 data_headers = [str(x) for x in range(2,EVAL_NUM_LIMIT+1)]
 
-PLAT_CAPTION = "Evaluated chromials and orbital chromatic polynomials of platonic solids"
+PLAT_CAPTION = f"Evaluated chromatic polynomial and orbital chromatic polynomial for platonic solids at points 2 to {EVAL_NUM_LIMIT}. For each solid, top row is the chromatic polynomial, bottom row is the orbital chromatic polynoial."
 PLAT_LABEL = "tab:platonic-polys-evals"
 HEADER = "solid name"
 
@@ -61,41 +63,42 @@ def get_plat_poly_evaluations(poly_calc_func : Callable[[Graph],Any], k : int) -
         evals[name] = vals
     return evals
 
-# append string to key to distinguish between entries for chrompoly and orbchrompoly
-def append_to_keys(d : dict, appendix : str) -> dict:
-    new = {}
-    for key,val in zip(d.keys(),d.values()):
-        new[key + " " + appendix] = val
-    return new
-
 # for nicer look of the table if the value is 1_234_332 just replaces with >= 10^6
-def get_greater_or_eq_string(val : int):
-    return f"\\geq 10^{{{int(math.log10(val))}}}"
+def get_approx_string(val : int):
+    return f"\\approx 10^{{{int(math.log10(val))}}}"
 
 # for latex printing
 def wrap_with_dollars(s : str):
     return "$" + s + "$"
 
 # preprocesses the value so that all vals that are at least scientific_start get stored in scientific notation
-def preprocess_for_print(d : dict, scientific_start : int) -> dict:
+def preprocess_for_print(d : dict, too_large_num_start : int) -> dict:
     new = {}
     for key,tup in zip(d.keys(),d.values()):
         new_vals = []
         for val in tup:
-            if val >= scientific_start:
-                new_vals.append(get_greater_or_eq_string(val))
+            if val >= too_large_num_start:
+                new_vals.append(get_approx_string(val))
             else:
                 new_vals.append(str(val))
         new[key] = tuple(new_vals)
     return new
 
-plat_chrom_evals = append_to_keys(get_plat_poly_evaluations(ocp.chromatic_polynomial2,8),"P")
-plat_ochrom_evals = append_to_keys(get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,8),"OP")
+# takes a list of dicts where each dict has the same key set and then appends the rows in the dicts to create multiple rows for each key
+def create_mult_row_dict(dicts : list[dict]):
+    new = {}
+    for key in dicts[0].keys():
+        new[key] = []
+        for dict in dicts:
+            new[key].append(dict[key])
+    return new
 
-combined = plat_chrom_evals | plat_ochrom_evals
-combined = preprocess_for_print(combined,10_000_000)
+dicts = [get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT),get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT)]
+preprocessed_dicts = [preprocess_for_print(d,TOO_LARGE_NUM_LIMIT) for d in dicts]
 
-tp.print_solid_mult_col_data(combined,HEADER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,transform=wrap_with_dollars)
+mult_row_dict = create_mult_row_dict(preprocessed_dicts)
+
+tp.print_solid_mult_row_data(mult_row_dict,HEADER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,transform=wrap_with_dollars,row_cluster_sep=THIN_RULE)
 
 
 
