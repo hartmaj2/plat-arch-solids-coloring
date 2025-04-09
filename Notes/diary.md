@@ -650,3 +650,7 @@
   - cleaned some existing ones
 
 - added .ipe source files for the figs to git
+
+- implemented the algorithm that prunes the colorings that are automorphic to each other
+
+- also improved coloring plots code to choose colors based on the order I set up in an array
