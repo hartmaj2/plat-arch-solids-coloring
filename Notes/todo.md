@@ -270,6 +270,8 @@
 
 ### Misc
 
+- [ ] eliminate only colorings up to rotations for cube 4-colorings (what will be the difference)
+
 - [ ] mention explicit formula for orbital chromatic polynomial of complete graph using binomial coefficient
 
 - [ ] time how long orbpoly vs chrompoly run
