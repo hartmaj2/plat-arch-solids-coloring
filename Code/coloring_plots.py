@@ -162,7 +162,6 @@ def get_dictionarized(clrings : list[list]) -> list[dict]:
 # colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
 # colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
 colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
-colorings = get_non_automorphic(G,get_canonized(all_graph_colorings_list(G,NUM_CLRS))) # up to rotations/reflections and up to permutations
 
 print("generating coloring images...")
 # colorings = CLRING_FUNCTION(g,NUM_CLRS) 
