@@ -659,3 +659,15 @@
 
 - added dotted lines to the cube layout config file
 - added the schema from which the layouts were derived
+
+- tried to remove colorings same up to permutation by first pruning automorphism equivalent colorings and then leaving only the colorings that were in canonic form
+  - canonic form - when going in order from left to right through the list repres of coloring, the colors were encountered in increasing value
+  - this would work if we did not apply automorphisms on the colorings as well
+  - automorphisms have the effect, that two colorings are considered different because colors are permuted differently but also both the colorings can be in canonic form, because the automorphism caused the other coloring to become canonical again
+
+- first canonizing and then removing automorphisms does also not help
+  - the colorings can be both canonical but same up to automorphism combined with permuting colors
+
+- implemented the automorphisms up to permutations of color as well using a difference equivalency checking function
+  - this function tries to generate a mapping between the corresponding colors on the fly
+  - so when an automorphism is tried, it tries to permute the colors as well to match the other coloring
