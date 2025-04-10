@@ -236,9 +236,10 @@
 
 ## 2025_04_10
 
-- [ ] make cube printing have dotted lines where necessary
+- [x] make cube printing have dotted lines where necessary
 
-- [ ] think about how I could remove colorings that are just permutations of colors through code
+- [ ] implement pruning of colorings that are not in canonic form 
+  - canonic form of coloring is (first occurences of colors as ints when going through coloring as list of ints must be in increasing order) 
 
 - [ ] write about how to calculate colorings using exactly n-colors from the tables showing at most n-colors
 
