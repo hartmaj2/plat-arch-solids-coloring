@@ -676,3 +676,6 @@
   - my result does not correspond with the generated picture
   - some colorings that I think should be different are same (maybe rotating and reflecting combined makes them same)
   - would be interesting to try to disallow rotations
+
+- wrote formula and proof for computing amount of colorings using exactly n-colors using value of chromatic polynomial
+  - used to formula to generate a table of amounts of 2,...,8 colorings of the platonic solids
