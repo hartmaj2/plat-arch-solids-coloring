@@ -19,6 +19,8 @@ from sage.all import Graph
 from sage.all import *
 from sage.graphs.graph_coloring import all_graph_colorings
 
+from collections.abc import Callable
+
 # OUTPUT SETTING
 output_path = "Code/Plots/"
 filename_base = "res"
@@ -31,7 +33,7 @@ COLORS_TO_USE = ["#FF0000","#00FF00","#0000FF","#FFFF00","#FF00FF","#00FFFF"]
 
 # SOLID SETTINGS
 SOLID_NAME = "cube"
-NUM_CLRS = 3
+NUM_CLRS = 4
 
 # INPUT SETTINGS
 G = Graph(slp.get_labeled_neighbor_dict(SOLID_NAME))
@@ -101,11 +103,32 @@ def check_eqiv_under_automorph(c1 : list[int], c2 : list[int], automorphism_cycl
                 return False
     return True
 
+# checks if two colorings are equivalent up to automorphism while also trying if the colors are not just permuted
+# the alg works by trying to construct a mapping from colors of the first coloring to colors of the second coloring
+def check_equiv_under_automorph_and_permutation(c1 : list[int], c2 : list[int], automorphism_cycles : list[tuple]) -> bool:
+    f = {} # possible mapping that is being constructed on the fly
+    f_inv = {} # inverse of the mapping to be able to check if somebody has mapped to the image we want earlier
+    for cycle in automorphism_cycles:
+        k = len(cycle)
+        for i in range(k):
+            b1 = c1[cycle[i]]
+            b2 = c2[cycle[(i+1)%k]]
+            if b1 in f: # color b1 is already mapped to some other color
+                if f[b1] != b2:
+                    return False
+            else:
+                if b2 in f_inv: # some other color has already mapped to this color
+                    return False
+                else:
+                    f[b1] = b2
+                    f[b2] = b1
+    return True
+
 # function to prune colorings
 # 1. prepare a list of indicators if the coloring still has no lower indexed match
 # 2. go through all colorings while considering only the ones that still have no lower match
 # 3. for no match coloring -> check all other higher indexed colorings and if I can get to them by any automorphism, if yes, then mark it at matched
-def get_non_automorphic(g : Graph, clrings : list[list]) -> list[list]:
+def get_non_automorphic(g : Graph, clrings : list[list], equiv_comparer : Callable[[list,list,list],bool] = check_eqiv_under_automorph) -> list[list]:
 
     still_unique = [True for _ in clrings]
     automorphisms_as_cycles = [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]
@@ -116,7 +139,7 @@ def get_non_automorphic(g : Graph, clrings : list[list]) -> list[list]:
             continue
         for j in range(i+1,len(clrings)):
             for a_cycles in automorphisms_as_cycles:
-                if check_eqiv_under_automorph(clrings[i],clrings[j],a_cycles):
+                if equiv_comparer(clrings[i],clrings[j],a_cycles):
                     still_unique[j] = False
 
     # return the colorings that remained unique
@@ -161,7 +184,8 @@ def get_dictionarized(clrings : list[list]) -> list[dict]:
 # IMPORTANT: below pick the function to use here
 # colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
 # colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
-colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
+# colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
+colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS),check_equiv_under_automorph_and_permutation)
 
 print("generating coloring images...")
 # colorings = CLRING_FUNCTION(g,NUM_CLRS) 
