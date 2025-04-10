@@ -269,6 +269,8 @@
 
 ### Misc
 
+- [ ] mention explicit formula for orbital chromatic polynomial of complete graph using binomial coefficient
+
 - [ ] time how long orbpoly vs chrompoly run
 
 - [ ] what do operations on the Platonic solids do on the graphs?
