@@ -254,7 +254,7 @@
 
 ### Improve definitions
 
-- [ ] distinguish between proper and improper colorings in the definitionsf
+- [ ] distinguish between proper and improper colorings in the definitions
 
 ### Basic chromatic polynomials
 
