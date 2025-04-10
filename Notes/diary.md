@@ -654,3 +654,8 @@
 - implemented the algorithm that prunes the colorings that are automorphic to each other
 
 - also improved coloring plots code to choose colors based on the order I set up in an array
+
+### 2025_04_10
+
+- added dotted lines to the cube layout config file
+- added the schema from which the layouts were derived
