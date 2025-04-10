@@ -271,5 +271,31 @@ Let us denote $!P(G,n)$ the amount of colorings of graph $G$ using \emph{exactly
 
 Note that formula \ref{eqn:exactly-n-colors} above holds also for the orbital chromatic polynomial $OP(G,x)$ and corresponding values $!OP(G,n)$. Using these formulas, we can then simplify table \ref{tab:platonic-polys-evals} above to get a following table:
 
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\toprule
+\textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\midrule
+tetrahedron & $0$ & $0$ & $24$ & $0$ & $0$ & $0$ & $0$ \\
+ & $0$ & $0$ & $1$ & $0$ & $0$ & $0$ & $0$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+octahedron & $0$ & $6$ & $72$ & $360$ & $720$ & $0$ & $0$ \\
+ & $0$ & $1$ & $6$ & $15$ & $15$ & $0$ & $0$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+cube & $2$ & $108$ & $2208$ & $17520$ & $57600$ & $80640$ & $40320$ \\
+ & $1$ & $12$ & $100$ & $485$ & $1290$ & $1680$ & $840$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+icosahedron & $0$ & $0$ & $240$ & $79200$ & $3533760$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+ & $0$ & $0$ & $2$ & $660$ & $29454$ & $420336$ & $2654400$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+ & $0$ & $75$ & $1404548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
+\bottomrule
+\end{tabular}
+\caption{Numbers of colorings using exactly 2 to 8 colors. For each solid, the top row contains the value when counting also symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism.}
+\label{tab:platonic-exactly-n-clrs}
+\end{table}
+
 \vspace{5pt}
-\todo{TODO: Implement code to generate the table}
+\todo{TODO: Add visual example of 3-colorings of cube up to automorphisms.}
