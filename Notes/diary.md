@@ -671,3 +671,8 @@
 - implemented the automorphisms up to permutations of color as well using a difference equivalency checking function
   - this function tries to generate a mapping between the corresponding colors on the fly
   - so when an automorphism is tried, it tries to permute the colors as well to match the other coloring
+
+- tried to enumerate all cube colorings up to rotations/reflections while also removing permuted colorings
+  - my result does not correspond with the generated picture
+  - some colorings that I think should be different are same (maybe rotating and reflecting combined makes them same)
+  - would be interesting to try to disallow rotations
