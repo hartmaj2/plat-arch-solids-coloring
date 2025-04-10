@@ -238,16 +238,20 @@
 
 - [x] make cube printing have dotted lines where necessary
 
-- [ ] implement pruning of colorings that are not in canonic form 
+- [x] implement pruning of colorings that are not in canonic form 
   - canonic form of coloring is (first occurences of colors as ints when going through coloring as list of ints must be in increasing order) 
 
-- [ ] write about how to calculate colorings using exactly n-colors from the tables showing at most n-colors
+- [x] write about how to calculate colorings using exactly n-colors from the tables showing at most n-colors
+
+- [x] compute table with # of number of colorings using exactly n colors with respect to symmetries
+  - write a program that does this by the method we used at the meeting with supervisor
+  - describe how the method works
 
 ## Main tasks
 
-- [ ] compute table with # of number of colorings using exactly n colors with respect to symmetries
-  - write a program that does this by the method we used at the meeting with supervisor
-  - describe how the method works
+- [ ] add visual example with 3-colorings of cube up to automorphism
+  - enumerate all the colorings
+  - show that some colorings are just permutations of colors of other colorings
 
 ## Side tasks
 
