@@ -24,6 +24,7 @@ def get_solid_data_dict(filename : str) -> dict:
         return data
 
 # loads the solid config data from the yaml file
+# the dict has vtx index as key and the tuple representing (x,y) position as value
 def get_pos_dict(filename : str) -> dict:
     pos = {}
     data = get_solid_data_dict(filename)
