@@ -1,7 +1,4 @@
-import json
 import yaml
-from collections.abc import Callable
-from typing import Any, IO
 
 ROOT_FOLDER = "Code/JsonGraphs/Layouts/"
 
