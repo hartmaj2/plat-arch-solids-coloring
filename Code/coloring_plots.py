@@ -31,26 +31,24 @@ COLORS_TO_USE = ["#FF0000","#00FF00","#0000FF","#FFFF00","#FF00FF","#00FFFF"]
 
 # SOLID SETTINGS
 SOLID_NAME = "cube"
-NUM_CLRS = 2
+NUM_CLRS = 3
 
 # INPUT SETTINGS
-edges = sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES]
-g = Graph(slp.get_labeled_neighbor_dict(SOLID_NAME))
-positions = slp.get_pos_dict(SOLID_NAME)
-styles = slp.get_labeled_edge_styles(SOLID_NAME)
+G = Graph(slp.get_labeled_neighbor_dict(SOLID_NAME))
+POSITIONS = slp.get_pos_dict(SOLID_NAME)
+STYLES = slp.get_labeled_edge_styles(SOLID_NAME)
 
 # uncomment following to use edge colors
 # colors = slp.get_labeled_edge_clrs(SOLID_NAME)
 
-# clrings = all_graph_colorings(graph,num_clrs,hex_colors=True)
-
 # creates separate images for all the colorings
-# the colorings must be passed as a list of dicts
-# each dict corresponds to one coloring, key is color string and value is list of indices of vertices of that color
-def create_images(graph : Graph, clrings : list[dict]) -> list[Image.Image]:
+# the colorings must be passed as a list of lists where each list is an ordered list of color values for the given vertices
+# positions is a dict where keys are the vertex indices and values are (x,y) coordinate tuples
+# styles is a dict where keys are edge labels and values are strings in format 'solid', 'dotted' etc.
+def create_images(graph : Graph, positions : dict[int,tuple], styles : dict[int,str], clrings : list[list]) -> list[Image.Image]:
     images = []
 
-    for c in clrings:
+    for c in get_dictionarized(clrings):
         graphic = graph.plot(vertex_labels=VERTEX_LABEL,edge_labels=EDGE_LABELS,pos=positions,vertex_colors=c,edge_styles=styles)
         # store each image in temporary file and then create corresponding PIL image
         with tempfile.NamedTemporaryFile(suffix=".png",delete=True) as tmp:
@@ -81,19 +79,8 @@ def merge_images(images : list[Image.Image]):
 
     collage.save(f"{output_path}{collage_name}.png")
 
-# wrapper for all colorings function that replaces the preset colors with mine
-def all_graph_colorings2(g : Graph, num_clrs : int, *args) -> list[dict]:
-    colorings = all_graph_colorings(g,num_clrs,*args)
-    new_colorings = []
-    for clring in colorings:
-        new_clring = {}
-        for i,clr in enumerate(clring.keys()):
-            new_clring[COLORS_TO_USE[i]] = clring[clr]
-        new_colorings.append(new_clring)
-    return new_colorings
-
-# converts a MathSage coloring into a list indexed by vertex and containing the value of the color at each position
-def all_graph_colorings_as_lists(g : Graph, num_clrs : int, *args):
+# returns a MathSage all colorings where each coloring is a list indexed by vertex and containing the value of the color at each position
+def all_graph_colorings_list(g : Graph, num_clrs : int, *args) -> list[list]:
     n = len(g.vertices())
     colorings = all_graph_colorings(g,num_clrs,*args) # coloring is represented as dict in format: color -> list of vertices with that color
     clrings_list = []
@@ -106,7 +93,7 @@ def all_graph_colorings_as_lists(g : Graph, num_clrs : int, *args):
     return clrings_list
 
 # check if two colorings (represented as list) equivalent under given automorphism (represented as list of cycles)
-def check_eqiv_under_automorph(c1 : list[int], c2 : list[int], automorphism_cycles : list[tuple]):
+def check_eqiv_under_automorph(c1 : list[int], c2 : list[int], automorphism_cycles : list[tuple]) -> bool:
     for cycle in automorphism_cycles:
         k = len(cycle)
         for i in range(k):
@@ -118,9 +105,8 @@ def check_eqiv_under_automorph(c1 : list[int], c2 : list[int], automorphism_cycl
 # 1. prepare a list of indicators if the coloring still has no lower indexed match
 # 2. go through all colorings while considering only the ones that still have no lower match
 # 3. for no match coloring -> check all other higher indexed colorings and if I can get to them by any automorphism, if yes, then mark it at matched
+def get_non_automorphic(g : Graph, clrings : list[list]) -> list[list]:
 
-def all_non_automorph_colorings(g : Graph, num_clrs: int, *args):
-    clrings = all_graph_colorings_as_lists(g,num_clrs,*args)
     still_unique = [True for _ in clrings]
     automorphisms_as_cycles = [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]
 
@@ -139,26 +125,47 @@ def all_non_automorph_colorings(g : Graph, num_clrs: int, *args):
         if still_unique[i]:
             unique_clrings.append(clring)
 
-    coloring_dicts = [get_coloring_dict(c) for c in unique_clrings] # convert colorings from lists to dicts
+    return unique_clrings
 
-    return coloring_dicts 
+# removes non canonic colorings out of the list of colorings
+def get_canonized(clrings : list[list]) -> list[list]:
+    return [c for c in filter(is_in_canonic_form,clrings)]
+
+# checks if coloring is in canonic form, the canonic form represents all colorings with the same structure but different permutation of color values
+# canonic form is following: for the given coloring, it must have the colors ordered from lowest to highest when going from left to right through the coloring list
+# assumes that colors are numbers from 0 ... k
+def is_in_canonic_form(coloring : list[int]) -> bool:
+    count = 0
+    for clr in coloring:
+        if clr > count:
+            return False
+        if clr == count:
+            count += 1
+    return True
 
 # converts a coloring given as list of colors for each vertex to a dict where key is color string in format '#FFFFFF' and value contains vtx indices of that color
-def get_coloring_dict(clrings_as_list : list[int]) -> dict[str,list]:
+def get_coloring_dict(clring_as_list : list[int]) -> dict[str,list]:
     clring_dict = {}
-    for i,c_ind in enumerate(clrings_as_list):
+    for i,c_ind in enumerate(clring_as_list):
         clr = COLORS_TO_USE[c_ind]
         if clr not in clring_dict:
             clring_dict[clr] = []
         clring_dict[clr].append(i)
     return clring_dict
 
+# converts the colorings to dictionary form
+# each coloring is a dict where: key = color string, value = list of indices of vertices of that color
+def get_dictionarized(clrings : list[list]) -> list[dict]:
+    return [get_coloring_dict(clring) for clring in clrings]
+
 # IMPORTANT: below pick the function to use here
-CLRING_FUNCTION = all_graph_colorings2
-# CLRING_FUNCTION = all_non_automorph_colorings
+# colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
+# colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
+colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
+colorings = get_non_automorphic(G,get_canonized(all_graph_colorings_list(G,NUM_CLRS))) # up to rotations/reflections and up to permutations
 
 print("generating coloring images...")
-clrings = CLRING_FUNCTION(g,NUM_CLRS) 
-images = create_images(g,clrings)
+# colorings = CLRING_FUNCTION(g,NUM_CLRS) 
+images = create_images(G,POSITIONS,STYLES,colorings)
 print("merging images...")
 merge_images(images)
