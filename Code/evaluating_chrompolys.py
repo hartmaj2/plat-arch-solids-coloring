@@ -18,14 +18,18 @@ NAME = sdp.JSON_NAME
 
 # OUTPUT TABLE SETTINGS
 EVAL_NUM_LIMIT = 8
+STARTING_NUM = 2
 TOO_LARGE_NUM_LIMIT = 10_000_000
 THIN_RULE = r"\specialrule{0.2pt}{0.65ex}{0.65ex}"
 
-data_headers = [str(x) for x in range(2,EVAL_NUM_LIMIT+1)]
+data_headers = [str(x) for x in range(STARTING_NUM,EVAL_NUM_LIMIT+1)]
 
-PLAT_CAPTION = f"Evaluated chromatic polynomial and orbital chromatic polynomial for platonic solids at points 2 to {EVAL_NUM_LIMIT}. For each solid, the top row contains the chromatic polynomial, the bottom row contains the orbital chromatic polynoial."
-PLAT_LABEL = "tab:platonic-polys-evals"
+EVALS_CAPTION = f"Evaluated chromatic polynomial and orbital chromatic polynomial for platonic solids at points {STARTING_NUM} to {EVAL_NUM_LIMIT}. For each solid, the top row contains the chromatic polynomial, the bottom row contains the orbital chromatic polynoial."
+EVALS_LABEL = "tab:platonic-polys-evals"
 HEADER = "Platonic solid"
+
+EXACTS_CAPTION = f"Numbers of colorings using exactly {STARTING_NUM} to {EVAL_NUM_LIMIT} colors. For each solid, the top row contains the value when counting also symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism."
+EXACTS_LABEL = f"tab:platonic-exactly-n-clrs"
 
 # INPUT FILE SETTINGS
 
@@ -51,12 +55,12 @@ def get_platonic_poly_dict(poly_calc_func : Callable[[Graph],Any]) -> dict[str,A
         plat_polys[name] = poly
     return plat_polys
 
-# evaluates the polynomials from 2 to k (start at 2 because obviously no graph can be 1 colored as long as it has some edge)
-def get_plat_poly_evaluations(poly_calc_func : Callable[[Graph],Any], k : int) -> dict [str,tuple]:
+# evaluates the polynomials from STARTING_NUM to k (start at 2 because obviously no graph can be 1 colored as long as it has some edge)
+def get_plat_poly_evaluations(poly_calc_func : Callable[[Graph],Any], k : int) -> dict [str,list]:
     polys = get_platonic_poly_dict(poly_calc_func)
     evals = {}
     for name,poly in zip(polys.keys(),polys.values()):
-        vals = tuple([poly(i) for i in range(2,k+1)])
+        vals = [poly(i) for i in range(STARTING_NUM,k+1)]
         evals[name] = vals
     return evals
 
@@ -78,7 +82,7 @@ def preprocess_for_print(d : dict, too_large_num_start : int) -> dict:
                 new_vals.append(get_approx_string(val))
             else:
                 new_vals.append(str(val))
-        new[key] = tuple(new_vals)
+        new[key] = new_vals
     return new
 
 # takes a list of dicts where each dict has the same key set and then appends the rows in the dicts to create multiple rows for each key
@@ -90,9 +94,32 @@ def create_mult_row_dict(dicts : list[dict]):
             new[key].append(dict[key])
     return new
 
-dicts = [get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT),get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT)]
+# takes a list corresponding to evaluations of chromatic polynomial at points STARTING_NUM,...,k and generates a list of number of colorings using exactly STARTING_NUM,...,k colors
+def convert_to_exactly_n_colrs(evaluations : list[int]) -> list[int]:
+    evals = [0 for _ in range(STARTING_NUM)] + evaluations # pad the evaluations so each index corresponds to the number of colors to use
+    exacts = [0 for _ in range(evals.count(0))] # the zero entries will be same
+    first_nonzero_pos = len(exacts)
+    exacts.append(evals[first_nonzero_pos]) # first nonzero entry is also identic
+    for n in range(first_nonzero_pos+1,len(evals)):
+        num_clrings = evals[n]
+        for i in range(first_nonzero_pos,n):
+            num_clrings -= math.comb(n,i) * exacts[i]
+        exacts.append(num_clrings)
+    exacts = exacts[2:] # remove the padding
+    return exacts
+
+# takes dictionary of chromatic polynomial evaluations and returns dictionary containing counts for colorings using exactly n-colors
+def get_exact_n_colors_dict(evaluations : dict[str,list]) -> dict[str,list]:
+    exacts = {}
+    for key,evals in zip(evaluations.keys(),evaluations.values()):
+        exacts[key] = convert_to_exactly_n_colrs(evals)
+    return exacts
+
+# dicts = [get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT),get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT)]
+dicts = [get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT)),get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT))]
 preprocessed_dicts = [preprocess_for_print(d,TOO_LARGE_NUM_LIMIT) for d in dicts]
 
 mult_row_dict = create_mult_row_dict(preprocessed_dicts)
 
-tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=PLAT_CAPTION,label=PLAT_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+# tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=EVALS_CAPTION,label=EVALS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=EXACTS_CAPTION,label=EXACTS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
