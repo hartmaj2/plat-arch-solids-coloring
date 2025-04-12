@@ -24,7 +24,8 @@ from collections.abc import Callable
 # OUTPUT SETTING
 output_path = "Code/Plots/"
 filename_base = "res"
-collage_name = "icosahedron_4-clrings"
+collage_name = "test"
+MAX_DIMS_RATIO = 5
 
 # PLOT_SETTINGS
 VERTEX_LABEL = False
@@ -32,8 +33,8 @@ EDGE_LABELS = False
 COLORS_TO_USE = ["#FF0000","#00FF00","#0000FF","#FFFF00","#FF00FF","#00FFFF"]
 
 # SOLID SETTINGS
-SOLID_NAME = "icosahedron"
-NUM_CLRS = 4
+SOLID_NAME = "cube"
+NUM_CLRS = 3
 
 # INPUT SETTINGS
 G = Graph(slp.get_labeled_neighbor_dict(SOLID_NAME))
@@ -62,16 +63,16 @@ def create_images(graph : Graph, positions : dict[int,tuple], styles : dict[int,
     return images
 
 # merges the images of the colorings in the directory into a single square-like collage
-def merge_images(images : list[Image.Image]):
+def merge_images(images : list[Image.Image], max_dims_ratio : float):
     print(f"merging {len(images)} images")
 
-    imgs_per_row = math.ceil(math.sqrt(len(images)))
+    imgs_per_row,images_per_column = find_collage_dimensions(len(images),max_dims_ratio)
     image_width = images[0].size[0]
     image_height = images[0].size[1]
     img_padding_size = 100
 
     collage_width = image_width * imgs_per_row + img_padding_size * (imgs_per_row - 1)
-    collage_height = image_height * imgs_per_row + img_padding_size * (imgs_per_row - 1)
+    collage_height = image_height * images_per_column + img_padding_size * (images_per_column - 1)
     collage = Image.new("RGB",(collage_width,collage_height),(255,255,255))
 
     for i,img in enumerate(images):
@@ -82,6 +83,24 @@ def merge_images(images : list[Image.Image]):
         collage.paste(img,(x,y))
 
     collage.save(f"{output_path}{collage_name}.png")
+
+# finds nice dimensions for the collage of n images
+# tries to decompose number n into i and j s.t. i * j = n and i and j are not more that k multiples of each other
+def find_collage_dimensions(num_figures : int, max_ratio : float) -> tuple:
+
+    i = math.floor(math.sqrt(num_figures))
+    if i * i == num_figures:
+        return i,i
+    i = math.floor(i)
+    j = i
+    while j * max_ratio >= i:
+      i += 1
+      j = num_figures // i
+      if num_figures % i == 0:
+          return i,j
+    i = math.ceil(math.sqrt(num_figures))
+    j = math.ceil(num_figures / i)
+    return i,j
 
 # returns a MathSage all colorings where each coloring is a list indexed by vertex and containing the value of the color at each position
 def all_graph_colorings_list(g : Graph, num_clrs : int, *args) -> list[list]:
@@ -185,12 +204,12 @@ def get_dictionarized(clrings : list[list]) -> list[dict]:
 
 # IMPORTANT: below pick the function to use here
 # colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
-# colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
+colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
 # colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
-colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS),check_equiv_under_automorph_and_permutation)
+# colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS),check_equiv_under_automorph_and_permutation)
 
 print("generating coloring images...")
 # colorings = CLRING_FUNCTION(g,NUM_CLRS) 
 images = create_images(G,POSITIONS,STYLES,colorings)
 print("merging images...")
-merge_images(images)
+merge_images(images,MAX_DIMS_RATIO)
