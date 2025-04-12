@@ -24,7 +24,7 @@ from collections.abc import Callable
 # OUTPUT SETTING
 output_path = "Code/Plots/"
 filename_base = "res"
-collage_name = "test"
+collage_name = "icosahedron_4-clrings"
 
 # PLOT_SETTINGS
 VERTEX_LABEL = False
@@ -32,7 +32,7 @@ EDGE_LABELS = False
 COLORS_TO_USE = ["#FF0000","#00FF00","#0000FF","#FFFF00","#FF00FF","#00FFFF"]
 
 # SOLID SETTINGS
-SOLID_NAME = "cube"
+SOLID_NAME = "icosahedron"
 NUM_CLRS = 4
 
 # INPUT SETTINGS
@@ -67,16 +67,18 @@ def merge_images(images : list[Image.Image]):
 
     imgs_per_row = math.ceil(math.sqrt(len(images)))
     image_width = images[0].size[0]
+    image_height = images[0].size[1]
     img_padding_size = 100
 
     collage_width = image_width * imgs_per_row + img_padding_size * (imgs_per_row - 1)
-    collage = Image.new("RGB",(collage_width,collage_width),(255,255,255))
+    collage_height = image_height * imgs_per_row + img_padding_size * (imgs_per_row - 1)
+    collage = Image.new("RGB",(collage_width,collage_height),(255,255,255))
 
     for i,img in enumerate(images):
         col = (i % imgs_per_row)
         x = col * (image_width + img_padding_size)
         row = (i // imgs_per_row)
-        y = row * (image_width + img_padding_size)
+        y = row * (image_height + img_padding_size)
         collage.paste(img,(x,y))
 
     collage.save(f"{output_path}{collage_name}.png")
