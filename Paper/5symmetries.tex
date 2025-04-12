@@ -224,6 +224,8 @@ Now, an important observation is, that all of these $6$ colorings are equivalent
 Kolik takových vlastně je? Možná by mělo smysl je dát do tabulky.
 Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
 
+\begin{highlight}
+
 \section{Comparison of evaluations of both types of polynomials}
 
 It is interesting to compare the difference between chromatic polynomial and orbital chromatic polynomial for all the solids by looking at the values of the polynomials at certain points. This can be seen in table \ref{tab:platonic-polys-evals} below.
@@ -256,7 +258,7 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
 
 It is important to note, that in table \ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the amount of colorings with exactly $n$ colors but with at most $n$ colors. This means, that colorings that used only a proper subset of the $n$ available colors are counted as well.
 
-\subsection{Number of colorings using exactly n colors}
+\section{Number of colorings using exactly n colors}
 
 Let us denote $!P(G,n)$ the amount of colorings of graph $G$ using \emph{exactly} $n$ colors. This number can be calculated using a recursive formula with a base case being $!P(G,\chi(G))=P(G,\chi(G))$. The recursive formula is as follows:
 \begin{equation}\label{eqn:exactly-n-colors}
@@ -299,3 +301,11 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
 
 \vspace{5pt}
 \todo{TODO: Add visual example of 3-colorings of cube up to automorphisms.}
+
+\section{Counting partitionings into independent sets}
+
+Important thing to note about results of table \ref{tab:platonic-exactly-n-clrs} above is the fact, that we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ and be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only and the value of the colors bear no special meaning for us. 
+
+In order to achieve the above, we have to view the coloring as a partitioning into independent sets, where the sets have no labels. Now, how do we count the amount of these partitions where we exclude same partitionings but with differently labeled partitions only? For each coloring using exactly $k$ colors, we have exactly $k$ partitions. Imagine the colors as $k$ labels we would like to use to label the $k$ partitions, then there is exactly $k!$ ways to label them. 
+
+\end{highlight}
