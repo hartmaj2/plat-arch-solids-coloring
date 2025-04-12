@@ -679,3 +679,20 @@
 
 - wrote formula and proof for computing amount of colorings using exactly n-colors using value of chromatic polynomial
   - used to formula to generate a table of amounts of 2,...,8 colorings of the platonic solids
+
+### 2025_04_12
+
+- fixed jsons of platonic solids to be more human readable (just spread them into multiple lines)
+
+- prepared plotting so it calculates the dimensions of the collage intelligently and does not try to fit the picture into a square
+
+- added a yaml layout for icosahedron
+
+- wrote about how are colorings up to relabelings calculated using the exactly n-colorings table for chromatic polynomials (does not work for orbital chromatic polynomials)
+
+- talked with stepan about the weird behavior of my algorithm on 4 colorings of cube when taking into account both relabelings of colors and the automorphisms
+  - will test what is the relabeling and automorphism that removes the colorings that seem different to us
+
+- improved the plotting function to use svgs instead of pngs to get cleaner figures
+  - another issue was, that the svg objects can only be loaded from files and the files have to live throughout the time that we work with the corresponding svg objects
+  - there was a problem with converting px dimensions to pt (somehow multiplying by 0.8 works) 
