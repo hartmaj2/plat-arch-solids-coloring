@@ -265,6 +265,8 @@
 
 - [ ] add table with colorings where we consider relabelings as same thing but automorphisms are not considered
 
+- [ ] describe why the counting method when considering relabelings works only for chromatic polynoimals but not for the orbital chromatic polynomials
+
 ## Main tasks
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
