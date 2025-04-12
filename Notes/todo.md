@@ -247,6 +247,22 @@
   - write a program that does this by the method we used at the meeting with supervisor
   - describe how the method works
 
+## 2025_04_12
+
+- [x] add .yaml layout for icosahedron plotting 
+  - maybe use ChatGPT to generate them
+
+- [x] make the plotting work with svgs instead of pngs
+
+## 2025_04_13
+
+- [ ] add .yaml for dodecahedron and tetrahedron plotting
+
+- [ ] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
+  - what permutation and relabeling causes their identification?
+
+- [ ] add table with colorings where we consider relabelings as same thing but automorphisms are not considered
+
 ## Main tasks
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
@@ -255,26 +271,12 @@
 
 ## Side tasks
 
-
 ### Improve definitions
 
 - [ ] distinguish between proper and improper colorings in the definitions
 
-### Basic chromatic polynomials
-
-- [ ] visualize it on some graph so I can compare with orbital chromatic polynomial
-
-### Independent sets
-
-- [ ] compute how many arrangments of k independent sets exist on various solids (start with tetrahedron, cube etc.)
-  - [ ] read about calculating number of graph colorings up to order of colours
-    - [link](https://webspace.maths.qmul.ac.uk/p.j.cameron/csgnotes/countcols.pdf)
-
-- [ ] calculate # of such colorings for C_4 and cube
-
 ### Misc
 
-- [ ] eliminate only colorings up to rotations for cube 4-colorings (what will be the difference)
 
 - [ ] mention explicit formula for orbital chromatic polynomial of complete graph using binomial coefficient
 
