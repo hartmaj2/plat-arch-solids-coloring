@@ -25,7 +25,7 @@ from collections.abc import Callable
 # OUTPUT SETTING
 output_path = "Code/Plots/"
 filename_base = "res"
-collage_name = "cube_non-aut-3-clrings"
+collage_name = "icosahedron_non-aut-4-clrings"
 MAX_DIMS_RATIO = 5
 
 # PLOT_SETTINGS
@@ -34,8 +34,8 @@ EDGE_LABELS = False
 COLORS_TO_USE = ["#FF0000","#00FF00","#0000FF","#FFFF00","#FF00FF","#00FFFF"]
 
 # SOLID SETTINGS
-SOLID_NAME = "cube"
-NUM_CLRS = 3
+SOLID_NAME = "icosahedron"
+NUM_CLRS = 4
 
 # INPUT SETTINGS
 G = Graph(slp.get_labeled_neighbor_dict(SOLID_NAME))
@@ -81,12 +81,12 @@ def merge_images_svg(svgs : list[svgc.SVG], max_dims_ratio : float):
     if not isinstance(svg_width,float) or not isinstance(svg_height,float):
         return
 
-    # this is a constant by which I have to reduce both dimensions of svg
-    # probably the width and height parameters get the value that is different from the real one by some constant
-    PADDING_COMPENSATION = 86 
+    # this is a constant by which I have to scale both dimensions to get pt value from px
+    # probably the width and height parameters return px value which is greater and has to be reduced by 20% to get pt size
+    PADDING_COMPENSATION = 0.8
 
-    svg_width -= PADDING_COMPENSATION
-    svg_height -= PADDING_COMPENSATION
+    svg_width *= PADDING_COMPENSATION
+    svg_height *= PADDING_COMPENSATION
 
     img_padding_size = 50
 
