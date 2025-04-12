@@ -12,8 +12,9 @@ import solids_prep.solids_dict_prep as sdp
 import solids_prep.solids_layout_prep as slp
 
 import tempfile
-from PIL import Image
 import math
+
+import svgutils.compose as svgc 
 
 from sage.all import Graph
 from sage.all import *
@@ -24,7 +25,7 @@ from collections.abc import Callable
 # OUTPUT SETTING
 output_path = "Code/Plots/"
 filename_base = "res"
-collage_name = "test"
+collage_name = "cube_non-aut-3-clrings"
 MAX_DIMS_RATIO = 5
 
 # PLOT_SETTINGS
@@ -48,41 +49,72 @@ STYLES = slp.get_labeled_edge_styles(SOLID_NAME)
 # the colorings must be passed as a list of lists where each list is an ordered list of color values for the given vertices
 # positions is a dict where keys are the vertex indices and values are (x,y) coordinate tuples
 # styles is a dict where keys are edge labels and values are strings in format 'solid', 'dotted' etc.
-def create_images(graph : Graph, positions : dict[int,tuple], styles : dict[int,str], clrings : list[list]) -> list[Image.Image]:
-    images = []
+def create_images_svg(graph : Graph, positions : dict[int,tuple], styles : dict[int,str], clrings : list[list], collage_max_dims_ratio : float) -> None:
+    svgs = []
+    temp_paths = []
 
     for c in get_dictionarized(clrings):
         graphic = graph.plot(vertex_labels=VERTEX_LABEL,edge_labels=EDGE_LABELS,pos=positions,vertex_colors=c,edge_styles=styles)
         # store each image in temporary file and then create corresponding PIL image
-        with tempfile.NamedTemporaryFile(suffix=".png",delete=True) as tmp:
+        with tempfile.NamedTemporaryFile(suffix=".svg",delete=False) as tmp:
             graphic.save(tmp.name)
-            img_file = Image.open(tmp.name)
-            images.append(img_file.copy())
-            img_file.close()
+            temp_paths.append(tmp.name)
+            img_file = svgc.SVG(tmp.name)
+            svgs.append(img_file)
 
-    return images
+    merge_images_svg(svgs,collage_max_dims_ratio) # by now, the tempfiles still have to exist, otherwise, the svg contents will be erased
 
-# merges the images of the colorings in the directory into a single square-like collage
-def merge_images(images : list[Image.Image], max_dims_ratio : float):
-    print(f"merging {len(images)} images")
+    for path in temp_paths: # now we can remove the tempfiles
+        os.remove(path)
 
-    imgs_per_row,images_per_column = find_collage_dimensions(len(images),max_dims_ratio)
-    image_width = images[0].size[0]
-    image_height = images[0].size[1]
-    img_padding_size = 100
+# merges the svgs provided in the list into a single svg collage
+def merge_images_svg(svgs : list[svgc.SVG], max_dims_ratio : float):
 
-    collage_width = image_width * imgs_per_row + img_padding_size * (imgs_per_row - 1)
-    collage_height = image_height * images_per_column + img_padding_size * (images_per_column - 1)
-    collage = Image.new("RGB",(collage_width,collage_height),(255,255,255))
+    print(f"merging {len(svgs)} images...")
 
-    for i,img in enumerate(images):
+    imgs_per_row,images_per_column = find_collage_dimensions(len(svgs),max_dims_ratio)
+    ref_svg = svgs[0]
+
+    svg_width = ref_svg.width
+    svg_height = ref_svg.height
+
+    if not isinstance(svg_width,float) or not isinstance(svg_height,float):
+        return
+
+    # this is a constant by which I have to reduce both dimensions of svg
+    # probably the width and height parameters get the value that is different from the real one by some constant
+    PADDING_COMPENSATION = 86 
+
+    svg_width -= PADDING_COMPENSATION
+    svg_height -= PADDING_COMPENSATION
+
+    img_padding_size = 50
+
+    collage_width = svg_width * imgs_per_row + img_padding_size * (imgs_per_row - 1)
+    collage_height = svg_height * images_per_column + img_padding_size * (images_per_column - 1)
+
+    for i,img in enumerate(svgs):
         col = (i % imgs_per_row)
-        x = col * (image_width + img_padding_size)
+        x = col * (svg_width + img_padding_size)
         row = (i // imgs_per_row)
-        y = row * (image_height + img_padding_size)
-        collage.paste(img,(x,y))
+        y = row * (svg_height + img_padding_size)
+        img.move(x,y)
 
-    collage.save(f"{output_path}{collage_name}.png")
+    # xmlns='http://www.w3.org/2000/svg' defines a xml namespace to be the namespace for SVG defomed by the W3C, the World Wide Web Consortium
+    # 2000 there means that the namespace was defined in year 2000 by W3C
+    background_svg_str = (
+        f"<svg xmlns='http://www.w3.org/2000/svg' width='{collage_width}pt' height='{collage_height}pt'>"
+        f"<rect width='100%' height='100%' fill='white'/></svg>"
+    )
+
+    with tempfile.NamedTemporaryFile(suffix=".svg", delete=True, mode="w", encoding="utf-8") as bgfile:
+        bgfile.write(background_svg_str)
+        bgfile.flush() # important, otherwise the changes are not seen by SVG constructor
+        bgfile_path = bgfile.name
+        background = svgc.SVG(bgfile_path)
+
+        fig = svgc.Figure(f"{collage_width}pt",f"{collage_height}pt",background,*svgs)
+        fig.save(f"{output_path}{collage_name}.svg")
 
 # finds nice dimensions for the collage of n images
 # tries to decompose number n into i and j s.t. i * j = n and i and j are not more that k multiples of each other
@@ -204,12 +236,10 @@ def get_dictionarized(clrings : list[list]) -> list[dict]:
 
 # IMPORTANT: below pick the function to use here
 # colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
-colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
-# colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
+# colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
+colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
 # colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS),check_equiv_under_automorph_and_permutation)
 
 print("generating coloring images...")
 # colorings = CLRING_FUNCTION(g,NUM_CLRS) 
-images = create_images(G,POSITIONS,STYLES,colorings)
-print("merging images...")
-merge_images(images,MAX_DIMS_RATIO)
+images = create_images_svg(G,POSITIONS,STYLES,colorings,MAX_DIMS_RATIO)
