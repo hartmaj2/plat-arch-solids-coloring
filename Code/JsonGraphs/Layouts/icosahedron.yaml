@@ -2,7 +2,7 @@
 name : icosahedron
 vertices: [0,1,2,3,4,5,6,7,8,9,10,11]
 edges: [[0,1],[0,2],[0,3],[0,4],[0,5],[1,2],[1,5],[1,6],[1,7],[2,3],[2,6],[2,8],[3,4],[3,8],[3,9],[4,5],[4,9],[4,10],[5,7],[5,10],[6,7],[6,8],[6,11],[7,10],[7,11],[8,9],[8,11],[9,10],[9,11],[10,11]] # lexicographically sorted edges
-pos: [[1.5,0.6],[1.5,0],[3,1],[2.5,2.4],[0.5,2.4],[0,1],[2.5,1.2],[0.5,1.2],[3,2.7],[1.5,3.5],[0,2.7],[1.5,2.9]] # [x,y] positions of the vertices in the order as above
+pos: [[1.5,0.6],[1.5,0.1],[3,1],[2.5,2.4],[0.5,2.4],[0,1],[2.5,1.2],[0.5,1.2],[3,2.7],[1.5,3.4],[0,2.7],[1.5,2.9]] # [x,y] positions of the vertices in the order as above
 edge_styles: [solid,solid,solid,solid,solid,solid,solid,dotted,dotted,solid,dotted,solid,solid,solid,solid,solid,solid,solid,dotted,solid,dotted,dotted,dotted,dotted,dotted,solid,dotted,solid,dotted,dotted] # styles in which the edges should be drawn by SageMath plot, assumes the edges are ordered as above
 black: &black "#000000"
 gray: &gray "#CCCCCC"
