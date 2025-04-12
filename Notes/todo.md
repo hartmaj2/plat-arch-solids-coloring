@@ -256,6 +256,8 @@
 
 ## 2025_04_13
 
+- [ ] add documentation pdf file (from goodnotes) for the icosahedron .yaml
+
 - [ ] add .yaml for dodecahedron and tetrahedron plotting
 
 - [ ] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
