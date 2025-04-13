@@ -45,6 +45,9 @@ STYLES = slp.get_labeled_edge_styles(SOLID_NAME)
 # uncomment following to use edge colors
 # colors = slp.get_labeled_edge_clrs(SOLID_NAME)
 
+
+# BEGIN: IMAGE HANDLING
+
 # creates separate images for all the colorings
 # the colorings must be passed as a list of lists where each list is an ordered list of color values for the given vertices
 # positions is a dict where keys are the vertex indices and values are (x,y) coordinate tuples
@@ -134,6 +137,11 @@ def find_collage_dimensions(num_figures : int, max_ratio : float) -> tuple:
     j = math.ceil(num_figures / i)
     return i,j
 
+# END: IMAGE HANDLING
+
+
+# BEGIN: ALL COLORINGS CONVERSION AND WRAPPER FUNCTIONS
+
 # returns a MathSage all colorings where each coloring is a list indexed by vertex and containing the value of the color at each position
 def all_graph_colorings_list(g : Graph, num_clrs : int, *args) -> list[list]:
     n = len(g.vertices())
@@ -147,14 +155,25 @@ def all_graph_colorings_list(g : Graph, num_clrs : int, *args) -> list[list]:
         clrings_list.append(clring_as_list)
     return clrings_list
 
-# check if two colorings (represented as list) equivalent under given automorphism (represented as list of cycles)
-def check_eqiv_under_automorph(c1 : list[int], c2 : list[int], automorphism_cycles : list[tuple]) -> bool:
-    for cycle in automorphism_cycles:
-        k = len(cycle)
-        for i in range(k):
-            if c1[cycle[i]] != c2[cycle[(i+1)%k]]:
-                return False
-    return True
+# converts a coloring given as list of colors for each vertex to a dict where key is color string in format '#FFFFFF' and value contains vtx indices of that color
+def get_coloring_dict(clring_as_list : list[int]) -> dict[str,list]:
+    clring_dict = {}
+    for i,c_ind in enumerate(clring_as_list):
+        clr = COLORS_TO_USE[c_ind]
+        if clr not in clring_dict:
+            clring_dict[clr] = []
+        clring_dict[clr].append(i)
+    return clring_dict
+
+# converts the colorings to dictionary form
+# each coloring is a dict where: key = color string, value = list of indices of vertices of that color
+def get_dictionarized(clrings : list[list]) -> list[dict]:
+    return [get_coloring_dict(clring) for clring in clrings]
+
+# END: ALL COLORINGS CONVERSION AND WRAPPER FUNCTIONS
+
+
+# BEGIN: COLORINGS AUTOMORPHISM AND RELABELING EQUIVALENCY CHECKING
 
 # checks if two colorings are equivalent up to automorphism while also trying if the colors are not just permuted
 # the alg works by trying to construct a mapping from colors of the first coloring to colors of the second coloring
@@ -175,6 +194,20 @@ def check_equiv_under_automorph_and_permutation(c1 : list[int], c2 : list[int], 
                 else:
                     f[b1] = b2
                     f[b2] = b1
+    return True
+
+# END: COLORINGS AUTOMORPHISM AND RELABELING EQUIVALENCY CHECKING
+
+
+# BEGIN: COLORINGS AUTOMORPHISM EQUIVALENCY CHECKING
+
+# check if two colorings (represented as list) equivalent under given automorphism (represented as list of cycles)
+def check_eqiv_under_automorph(c1 : list[int], c2 : list[int], automorphism_cycles : list[tuple]) -> bool:
+    for cycle in automorphism_cycles:
+        k = len(cycle)
+        for i in range(k):
+            if c1[cycle[i]] != c2[cycle[(i+1)%k]]:
+                return False
     return True
 
 # function to prune colorings
@@ -203,6 +236,11 @@ def get_non_automorphic(g : Graph, clrings : list[list], equiv_comparer : Callab
 
     return unique_clrings
 
+# END: COLORINGS AUTOMORPHISM EQUIVALENCY CHECKING
+
+
+# BEGIN: COLORINGS RELABELING EQUIVALENCY CHECKING
+
 # removes non canonic colorings out of the list of colorings
 def get_canonized(clrings : list[list]) -> list[list]:
     return [c for c in filter(is_in_canonic_form,clrings)]
@@ -219,20 +257,7 @@ def is_in_canonic_form(coloring : list[int]) -> bool:
             count += 1
     return True
 
-# converts a coloring given as list of colors for each vertex to a dict where key is color string in format '#FFFFFF' and value contains vtx indices of that color
-def get_coloring_dict(clring_as_list : list[int]) -> dict[str,list]:
-    clring_dict = {}
-    for i,c_ind in enumerate(clring_as_list):
-        clr = COLORS_TO_USE[c_ind]
-        if clr not in clring_dict:
-            clring_dict[clr] = []
-        clring_dict[clr].append(i)
-    return clring_dict
-
-# converts the colorings to dictionary form
-# each coloring is a dict where: key = color string, value = list of indices of vertices of that color
-def get_dictionarized(clrings : list[list]) -> list[dict]:
-    return [get_coloring_dict(clring) for clring in clrings]
+# END: COLORINGS RELABELING EQUIVALENCY CHECKING
 
 # IMPORTANT: below pick the function to use here
 # colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
