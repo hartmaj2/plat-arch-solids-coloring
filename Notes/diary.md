@@ -711,3 +711,7 @@
   - the fingerprint contains for each independent set - its size and its color value
   - order the pictures in the output collage by fingerprints of the colorings s.t. the fingerprints are sorted based on the indep set sizes (standardized)
     - the colorings are then sorted based on the standardized fingerpints count vectors and color vectors lexicographically in succession
+
+- thought about how to make the colorings with same structure appear similar
+  - i.e. their independent sets will be aligned in the same way using a proper automorphism
+- wrote a pseudoalgorithm to do the above [here](../Notes/sage_notes.md)
