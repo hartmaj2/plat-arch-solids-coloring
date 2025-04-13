@@ -171,6 +171,15 @@ def get_fprnted_clrings(colorings_as_list : list[list]) -> list[tuple]:
 
 # END: COLORING STANDARDIZATION BY FINGERPRIT
 
+# BEGIN: COLORING INDEP SET POSITIONS STANDARDIZATION
+
+# function that receives two colorings and a graph and returns automorphism and relabeling by which they can be unified or None
+def get_unification_proof(c1 : list[int], c2 : list[int], g : Graph): # -> automorphism, relabeling
+    ...
+    # TODO: implement function body
+
+# END: COLORING INDEP SET POSITIONS STANDARDIZATION
+
 # BEGIN: ALL COLORINGS CONVERSION AND WRAPPER FUNCTIONS
 
 # returns a MathSage all colorings where each coloring is a list indexed by vertex and containing the value of the color at each position
