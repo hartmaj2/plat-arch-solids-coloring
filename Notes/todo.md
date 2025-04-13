@@ -260,15 +260,16 @@
 
 - [x] add .yaml for dodecahedron and tetrahedron plotting
 
-- [ ] implement coloring independent set size fingerprint
+- [x] implement coloring independent set size fingerprint
   - for n-coloring the fingerprint: 
     - has a list of size n where each position has size of the indep set (later we will want this sorted)
     - has a second list of size n where each position corresponds to the color value of that independent set
   - probably create a class for the fingerprint for better semantics
 
-- [ ] make colors that each independent set receives ordered by the size of the independent sets
+- [x] make colorings in the output sorted based on independent set size fingerprint
 
-- [ ] make colorings in the output sorted based on independent set size fingerprint
+- [ ] make colors that each independent set receives ordered by the size of the independent sets
+  - this will be only deterministic and useful after I debug the non aut and non relabel function
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
   - enumerate all the colorings
