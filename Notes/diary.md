@@ -695,4 +695,14 @@
 
 - improved the plotting function to use svgs instead of pngs to get cleaner figures
   - another issue was, that the svg objects can only be loaded from files and the files have to live throughout the time that we work with the corresponding svg objects
-  - there was a problem with converting px dimensions to pt (somehow multiplying by 0.8 works) 
+  - there was a problem with converting px dimensions to pt (somehow multiplying by 0.8 works)
+
+### 2025_04_13
+
+- created yaml config for dodecahedron
+- tried to run all colorings finder for 3-colorings
+  - finished after 9:21 min
+
+- added tetrahedron yaml and svg for completeness
+
+- finalized the manual file containing config visualisations
