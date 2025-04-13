@@ -139,6 +139,37 @@ def find_collage_dimensions(num_figures : int, max_ratio : float) -> tuple:
 
 # END: IMAGE HANDLING
 
+# BEGIN: COLORING STANDARDIZATION BY FINGERPRIT
+
+# fingerprint stores information about sizes of independent sets of the colorings
+# contains tuples in format (count_of_vtces,clr_val)
+def get_fprnt(coloring_list : list[int]) -> list[tuple]:
+    num_clrs = max(coloring_list) + 1 # there is one more colors than what is the label of the greatest valued color
+    fingerprint = [[0,clr] for clr in range(num_clrs)] # stores a pair in format (count_of_vertices,color_value)
+    for clr in coloring_list:
+        fingerprint[clr][0] += 1 # increase the count component of the pair
+    return [tuple(pair) for pair in fingerprint]
+
+# sorts the fingerprint based on the counts of the colors
+# i.e. sorts the independent sets based on their sizes
+# note that originally they are sorted by values of the colors
+def stdize_fprnt(fingerprint: list[tuple]) -> list[tuple]:
+    return sorted(fingerprint,key=lambda pair : pair[0])
+
+# makes a string out of the fingerprint where each number is encoded as a letter from the alphabet
+# this will later allow for lexicographic sorting of the fingerprints after they are ordered
+def stringify_fprnt_counts(fingerprint : list[tuple]) -> str:
+    return "".join([chr(count) for (count,clr) in fingerprint]) # join the result into one string
+
+# like the above but uses the color values to stringify
+def stringify_fprnt_clr_vals(fingerprint : list[tuple]) -> str:
+    return "".join([chr(clr) for (count,clr) in fingerprint]) # join the result into one string
+
+# returns list of fingerprinted colorings where each fingerprinted coloring is a tuple in form (clring as list, fingerprint)
+def get_fprnted_clrings(colorings_as_list : list[list]) -> list[tuple]:
+    return [(clring,stdize_fprnt(get_fprnt(clring))) for clring in colorings_as_list]
+
+# END: COLORING STANDARDIZATION BY FINGERPRIT
 
 # BEGIN: ALL COLORINGS CONVERSION AND WRAPPER FUNCTIONS
 
@@ -262,12 +293,39 @@ def is_in_canonic_form(coloring : list[int]) -> bool:
     return True
 
 # END: COLORINGS RELABELING EQUIVALENCY CHECKING
+def get_encountered_fingerprints(fingerprinted_colorings : list[tuple]) -> set[tuple]:
+    unique_fingerprints = set()
+    for fprnt in [tuple([size for (size,clr) in fprint]) for (clring,fprint) in fingerprinted_colorings]:
+        unique_fingerprints.add(fprnt)
+    return unique_fingerprints
+
+# BEGIN: ENCOUNTERED FINGERPRINT STATISTICS
+
+# END: ENCOUNTERED FINGERPRINT STATISTICS
 
 # IMPORTANT: below pick the function to use here
 # colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
 # colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
 colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
 # colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS),check_equiv_under_automorph_and_permutation)
+
+# BEGIN: USE ORDERING BY FINGERPRINT
+
+# the ordering makes sure that structurally similar colorings appear next to each other in the collage
+# e.g. for colorings with indep set sizes (1,3,4) appear before ones with indep set sizes (2,2,4)
+# also the colorings with same set sizes vector are ordered lexicographically using the color values of the corresponding independent sets
+
+# fingerprinted coloring is a tuple (coloring,fingerprint)
+fingerprinted = get_fprnted_clrings(colorings) # gets standardized fingerprints (standardized fingerprint is a list of sizes of independent sets together with their color values ordered by their size)
+fingerprinted.sort(key= lambda fprnted: stringify_fprnt_clr_vals(fprnted[1])) # sort lexicographically based on standardized fingerprint independent set color values
+fingerprinted.sort(key=lambda fprnted : stringify_fprnt_counts(fprnted[1])) # sort lexicographically based on standardized fingerprint independent set sizes
+
+print("encountered following fingerprints:")
+print(get_encountered_fingerprints(fingerprinted))
+
+colorings = [clring for (clring,fprint) in fingerprinted]
+
+# END: USE ORDERING BY FINGERPRINT
 
 print("generating coloring images...")
 # colorings = CLRING_FUNCTION(g,NUM_CLRS) 
