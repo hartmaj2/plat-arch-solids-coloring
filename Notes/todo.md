@@ -268,14 +268,17 @@
 
 - [x] make colorings in the output sorted based on independent set size fingerprint
 
-- [ ] make colors that each independent set receives ordered by the size of the independent sets
-  - this will be only deterministic and useful after I debug the non aut and non relabel function
+- [ ] think how to sort the 3-colorings so the picture looks systematic
+  - somehow you the automorphisms to transform the colorings to some standard form
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
   - enumerate all the colorings
   - show that some colorings are just permutations of colors of other colorings
 
 ## Main tasks
+
+- [ ] make colors that each independent set receives ordered by the size of the independent sets
+  - this will be only deterministic and useful after I debug the non aut and non relabel function
 
 - [ ] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
   - what permutation and relabeling causes their identification?
