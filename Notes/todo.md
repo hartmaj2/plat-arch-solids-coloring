@@ -256,9 +256,25 @@
 
 ## 2025_04_13
 
-- [ ] add documentation pdf file (from goodnotes) for the icosahedron .yaml
+- [x] add documentation pdf file (from goodnotes) for the icosahedron .yaml
 
-- [ ] add .yaml for dodecahedron and tetrahedron plotting
+- [x] add .yaml for dodecahedron and tetrahedron plotting
+
+- [ ] implement coloring independent set size fingerprint
+  - for n-coloring the fingerprint: 
+    - has a list of size n where each position has size of the indep set (later we will want this sorted)
+    - has a second list of size n where each position corresponds to the color value of that independent set
+  - probably create a class for the fingerprint for better semantics
+
+- [ ] make colors that each independent set receives ordered by the size of the independent sets
+
+- [ ] make colorings in the output sorted based on independent set size fingerprint
+
+- [ ] add visual example with 3-colorings of cube up to automorphism
+  - enumerate all the colorings
+  - show that some colorings are just permutations of colors of other colorings
+
+## Main tasks
 
 - [ ] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
   - what permutation and relabeling causes their identification?
@@ -266,12 +282,6 @@
 - [ ] add table with colorings where we consider relabelings as same thing but automorphisms are not considered
 
 - [ ] describe why the counting method when considering relabelings works only for chromatic polynoimals but not for the orbital chromatic polynomials
-
-## Main tasks
-
-- [ ] add visual example with 3-colorings of cube up to automorphism
-  - enumerate all the colorings
-  - show that some colorings are just permutations of colors of other colorings
 
 ## Side tasks
 
