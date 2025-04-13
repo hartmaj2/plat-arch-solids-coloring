@@ -268,8 +268,12 @@
 
 - [x] make colorings in the output sorted based on independent set size fingerprint
 
-- [ ] think how to sort the 3-colorings so the picture looks systematic
+- [x] think how to sort the 3-colorings so the picture looks systematic
   - somehow you the automorphisms to transform the colorings to some standard form
+
+## 2025_04_14
+
+- [ ] implement pseudoalg from [sage notes](../Notes/sage_notes.md)
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
   - enumerate all the colorings
