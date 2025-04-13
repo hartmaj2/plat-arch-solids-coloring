@@ -706,3 +706,8 @@
 - added tetrahedron yaml and svg for completeness
 
 - finalized the manual file containing config visualisations
+
+- improved the collage maker by implementing a coloring fingerprint
+  - the fingerprint contains for each independent set - its size and its color value
+  - order the pictures in the output collage by fingerprints of the colorings s.t. the fingerprints are sorted based on the indep set sizes (standardized)
+    - the colorings are then sorted based on the standardized fingerpints count vectors and color vectors lexicographically in succession
