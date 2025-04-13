@@ -144,16 +144,20 @@ def find_collage_dimensions(num_figures : int, max_ratio : float) -> tuple:
 
 # returns a MathSage all colorings where each coloring is a list indexed by vertex and containing the value of the color at each position
 def all_graph_colorings_list(g : Graph, num_clrs : int, *args) -> list[list]:
-    n = len(g.vertices())
-    colorings = all_graph_colorings(g,num_clrs,*args) # coloring is represented as dict in format: color -> list of vertices with that color
+    colorings = all_graph_colorings(g,num_clrs,*args) # coloring is represented as dict in format: color -> list of vertices with that color (color is an int)
     clrings_list = []
-    for i,coloring in enumerate(colorings):
-        clring_as_list = [0 for _ in range(n)]
-        for color in coloring:
-            for vtx in coloring[color]:
-                clring_as_list[vtx] = color
-        clrings_list.append(clring_as_list)
+    for coloring in colorings:
+        clrings_list.append(get_coloring_list(coloring))
     return clrings_list
+
+# converts the coloring in dict format to list format
+def get_coloring_list(clring_as_dict : dict[int,list]) -> list[int]:
+    num_vertices = len(reduce(lambda x,y: x + y,clring_as_dict.values(),[])) # reduce is equivalent of foldl in functional programming languages
+    clring_as_list = [0 for _ in range(num_vertices)]
+    for color in clring_as_dict.keys():
+        for vtx in clring_as_dict[color]:
+            clring_as_list[vtx] = color
+    return clring_as_list
 
 # converts a coloring given as list of colors for each vertex to a dict where key is color string in format '#FFFFFF' and value contains vtx indices of that color
 def get_coloring_dict(clring_as_list : list[int]) -> dict[str,list]:
