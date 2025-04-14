@@ -514,7 +514,6 @@ print(get_encountered_fingerprints(fingerprinted))
 # BEGIN: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
 
 classified_fprinted = get_classified_fpritned_clrings(fingerprinted)
-print(classified_fprinted)
 create_classified_collage(G,POSITIONS,STYLES,classified_fprinted)
 
 # END: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
