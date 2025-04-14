@@ -300,6 +300,12 @@
 
 ## Side tasks
 
+### Interpreting collages
+
+- [ ] what automorphism makes the two colorings to be in the same relabel+automorphism class?
+
+- [ ] how come there is so many relabel + automorphism classes of dodecahedron?
+
 ### Improve visuals
 
 - [ ] emphasize certain entries of the tables that are later visualised (making them bold)
