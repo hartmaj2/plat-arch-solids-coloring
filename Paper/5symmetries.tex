@@ -97,9 +97,13 @@ By combining equations \ref{eqn:orbits-by-stab} and \ref{eqn:two-way-counting}, 
 
 We introduce a notion very similar to the one of the chromatic polynomial of a graph. Additionally, we take into account symmetries.
 
+\begin{highlight}
+
 \begin{defn}[orbital chromatic polynomial]
-    For a graph $G$ and a family of its proper coloring $C$ we define the \emph{orbital chromatic polynomial} $OP(G,x)$ as a polynomial s.t. $\forall k \in \mathbb{N} : OP(G,k)$ is equal to $\abs{C_k/_\sim}$
+    For a graph $G$ and a family of its proper colorings $C$ we define the function $OP(G,x)$ s.t. $\forall k \in \mathbb{N} : OP(G,k)$ is equal to $\abs{C_k/_\sim}$. We call this function \emph{orbital chromatic polynomial}. Indeed in Theorem \ref{thm:count-orb-chrompoly}, we show that values at every natural number correspond to the right hand side of formula \ref{eqn:oribtal-chrompoly} which is a polynomial.
 \end{defn}
+
+\end{highlight}
 
 The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
 
@@ -131,15 +135,18 @@ In the following definition, we extend the definition of an undirected graph to 
 
 Now we are ready to state the following theorem:
 
+\begin{highlight}
+
 \begin{thm}[computation of orbital chromatic polynomial] \label{thm:count-orb-chrompoly}
-    Let $G$ be a graph, then the following formula holds:
+    Let $G$ be a graph, then for any natural number $n$, the following formula holds:
     \begin{equation} \label{eqn:oribtal-chrompoly}
-        OP(G,x) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,x)
+        OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,n)
     \end{equation}
 \end{thm}
 
+\end{highlight}
+
 \begin{proof}
-    We show that for any positive integer $n$ we have: $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,n)$$
 
     Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
     $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$$
@@ -152,10 +159,7 @@ Now we are ready to state the following theorem:
 
     For surjectivity, suppose we have a proper coloring $c' \in C'_n$ of graph $G/_\pi$. Then the preimage of $c'$ is the following coloring which we denote by $c \in C_n$: $(\forall O_i \in \Cycles(\pi))( \forall v \in O_i) : c(v) = c'(w_i)$. It is not hard to see, by the definition of the vertex set identification operation, that the coloring $c$ is a proper coloring of $G$. Note that we also have that $c \in \Fix(\pi)$ because we assigned all vertices on each cycle the same color.
 
-    So we have that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. 
-
-    \vspace{5pt}
-    \todo{TODO: Now we have to show that if for all $n \in \mathbb{N}$ the polynomials have equal value, then they are indeed equal. This would be true if we could somehow limit the degree of OP (the orbital chromatic polynomial)}
+    So we have that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$ which we needed to show. 
      
 \end{proof}
 
@@ -218,11 +222,6 @@ Plugging in $3$ for $x$, we get the number of vertex colorings of the octahedron
 \end{figure}
 
 Now, an important observation is, that all of these $6$ colorings are equivalent when considered up to automorphisms. Indeed we can compute that $OP(K_{3 \times 2},3) = 1$.
-
-\todo[JF]{Hezká ukázka, ale ne moc překvapivá. Co třeba kdybyste ještě přidal 3-obarvení krychle, nevyjde to zajímavěji? Nebo 3-obarvení dvanáctistěnu. 
-
-Kolik takových vlastně je? Možná by mělo smysl je dát do tabulky.
-Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
 
 \begin{highlight}
 
