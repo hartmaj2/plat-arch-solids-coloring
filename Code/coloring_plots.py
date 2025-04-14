@@ -13,6 +13,7 @@ import solids_prep.solids_layout_prep as slp
 
 import tempfile
 import math
+import itertools
 
 import svgutils.compose as svgc 
 
@@ -252,14 +253,80 @@ def get_fprnted_clrings(colorings_as_list : list[list]) -> list[tuple]:
 
 # END: COLORING STANDARDIZATION BY FINGERPRIT
 
-# BEGIN: COLORING INDEP SET POSITIONS STANDARDIZATION
 
-# function that receives two colorings and a graph and returns automorphism and relabeling by which they can be unified or None
-def get_unification_proof(c1 : list[int], c2 : list[int], g : Graph): # -> automorphism, relabeling
-    ...
-    # TODO: implement function body
+# BEGIN: COLORING INDEP SET POSITIONS UNIFICATION
 
-# END: COLORING INDEP SET POSITIONS STANDARDIZATION
+# goes through all the colorings and chooses their orientation in such a way, that the independent sets are aligned
+def get_unified_indepset_sturucture_layout_clrings(clrings : list[list[int]], g : Graph) -> list[list[int]]:
+    standardized = []
+    rel_aut_reprs = []
+    auts_as_cycles = [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]
+    for c_curr in clrings:
+        for c_repr in rel_aut_reprs:
+            uni_proof = get_unification_proof(c_curr,c_repr,auts_as_cycles)
+            if uni_proof is None: # the coloring is not automorph+relabel equivalent to the c_repr representant
+                continue
+            else:
+                standardized.append(get_transformed_by_aut(c_curr,get_uni_proof_automorph(uni_proof)))
+                break # we don't want to check for more
+        else : # there was no representant to which we can rel+automorph
+            standardized.append(c_curr)
+            rel_aut_reprs.append(c_curr) # set this coloring as a representant
+    return standardized
+
+# returns coloring resulting by transforming the coloring clring by the automorphism a given as list of cycles
+def get_transformed_by_aut(clring : list[int], a : list[tuple]) -> list[int]:
+    transformed = [0 for vtx in clring]
+    for cycle in a:
+        k = len(cycle)
+        for i in range(k):
+            vtx_preimg =cycle[i]
+            vtx_img = cycle[(i+1)%k]
+            transformed[vtx_img] = clring[vtx_preimg] # the vertex to which a permutes vertex i gets the color of i
+    return transformed
+
+# accessor for unification proof relabeling
+def get_uni_proof_relabel(uni_proof : tuple[list[tuple],tuple]) -> tuple:
+    return uni_proof[1]
+
+# accessor for unification proof automorphism
+def get_uni_proof_automorph(uni_proof : tuple[list[tuple],tuple]) -> list[tuple]:
+    return uni_proof[0]
+
+# function that receives two colorings and a graph and returns automorphism (as list of cycles) and relabeling by which they can be unified or None
+# result means that we can get from c1 to c2 using automorphism a and relabel r in the returned (a,r) tuple 
+def get_unification_proof(c1 : list[int], c2 : list[int], auts_as_cycles : list[list[tuple]]) -> tuple[list[tuple],tuple] | None: # -> (automorphism, relabeling) or None
+    for aut in auts_as_cycles:
+        res_relabel = try_unify_by_aut(c1,c2,aut)
+        if res_relabel is not None:
+            return aut,res_relabel
+    return None
+
+# tries to unify colorings using automorphism a by also applying some permutation of colors (now I can just try looping through all possible color permutations)
+# returns the permutation for which this automorphism is equivalent or None 
+# finds the relabeling using a brute force through all permutations of colors (for our purposes we have at most 4 clrs so there will be only 4!=24 of those)
+def try_unify_by_aut(c1 : list[int], c2 : list[int], a : list[tuple]) -> tuple | None:
+    num_clrs = max(c1) + 1
+    for p in itertools.permutations(range(num_clrs)):
+        if can_unify_using_relabel_and_aut(c1,c2,a,p):
+            return p
+    return None
+
+# to be properly unified, the for all vertices, the color must be the same as the relabeled color on the permuted graph
+# the relabel is a permutation given as tuple, if val at position i is j, it means that color i is permuted to j
+def can_unify_using_relabel_and_aut(c1 : list[int], c2 : list[int], a : list[tuple], relabel : tuple) -> bool:
+    for cycle in a:
+        k = len(cycle)
+        for i in range(k):
+            vtx_preim = cycle[i]
+            vtx_img = cycle[(i+1)%k]
+            b1 = relabel[c1[vtx_preim]]
+            b2 = c2[vtx_img]
+            if b1 != b2:
+                return False
+    return True
+
+# END: COLORING INDEP SET POSITIONS UNIFICATION
 
 # BEGIN: ALL COLORINGS CONVERSION AND WRAPPER FUNCTIONS
 
@@ -423,6 +490,8 @@ def get_classified_fpritned_clrings(fingerprinted_colorings : list[tuple[list,li
 # colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
 colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
 # colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS),check_equiv_under_automorph_and_permutation)
+
+colorings = get_unified_indepset_sturucture_layout_clrings(colorings,G)
 
 # BEGIN: USE ORDERING BY FINGERPRINT
 
