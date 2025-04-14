@@ -147,7 +147,7 @@ def find_collage_dimensions(num_figures : int, max_ratio : float) -> tuple:
 # the classified fingerprinted colorings which are:
 #   dict where key is the sizes vector 
 #   value is a list of fingerprinted colorings with this sizes vector of their fingerprint
-def create_classified_collage(graph : Graph, positions : dict[int,tuple], styles : dict[int,str], classified_fprinted_clrings : dict[tuple,list]):
+def create_classified_fprnted_collage(graph : Graph, positions : dict[int,tuple], styles : dict[int,str], classified_fprinted_clrings : dict[tuple,list]):
     classified_svgs : dict[tuple,list[svgc.SVG]] = {}
     temp_paths = []
 
@@ -273,6 +273,27 @@ def get_unified_indepset_sturucture_layout_clrings(clrings : list[list[int]], g 
             standardized.append(c_curr)
             rel_aut_reprs.append(c_curr) # set this coloring as a representant
     return standardized
+
+# returns a dictionary where keys are the representative colorings and the values are lists of colorings that are relaut eqivalent to it
+def get_classified_by_relaut_eqiv_class(fprinted_clrings : list[tuple], g : Graph) -> dict[tuple,list[tuple]]:
+    classified : dict[tuple,list[tuple]] = {}
+    auts_as_cycles = [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]
+    for c_curr_fprinted in fprinted_clrings:
+        for c_repr in classified.keys():
+            uni_proof = get_unification_proof(get_coloring(c_curr_fprinted),list(c_repr),auts_as_cycles)
+            if uni_proof is None: # the coloring is not automorph+relabel equivalent to the c_repr representant
+                continue
+            else:
+                classified[c_repr].append(get_transformed_fprnted_by_aut(c_curr_fprinted,get_uni_proof_automorph(uni_proof)))
+                break # we don't want to check for more ways to transform this coloring to the same representant
+        else : # there was no representant to which we can rel+automorph
+            hashable_curr = tuple(get_coloring(c_curr_fprinted))
+            classified[hashable_curr] = [c_curr_fprinted] # set this coloring as a representant
+
+    return classified
+
+def get_transformed_fprnted_by_aut(fprnted : tuple[list[int],list], a : list[tuple]) -> tuple[list[int],list]:
+    return get_transformed_by_aut(get_coloring(fprnted),a),get_fingerprint(fprnted)
 
 # returns coloring resulting by transforming the coloring clring by the automorphism a given as list of cycles
 def get_transformed_by_aut(clring : list[int], a : list[tuple]) -> list[int]:
@@ -513,10 +534,18 @@ print(get_encountered_fingerprints(fingerprinted))
 
 # BEGIN: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
 
-classified_fprinted = get_classified_fpritned_clrings(fingerprinted)
-create_classified_collage(G,POSITIONS,STYLES,classified_fprinted)
+# classified_fprinted = get_classified_fpritned_clrings(fingerprinted)
+# create_classified_collage(G,POSITIONS,STYLES,classified_fprinted)
 
 # END: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
+
+
+# BEGIN: USE CLASSIFICATION BY RELAUT EQUIVALENCY CLASSES IN COLLAGE
+
+classified_fprinted = get_classified_by_relaut_eqiv_class(fingerprinted,G)
+create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
+
+# END: USE CLASSIFICATION BY RELAUT EQUIVALENCY CLASSES IN COLLAGE
 
 
 # BEGIN : NORMAL PRINTING IN COLLAGE
