@@ -275,7 +275,12 @@
 
 - [x] implement printing in rows based on fingerprint classes
 
-- [ ] implement pseudoalg from [sage notes](../Notes/sage_notes.md)
+- [x] implement pseudoalg from [sage notes](../Notes/sage_notes.md)
+
+## 2025_04_15
+
+- [ ] make the classified collage creating function work with non fprinted colorings
+  - it is not necessary for the function to have the fingerprints so it is better to make it independent of them
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
   - enumerate all the colorings
@@ -283,11 +288,8 @@
 
 ## Main tasks
 
-- [ ] implement classification based on relabeling+automorphism classes
+- [ ] analyze classification based on relabeling+automorphism classes
   - how will now the rows differ, will some colorings with same sizes_vector be separated into multiple classes?
-
-- [ ] make colors that each independent set receives ordered by the size of the independent sets
-  - this will be only deterministic and useful after I debug the non aut and non relabel function
 
 - [ ] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
   - what permutation and relabeling causes their identification?
