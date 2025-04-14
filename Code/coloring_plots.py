@@ -139,6 +139,87 @@ def find_collage_dimensions(num_figures : int, max_ratio : float) -> tuple:
 
 # END: IMAGE HANDLING
 
+
+# BEGIN: COLORING IMAGE HANDLING AND COLLAGING CLASSIFIED BY FINGERPRINT
+
+# recievies graph to be printed, its positions dict and styles dict together with
+# the classified fingerprinted colorings which are:
+#   dict where key is the sizes vector 
+#   value is a list of fingerprinted colorings with this sizes vector of their fingerprint
+def create_classified_collage(graph : Graph, positions : dict[int,tuple], styles : dict[int,str], classified_fprinted_clrings : dict[tuple,list]):
+    classified_svgs : dict[tuple,list[svgc.SVG]] = {}
+    temp_paths = []
+
+    for sizes_vect,fprinted_clrings in zip(classified_fprinted_clrings.keys(),classified_fprinted_clrings.values()):
+        classified_svgs[sizes_vect] = []
+        for fprinted in fprinted_clrings:
+            c = get_coloring_dict(get_coloring(fprinted))
+            graphic = graph.plot(vertex_labels=VERTEX_LABEL,edge_labels=EDGE_LABELS,pos=positions,vertex_colors=c,edge_styles=styles)
+              # store each image in temporary file and then create corresponding PIL image
+            with tempfile.NamedTemporaryFile(suffix=".svg",delete=False) as tmp:
+                graphic.save(tmp.name)
+                temp_paths.append(tmp.name)
+                img_file = svgc.SVG(tmp.name)
+                classified_svgs[sizes_vect].append(img_file)     
+
+    merge_classified_svgs(classified_svgs) # by now, the tempfiles still have to exist, otherwise, the svg contents will be erased
+
+    for path in temp_paths: # now we can remove the tempfiles
+        os.remove(path) 
+
+# merge the images inside the classified colorings so that each row contains one type of fingerprint
+def merge_classified_svgs(classified_svgs : dict[tuple,list[svgc.SVG]]):
+    
+    unique_fprint_sizes = [key for key in classified_svgs.keys()]
+    rows_num = len(unique_fprint_sizes)
+    columns_num = max([len(fprinted_clrings) for fprinted_clrings in classified_svgs.values()])
+
+    ref_svg = classified_svgs[unique_fprint_sizes[0]][0]
+
+    svg_width = ref_svg.width
+    svg_height = ref_svg.height
+
+    if not isinstance(svg_width,float) or not isinstance(svg_height,float):
+        return
+
+    # this is a constant by which I have to scale both dimensions to get pt value from px
+    # probably the width and height parameters return px value which is greater and has to be reduced by 20% to get pt size
+    PADDING_COMPENSATION = 0.8
+
+    svg_width *= PADDING_COMPENSATION
+    svg_height *= PADDING_COMPENSATION
+
+    img_padding_size = 50
+
+    collage_width = svg_width * columns_num + img_padding_size * (columns_num - 1)
+    collage_height = svg_height * rows_num + img_padding_size * (rows_num - 1)
+
+    for i,sizes_vect in enumerate(unique_fprint_sizes):
+        svgs_class = classified_svgs[sizes_vect]
+        y = i * (svg_height + img_padding_size)
+        for j,svg in enumerate(svgs_class):
+            x = j * (svg_width + img_padding_size)
+            svg.move(x,y)
+            
+    # xmlns='http://www.w3.org/2000/svg' defines a xml namespace to be the namespace for SVG defomed by the W3C, the World Wide Web Consortium
+    # 2000 there means that the namespace was defined in year 2000 by W3C
+    background_svg_str = (
+        f"<svg xmlns='http://www.w3.org/2000/svg' width='{collage_width}pt' height='{collage_height}pt'>"
+        f"<rect width='100%' height='100%' fill='white'/></svg>"
+    )
+
+    with tempfile.NamedTemporaryFile(suffix=".svg", delete=True, mode="w", encoding="utf-8") as bgfile:
+        bgfile.write(background_svg_str)
+        bgfile.flush() # important, otherwise the changes are not seen by SVG constructor
+        bgfile_path = bgfile.name
+        background = svgc.SVG(bgfile_path)
+
+        svgs = reduce(lambda x,y : x + y,classified_svgs.values(),[])
+        fig = svgc.Figure(f"{collage_width}pt",f"{collage_height}pt",background,*svgs)
+        fig.save(f"{output_path}{collage_name}.svg")
+
+# END: COLORING IMAGE HANDLING AND COLLAGING CLASSIFIED BY FINGERPRINT
+
 # BEGIN: COLORING STANDARDIZATION BY FINGERPRIT
 
 # fingerprint stores information about sizes of independent sets of the colorings
@@ -306,11 +387,34 @@ def is_in_canonic_form(coloring : list[int]) -> bool:
 
 # BEGIN: ENCOUNTERED FINGERPRINT STATISTICS AND PRINTING
 
-def get_encountered_fingerprints(fingerprinted_colorings : list[tuple]) -> set[tuple]:
+# retrieves the fingerprint out of the fingerprinted coloring
+def get_fingerprint(fingerprinted_coloring: tuple[list,list]) -> list:
+    return fingerprinted_coloring[1]
+
+def get_coloring(fingerprinted_coloring: tuple[list,list]) -> list:
+    return fingerprinted_coloring[0]
+
+# extracts only the sizes part of the fingerprint as tuple (to be used for hashing)
+def get_sizes_vector(fingerprint : list[tuple]) -> tuple:
+    return tuple([size for (size,clr) in fingerprint])
+
+# goes through all fingerprinted colorings (clring,fprint) and retrieves a set of unique size only fingerprints
+def get_encountered_fingerprints(fingerprinted_colorings : list[tuple[list,list]]) -> set[tuple]:
     unique_fingerprints = set()
-    for fprnt in [tuple([size for (size,clr) in fprint]) for (clring,fprint) in fingerprinted_colorings]:
+    fprint_counts_only = [get_sizes_vector(fprint) for (clring,fprint) in fingerprinted_colorings] # extracts only the counts part (as tuple) of the fingerprints
+    for fprnt in fprint_counts_only:
         unique_fingerprints.add(fprnt)
     return unique_fingerprints
+
+# retrieves a dictionary of lists of fingerprinted colorings where key is the sizes vector of the fingerprint of all the colorings inside the value under the key
+def get_classified_fpritned_clrings(fingerprinted_colorings : list[tuple[list,list]]) -> dict[tuple,list]:
+    fingerprint_dict : dict[tuple,list] = {}
+    for fprinted_clring in fingerprinted_colorings:
+        sizes_vect = get_sizes_vector(get_fingerprint(fprinted_clring))
+        if sizes_vect not in fingerprint_dict: # initialize the list for this key if not encountered yet
+            fingerprint_dict[sizes_vect] = []
+        fingerprint_dict[sizes_vect].append(fprinted_clring)
+    return fingerprint_dict
 
 # END: ENCOUNTERED FINGERPRINT STATISTICS AND PRINTING
 
@@ -328,16 +432,31 @@ colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colori
 
 # fingerprinted coloring is a tuple (coloring,fingerprint)
 fingerprinted = get_fprnted_clrings(colorings) # gets standardized fingerprints (standardized fingerprint is a list of sizes of independent sets together with their color values ordered by their size)
-fingerprinted.sort(key= lambda fprnted: stringify_fprnt_clr_vals(fprnted[1])) # sort lexicographically based on standardized fingerprint independent set color values
-fingerprinted.sort(key=lambda fprnted : stringify_fprnt_counts(fprnted[1])) # sort lexicographically based on standardized fingerprint independent set sizes
+fingerprinted.sort(key= lambda fprnted: stringify_fprnt_clr_vals(get_fingerprint(fprnted))) # sort lexicographically based on standardized fingerprint independent set color values
+fingerprinted.sort(key=lambda fprnted : stringify_fprnt_counts(get_fingerprint(fprnted))) # sort lexicographically based on standardized fingerprint independent set sizes
 
 print("encountered following fingerprints:")
 print(get_encountered_fingerprints(fingerprinted))
 
-colorings = [clring for (clring,fprint) in fingerprinted]
 
 # END: USE ORDERING BY FINGERPRINT
 
-print("generating coloring images...")
-# colorings = CLRING_FUNCTION(g,NUM_CLRS) 
-images = create_images_svg(G,POSITIONS,STYLES,colorings,MAX_DIMS_RATIO)
+
+# BEGIN: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
+
+classified_fprinted = get_classified_fpritned_clrings(fingerprinted)
+print(classified_fprinted)
+create_classified_collage(G,POSITIONS,STYLES,classified_fprinted)
+
+# END: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
+
+
+# BEGIN : NORMAL PRINTING IN COLLAGE
+
+# colorings = [clring for (clring,fprint) in fingerprinted] # remove if not using fingerprinted
+
+# print("generating coloring images...")
+# # colorings = CLRING_FUNCTION(g,NUM_CLRS) 
+# images = create_images_svg(G,POSITIONS,STYLES,colorings,MAX_DIMS_RATIO)
+
+# END : NORMAL PRINTING IN COLLAGE
