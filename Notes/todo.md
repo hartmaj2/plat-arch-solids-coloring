@@ -273,6 +273,8 @@
 
 ## 2025_04_14
 
+- [x] implement printing in rows based on fingerprint classes
+
 - [ ] implement pseudoalg from [sage notes](../Notes/sage_notes.md)
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
@@ -280,6 +282,9 @@
   - show that some colorings are just permutations of colors of other colorings
 
 ## Main tasks
+
+- [ ] implement classification based on relabeling+automorphism classes
+  - how will now the rows differ, will some colorings with same sizes_vector be separated into multiple classes?
 
 - [ ] make colors that each independent set receives ordered by the size of the independent sets
   - this will be only deterministic and useful after I debug the non aut and non relabel function
