@@ -718,4 +718,8 @@
 
 ### 2025_04_14
 
-- implemented image collaging in such way, that if I have the colorings separated in classes, then every class appears on a single row
+- implemented image collaging in such way, that if I have the colorings separated in fingeprint size classes, then every class appears on a single row
+
+- had meeting with my supervisor
+
+- implemented the classification based on the relabel+automorphism eqivalence classes as well
