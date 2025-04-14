@@ -715,3 +715,7 @@
 - thought about how to make the colorings with same structure appear similar
   - i.e. their independent sets will be aligned in the same way using a proper automorphism
 - wrote a pseudoalgorithm to do the above [here](../Notes/sage_notes.md)
+
+### 2025_04_14
+
+- implemented image collaging in such way, that if I have the colorings separated in classes, then every class appears on a single row
