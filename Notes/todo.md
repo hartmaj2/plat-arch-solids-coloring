@@ -298,18 +298,18 @@
 
 ## Side tasks
 
+### Improve visuals
+
+- [ ] emphasize certain entries of the tables that are later visualised (making them bold)
+
+- [ ] in the visualisation of Pascal's triangle formula for K_{k x 2} graphs, emphasize where the operation is done in the figure
+
 ### Improve definitions
 
 - [ ] distinguish between proper and improper colorings in the definitions
 
 ### Misc
 
-
 - [ ] mention explicit formula for orbital chromatic polynomial of complete graph using binomial coefficient
 
 - [ ] time how long orbpoly vs chrompoly run
-
-- [ ] what do operations on the Platonic solids do on the graphs?
-
-- [ ] try to add list of Schlegel diagrams of the solid graphs as appendix
-  - [link_to_figs](https://en.wikipedia.org/wiki/Archimedean_graph)
