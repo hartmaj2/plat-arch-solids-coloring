@@ -302,15 +302,17 @@ def is_in_canonic_form(coloring : list[int]) -> bool:
     return True
 
 # END: COLORINGS RELABELING EQUIVALENCY CHECKING
+
+
+# BEGIN: ENCOUNTERED FINGERPRINT STATISTICS AND PRINTING
+
 def get_encountered_fingerprints(fingerprinted_colorings : list[tuple]) -> set[tuple]:
     unique_fingerprints = set()
     for fprnt in [tuple([size for (size,clr) in fprint]) for (clring,fprint) in fingerprinted_colorings]:
         unique_fingerprints.add(fprnt)
     return unique_fingerprints
 
-# BEGIN: ENCOUNTERED FINGERPRINT STATISTICS
-
-# END: ENCOUNTERED FINGERPRINT STATISTICS
+# END: ENCOUNTERED FINGERPRINT STATISTICS AND PRINTING
 
 # IMPORTANT: below pick the function to use here
 # colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
