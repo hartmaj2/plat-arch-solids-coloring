@@ -26,7 +26,7 @@ Let g be a sage graph:
   
 1. relaut <- 0
 2. for c in colorings
-3.   ref <- coloring in relaut obtained by relabeling p and automorphism a
+3.   ref, p, a <- coloring in relaut obtained by relabeling p and automorphism a
 4.   if no such ref exists: # this is the first representative
 5.     relaut <+- c
 6.   else:
