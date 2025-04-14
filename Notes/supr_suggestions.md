@@ -21,3 +21,10 @@ visualize some particular colorings in more accessible way.
 ## 4
 
 \todo[JF]{Tip: naznačit, kterým kontrakcím a přidáním které šipky odpovídají (vysvětlím osobně).}
+
+## 5
+
+\todo[JF]{Hezká ukázka, ale ne moc překvapivá. Co třeba kdybyste ještě přidal 3-obarvení krychle, nevyjde to zajímavěji? Nebo 3-obarvení dvanáctistěnu. 
+
+Kolik takových vlastně je? Možná by mělo smysl je dát do tabulky.
+Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
