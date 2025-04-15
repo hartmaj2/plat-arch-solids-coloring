@@ -723,3 +723,7 @@
 - had meeting with my supervisor
 
 - implemented the classification based on the relabel+automorphism eqivalence classes as well
+
+### 2025_04_15
+
+- defined the relabeling relation formally so I can be more precise when talking about counting partitions into independent sets
