@@ -259,7 +259,11 @@ It is important to note, that in table \ref{tab:platonic-polys-evals} above, in 
 
 \section{Number of colorings using exactly n colors}
 
-Let us denote $P^*(G,n)$ the amount of colorings of graph $G$ using \textbf{exactly} $n$ colors. This number can be calculated using a recursive formula with a base case being $P^*(G,\chi(G))=P(G,\chi(G))$. The recursive formula is as follows:
+\begin{defn}[number of exact n-colorings]
+    Let us denote $P^*(G,n)$ the amount of colorings of graph $G$ using \textbf{exactly} $n$ colors.
+\end{defn}
+
+The number $P^*(G,n)$ can be calculated using a recursive formula with a base case being $P^*(G,\chi(G))=P(G,\chi(G))$. The recursive formula is as follows:
 \begin{equation}\label{eqn:exactly-n-colors}
 P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)    
 \end{equation}
@@ -310,7 +314,11 @@ Important thing to note about results of table \ref{tab:platonic-exactly-n-clrs}
 
 The relabeling relation is in fact an equivalence relation as it is reflexive, symmetric and transitive.
 
-Let us for a given $n \in \mathbb{N}$ denote by $P^*_{\leftrightarrow}(G,n)$ the number of equivalence classes of $\leftrightarrow$ on the set of all proper vertex colorings. These equivalence classes correspond to different partitions of the set $V(G)$ into independent sets irrespectively of the particular colors that we assign the vertices. Note that now, we might still consider two partitions as different even though they can be made equal by applying some automorphism. In order to calculate $P^*_{\leftrightarrow}(G,n)$, consider any partition $W$ of $V(G)$ into independent sets and count how many different colorings correspond to $W$. Because $W$ consists of exactly $n$ independent sets, we have $n!$ possible ways of assigning colors to the independent sets of $W$. As this holds for any arbitrary partition of size $n$, it follows that $P^*_{\leftrightarrow}(G,n) \cdot n! = P^*(G,n)$.
+\begin{defn}[number of exact n-partitions]
+    Let us for a given $n \in \mathbb{N}$ denote by $P^*_{\leftrightarrow}(G,n)$ the number of equivalence classes of $\leftrightarrow$ on the set of all proper vertex colorings. 
+\end{defn}
+
+The equivalence classes in definition above correspond to different partitions of the set $V(G)$ into independent sets irrespectively of the particular colors that we assign the vertices. Note that now, we might still consider two partitions as different even though they can be made equal by applying some automorphism. In order to calculate $P^*_{\leftrightarrow}(G,n)$, consider any partition $W$ of $V(G)$ into independent sets and count how many different colorings correspond to $W$. Because $W$ consists of exactly $n$ independent sets, we have $n!$ possible ways of assigning colors to the independent sets of $W$. As this holds for any arbitrary partition of size $n$, it follows that $P^*_{\leftrightarrow}(G,n) \cdot n! = P^*(G,n)$.
 
 Note that we cannot use the same idea to define $OP^*_\leftrightarrow(G,n)$ since $OP(G,n)$ does not count proper colorings but equivalence classes of the $\sim$ relation on the set of all proper colorings.
 
