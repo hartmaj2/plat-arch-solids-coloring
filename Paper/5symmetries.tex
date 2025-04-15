@@ -255,11 +255,11 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
 \label{tab:platonic-polys-evals}
 \end{table}
 
-It is important to note, that in table \ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the amount of colorings with exactly $n$ colors but with at most $n$ colors. This means, that colorings that used only a proper subset of the $n$ available colors are counted as well.
+It is important to note, that in table \ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the amount of colorings with exactly $n$ colors but with \textbf{at most} $n$ colors. This means, that colorings that used only a proper subset of the $n$ available colors are counted as well.
 
 \section{Number of colorings using exactly n colors}
 
-Let us denote $P^*(G,n)$ the amount of colorings of graph $G$ using \emph{exactly} $n$ colors. This number can be calculated using a recursive formula with a base case being $P^*(G,\chi(G))=P(G,\chi(G))$. The recursive formula is as follows:
+Let us denote $P^*(G,n)$ the amount of colorings of graph $G$ using \textbf{exactly} $n$ colors. This number can be calculated using a recursive formula with a base case being $P^*(G,\chi(G))=P(G,\chi(G))$. The recursive formula is as follows:
 \begin{equation}\label{eqn:exactly-n-colors}
 P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)    
 \end{equation}
@@ -270,7 +270,7 @@ P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)
     For the recursive case, let $n>\chi(G)$ be the number for which we want to calculate $P^*(G,n)$. We proceed by taking the value $P(G,n)$ and noticing, that this value also calculates colorings using $n-1$, $n-2$, \ldots \ , $\chi(G)$ colors which we want to exclude. For $i \in \{\chi(G),\ldots,n-1\}$ how many colorings using $i$ colors have we calculated? A naive approach would be to simply subtract the value $P^*(G,i)$. The problem with this approach is, that when we are allowed to use $n$ colors and have to use exactly $i$ of them, we can choose the set of $i$ colors to use in $\binom{n}{i}$ ways. Note that indeed all of the $\binom{n}{i}$ colorings use at most $n$ colors and are pairwise different. Using this observation, we can see that the correct amount to subtract is $\binom{n}{i}P^*(G,i)$ for each $i$.
 \end{proof}
 
-Note that formula \ref{eqn:exactly-n-colors} above holds also for the orbital chromatic polynomial $OP(G,x)$ and corresponding values $OP^*(G,n)$. Using these formulas, we can then simplify table \ref{tab:platonic-polys-evals} above to get a following table:
+Note that formula \ref{eqn:exactly-n-colors} above holds also for the orbital chromatic polynomial $OP(G,x)$ and corresponding values $OP^*(G,n)$. Using these formulas, we can then simplify table \ref{tab:platonic-polys-evals} above to get the following table:
 
 \begin{table}[H]
 \centering
@@ -294,7 +294,7 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
  & $0$ & $75$ & $1404548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
 \bottomrule
 \end{tabular}
-\caption{Numbers of colorings using exactly 2 to 8 colors. For each solid, the top row contains the value when counting also symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism.}
+\caption{Numbers of colorings using exactly 2 to 8 colors. For each solid, the top row contains the value when counting symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism.}
 \label{tab:platonic-exactly-n-clrs}
 \end{table}
 
@@ -305,15 +305,17 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
 Important thing to note about results of table \ref{tab:platonic-exactly-n-clrs} above is the fact, that we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ can be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only and the value of the colors bear no special meaning to us. 
 
 \begin{defn}[relabeling relation]
-    Given a graph $G=(V,E)$ and a set of colorings $C$, we define a relation $\leftrightarrow  : \ C \rightarrow C$ as follows: For any two colorings $c_1,c_2 \in C$ we have $c_1 \leftrightarrow c_2$ iff exists a permutation of colors $\pi$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(v))$. We call this relation the \emph{relabeling relation}.
+    Given a graph $G=(V,E)$ and a set of colorings $C$, we define a relation $\leftrightarrow \; \subseteq C \times C$ as follows: For any two colorings $c_1,c_2 \in C$ we have $c_1 \leftrightarrow c_2$ iff exists a permutation of colors $\pi$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(v))$. We call this relation the \emph{relabeling relation}.
 \end{defn}
 
-Let us for a given $n \in \mathbb{N}$ denote by $P^*_{\leftrightarrow}(G,n)$ the number of equivalence classes of $\leftrightarrow$ on the set of all proper vertex colorings. Note that these correspond to different partitionings of vertices of graph $G$ into $n$ independent sets s.t. we do not take rotations and reflections into account. In order to calculate $P^*_{\leftrightarrow}(G,n)$ we consider a partitioning into independent sets of graph $G$ and count, how many colorings correspond to such partitioning. Because we have $n$ partitions, we have $n!$ possible colorings that correspond to this partitioning. As this holds for any partitioning, it follows that $P^*_{\leftrightarrow}(G,n) = \frac{P^*(G,n)}{n!}$.
+The relabeling relation is in fact an equivalence relation as it is reflexive, symmetric and transitive.
 
-Note that we cannot use the same definition for $OP^*_\leftrightarrow(G,n)$ since $OP(G,n)$ does not count proper colorings but equivalence classes of the $\sim$ relation on the set of all proper colorings.
+Let us for a given $n \in \mathbb{N}$ denote by $P^*_{\leftrightarrow}(G,n)$ the number of equivalence classes of $\leftrightarrow$ on the set of all proper vertex colorings. These equivalence classes correspond to different partitions of the set $V(G)$ into independent sets irrespectively of the particular colors that we assign the vertices. Note that now, we might still consider two partitions as different even though they can be made equal by applying some automorphism. In order to calculate $P^*_{\leftrightarrow}(G,n)$, consider any partition $W$ of $V(G)$ into independent sets and count how many different colorings correspond to $W$. Because $W$ consists of exactly $n$ independent sets, we have $n!$ possible ways of assigning colors to the independent sets of $W$. As this holds for any arbitrary partition of size $n$, it follows that $P^*_{\leftrightarrow}(G,n) \cdot n! = P^*(G,n)$.
 
-\begin{defn}[rel-aut relation]
-    Let $G=(V,E)$ be a graph and $C$ a set of its vertex colorings. We define a relation $\rightleftharpoons \ : C \rightarrow C$ as follows: Given two colorings $c_1,c_2 \in C$ we have $c_1 \rightleftharpoons c_2$ iff there exists a permutation of colors $\pi$ and an automorphism $\alpha \in \Aut(G)$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(\alpha(v)))$. We call this relation the \emph{rel-aut relation}.
+Note that we cannot use the same idea to define $OP^*_\leftrightarrow(G,n)$ since $OP(G,n)$ does not count proper colorings but equivalence classes of the $\sim$ relation on the set of all proper colorings.
+
+\begin{defn}[relabeling-automorphism relation]
+    Let $G=(V,E)$ be a graph and $C$ a set of its vertex colorings. We define a relation $\rightleftharpoons \; \subseteq C \times C$ as follows: Given two colorings $c_1,c_2 \in C$ we have $c_1 \rightleftharpoons c_2$ iff there exists a permutation of colors $\pi$ and an automorphism $\alpha \in \Aut(G)$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(\alpha(v)))$. We call this relation the \emph{relabeling-automorphism relation}.
 \end{defn}
 
 \vtodo{Show that calculating the equivalence classes of rel-aut relation is not as simple as taking orbital chromatic polynomial at $n$ and dividing by $n!$}
