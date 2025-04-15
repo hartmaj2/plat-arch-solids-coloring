@@ -39,12 +39,12 @@ Before we define can define the transitivity relation, we also need to properly 
 The definition above restricts the colorings we will be working with to finite sets only. With the notion of automorphism and colorings in hand, we can define the transitivity relation for the colorings.
 
 \begin{defn}(transitivity relation)
-        Let $G=(V,E)$ be a graph and $n\in \mathbb{N}$. Let $c_1,c_2 \in C_n$. We define $c_1 \sim c_2$ whenever exists an automorphism $\pi \in \Aut(G) : \forall v \in V : c_1(v)=c_2(\pi(v))$.
+        Let $G=(V,E)$ be a graph and $n\in \mathbb{N}$. Let $c_1,c_2 \in C_n$. We define $c_1 \sim c_2$ whenever exists an automorphism $\alpha \in \Aut(G) : \forall v \in V : c_1(v)=c_2(\alpha(v))$.
 \end{defn}
 
 Less formally, two colorings are related, when we can find an automorphism that maps vertices of any color in the first coloring, to vertices of the same color in the second coloring. 
 
-We can observe that for any coloring $c$ of $G$, we have $c \sim c$ by simply taking the identity automorphism $id \in \Aut(G)$. So the transitivity relation is \textit{reflexive}. It is also \textit{symmetric} by using the fact, that if $c_1 \sim c_2$ by existence of automorphism $\pi$, then we can use $\pi^{-1}$ to show that $c_2 \sim c_1$ as well. Lastly, we can also show that the relation $\sim$ is \textit{transitive}. This comes from the fact, that composing two automorphisms $\pi$ and $\psi$ yields an automorphism. So in fact, the transitivity relation defined above is an eqivalence relation.
+We can observe that for any coloring $c$ of $G$, we have $c \sim c$ by simply taking the identity automorphism $id \in \Aut(G)$. So the transitivity relation is \textit{reflexive}. It is also \textit{symmetric} by using the fact, that if $c_1 \sim c_2$ by existence of automorphism $\alpha$, then we can use $\alpha^{-1}$ to show that $c_2 \sim c_1$ as well. Lastly, we can also show that the relation $\sim$ is \textit{transitive}. This comes from the fact, that composing two automorphisms $\alpha$ and $\psi$ yields an automorphism. So in fact, the transitivity relation defined above is an eqivalence relation.
 
 \begin{defn}(orbit)
     For $n \in \mathbb{N}$ and a coloring $c \in C_n$ of some graph $G$ we will call the eqivalence class $[c]_{\sim}$ an \emph{orbit} of $c$ and denote it by $\Orb(c)$.
@@ -57,7 +57,7 @@ We can observe that for any coloring $c$ of $G$, we have $c \sim c$ by simply ta
 Here is a good place to point out, that it is exactly our objective, to calculate the size of this set, $\abs{C_n/_\sim}$.
 
 \begin{defn}(stabilizer)
-    For $n \in \mathbb{N}$ and a coloring $c \in C_n$ of $G=(V,E)$, we will call the set $\Stab(c) = \{ \pi \in \Aut(G) \ | \ \forall v \in V : c(\pi(v)) = c(v) \}$ a \emph{stabilizer} of $c$. 
+    For $n \in \mathbb{N}$ and a coloring $c \in C_n$ of $G=(V,E)$, we will call the set $\Stab(c) = \{ \alpha \in \Aut(G) \ | \ \forall v \in V : c(\alpha(v)) = c(v) \}$ a \emph{stabilizer} of $c$. 
 \end{defn}
 
 Again, to say more coloquially, the stabilizer is the set of all automorphisms that when applied to a coloring will result in exactly the same coloring. What we mean by same colorings is, that all the vertices get the same color under both colorings.
@@ -78,19 +78,19 @@ For example, consider the graph of cube $G_{cube}$. Taking for $C_4$ the set of 
 Before stating another important observation, we will need a following definition:
 
 \begin{defn}[fixpoint]
-    For a graph $G$, $n \in \mathbb{N}$, a set of its proper colorings $C_n$ and automorphism $\pi \in \Aut(G)$ we denote $\Fix(\pi)= \{ c \in C \ | \ \forall v \in V : c(\pi(v)) = c(v) \}$
+    For a graph $G$, $n \in \mathbb{N}$, a set of its proper colorings $C_n$ and automorphism $\alpha \in \Aut(G)$ we denote $\Fix(\alpha)= \{ c \in C \ | \ \forall v \in V : c(\alpha(v)) = c(v) \}$
 \end{defn}
 
-To get a formula which computes the same number but using a sum over the set $\Aut(G)$ instead, we use the following observation: The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the number of ordered pairs $(c,\pi)$ s.t. $\forall v \in V : c(\pi(v)) = c(v)$. Using the definition of fixpoint, we can calculate this number also using the sum $\sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$ which yields the following important identity:
+To get a formula which computes the same number but using a sum over the set $\Aut(G)$ instead, we use the following observation: The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the number of ordered pairs $(c,\alpha)$ s.t. $\forall v \in V : c(\alpha(v)) = c(v)$. Using the definition of fixpoint, we can calculate this number also using the sum $\sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$ which yields the following important identity:
 \begin{equation}\label{eqn:two-way-counting}
-    \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)} = \sum_{c \in C_n}\abs{\Stab(c)}    
+    \sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)} = \sum_{c \in C_n}\abs{\Stab(c)}    
 \end{equation}
 
 By combining equations \ref{eqn:orbits-by-stab} and \ref{eqn:two-way-counting}, we get the following result which is a direct application of the famous \textit{Burnside's lemma} on our particular setting:
 
 \begin{thm}[application of Burnside's lemma] \label{thm:burnside}
     For a graph $G$, $n \in \mathbb{N}$ and a set of its proper colorings $C_n$, we have:
-    $$\abs{C_n/_\sim} = \frac{1}{\abs{\Aut(G)}}\cdot \sum_{\pi \in \Aut(G)}\abs{\Fix(\pi)}$$
+    $$\abs{C_n/_\sim} = \frac{1}{\abs{\Aut(G)}}\cdot \sum_{\alpha \in \Aut(G)}\abs{\Fix(\alpha)}$$
 \end{thm}
 
 \section{Orbital chromatic polynomial}
@@ -110,7 +110,7 @@ The notion of orbital chromatic polynomial was first introduced by Cameron and K
 For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
 
 \begin{defn}[cycles of permutation]
-    Given a graph $G=(V,E)$ and an automorphism $\pi \in \Aut(G)$ we denote the set of cycles of $\pi$ by $\Cycles(\pi)$. By a cycle $O \in \Cycles(\pi)$, we mean the set of vertices of $G$ on the cycle $O$.
+    Given a graph $G=(V,E)$ and an automorphism $\alpha \in \Aut(G)$ we denote the set of cycles of $\alpha$ by $\Cycles(\alpha)$. By a cycle $O \in \Cycles(\alpha)$, we mean the set of vertices of $G$ on the cycle $O$.
 \end{defn}
 
 \begin{defn}[vertex set identification]
@@ -130,7 +130,7 @@ Given a graph $G=(V,E)$ and a sequence of disjoints subsets $S_1, \ldots , S_n \
 In the following definition, we extend the definition of an undirected graph to allow also \textit{loops}. By a loop $l \in \binom{E}{1}$, we mean an edge with both endpoints being an identical vertex. For any graph $G$ containing a loop $l$, we set the chromatic polynomial $P(G,x) = 0$.
 
 \begin{defn}[fixation graph]
-    Given a graph $G$ and automorphism $\pi \in \Aut(G)$. For $n = \abs{\Cycles(\pi)}$ let $O_1, \ldots ,O_n \subseteq \Cycles(\pi)$ be the sequence of cycles of $\pi$ in an arbitrary order. We define the \emph{fixation graph} $G /_{\pi}$ as $G_{\star,O_1, \ldots , O_n}$ s.t. additionally, we add a loop at every new vertex $w_i$ if $O_i$ was not an independent set.
+    Given a graph $G$ and automorphism $\alpha \in \Aut(G)$. For $n = \abs{\Cycles(\alpha)}$ let $O_1, \ldots ,O_n \subseteq \Cycles(\alpha)$ be the sequence of cycles of $\alpha$ in an arbitrary order. We define the \emph{fixation graph} $G /_{\alpha}$ as $G_{\star,O_1, \ldots , O_n}$ s.t. additionally, we add a loop at every new vertex $w_i$ if $O_i$ was not an independent set.
 \end{defn}
 
 Now we are ready to state the following theorem:
@@ -140,7 +140,7 @@ Now we are ready to state the following theorem:
 \begin{thm}[computation of orbital chromatic polynomial] \label{thm:count-orb-chrompoly}
     Let $G$ be a graph, then for any natural number $n$, the following formula holds:
     \begin{equation} \label{eqn:oribtal-chrompoly}
-        OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)}P(G/_\pi,n)
+        OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\alpha \in \Aut(G)}P(G/_\alpha,n)
     \end{equation}
 \end{thm}
 
@@ -149,17 +149,17 @@ Now we are ready to state the following theorem:
 \begin{proof}
 
     Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
-    $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\pi \in \Aut(G)} \abs{\Fix(\pi)}$$
+    $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$$
 
-    In order to prove the equation above, it is enough to show that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\pi)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\pi = (V',E')$ using at most $n$ colors. It will be helpful, for $k = \abs{\Cycles(\pi)}$, to denote $w_1, \ldots , w_k$ the new vertices corresponding to the cycles $O_1, \ldots ,O_k \in \Cycles(\pi)$ that were identified in $G$ to get the resulting graph $G/_\pi$.
+    In order to prove the equation above, it is enough to show that $\forall \alpha \in \Aut(G) : P(G/_{\alpha},n) = \abs{\Fix(\alpha)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\alpha)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\alpha = (V',E')$ using at most $n$ colors. It will be helpful, for $k = \abs{\Cycles(\alpha)}$, to denote $w_1, \ldots , w_k$ the new vertices corresponding to the cycles $O_1, \ldots ,O_k \in \Cycles(\alpha)$ that were identified in $G$ to get the resulting graph $G/_\alpha$.
     
-    Let $c \in \Fix(\pi)$ be a coloring of $G$ that is fixed by $\pi$. Because $c$ is fixed by $\pi$, then by definition, it must hold that $\forall v \in V : c(\pi(v)) = c(v)$. By this condition, for a given cycle $O_i \in \Cycles(\pi)$, we have that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$ i.e. all vertices on a cycle must have the same color $b_i$. Note that we allow for $i \neq j$ to have $b_i = b_j$. Now we map the proper coloring $c \in C_n$ to a coloring $c' \in C'_n$ defined s.t. $\forall i \in \{1, \ldots ,k\} : c'(w_i) = b_i$. This results in a proper coloring since if for any $i \neq j$ we have $\{w_i,w_j\} \in E'$ then there must exist vertices $u \in O_i$ and $v \in O_j$ s.t. $\{u,v\} \in E$ by the definition of vertex set identification operation. Thus we have $b_i \neq b_j$. So we have $c' \in C'_n$. 
+    Let $c \in \Fix(\alpha)$ be a coloring of $G$ that is fixed by $\alpha$. Because $c$ is fixed by $\alpha$, then by definition, it must hold that $\forall v \in V : c(\alpha(v)) = c(v)$. By this condition, for a given cycle $O_i \in \Cycles(\alpha)$, we have that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$ i.e. all vertices on a cycle must have the same color $b_i$. Note that we allow for $i \neq j$ to have $b_i = b_j$. Now we map the proper coloring $c \in C_n$ to a coloring $c' \in C'_n$ defined s.t. $\forall i \in \{1, \ldots ,k\} : c'(w_i) = b_i$. This results in a proper coloring since if for any $i \neq j$ we have $\{w_i,w_j\} \in E'$ then there must exist vertices $u \in O_i$ and $v \in O_j$ s.t. $\{u,v\} \in E$ by the definition of vertex set identification operation. Thus we have $b_i \neq b_j$. So we have $c' \in C'_n$. 
     
     Now suppose that we have $c_1,c_2 \in C_n$ s.t. $c_1 \neq c_2$ then the images under this mapping $c'_1,c'_2 \in C'_n$ are different so the mapping is injective.
 
-    For surjectivity, suppose we have a proper coloring $c' \in C'_n$ of graph $G/_\pi$. Then the preimage of $c'$ is the following coloring which we denote by $c \in C_n$: $(\forall O_i \in \Cycles(\pi))( \forall v \in O_i) : c(v) = c'(w_i)$. It is not hard to see, by the definition of the vertex set identification operation, that the coloring $c$ is a proper coloring of $G$. Note that we also have that $c \in \Fix(\pi)$ because we assigned all vertices on each cycle the same color.
+    For surjectivity, suppose we have a proper coloring $c' \in C'_n$ of graph $G/_\alpha$. Then the preimage of $c'$ is the following coloring which we denote by $c \in C_n$: $(\forall O_i \in \Cycles(\alpha))( \forall v \in O_i) : c(v) = c'(w_i)$. It is not hard to see, by the definition of the vertex set identification operation, that the coloring $c$ is a proper coloring of $G$. Note that we also have that $c \in \Fix(\alpha)$ because we assigned all vertices on each cycle the same color.
 
-    So we have that $\forall \pi \in \Aut(G) : P(G/_{\pi},n) = \abs{\Fix(\pi)}$ which we needed to show. 
+    So we have that $\forall \alpha \in \Aut(G) : P(G/_{\alpha},n) = \abs{\Fix(\alpha)}$ which we needed to show. 
      
 \end{proof}
 
@@ -172,9 +172,9 @@ Theorem \ref{thm:count-orb-chrompoly} can be used to derive a following algorith
     \begin{algorithmic}[1]
         \Function{OrbitalChromaticPoly}{$x$}
             \State $p \gets 0$      
-            \For{$\pi \in \Aut(G)$}
+            \For{$\alpha \in \Aut(G)$}
                 \State $H \gets G$
-                \For{$O \in \Cycles(\pi)$}
+                \For{$O \in \Cycles(\alpha)$}
                     \If{$O$ not independent set}
                         \State Continue with next permutation at step $3$
                     \EndIf
@@ -259,18 +259,18 @@ It is important to note, that in table \ref{tab:platonic-polys-evals} above, in 
 
 \section{Number of colorings using exactly n colors}
 
-Let us denote $!P(G,n)$ the amount of colorings of graph $G$ using \emph{exactly} $n$ colors. This number can be calculated using a recursive formula with a base case being $!P(G,\chi(G))=P(G,\chi(G))$. The recursive formula is as follows:
+Let us denote $P^*(G,n)$ the amount of colorings of graph $G$ using \emph{exactly} $n$ colors. This number can be calculated using a recursive formula with a base case being $P^*(G,\chi(G))=P(G,\chi(G))$. The recursive formula is as follows:
 \begin{equation}\label{eqn:exactly-n-colors}
-!P(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}!P(G,i)    
+P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)    
 \end{equation}
 
 \begin{proof}
-    For the base case, it is trivial to show that $!P(G,\chi(G))=P(G,\chi(G))$ since there exist no colorings that use less than $\chi(G)$ colors.
+    For the base case, it is trivial to show that $P^*(G,\chi(G))=P(G,\chi(G))$ since there exist no colorings that use less than $\chi(G)$ colors.
     
-    For the recursive case, let $n>\chi(G)$ be the number for which we want to calculate $!P(G,n)$. We proceed by taking the value $P(G,n)$ and noticing, that this value also calculates colorings using $n-1$, $n-2$, \ldots \ , $\chi(G)$ colors which we want to exclude. For $i \in \{\chi(G),\ldots,n-1\}$ how many colorings using $i$ colors have we calculated? A naive approach would be to simply subtract the value $!P(G,i)$. The problem with this approach is, that when we are allowed to use $n$ colors and have to use exactly $i$ of them, we can choose the set of $i$ colors to use in $\binom{n}{i}$ ways. Note that indeed all of the $\binom{n}{i}$ colorings use at most $n$ colors and are pairwise different. Using this observation, we can see that the correct amount to subtract is $\binom{n}{i}!P(G,i)$ for each $i$.
+    For the recursive case, let $n>\chi(G)$ be the number for which we want to calculate $P^*(G,n)$. We proceed by taking the value $P(G,n)$ and noticing, that this value also calculates colorings using $n-1$, $n-2$, \ldots \ , $\chi(G)$ colors which we want to exclude. For $i \in \{\chi(G),\ldots,n-1\}$ how many colorings using $i$ colors have we calculated? A naive approach would be to simply subtract the value $P^*(G,i)$. The problem with this approach is, that when we are allowed to use $n$ colors and have to use exactly $i$ of them, we can choose the set of $i$ colors to use in $\binom{n}{i}$ ways. Note that indeed all of the $\binom{n}{i}$ colorings use at most $n$ colors and are pairwise different. Using this observation, we can see that the correct amount to subtract is $\binom{n}{i}P^*(G,i)$ for each $i$.
 \end{proof}
 
-Note that formula \ref{eqn:exactly-n-colors} above holds also for the orbital chromatic polynomial $OP(G,x)$ and corresponding values $!OP(G,n)$. Using these formulas, we can then simplify table \ref{tab:platonic-polys-evals} above to get a following table:
+Note that formula \ref{eqn:exactly-n-colors} above holds also for the orbital chromatic polynomial $OP(G,x)$ and corresponding values $OP^*(G,n)$. Using these formulas, we can then simplify table \ref{tab:platonic-polys-evals} above to get a following table:
 
 \begin{table}[H]
 \centering
@@ -298,13 +298,24 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
 \label{tab:platonic-exactly-n-clrs}
 \end{table}
 
-\vspace{5pt}
-\todo{TODO: Add visual example of 3-colorings of cube up to automorphisms.}
+\vtodo{Add visual example of 3-colorings of cube up to automorphisms.}
 
 \section{Counting partitionings into independent sets}
 
-Important thing to note about results of table \ref{tab:platonic-exactly-n-clrs} above is the fact, that we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ can be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only and the value of the colors bear no special meaning for us. 
+Important thing to note about results of table \ref{tab:platonic-exactly-n-clrs} above is the fact, that we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ can be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only and the value of the colors bear no special meaning to us. 
 
-In order to achieve the above, we have to view the coloring as a partitioning into independent sets, where the sets have no labels. Now, let us count the amount of partitions where we exclude same partitionings that only differ by their colors. For each coloring using exactly $k$ colors, we have exactly $k$ partitions. Imagine the colors as $k$ labels we would like to use to label the $k$ partitions, then there is exactly $k!$ ways to label them. 
+\begin{defn}[relabeling relation]
+    Given a graph $G=(V,E)$ and a set of colorings $C$, we define a relation $\leftrightarrow  : \ C \rightarrow C$ as follows: For any two colorings $c_1,c_2 \in C$ we have $c_1 \leftrightarrow c_2$ iff exists a permutation of colors $\pi$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(v))$. We call this relation the \emph{relabeling relation}.
+\end{defn}
+
+Let us for a given $n \in \mathbb{N}$ denote by $P^*_{\leftrightarrow}(G,n)$ the number of equivalence classes of $\leftrightarrow$ on the set of all proper vertex colorings. Note that these correspond to different partitionings of vertices of graph $G$ into $n$ independent sets s.t. we do not take rotations and reflections into account. In order to calculate $P^*_{\leftrightarrow}(G,n)$ we consider a partitioning into independent sets of graph $G$ and count, how many colorings correspond to such partitioning. Because we have $n$ partitions, we have $n!$ possible colorings that correspond to this partitioning. As this holds for any partitioning, it follows that $P^*_{\leftrightarrow}(G,n) = \frac{P^*(G,n)}{n!}$.
+
+Note that we cannot use the same definition for $OP^*_\leftrightarrow(G,n)$ since $OP(G,n)$ does not count proper colorings but equivalence classes of the $\sim$ relation on the set of all proper colorings.
+
+\begin{defn}[rel-aut relation]
+    Let $G=(V,E)$ be a graph and $C$ a set of its vertex colorings. We define a relation $\rightleftharpoons \ : C \rightarrow C$ as follows: Given two colorings $c_1,c_2 \in C$ we have $c_1 \rightleftharpoons c_2$ iff there exists a permutation of colors $\pi$ and an automorphism $\alpha \in \Aut(G)$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(\alpha(v)))$. We call this relation the \emph{rel-aut relation}.
+\end{defn}
+
+\vtodo{Show that calculating the equivalence classes of rel-aut relation is not as simple as taking orbital chromatic polynomial at $n$ and dividing by $n!$}
 
 \end{highlight}

@@ -1,6 +1,26 @@
 %%% This file contains definitions of various useful macros and environments %%%
 %%% Please add more macros here instead of cluttering other files with them. %%%
 
+%%% MY MACROS AND SUPERVISOR MACROS FOR TODO NOTES
+
+\makeatletter
+\define@key{todonotes}{JF}[]{\setkeys{todonotes}{author=JF,textcolor=purple}}%
+\makeatother    
+
+\newcommand{\vtodo}[1]{\vspace{5pt}\todo{TODO: #1}}
+
+% MY ENVIRONMENTS
+
+%% RED ENVIRONMENT
+
+\newboolean{useHighlights}
+\setboolean{useHighlights}{true} % uncomment to toggle highlights
+
+\newenvironment{highlight}{
+\ifthenelse{\boolean{useHighlights}}{\color{red}}{}
+}{}
+
+
 %%% MY COMMANDS
 \newcommand{\Aut}{\operatorname{Aut}}
 \newcommand{\bnd}{\operatorname{bnd}}
@@ -8,7 +28,6 @@
 \newcommand{\Fix}{\operatorname{Fix}}
 \newcommand{\Orb}{\operatorname{Orb}}
 \newcommand{\Cycles}{\operatorname{Cycles}}
-
 
 %%% Switches based on thesis type
 

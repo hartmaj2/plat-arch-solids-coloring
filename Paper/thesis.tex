@@ -99,21 +99,6 @@
 \usepackage[backgroundcolor=white,textcolor=orange]{todonotes}
 \setuptodonotes{inline}
 
-\makeatletter
-\define@key{todonotes}{JF}[]{\setkeys{todonotes}{author=JF,textcolor=purple}}%
-\makeatother    
-
-% MY ENVIRONMENTS
-
-%% RED ENVIRONMENT
-
-\newboolean{useHighlights}
-\setboolean{useHighlights}{true} % uncomment to toggle highlights
-
-\newenvironment{highlight}{
-\ifthenelse{\boolean{useHighlights}}{\color{red}}{}
-}{}
-
 %%% END: PACKAGES ADDED BY ME
 
 % You might want to use cleveref for references
