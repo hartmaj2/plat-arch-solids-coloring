@@ -279,8 +279,7 @@
 
 ## 2025_04_15
 
-- [ ] make the classified collage creating function work with non fprinted colorings
-  - it is not necessary for the function to have the fingerprints so it is better to make it independent of them
+- [ ] write about counting equivalence classes of relabel relation
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
   - enumerate all the colorings
@@ -299,6 +298,11 @@
 - [ ] describe why the counting method when considering relabelings works only for chromatic polynoimals but not for the orbital chromatic polynomials
 
 ## Side tasks
+
+### Improve code
+
+- [ ] make the classified collage creating function work with non fprinted colorings
+  - it is not necessary for the function to have the fingerprints so it is better to make it independent of them
 
 ### Interpreting collages
 
