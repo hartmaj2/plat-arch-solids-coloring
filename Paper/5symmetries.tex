@@ -341,8 +341,19 @@ Since $\rightleftharpoons$ is an equivalence relation, we can again consider its
 
 It is tempting to suppose that $P^*_{\rightleftharpoons}(G,n)$ can be calculated from $OP^*(G,n)$ in a similar fashion as can be $P^*_{\leftrightarrow}(G,n)$ calculated using $P^*(G,n)$ by formula \ref{eqn:count-relabel-orbits}. In that formula, we showed for each equivalence class of $C/_\leftrightarrow$, we count exactly $n!$ colorings in $C$ when we use $P^*(G,n)$. If something similar is to hold for $\rightleftharpoons$, we would have to show that for each equivalence class of $C/_\rightleftharpoons$, we count exactly $k$ equivalence classes of $C/_\sim$ when using $OP^*(G,n)$ for some fixed number $k$. Unfortunately, this is not the case since there exists graph $G$ and a set of its n-colorings $C$ s.t. there are equivalence classes of $C/_\rightleftharpoons$ that are counted exactly once by $OP^*(G,n)$ but also classes that are counted multiple times.
 
-For example consider the graph of cube and its 4-colorings. 
+For example consider the graph of cube and its following two 4-colorings:
 
-\vtodo{Show that calculating the equivalence classes of rel-aut relation is not as simple as taking orbital chromatic polynomial at $n$ and dividing by $n!$}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Resources/Figs/example_diff_rel-aut_class_sizes.pdf}
+    \caption{Two structurally different partitions of cube into independent sets.}
+    \label{fig:example-cube-4-clrings-diff-classes}
+\end{figure}
+
+When the colorings in figure \ref{fig:example-cube-4-clrings-diff-classes} are viewed as a partition, then the left partition represents a single equivalence class of both $\sim$ and $\rightleftharpoons$. This follows from the fact, that permuting the colors of the independent set leads to a coloring, that can be obtained from the original coloring by simply rotating the solid.
+
+On the other hand the partition one the right represents $4!$ equivalence classes of $\sim$ since any permutation of colors yields a different equivalence class of $\sim$.
+
+\vtodo{Demonstrate the results of using a brute force algorithm to calculate the equivalence classes of $\rightleftharpoons$}
 
 \end{highlight}
