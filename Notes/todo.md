@@ -279,19 +279,22 @@
 
 ## 2025_04_15
 
-- [ ] write about counting equivalence classes of relabel relation
+- [x] write about counting equivalence classes of relabel relation
+
+## 2024_04_16
+
+- [ ] define relabeling-automorphism relation
+
+- [ ] argue, why we cannot just simply multiply each partition with respect to rotation by n! where n is the number of colors 
+  - (provide an example maybe on 4-colorings of cube, show two classes that have different amounts of representatives)
+  - provide a mathematical bound on the number (it can be at least something and at most something)
+    - bcs there can't be more than n! colorings corresponding to a single coloring
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
   - enumerate all the colorings
   - show that some colorings are just permutations of colors of other colorings
 
 ## Main tasks
-
-- [ ] analyze classification based on relabeling+automorphism classes
-  - how will now the rows differ, will some colorings with same sizes_vector be separated into multiple classes?
-
-- [ ] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
-  - what permutation and relabeling causes their identification?
 
 - [ ] add table with colorings where we consider relabelings as same thing but automorphisms are not considered
 
@@ -303,6 +306,9 @@
 
 - [ ] make the classified collage creating function work with non fprinted colorings
   - it is not necessary for the function to have the fingerprints so it is better to make it independent of them
+
+- [ ] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
+  - what permutation and relabeling causes their identification?
 
 ### Interpreting collages
 
