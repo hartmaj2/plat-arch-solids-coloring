@@ -734,3 +734,9 @@
   
 - demonstrated, why counting equivalence classes of the relabeling-automorphism relation is not as simple as just multiplying the number of equivalence classes of the $\sim$ relation by some constant
   - added demonstrative figures
+
+### 2025_04_17
+
+- added table with counts of n-partitions without taking rotations and reflections into account
+
+- added example figure that demonstrate where the n-partitions count overcounts and where the problem is hidden because relabeling can get all the colorings that can be obtained by rotation or reflections
