@@ -323,7 +323,28 @@ The equivalence classes in definition above correspond to different partitions o
     P^*_{\leftrightarrow}(G,n) \cdot n! = P^*(G,n)
 \end{equation}
 
-Notice, that even though we managed to overcome the problem of counting a single partition $W$ of $G$ into independent sets multiple times, because of the ways we can relabel the colorings, the method still suffers from the fact, that rotated or reflected independent sets might be counted as different objects. This happens exactly in the cases, when rotation or reflection of a coloring $c_1$ corresponding to some labeling of independent sets in partition $W$ leads to a coloring $c_2$ s.t. $c_1 \not\leftrightarrow c_2$. In other words, when by rotating or reflecting the colored graph we get a coloring to which we cannot get by relabeling the colors in the original coloring.
+Using this formula, we can compute yet another table shown below:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\toprule
+\textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\midrule
+tetrahedron & $0$ & $0$ & $1$ & $0$ & $0$ & $0$ & $0$ \\
+octahedron & $0$ & $1$ & $3$ & $3$ & $1$ & $0$ & $0$ \\
+cube & $1$ & $18$ & $92$ & $146$ & $80$ & $16$ & $1$ \\
+icosahedron & $0$ & $0$ & $10$ & $660$ & $4908$ & $10008$ & $7900$ \\
+dodecahedron & $0$ & $1200$ & $7019920$ & $\approx 10^{8}$ & $\approx 10^{10}$ & $\approx 10^{11}$ & $\approx 10^{11}$ \\
+\bottomrule
+\end{tabular}
+\caption{Numbers of of possible partitions of vertices of the graphs into $n$ independent sets.}
+\label{tab:platonic-exact-n-partitions}
+\end{table}
+
+Notice, that even though we managed to overcome the problem of counting a single partition $W$ of $G$ into independent sets multiple times, because of the ways we can relabel the colorings, the method still suffers from the following: Rotated or reflected independent sets might be counted as different objects. This happens exactly in the cases, when rotation or reflection of a coloring $c_1$ corresponding to some labeling of independent sets in partition $W$ leads to a coloring $c_2$ s.t. $c_1 \not\leftrightarrow c_2$. In other words, when by rotating or reflecting the colored graph we get a coloring to which we cannot get by relabeling the colors in the original coloring.
+
+\vtodo{Add figure that shows when we count the same but rotated partition into independent multiple times when we just consider relabelings}
 
 Overcoming this problem motivates the following definition:
 
