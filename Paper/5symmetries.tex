@@ -344,7 +344,12 @@ dodecahedron & $0$ & $1200$ & $7019920$ & $\approx 10^{8}$ & $\approx 10^{10}$ &
 
 Notice, that even though we managed to overcome the problem of counting a single partition $W$ of $G$ into independent sets multiple times, because of the ways we can relabel the colorings, the method still suffers from the following: Rotated or reflected independent sets might be counted as different objects. This happens exactly in the cases, when rotation or reflection of a coloring $c_1$ corresponding to some labeling of independent sets in partition $W$ leads to a coloring $c_2$ s.t. $c_1 \not\leftrightarrow c_2$. In other words, when by rotating or reflecting the colored graph we get a coloring to which we cannot get by relabeling the colors in the original coloring.
 
-\vtodo{Add figure that shows when we count the same but rotated partition into independent multiple times when we just consider relabelings}
+\begin{figure}[H]
+    \centering
+    % \includegraphics[width=0.75\textwidth]{Resources/}
+    \caption{Two structurally different partitions of cube into independent sets.}
+    \label{fig:example-cube-4-clrings-diff-classes}
+\end{figure}
 
 Overcoming this problem motivates the following definition:
 
