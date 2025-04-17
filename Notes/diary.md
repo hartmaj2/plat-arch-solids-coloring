@@ -727,3 +727,10 @@
 ### 2025_04_15
 
 - defined the relabeling relation formally so I can be more precise when talking about counting partitions into independent sets
+
+### 2025_04_16
+
+- showed that the relabeling-automorphism relation is an equivalence relation
+  
+- demonstrated, why counting equivalence classes of the relabeling-automorphism relation is not as simple as just multiplying the number of equivalence classes of the $\sim$ relation by some constant
+  - added demonstrative figures
