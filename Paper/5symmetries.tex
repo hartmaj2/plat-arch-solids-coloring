@@ -353,17 +353,16 @@ This problem is illustrated on figure \ref{fig:example-octahedron-4-partitions} 
     \label{fig:example-octahedron-4-partitions}
 \end{figure}
 
-Note that in some cases of symmetric colorings, this problem is avoided. For example, any rotation or reflection of a 4-coloring of tetrahedron can be obtained by simply relabeling the colors as well.
+Note that in some cases of symmetric colorings, this problem is avoided. For example, any rotation or reflection of a 4-coloring of tetrahedron can be obtained by simply relabeling the colors as well. See this on the figure below:
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\textwidth]{Resources/Figs/example-octahedron-4-partitions.pdf}
-    \caption{All partitions of octahedron to 4 independent sets. Notice that they are structurally the same partitions when we allow us to rotate the solid.}
-    \label{fig:example-octahedron-4-partitions}
+    \includegraphics[width=0.4\textwidth]{Resources/Figs/example-tetrahedron-4-clring.pdf}
+    \caption{A coloring of tetrahedron using 4 colors. Notice that any rotation of this coloring can be obtained by simply relabeling the colors.}
+    \label{fig:example-tetrahedron-4-coloring}
 \end{figure}
 
-
-Overcoming this problem motivates the following definition:
+Overcoming the problem of counting rotations or reflection of the same partition multiple times motivates the following definition:
 
 \begin{defn}[relabeling-automorphism relation]
     Let $G=(V,E)$ be a graph and $C$ a set of its vertex colorings. We define a relation $\rightleftharpoons \; \subseteq C \times C$ as follows: Given two colorings $c_1,c_2 \in C$ we have $c_1 \rightleftharpoons c_2$ iff there exists a permutation of colors $\pi$ and an automorphism $\alpha \in \Aut(G)$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(\alpha(v)))$. We call this relation the \emph{relabeling-automorphism relation}.
