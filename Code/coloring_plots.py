@@ -275,7 +275,7 @@ def get_unified_indepset_sturucture_layout_clrings(clrings : list[list[int]], g 
     return standardized
 
 # returns a dictionary where keys are the representative colorings and the values are lists of colorings that are relaut eqivalent to it
-def get_classified_by_relaut_eqiv_class(fprinted_clrings : list[tuple], g : Graph) -> dict[tuple,list[tuple]]:
+def get_classified_by_relaut_eqiv_class(fprinted_clrings : list[tuple], g : Graph, unify_rotation = True) -> dict[tuple,list[tuple]]:
     classified : dict[tuple,list[tuple]] = {}
     auts_as_cycles = [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]
     for c_curr_fprinted in fprinted_clrings:
@@ -284,7 +284,10 @@ def get_classified_by_relaut_eqiv_class(fprinted_clrings : list[tuple], g : Grap
             if uni_proof is None: # the coloring is not automorph+relabel equivalent to the c_repr representant
                 continue
             else:
-                classified[c_repr].append(get_transformed_fprnted_by_aut(c_curr_fprinted,get_uni_proof_automorph(uni_proof)))
+                if unify_rotation:
+                    classified[c_repr].append(get_transformed_fprnted_by_aut(c_curr_fprinted,get_uni_proof_automorph(uni_proof)))
+                else:
+                    classified[c_repr].append(c_curr_fprinted)
                 break # we don't want to check for more ways to transform this coloring to the same representant
         else : # there was no representant to which we can rel+automorph
             hashable_curr = tuple(get_coloring(c_curr_fprinted))
@@ -508,11 +511,11 @@ def get_classified_fpritned_clrings(fingerprinted_colorings : list[tuple[list,li
 
 # IMPORTANT: below pick the function to use here
 # colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
-# colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
-colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
+colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
+# colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
 # colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS),check_equiv_under_automorph_and_permutation)
 
-colorings = get_unified_indepset_sturucture_layout_clrings(colorings,G)
+# colorings = get_unified_indepset_sturucture_layout_clrings(colorings,G)
 
 # BEGIN: USE ORDERING BY FINGERPRINT
 
@@ -535,14 +538,14 @@ print(get_encountered_fingerprints(fingerprinted))
 # BEGIN: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
 
 # classified_fprinted = get_classified_fpritned_clrings(fingerprinted)
-# create_classified_collage(G,POSITIONS,STYLES,classified_fprinted)
+# create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
 
 # END: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
 
 
 # BEGIN: USE CLASSIFICATION BY RELAUT EQUIVALENCY CLASSES IN COLLAGE
 
-classified_fprinted = get_classified_by_relaut_eqiv_class(fingerprinted,G)
+classified_fprinted = get_classified_by_relaut_eqiv_class(fingerprinted,G,unify_rotation=False)
 create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
 
 # END: USE CLASSIFICATION BY RELAUT EQUIVALENCY CLASSES IN COLLAGE
