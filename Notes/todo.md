@@ -283,12 +283,18 @@
 
 ## 2024_04_16
 
-- [ ] define relabeling-automorphism relation
+- [x] define relabeling-automorphism relation
 
-- [ ] argue, why we cannot just simply multiply each partition with respect to rotation by n! where n is the number of colors 
+- [x] argue, why we cannot just simply multiply each partition with respect to rotation by n! where n is the number of colors 
   - (provide an example maybe on 4-colorings of cube, show two classes that have different amounts of representatives)
   - provide a mathematical bound on the number (it can be at least something and at most something)
     - bcs there can't be more than n! colorings corresponding to a single coloring
+
+## 2024_04_17
+
+- [x] add table with colorings where we consider relabelings as same thing but automorphisms are not considered
+
+- [ ] show the lower and upper bound on the count of equivalence classes of the relabeling-automorphism relation
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
   - enumerate all the colorings
@@ -296,16 +302,11 @@
 
 ## Main tasks
 
-- [ ] add table with colorings where we consider relabelings as same thing but automorphisms are not considered
-
-- [ ] describe why the counting method when considering relabelings works only for chromatic polynoimals but not for the orbital chromatic polynomials
+- [ ] write first version of the conclusion of the thesis
 
 ## Side tasks
 
 ### Improve code
-
-- [ ] make the classified collage creating function work with non fprinted colorings
-  - it is not necessary for the function to have the fingerprints so it is better to make it independent of them
 
 - [ ] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
   - what permutation and relabeling causes their identification?
