@@ -31,6 +31,9 @@ HEADER = "Platonic solid"
 EXACTS_CAPTION = f"Numbers of colorings using exactly {STARTING_NUM} to {EVAL_NUM_LIMIT} colors. For each solid, the top row contains the value when counting also symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism."
 EXACTS_LABEL = f"tab:platonic-exactly-n-clrs"
 
+EXACT_PARTITIONS_CAPTION = f"Numbers of of possible partitions of vertices of the graphs into $n$ independent sets."
+EXACT_PARTITIONS_LABEL = f"tab:platonic-exact-n-partitions"
+
 # INPUT FILE SETTINGS
 
 ROOT_FOLDER = "Code"
@@ -115,11 +118,40 @@ def get_exact_n_colors_dict(evaluations : dict[str,list]) -> dict[str,list]:
         exacts[key] = convert_to_exactly_n_colrs(evals)
     return exacts
 
-# dicts = [get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT),get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT)]
-dicts = [get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT)),get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT))]
-preprocessed_dicts = [preprocess_for_print(d,TOO_LARGE_NUM_LIMIT) for d in dicts]
 
-mult_row_dict = create_mult_row_dict(preprocessed_dicts)
+# BEGIN: COMPUTING EXACT N-PARTITIONS
+# takes a list of number corresponding to number of colorings using exactly n-colors and returns a list 
+# of numbers corresponding to number of partitions into n independent sets irrespective of the possible labels we could give the partitions
+def divide_by_possible_relabelings(exacts: list[int]) -> list[int]:
+    partitions_counts = []# the zero entries will be same
+    for n in range(len(exacts)):
+        partitions_counts.append(exacts[n] // math.factorial(n+STARTING_NUM))
+    return partitions_counts
+
+# takes dictionary of lists of numbers of colorings using exactly n-colors and returns a dictionary with lists of counts of n-partitions
+def get_n_partition_counts_dict(exacts_dict : dict[str,list]) -> dict[str,list]:
+    n_partitions_dict = {}
+    for key,exacts in zip(exacts_dict.keys(),exacts_dict.values()):
+        n_partitions_dict[key] = divide_by_possible_relabelings(exacts)
+    return n_partitions_dict
+
+# END: COMPUTING EXACT N-PARTITIONS
+
+
+# BEGIN: PRINTING EVALUATED POLYNOMIALS OR EXACT N-COLORINGS
+# dicts = [get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT),get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT)]
+# dicts = [get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT)),get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT))]
+# preprocessed_dicts = [preprocess_for_print(d,TOO_LARGE_NUM_LIMIT) for d in dicts]
+
+# mult_row_dict = create_mult_row_dict(preprocessed_dicts)
 
 # tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=EVALS_CAPTION,label=EVALS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
-tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=EXACTS_CAPTION,label=EXACTS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+# tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=EXACTS_CAPTION,label=EXACTS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+# END: PRINTING EVALUATED POLYNOMIALS OR EXACT N-COLORINGS
+
+
+# BEGIN: PRINTING EXACT N-PARTITIONS
+dict = get_n_partition_counts_dict(get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT)))
+preprocessed_dict = preprocess_for_print(dict,TOO_LARGE_NUM_LIMIT)
+tp.print_solid_mult_col_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,EXACT_PARTITIONS_CAPTION,EXACT_PARTITIONS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5)
+# END: PRINTING EXACT N-PARTITIONS
