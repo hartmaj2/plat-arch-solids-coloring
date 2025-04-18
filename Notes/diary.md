@@ -749,3 +749,10 @@
 
 - finished proofs for the bounds on the number of classes of relabeling-automorphism relation
 - computed tables resulting from using these bounds and added them to the thesis
+
+- restructured the thesis chapters to make a bit more sense
+  - put chromatic polynomial evaluations in the chapter about chromatic polynomial
+  - put the method of counting number of colorings using exactly n colors right to the chapter about chromatic polynomial
+  - the changes above make sense because we don't need to know anything about symmetries to introduce these ideas
+
+- added also some archimedean solids to the chromatic polynomial evaluations (still excluded the rhombicuboctahedron which takes about 10 mins to compute)
