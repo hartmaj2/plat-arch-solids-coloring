@@ -242,9 +242,26 @@ CHROMPOLY_ONLY_EVALS_ARCH_CAPTION = f"Evaluated chromatic polynomial of Archimed
 CHROMPOLY_ONLY_EVALS_ARCH_LABEL = "tab:archimedean-chrompolys-evals"
 HEADER_ARCH = "Archimedean solid"
 
-platonic = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_col_data(platonic,tp.STD_PLAT_TABLE_ORDER,HEADER_PLAT,data_headers,CHROMPOLY_ONLY_EVALS_PLATS_CAPTION,CHROMPOLY_ONLY_EVALS_PLATS_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
+# begin: polynomial evaluation
+# platonic = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
+# tp.print_solid_mult_col_data(platonic,tp.STD_PLAT_TABLE_ORDER,HEADER_PLAT,data_headers,CHROMPOLY_ONLY_EVALS_PLATS_CAPTION,CHROMPOLY_ONLY_EVALS_PLATS_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
 
-archimedean = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT+arch_eval_lim_offset,REDUCED_ARCH_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_col_data(archimedean,REDUCED_ARCH_TABLE_ORDER,HEADER_ARCH,data_headers[:arch_eval_lim_offset],CHROMPOLY_ONLY_EVALS_ARCH_CAPTION,CHROMPOLY_ONLY_EVALS_ARCH_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
+# archimedean = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT+arch_eval_lim_offset,REDUCED_ARCH_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
+# tp.print_solid_mult_col_data(archimedean,REDUCED_ARCH_TABLE_ORDER,HEADER_ARCH,data_headers[:arch_eval_lim_offset],CHROMPOLY_ONLY_EVALS_ARCH_CAPTION,CHROMPOLY_ONLY_EVALS_ARCH_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
+# end: polynomial evaluation
+
+# begin: exactly n-colors 
+CHROMPOLY_EXACTS_PLATS_CAPTION = f"Number of colorings of Platonic solids using \\textbf{{exactly}} n colors for n from {STARTING_NUM} up to {EVAL_NUM_LIMIT}."
+CHROMPOLY_EXACTS_PLATS_LABEL = "tab:platonic-chrompolys-exacts"
+
+CHROMPOLY_EXACTS_ARCH_CAPTION = f"Number of colorings of Archimedean solids using \\textbf{{exactly}} n colors for n from {STARTING_NUM} up to {EVAL_NUM_LIMIT+arch_eval_lim_offset}."
+CHROMPOLY_EXACTS_ARCH_LABEL = "tab:archimedean-chrompolys-exacts"
+
+platonic = preprocess_big_numbers_for_print(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER)),TOO_LARGE_NUM_LIMIT)
+tp.print_solid_mult_col_data(platonic,tp.STD_PLAT_TABLE_ORDER,HEADER_PLAT,data_headers,CHROMPOLY_EXACTS_PLATS_CAPTION,CHROMPOLY_EXACTS_PLATS_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
+
+archimedean = preprocess_big_numbers_for_print(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT+arch_eval_lim_offset,REDUCED_ARCH_TABLE_ORDER)),TOO_LARGE_NUM_LIMIT)
+tp.print_solid_mult_col_data(archimedean,REDUCED_ARCH_TABLE_ORDER,HEADER_ARCH,data_headers[:arch_eval_lim_offset],CHROMPOLY_EXACTS_ARCH_CAPTION,CHROMPOLY_EXACTS_ARCH_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
+# end: exactly n-colors 
+
 # END : PRINTING POLY EVALUATIONS FOR SELECTED SOLIDS
