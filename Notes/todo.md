@@ -305,6 +305,10 @@
   - some colorings are just rotated - show example of colorings we counted as different but can be unified by rotation
   - some colorings are just relabeled - show example of colorings we counted as different even though that can be received by relabeling
 
+## 2025_04_19
+
+- [ ] finish thesis overview
+
 - [ ] write first version of the conclusion of the thesis
 
 ## Main tasks
