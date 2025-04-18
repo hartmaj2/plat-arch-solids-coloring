@@ -224,7 +224,27 @@ def preprocess_bound_tuples_from_dict(n_partitions_dict : dict[str,list[tuple]],
 
 
 # BEGIN : EXACT ORBITAL EVALS BASED BOUND PRINTING
-dict = calculate_automorphism_class_bounds(get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT)))
-preprocessed_dict = preprocess_bound_tuples_from_dict(dict,TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_row_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,ORBITAL_BOUNDS_CAPTION,ORBITAL_BOUNDS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+# dict = calculate_automorphism_class_bounds(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER)))
+# preprocessed_dict = preprocess_bound_tuples_from_dict(dict,TOO_LARGE_NUM_LIMIT)
+# tp.print_solid_mult_row_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,ORBITAL_BOUNDS_CAPTION,ORBITAL_BOUNDS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
 # END : EXACT ORBITAL EVALS BASED BOUND PRINTING
+
+
+# BEGIN : PRINTING EVALUATIONS FOR SELECTED SOLIDS
+REDUCED_ARCH_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron']
+
+CHROMPOLY_ONLY_EVALS_PLATS_CAPTION = f"Evaluated chromatic polynomial of Platonic solids at points {STARTING_NUM} to {EVAL_NUM_LIMIT}."
+CHROMPOLY_ONLY_EVALS_PLATS_LABEL = "tab:platonic-chrompolys-evals"
+HEADER_PLAT = "Platonic solid"
+
+arch_eval_lim_offset = -1
+CHROMPOLY_ONLY_EVALS_ARCH_CAPTION = f"Evaluated chromatic polynomial of Archimedean solids at points {STARTING_NUM} to {EVAL_NUM_LIMIT+arch_eval_lim_offset}."
+CHROMPOLY_ONLY_EVALS_ARCH_LABEL = "tab:archimedean-chrompolys-evals"
+HEADER_ARCH = "Archimedean solid"
+
+platonic = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
+tp.print_solid_mult_col_data(platonic,tp.STD_PLAT_TABLE_ORDER,HEADER_PLAT,data_headers,CHROMPOLY_ONLY_EVALS_PLATS_CAPTION,CHROMPOLY_ONLY_EVALS_PLATS_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
+
+archimedean = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT+arch_eval_lim_offset,REDUCED_ARCH_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
+tp.print_solid_mult_col_data(archimedean,REDUCED_ARCH_TABLE_ORDER,HEADER_ARCH,data_headers[:arch_eval_lim_offset],CHROMPOLY_ONLY_EVALS_ARCH_CAPTION,CHROMPOLY_ONLY_EVALS_ARCH_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
+# END : PRINTING POLY EVALUATIONS FOR SELECTED SOLIDS
