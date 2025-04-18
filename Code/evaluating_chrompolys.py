@@ -75,17 +75,18 @@ def get_approx_string(val : int):
 def wrap_with_dollars(s : str):
     return "$" + s + "$"
 
+# preprocess one big number for printing
+def preprocess_big_number_for_print(val : int, too_large_num_start : int) -> str:
+    if val >= too_large_num_start:
+        return get_approx_string(val)
+    else:
+        return str(val)
+
 # preprocesses the value so that all vals that are at least scientific_start get stored in scientific notation
-def preprocess_for_print(d : dict, too_large_num_start : int) -> dict:
+def preprocess_big_numbers_for_print(d : dict, too_large_num_start : int) -> dict:
     new = {}
     for key,tup in zip(d.keys(),d.values()):
-        new_vals = []
-        for val in tup:
-            if val >= too_large_num_start:
-                new_vals.append(get_approx_string(val))
-            else:
-                new_vals.append(str(val))
-        new[key] = new_vals
+        new[key] = [preprocess_big_number_for_print(val,too_large_num_start) for val in tup]
     return new
 
 # takes a list of dicts where each dict has the same key set and then appends the rows in the dicts to create multiple rows for each key
