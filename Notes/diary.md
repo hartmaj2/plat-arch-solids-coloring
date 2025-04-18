@@ -744,3 +744,7 @@
 - found out upper and lower bounds for number of relabeling-automorphism classes using the number of automorphism classes or relabeling classes
 
 - found out, that it is faster to first prune colorings that are just permutations of colors using canonization and then after they are pruned use brute force to get to the number of relabeling-automorphism classes
+
+### 2025_04_18
+
+- 
