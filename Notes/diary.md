@@ -756,3 +756,7 @@
   - the changes above make sense because we don't need to know anything about symmetries to introduce these ideas
 
 - added also some archimedean solids to the chromatic polynomial evaluations (still excluded the rhombicuboctahedron which takes about 10 mins to compute)
+
+- added a text about limitations of regular chromatic polynomial
+  - counting symmetric colorings mutliple times
+  - counting colorings that are just relabeling of colors of the independent sets multiple times
