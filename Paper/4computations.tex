@@ -261,6 +261,36 @@ truncated octahedron & $2$ & $378972$ & $\approx 10^{10}$ & $\approx 10^{13}$ & 
 \label{tab:archimedean-chrompolys-exacts}
 \end{table}
 
-\vtodo{Add example that shows all the colorings of some graph. Demonstrate the problem that rotations are included multiple times and that relabelings are also counted multiple times.}
+\section{Limitations of the chromatic polynomial}
+
+The results we obtained above using the chromatic polynomial have two important limitations that arise because of the way, that difference of two colorings is defined.
+
+\subsection{Counting up to symmetries}
+
+Firstly, it may happen, that we consider two colorings as different even though they are just different rotations or reflections of each other. See example of such colorings below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Resources/Figs/cube_rotations_problem.pdf}
+    \caption{Two 3-colorings of cube that are same up to symmetries}
+    \label{fig:cube-clrings-same-up-to-symmetries}
+\end{figure}
+
+If we are interested only in colorings different up to symmetries, we need to use a method that is describe in chapters \ref{chap:clrings-up-to-symmetries} and \ref{chap:orbital-chromatic-polynomial}.
+
+\subsection{Counting up to labels of independent sets}
+
+Second limitation arises, when we view the colorings as partitions into independent sets. Then, there can be cases of partitions which we count multiple times, because there exist different non-equal ways to label the colors. In other words, an independent set that is given the color red will be considered as different from the same independent set when it is given the color blue. See illustration of this problem below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Resources/Figs/cube_relabelings_problem.pdf}
+    \caption{Two 3-colorings of cube that correspond to the same partition into independent sets}
+    \label{fig:cube-clrings-same-partition}
+\end{figure}
+
+The problem with counting independent sets multiple times can be solved using method described in chapter \ref{chap:num-partitions-into-indep-sets}. 
+
+Also, note that the two colorings in figure \ref{fig:cube-clrings-same-partition} above are different up to symmetries, so the problems mentioned above are indeed different and have to be handled separately.
 
 \end{highlight}
