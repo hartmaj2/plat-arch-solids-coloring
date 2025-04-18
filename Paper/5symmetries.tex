@@ -393,4 +393,18 @@ On the other hand the partition one the right represents $4!$ equivalence classe
 
 \vtodo{Demonstrate the results of using a brute force algorithm to calculate the equivalence classes of $\rightleftharpoons$}
 
+\section{Bounds on number of equivalence classes of the relabeling-automorphism relation}
+
+Before we show, how the number of equivalence classes of $\rightleftharpoons$ can be computed using a brute force algorithm, we provide bounds on the this number, $P^*_\rightleftharpoons(G,n)$, using the numbers $P^*_\leftrightarrow(G,n)$ and $OP^*(G,n)$.
+
+\begin{claim}
+    For any graph $G=(V,E)$ and a natural number $n$, we have: $$\frac{1}{n!} \cdot P^*_\leftrightarrow(G,n) \leq P^*_\rightleftharpoons(G,n) \leq P^*_\leftrightarrow(G,n)$$ 
+\end{claim}
+
+\begin{claim}
+    For any graph $G=(V,E)$ and a natural number $n$, we have: $$\frac{1}{\Aut(G)} \cdot OP^*(G,n) \leq P^*_\rightleftharpoons(G,n) \leq OP^*(G,n)$$
+\end{claim}
+
+\vtodo{Show the straightforward bound on number of classes of the relabeling-automorphism relation based on the number of orbits of $\sim$}
+
 \end{highlight}
