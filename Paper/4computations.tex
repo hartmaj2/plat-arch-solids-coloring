@@ -58,8 +58,7 @@ Let us compare the degrees at each vertex of the solids as shown in tables \ref{
 
 Similarly, for total coloring, Vizing's conjecture \cite{vizing68} states, that for all graphs, we have $\Delta(G) + 1 \leq \chi''(G) \leq \Delta(G) + 2$. If the conjecture holds, then it again implies two classes of graphs. In the case of Platonic and Archimedean solids, it turns out, that all of them except the tetrahedron belong to class with $\chi''(G) = \Delta(G) + 1$.
 
-\section{Computing chromatic polynomials}
-
+\section{Formula for computing chromatic polynomials}
 
 Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using the following fact: When we fix two vertices $u$, $v$ s.t. $\{u,v\} \notin E$, we can split all colorings of $G$ into two disjoint groups. Let $d$ be the number of colorings of $G$ in which $u$ and $v$ are colored by different color and let $s$ be the number of colorings in which $u$ and $v$ are colored by same colors. Then the number of all colorings $P(G,x) = d + s$. Let $G+\{u,v\}$ be graph $G$ s.t. its set of edges is $E \cup \{u,v\}$. Let $G \cdot \{u,v\}$ be the graph $G + \{u,v\}$ where the edge $\{u,v\}$ is contracted into a single vertex. Then we can see that $d = P(G + \{u,v\},x)$ and $s = P(G \cdot \{u,v\},x)$. This fact yields the following formula \cite{chartrand2019}:
 \begin{equation}\label{eqn:chrom_poly_nonedge}
@@ -70,7 +69,7 @@ The formula above serves as the recursive case of our computation i.e. when the 
 
 Consider this example: Given the graph of tetrahedron $K_4$ and $X$ the family of proper vertex colorings. The chromatic polynomial $P_{X}(K_4,x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
 
-\subsection{Chromatic polynomial of complete k-partite graphs with partition size 2}
+\section{Chromatic polynomial of complete k-partite graphs with partition size 2}
 
 In the following, let $\oplus$ denote the edge addition operation and let $\star$ denote the vertex identification operation. Let $G_{\oplus,\bar{e}}$ and $G_{\star,\bar{e}}$ describe the resulting graphs by applying the corresponding operation on some non-edge $\bar{e}$ of $G$. Let $\bar{E}$ denote the set of all non-edges of $G$.
 \begin{defn}[set of non-edges]
@@ -130,7 +129,7 @@ A particular example that demonstrates the claim above is the graph of octahedro
     \caption{Demonstration of formula \ref{eqn:chromatic-pascal} on a graph of the octahedron. Arrows pointing left correspond to edge additions. Arrows pointing right correspond to non-neighbor vertex identifications. Note that for some arrows, the reader must also imagine the graph being rotated after applying the corresponding operation.}
 \end{figure}
 
-\subsection{Chromatic polynomials of Platonic and Archimedean solids}
+\section{Computing chromatic polynomials of Platonic and Archimedean solids}
 
 Because the graphs of Platonic and Archimedean solids are all planar, it follows, that they are also sparse. Thus, it is not practical to use the recursive formula \ref{eqn:chrom_poly_nonedge} which has complete graphs as a base case. We can instead simply reorganize the terms and instead use the following formula:
 
@@ -165,3 +164,38 @@ cube & $x^{8} - 12x^{7} + 66x^{6} - 214x^{5} + 441x^{4} - 572x^{3} + 423x^{2} - 
 \caption{Chromatic polynomial of selected solids.}
 \label{tab:selected-chrom-polys}
 \end{table}
+
+\begin{highlight}
+
+We are able to calculate also other polynomials than just the ones in the table \ref{tab:selected-chrom-polys} above. Nonetheless, these polynomials have the property, that the leading exponent is equal to the number of vertices of the graph and thus the results are complicated and hard to fit in a single table. On the other hand, we can get a sense on the number of colorings of our graphs also by evaluating the polynomials at certain points. We do this in the following section.
+
+
+\section{Evaluating the chromatic polynomial}
+
+Below we provide tables with evaluations of the chromatic polynomial of all the Platonic solids and some of the Archimedean solids. The reason is mentioned in the previous section.
+
+\vtodo{Add table with example evaluations of the chromatic polynomial}
+
+\section{Number of colorings using exactly n colors}
+\label{sec:num-clrings-exactly-n-clrs}
+
+\begin{defn}[number of exact n-colorings]
+    Let us denote $P^*(G,n)$ the amount of colorings of graph $G$ using \textbf{exactly} $n$ colors.
+\end{defn}
+
+The number $P^*(G,n)$ can be calculated using a recursive formula with a base case being $P^*(G,\chi(G))=P(G,\chi(G))$. The recursive formula is as follows:
+\begin{equation}\label{eqn:exactly-n-colors}
+P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)    
+\end{equation}
+
+\begin{proof}
+    For the base case, it is trivial to show that $P^*(G,\chi(G))=P(G,\chi(G))$ since there exist no colorings that use less than $\chi(G)$ colors.
+    
+    For the recursive case, let $n>\chi(G)$ be the number for which we want to calculate $P^*(G,n)$. We proceed by taking the value $P(G,n)$ and noticing, that this value also calculates colorings using $n-1$, $n-2$, \ldots \ , $\chi(G)$ colors which we want to exclude. For $i \in \{\chi(G),\ldots,n-1\}$ how many colorings using $i$ colors have we calculated? A naive approach would be to simply subtract the value $P^*(G,i)$. The problem with this approach is, that when we are allowed to use $n$ colors and have to use exactly $i$ of them, we can choose the set of $i$ colors to use in $\binom{n}{i}$ ways. Note that indeed all of the $\binom{n}{i}$ colorings use at most $n$ colors and are pairwise different. Using this observation, we can see that the correct amount to subtract is $\binom{n}{i}P^*(G,i)$ for each $i$.
+\end{proof}
+
+\vtodo{Show how we can get the number of colorings using exactly n colors from the chromatic polynomial}
+
+\vtodo{Add example that shows all the colorings of some graph. Demonstrate the problem that rotations are included multiple times and that relabelings are also counted multiple times.}
+
+\end{highlight}
