@@ -1,0 +1,193 @@
+\chapter{Orbital chromatic polynomial}
+
+We introduce a notion very similar to the one of the chromatic polynomial of a graph. Additionally, we take into account symmetries.
+
+\begin{highlight}
+
+\begin{defn}[orbital chromatic polynomial]
+    For a graph $G$ and a family of its proper colorings $C$ we define the function $OP(G,x)$ s.t. $\forall k \in \mathbb{N} : OP(G,k)$ is equal to $\abs{C_k/_\sim}$. We call this function \emph{orbital chromatic polynomial}. Indeed in Theorem \ref{thm:count-orb-chrompoly}, we show that values at every natural number correspond to the right hand side of formula \ref{eqn:oribtal-chrompoly} which is a polynomial.
+\end{defn}
+
+\end{highlight}
+
+The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
+
+For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
+
+\begin{defn}[cycles of permutation]
+    Given a graph $G=(V,E)$ and an automorphism $\alpha \in \Aut(G)$ we denote the set of cycles of $\alpha$ by $\Cycles(\alpha)$. By a cycle $O \in \Cycles(\alpha)$, we mean the set of vertices of $G$ on the cycle $O$.
+\end{defn}
+
+\begin{defn}[vertex set identification]
+    For a graph $G=(V,E)$ a subset of vertices $S \subseteq V$ we define the \emph{identification of vertex set $S$} into a new vertex $w \notin V$ as the operation that results in a graph $G_{\star,S}=(V',E')$ defined as follows:
+    \begin{enumerate}
+        \item $V' := (V \setminus S) \cup \{w\}$
+        \item $E' := \left( \binom{V'}{2} \cap E\right) \cup \{ \{w,x\} \ | \ (\exists x \in V \setminus S)(\exists s \in S): \{x,s\} \in E\}$
+    \end{enumerate}
+\end{defn}
+
+Given a graph $G=(V,E)$ and a sequence of disjoints subsets $S_1, \ldots , S_n \subseteq V$, we denote $G_{\star,S_1,\ldots,S_n}$ the graph resulting from successive application of vertex set identification operation on the sets $S_1$ up to $S_n$ and graph $G$.
+
+\begin{defn}[independent set]
+    For a graph $G=(V,E)$ and a subset of vertices $S \subseteq V$, we say that $S$ is \emph{independent} if $\forall x,y \in S : \{x,y\} \notin E$.
+\end{defn}
+
+In the following definition, we extend the definition of an undirected graph to allow also \textit{loops}. By a loop $l \in \binom{E}{1}$, we mean an edge with both endpoints being an identical vertex. For any graph $G$ containing a loop $l$, we set the chromatic polynomial $P(G,x) = 0$.
+
+\begin{defn}[fixation graph]
+    Given a graph $G$ and automorphism $\alpha \in \Aut(G)$. For $n = \abs{\Cycles(\alpha)}$ let $O_1, \ldots ,O_n \subseteq \Cycles(\alpha)$ be the sequence of cycles of $\alpha$ in an arbitrary order. We define the \emph{fixation graph} $G /_{\alpha}$ as $G_{\star,O_1, \ldots , O_n}$ s.t. additionally, we add a loop at every new vertex $w_i$ if $O_i$ was not an independent set.
+\end{defn}
+
+Now we are ready to state the following theorem:
+
+\begin{highlight}
+
+\begin{thm}[computation of orbital chromatic polynomial] \label{thm:count-orb-chrompoly}
+    Let $G$ be a graph, then for any natural number $n$, the following formula holds:
+    \begin{equation} \label{eqn:oribtal-chrompoly}
+        OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\alpha \in \Aut(G)}P(G/_\alpha,n)
+    \end{equation}
+\end{thm}
+
+\end{highlight}
+
+\begin{proof}
+
+    Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
+    $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$$
+
+    In order to prove the equation above, it is enough to show that $\forall \alpha \in \Aut(G) : P(G/_{\alpha},n) = \abs{\Fix(\alpha)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\alpha)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\alpha = (V',E')$ using at most $n$ colors. It will be helpful, for $k = \abs{\Cycles(\alpha)}$, to denote $w_1, \ldots , w_k$ the new vertices corresponding to the cycles $O_1, \ldots ,O_k \in \Cycles(\alpha)$ that were identified in $G$ to get the resulting graph $G/_\alpha$.
+    
+    Let $c \in \Fix(\alpha)$ be a coloring of $G$ that is fixed by $\alpha$. Because $c$ is fixed by $\alpha$, then by definition, it must hold that $\forall v \in V : c(\alpha(v)) = c(v)$. By this condition, for a given cycle $O_i \in \Cycles(\alpha)$, we have that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$ i.e. all vertices on a cycle must have the same color $b_i$. Note that we allow for $i \neq j$ to have $b_i = b_j$. Now we map the proper coloring $c \in C_n$ to a coloring $c' \in C'_n$ defined s.t. $\forall i \in \{1, \ldots ,k\} : c'(w_i) = b_i$. This results in a proper coloring since if for any $i \neq j$ we have $\{w_i,w_j\} \in E'$ then there must exist vertices $u \in O_i$ and $v \in O_j$ s.t. $\{u,v\} \in E$ by the definition of vertex set identification operation. Thus we have $b_i \neq b_j$. So we have $c' \in C'_n$. 
+    
+    Now suppose that we have $c_1,c_2 \in C_n$ s.t. $c_1 \neq c_2$ then the images under this mapping $c'_1,c'_2 \in C'_n$ are different so the mapping is injective.
+
+    For surjectivity, suppose we have a proper coloring $c' \in C'_n$ of graph $G/_\alpha$. Then the preimage of $c'$ is the following coloring which we denote by $c \in C_n$: $(\forall O_i \in \Cycles(\alpha))( \forall v \in O_i) : c(v) = c'(w_i)$. It is not hard to see, by the definition of the vertex set identification operation, that the coloring $c$ is a proper coloring of $G$. Note that we also have that $c \in \Fix(\alpha)$ because we assigned all vertices on each cycle the same color.
+
+    So we have that $\forall \alpha \in \Aut(G) : P(G/_{\alpha},n) = \abs{\Fix(\alpha)}$ which we needed to show. 
+     
+\end{proof}
+
+\section{Calculating orbital chromatic polynomials}
+
+Theorem \ref{thm:count-orb-chrompoly} can be used to derive a following algorithm:
+
+\begin{algorithm}[H]
+    \caption{Algorithm based on Theorem \ref{thm:count-orb-chrompoly} for computing the orbital chromatic polynomial $OP(G,x)$ of a given graph $G$} 
+    \begin{algorithmic}[1]
+        \Function{OrbitalChromaticPoly}{$x$}
+            \State $p \gets 0$      
+            \For{$\alpha \in \Aut(G)$}
+                \State $H \gets G$
+                \For{$O \in \Cycles(\alpha)$}
+                    \If{$O$ not independent set}
+                        \State Continue with next permutation at step $3$
+                    \EndIf
+                    \State $H \gets H_{\star,O}$
+                \EndFor
+                \State $p \gets p + P(H,x)$
+            \EndFor   
+            \State \Return $p$
+        \EndFunction
+    \end{algorithmic}
+    \label{alg:orb-chrompoly}
+\end{algorithm}
+
+An implementation of the algorithm \ref{alg:orb-chrompoly} above is provided in the appendix. This implementation was used to calculate the polynomials that can be seen in table \ref{tab:selected-orbital-chrom-polys} below.
+
+\renewcommand{\arraystretch}{2.0}
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{1.5cm}}p{0.7\linewidth}}
+\toprule
+\textbf{Solid} & \textbf{Orbital chromatic polynomial} \\
+\midrule
+tetrahedron & $\frac{1}{24}x^{4} - \frac{1}{4}x^{3} + \frac{11}{24}x^{2} - \frac{1}{4}x$ \\
+octahedron & $\frac{1}{48}x^{6} - \frac{3}{16}x^{5} + \frac{37}{48}x^{4} - \frac{79}{48}x^{3} + \frac{41}{24}x^{2} - \frac{2}{3}x$ \\
+cube & $\frac{1}{48}x^{8} - \frac{1}{4}x^{7} + \frac{3}{2}x^{6} - \frac{16}{3}x^{5} + \frac{193}{16}x^{4} - \frac{203}{12}x^{3} + \frac{161}{12}x^{2} - \frac{9}{2}x$ \\
+\bottomrule
+\end{tabular}
+\caption{Orbital chromatic polynomial of selected solids.}
+\label{tab:selected-orbital-chrom-polys}
+\end{table}
+\renewcommand{\arraystretch}{1.0}
+
+\section{Demonstrative example on a graph of the octahedron}
+
+The difference between chromatic and orbital chromatic polynomials can be demonstrated on a graph of the octahedron $K_{3 \times 2}$. As can be seen in table \ref{tab:selected-chrom-polys} we have that: $$P(K_{3 \times 2},x) = x^{6} - 12x^{5} + 58x^{4} - 137x^{3} + 154x^{2} - 64x$$ whereas by \ref{tab:selected-orbital-chrom-polys} 
+ we have: $$OP(K_{3 \times 2},x) = \frac{1}{48}x^{6} - \frac{3}{16}x^{5} + \frac{37}{48}x^{4} - \frac{79}{48}x^{3} + \frac{41}{24}x^{2} - \frac{2}{3}x$$.
+
+Plugging in $3$ for $x$, we get the number of vertex colorings of the octahedron using at most $3$ colors. We get $P(K_{3 \times 2},3) = 6$. All these colorings can be enumerated using \textit{SageMath} \cite{sagemath} and its \verb|all_graph_colorings| function. On the figure below, we can see all of these $6$ colorings:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{../Resources/Figs/octahedron_3-clrings.pdf}
+    \caption{All 3 colorings of octahedral graph}
+    \label{fig:octahedron-3-clrings}
+\end{figure}
+
+Now, an important observation is, that all of these $6$ colorings are equivalent when considered up to automorphisms. Indeed we can compute that $OP(K_{3 \times 2},3) = 1$.
+
+\begin{highlight}
+
+\section{Comparison with chromatic polynomial}
+
+It is interesting to compare the difference between chromatic polynomial and orbital chromatic polynomial for all the solids by looking at the values of the polynomials at certain points. This can be seen in table \ref{tab:platonic-polys-evals} below.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\toprule
+\textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\midrule
+tetrahedron & $0$ & $0$ & $24$ & $120$ & $360$ & $840$ & $1680$ \\
+ & $0$ & $0$ & $1$ & $5$ & $15$ & $35$ & $70$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+octahedron & $0$ & $6$ & $96$ & $780$ & $4080$ & $15330$ & $45696$ \\
+ & $0$ & $1$ & $10$ & $55$ & $215$ & $665$ & $1736$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+cube & $2$ & $114$ & $2652$ & $29660$ & $198030$ & $932862$ & $3440024$ \\
+ & $1$ & $15$ & $154$ & $1115$ & $5955$ & $24836$ & $85260$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+icosahedron & $0$ & $0$ & $240$ & $80400$ & $4012560$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+ & $0$ & $0$ & $2$ & $670$ & $33444$ & $640444$ & $6878900$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+ & $0$ & $75$ & $1404848$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
+\bottomrule
+\end{tabular}
+\caption{Evaluated chromatic polynomial and orbital chromatic polynomial for platonic solids at points 2 to 8. For each solid, the top row contains the chromatic polynomial, the bottom row contains the orbital chromatic polynoial.}
+\label{tab:platonic-polys-evals}
+\end{table}
+
+It is important to note, that in table \ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the amount of colorings with exactly $n$ colors but with \textbf{at most} $n$ colors. This means, that colorings that used only a proper subset of the $n$ available colors are counted as well.
+
+Note we can use the same method as in section \ref{sec:num-clrings-exactly-n-clrs} using the formula \ref{eqn:exactly-n-colors} also for the orbital chromatic polynomial $OP(G,x)$ to arrive at corresponding values $OP^*(G,n)$. Using this formula, we can then simplify table \ref{tab:platonic-polys-evals} above to get the following table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\toprule
+\textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\midrule
+tetrahedron & $0$ & $0$ & $24$ & $0$ & $0$ & $0$ & $0$ \\
+ & $0$ & $0$ & $1$ & $0$ & $0$ & $0$ & $0$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+octahedron & $0$ & $6$ & $72$ & $360$ & $720$ & $0$ & $0$ \\
+ & $0$ & $1$ & $6$ & $15$ & $15$ & $0$ & $0$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+cube & $2$ & $108$ & $2208$ & $17520$ & $57600$ & $80640$ & $40320$ \\
+ & $1$ & $12$ & $100$ & $485$ & $1290$ & $1680$ & $840$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+icosahedron & $0$ & $0$ & $240$ & $79200$ & $3533760$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+ & $0$ & $0$ & $2$ & $660$ & $29454$ & $420336$ & $2654400$ \\
+\specialrule{0.2pt}{0.65ex}{0.65ex}
+dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+ & $0$ & $75$ & $1404548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
+\bottomrule
+\end{tabular}
+\caption{Numbers of colorings using exactly 2 to 8 colors. For each solid, the top row contains the value when counting symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism.}
+\label{tab:platonic-exactly-n-clrs}
+\end{table}
+
+\end{highlight}
