@@ -169,12 +169,44 @@ cube & $x^{8} - 12x^{7} + 66x^{6} - 214x^{5} + 441x^{4} - 572x^{3} + 423x^{2} - 
 
 We are able to calculate also other polynomials than just the ones in the table \ref{tab:selected-chrom-polys} above. Nonetheless, these polynomials have the property, that the leading exponent is equal to the number of vertices of the graph and thus the results are complicated and hard to fit in a single table. On the other hand, we can get a sense on the number of colorings of our graphs also by evaluating the polynomials at certain points. We do this in the following section.
 
-
 \section{Evaluating the chromatic polynomial}
 
 Below we provide tables with evaluations of the chromatic polynomial of all the Platonic solids and some of the Archimedean solids. The reason is mentioned in the previous section.
 
-\vtodo{Add table with example evaluations of the chromatic polynomial}
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\toprule
+\textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\midrule
+tetrahedron & $0$ & $0$ & $24$ & $120$ & $360$ & $840$ & $1680$ \\
+octahedron & $0$ & $6$ & $96$ & $780$ & $4080$ & $15330$ & $45696$ \\
+cube & $2$ & $114$ & $2652$ & $29660$ & $198030$ & $932862$ & $3440024$ \\
+icosahedron & $0$ & $0$ & $240$ & $80400$ & $4012560$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+\bottomrule
+\end{tabular}
+\caption{Evaluated chromatic polynomial of Platonic solids at points 2 to 8.}
+\label{tab:platonic-chrompolys-evals}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}cccccc}
+\toprule
+\textbf{Archimedean solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} \\
+\midrule
+truncated tetrahedron & $0$ & $120$ & $60000$ & $3410880$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+cuboctahedron & $0$ & $24$ & $9216$ & $772680$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+truncated cube & $0$ & $13440$ & $\approx 10^{9}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
+truncated octahedron & $2$ & $378978$ & $\approx 10^{10}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
+\bottomrule
+\end{tabular}
+\caption{Evaluated chromatic polynomial of Archimedean solids at points 2 to 7.}
+\label{tab:archimedean-chrompolys-evals}
+\end{table}
+
+It is important to note, that in table \ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the amount of colorings with exactly $n$ colors but with \textbf{at most} $n$ colors. This means, that colorings that used only a proper subset of the $n$ available colors are counted as well. Sometimes, we would like to avoid counting these colorings. For this reason, we show a method to arrive at the number of colorings using \textbf{exactly} n colors, in the section below.
 
 \section{Number of colorings using exactly n colors}
 \label{sec:num-clrings-exactly-n-clrs}
@@ -194,7 +226,40 @@ P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)
     For the recursive case, let $n>\chi(G)$ be the number for which we want to calculate $P^*(G,n)$. We proceed by taking the value $P(G,n)$ and noticing, that this value also calculates colorings using $n-1$, $n-2$, \ldots \ , $\chi(G)$ colors which we want to exclude. For $i \in \{\chi(G),\ldots,n-1\}$ how many colorings using $i$ colors have we calculated? A naive approach would be to simply subtract the value $P^*(G,i)$. The problem with this approach is, that when we are allowed to use $n$ colors and have to use exactly $i$ of them, we can choose the set of $i$ colors to use in $\binom{n}{i}$ ways. Note that indeed all of the $\binom{n}{i}$ colorings use at most $n$ colors and are pairwise different. Using this observation, we can see that the correct amount to subtract is $\binom{n}{i}P^*(G,i)$ for each $i$.
 \end{proof}
 
-\vtodo{Show how we can get the number of colorings using exactly n colors from the chromatic polynomial}
+Now, with formula \ref{eqn:exactly-n-colors} above in hand, we can use results from tables \ref{tab:platonic-chrompolys-evals} and \ref{tab:archimedean-chrompolys-evals} to compute the numbers of colorings using \textbf{exactly} n colors. See tables below:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\toprule
+\textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\midrule
+tetrahedron & $0$ & $0$ & $24$ & $0$ & $0$ & $0$ & $0$ \\
+octahedron & $0$ & $6$ & $72$ & $360$ & $720$ & $0$ & $0$ \\
+cube & $2$ & $108$ & $2208$ & $17520$ & $57600$ & $80640$ & $40320$ \\
+icosahedron & $0$ & $0$ & $240$ & $79200$ & $3533760$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+\bottomrule
+\end{tabular}
+\caption{Number of colorings of Platonic solids using \textbf{exactly} n colors for n from 2 up to 8.}
+\label{tab:platonic-chrompolys-exacts}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}cccccc}
+\toprule
+\textbf{Archimedean solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} \\
+\midrule
+truncated tetrahedron & $0$ & $120$ & $59520$ & $3112080$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+cuboctahedron & $0$ & $24$ & $9120$ & $726840$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+truncated cube & $0$ & $13440$ & $\approx 10^{9}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
+truncated octahedron & $2$ & $378972$ & $\approx 10^{10}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
+\bottomrule
+\end{tabular}
+\caption{Number of colorings of Archimedean solids using \textbf{exactly} n colors for n from 2 up to 7.}
+\label{tab:archimedean-chrompolys-exacts}
+\end{table}
 
 \vtodo{Add example that shows all the colorings of some graph. Demonstrate the problem that rotations are included multiple times and that relabelings are also counted multiple times.}
 
