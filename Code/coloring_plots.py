@@ -151,8 +151,8 @@ def create_classified_fprnted_collage(graph : Graph, positions : dict[int,tuple]
     classified_svgs : dict[tuple,list[svgc.SVG]] = {}
     temp_paths = []
 
-    for sizes_vect,fprinted_clrings in zip(classified_fprinted_clrings.keys(),classified_fprinted_clrings.values()):
-        classified_svgs[sizes_vect] = []
+    for class_id,fprinted_clrings in zip(classified_fprinted_clrings.keys(),classified_fprinted_clrings.values()):
+        classified_svgs[class_id] = []
         for fprinted in fprinted_clrings:
             c = get_coloring_dict(get_coloring(fprinted))
             graphic = graph.plot(vertex_labels=VERTEX_LABEL,edge_labels=EDGE_LABELS,pos=positions,vertex_colors=c,edge_styles=styles)
@@ -161,7 +161,7 @@ def create_classified_fprnted_collage(graph : Graph, positions : dict[int,tuple]
                 graphic.save(tmp.name)
                 temp_paths.append(tmp.name)
                 img_file = svgc.SVG(tmp.name)
-                classified_svgs[sizes_vect].append(img_file)     
+                classified_svgs[class_id].append(img_file)     
 
     merge_classified_svgs(classified_svgs) # by now, the tempfiles still have to exist, otherwise, the svg contents will be erased
 
