@@ -747,4 +747,5 @@
 
 ### 2025_04_18
 
-- 
+- finished proofs for the bounds on the number of classes of relabeling-automorphism relation
+- computed tables resulting from using these bounds and added them to the thesis
