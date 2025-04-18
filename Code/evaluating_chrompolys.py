@@ -53,11 +53,11 @@ ROOT_FOLDER = "Code"
 import sys
 output_type = sys.stdout
 
-# returns some polynomial of platonic solids
-def get_platonic_poly_dict(poly_calc_func : Callable[[Graph],Any]) -> dict[str,Any]:
-    platonic = sdp.get_platonic_solid_dict()
+# returns some polynomial of the solids whose names are given by the solid_names dictionary
+def get_solids_poly_dict(poly_calc_func : Callable[[Graph],Any], solid_names : list[str]) -> dict[str,Any]:
+    solids = sdp.get_selected_solids_dict(solid_names)
     plat_polys = {}
-    for name,solid in zip(platonic.keys(),platonic.values()):
+    for name,solid in zip(solids.keys(),solids.values()):
         edges = solid[sdp.JSON_EDGES]
         g = Graph(edges)
         poly = poly_calc_func(g)
@@ -65,8 +65,8 @@ def get_platonic_poly_dict(poly_calc_func : Callable[[Graph],Any]) -> dict[str,A
     return plat_polys
 
 # evaluates the polynomials from STARTING_NUM to k (start at 2 because obviously no graph can be 1 colored as long as it has some edge)
-def get_plat_poly_evaluations(poly_calc_func : Callable[[Graph],Any], k : int) -> dict [str,list]:
-    polys = get_platonic_poly_dict(poly_calc_func)
+def get_solids_poly_evaluations(poly_calc_func : Callable[[Graph],Any], k : int, solid_names) -> dict [str,list]:
+    polys = get_solids_poly_dict(poly_calc_func,solid_names)
     evals = {}
     for name,poly in zip(polys.keys(),polys.values()):
         vals = [poly(i) for i in range(STARTING_NUM,k+1)]
