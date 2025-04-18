@@ -301,6 +301,10 @@
 - [x] compute tables with intervals resulting from both types of bounds
   - then maybe also show a table which combines together to get the tightest bound possible
 
+- [ ] add example with particular 3-colorings of cube and show that we count some colorings multiple times
+  - some colorings are just rotated - show example of colorings we counted as different but can be unified by rotation
+  - some colorings are just relabeled - show example of colorings we counted as different even though that can be received by relabeling
+
 - [ ] write first version of the conclusion of the thesis
 
 ## Main tasks
