@@ -281,7 +281,7 @@
 
 - [x] write about counting equivalence classes of relabel relation
 
-## 2024_04_16
+## 2025_04_16
 
 - [x] define relabeling-automorphism relation
 
@@ -290,9 +290,11 @@
   - provide a mathematical bound on the number (it can be at least something and at most something)
     - bcs there can't be more than n! colorings corresponding to a single coloring
 
-## 2024_04_17
+## 2025_04_17
 
 - [x] add table with colorings where we consider relabelings as same thing but automorphisms are not considered
+
+## 2025_04_18
 
 - [ ] show the lower and upper bound on the count of equivalence classes of the relabeling-automorphism relation
 
