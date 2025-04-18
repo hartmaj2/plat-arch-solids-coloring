@@ -40,3 +40,7 @@ def orbital_chromatic_polynomial2(g : Graph):
 # adapter for chromatic polynomial function to have the same API as orbital chromatic polynomial
 def chromatic_polynomial2(g : Graph):
     return g.chromatic_polynomial()
+
+# retuns number of automorphisms of graph g
+def num_automorphisms(g : Graph) -> int:
+    return g.automorphism_group().order()

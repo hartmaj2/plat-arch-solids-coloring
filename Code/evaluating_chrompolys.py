@@ -34,6 +34,12 @@ EXACTS_LABEL = f"tab:platonic-exactly-n-clrs"
 EXACT_PARTITIONS_CAPTION = f"Numbers of of possible partitions of vertices of the graphs into $n$ independent sets."
 EXACT_PARTITIONS_LABEL = f"tab:platonic-exact-n-partitions"
 
+PARTITIONS_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\righleftharpoons$ relation based on the number of equivalence classes of the $\\leftrightarrow$ relation."
+PARTITIONS_BOUNDS_LABEL = f"tab:bounds-exactn-n-partitions"
+
+ORBITAL_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\righleftharpoons$ relation based on the number of equivalence classes of the $\\sim$ relation."
+ORBITAL_BOUNDS_LABEL = f"tab:bounds-orbital"
+
 # INPUT FILE SETTINGS
 
 ROOT_FOLDER = "Code"
@@ -139,6 +145,57 @@ def get_n_partition_counts_dict(exacts_dict : dict[str,list]) -> dict[str,list]:
 # END: COMPUTING EXACT N-PARTITIONS
 
 
+# BEGIN: COMPUTING BOUNDS ON NUMBER OF RELABELING-AUTOMORPHISM EQUIVALENCE CLASSES
+
+# receives vector with numbers of equivalence classes of the relabeling relation and uses it to compute bounds on the number of equivalence classes of the relabeling-automorphism relation
+def calculate_relabeling_class_bounds(n_partitions_dict : dict[str,list[int]]) -> dict[str,list[tuple]]:
+    relabeling_bounds_dict = {}
+    platonic = sdp.get_platonic_solid_dict()
+    for key,n_partition_nums in zip(n_partitions_dict.keys(),n_partitions_dict.values()):
+        edges = platonic[key][sdp.JSON_EDGES]
+        g = Graph(edges)
+        num_auts = ocp.num_automorphisms(g)
+        relabeling_bounds_dict[key] = get_relabeling_bounds_from_list(n_partition_nums,num_auts)
+    return relabeling_bounds_dict
+
+# calculates the bounds from the vector of numbers of n partitions and the number of automorphisms of the graph
+def get_relabeling_bounds_from_list(n_partitions_list: list[int], num_automotphisms : int) -> list[tuple[int,int]]:
+    bounds = []
+    for i in range(len(n_partitions_list)):
+        lower = math.ceil(n_partitions_list[i] / num_automotphisms)
+        upper = n_partitions_list[i]
+        bounds.append((lower,upper))
+    return bounds
+
+# receives vector with numbers of equivalence classes of the automorphism relation and uses it to compute bounds on the number of equivalence classes of the relabeling-automorphism relation
+def calculate_automorphism_class_bounds(orbital_exacts_dict : dict[str,list[int]]) -> dict[str,list[tuple]]:
+    automorphism_bounds_dict = {}
+    for key,orbital_exacts in zip(orbital_exacts_dict.keys(),orbital_exacts_dict.values()):
+        automorphism_bounds_dict[key] = get_automorphism_bounds_from_list(orbital_exacts)
+    return automorphism_bounds_dict
+
+# calculates the bounds from the vector of numbers of equiv classes of the ~ relation
+def get_automorphism_bounds_from_list(exact_orbital_list : list[int]) -> list[tuple[int,int]]:
+    bounds = []
+    for i in range(len(exact_orbital_list)):
+        n = i + STARTING_NUM
+        lower = math.ceil(exact_orbital_list[i] / math.factorial(n))
+        upper = exact_orbital_list[i]
+        bounds.append((lower,upper))
+    return bounds
+
+# preprocesses the bound tuples to interval strings for latex
+def preprocess_bound_tuples_from_dict(n_partitions_dict : dict[str,list[tuple]],tlnl : int) -> dict[str,list[str]]:
+    preprocessed_dict = {}
+    for solid_name,list_tuples in zip(n_partitions_dict.keys(),n_partitions_dict.values()):
+        preprocessed_dict[solid_name] = []
+        preprocessed_dict[solid_name].append([f"{preprocess_big_number_for_print(upper,tlnl)}" for (lower,upper) in list_tuples])
+        preprocessed_dict[solid_name].append([f"{preprocess_big_number_for_print(lower,tlnl)}" for (lower,upper) in list_tuples])
+    return preprocessed_dict
+
+# END: COMPUTING BOUNDS ON NUMBER OF RELABELING-AUTOMORPHISM EQUIVALENCE CLASSES
+
+
 # BEGIN: PRINTING EVALUATED POLYNOMIALS OR EXACT N-COLORINGS
 # dicts = [get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT),get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT)]
 # dicts = [get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT)),get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT))]
@@ -152,7 +209,22 @@ def get_n_partition_counts_dict(exacts_dict : dict[str,list]) -> dict[str,list]:
 
 
 # BEGIN: PRINTING EXACT N-PARTITIONS
-dict = get_n_partition_counts_dict(get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT)))
-preprocessed_dict = preprocess_for_print(dict,TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_col_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,EXACT_PARTITIONS_CAPTION,EXACT_PARTITIONS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5)
+# dict = get_n_partition_counts_dict(get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT)))
+# preprocessed_dict = preprocess_big_numbers_for_print(dict,TOO_LARGE_NUM_LIMIT)
+# tp.print_solid_mult_col_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,EXACT_PARTITIONS_CAPTION,EXACT_PARTITIONS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5)
 # END: PRINTING EXACT N-PARTITIONS
+
+
+
+# BEGIN: EXACT N-PARTITIONS BASED BOUND PRINTING
+# dict = calculate_relabeling_class_bounds(get_n_partition_counts_dict(get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT))))
+# preprocessed_dict = preprocess_bound_tuples_from_dict(dict,TOO_LARGE_NUM_LIMIT)
+# tp.print_solid_mult_row_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,EXACT_PARTITIONS_BOUNDS_CAPTION,EXACT_PARTITIONS_BOUNDS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+# END: EXACT N-PARTITIONS BASED BOUND PRINTING
+
+
+# BEGIN : EXACT ORBITAL EVALS BASED BOUND PRINTING
+dict = calculate_automorphism_class_bounds(get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT)))
+preprocessed_dict = preprocess_bound_tuples_from_dict(dict,TOO_LARGE_NUM_LIMIT)
+tp.print_solid_mult_row_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,ORBITAL_BOUNDS_CAPTION,ORBITAL_BOUNDS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+# END : EXACT ORBITAL EVALS BASED BOUND PRINTING
