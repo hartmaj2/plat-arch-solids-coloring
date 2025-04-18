@@ -296,15 +296,20 @@
 
 ## 2025_04_18
 
-- [ ] show the lower and upper bound on the count of equivalence classes of the relabeling-automorphism relation
+- [x] show the lower and upper bound on the count of equivalence classes of the relabeling-automorphism relation
+
+- [x] compute tables with intervals resulting from both types of bounds
+  - then maybe also show a table which combines together to get the tightest bound possible
+
+- [ ] write first version of the conclusion of the thesis
+
+## Main tasks
+
+- [ ] describe algorithm for calculating the number of equivalence classes of the relabeling-automorphism relation
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
   - enumerate all the colorings
   - show that some colorings are just permutations of colors of other colorings
-
-## Main tasks
-
-- [ ] write first version of the conclusion of the thesis
 
 ## Side tasks
 
