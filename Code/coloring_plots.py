@@ -26,7 +26,7 @@ from collections.abc import Callable
 # OUTPUT SETTING
 output_path = "Code/Plots/"
 filename_base = "res"
-collage_name = "icosahedron_non-aut-4-clrings"
+collage_name = "cube_non_rel-3-clrings-relautclassified"
 MAX_DIMS_RATIO = 5
 
 # PLOT_SETTINGS
@@ -35,8 +35,8 @@ EDGE_LABELS = False
 COLORS_TO_USE = ["#FF0000","#00FF00","#0000FF","#FFFF00","#FF00FF","#00FFFF","#FFFFFF","#000000"]
 
 # SOLID SETTINGS
-SOLID_NAME = "icosahedron"
-NUM_CLRS = 4
+SOLID_NAME = "cube"
+NUM_CLRS = 3
 
 # INPUT SETTINGS
 G = Graph(slp.get_labeled_neighbor_dict(SOLID_NAME))
@@ -352,6 +352,25 @@ def can_unify_using_relabel_and_aut(c1 : list[int], c2 : list[int], a : list[tup
 
 # END: COLORING INDEP SET POSITIONS UNIFICATION
 
+
+# BEGIN: COLORING INDEP SET COLORS BY SIZES
+
+# takes a coloring corresponding to some independent set and its fingerprint
+# uses the fingerprint to recolor the independent sets based on their sizes
+def recolor_indep_sets_by_sizes(fingerprinted : tuple[list[int],list[tuple]]) -> tuple[list[int],list[tuple]]:
+    orig_coloring = get_coloring(fingerprinted)
+    num_clrs = max(orig_coloring) + 1
+    sorted_fprint = get_fingerprint(fingerprinted).copy()
+    sorted_fprint.sort(key=lambda tup : tup[0])
+    color_mapping = [0] * num_clrs
+    for i,tup in enumerate(sorted_fprint):
+        color_mapping[tup[1]] = i
+    new_clring_list = [color_mapping[clr] for clr in orig_coloring]
+    return (new_clring_list,get_fingerprint(fingerprinted).copy())
+
+# END: COLORING INDEP SET COLORS BY SIZES
+
+
 # BEGIN: ALL COLORINGS CONVERSION AND WRAPPER FUNCTIONS
 
 # returns a MathSage all colorings where each coloring is a list indexed by vertex and containing the value of the color at each position
@@ -534,6 +553,10 @@ print(get_encountered_fingerprints(fingerprinted))
 
 # END: USE ORDERING BY FINGERPRINT
 
+
+# BEGIN: RELABELING INDEP SETS BY FINGERPRINT INDEP SET SIZES
+fingerprinted = [recolor_indep_sets_by_sizes(fprinted) for fprinted in fingerprinted]
+# END: RELABELING INDEP SETS BY FINGERPRINT INDEP SET SIZES
 
 # BEGIN: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
 
