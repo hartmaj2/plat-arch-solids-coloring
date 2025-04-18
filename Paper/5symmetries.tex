@@ -393,4 +393,26 @@ On the other hand the partition one the right represents $4!$ equivalence classe
 
 \vtodo{Demonstrate the results of using a brute force algorithm to calculate the equivalence classes of $\rightleftharpoons$}
 
+\section{Bounds on number of equivalence classes of the relabeling-automorphism relation}
+
+Before we show, how the number of equivalence classes of $\rightleftharpoons$ can be computed using a brute force algorithm, we provide bounds on the this number, $P^*_\rightleftharpoons(G,n)$, using the numbers $P^*_\leftrightarrow(G,n)$ and $OP^*(G,n)$.
+
+\begin{claim}
+    For any graph $G=(V,E)$ and a natural number $n$, we have: $$\frac{1}{\abs{\Aut(G)}} \cdot P^*_\leftrightarrow(G,n) \leq P^*_\rightleftharpoons(G,n) \leq P^*_\leftrightarrow(G,n)$$ 
+\end{claim}
+
+\begin{proof}
+
+The inequality $P^*_\rightleftharpoons(G,n) \leq P^*_\leftrightarrow(G,n)$ is simple. It follows from the fact, that for any two colorings $c_1$,$c_2$ of graph $G$, if we have $c_1 \not\rightleftharpoons c_2$, then also $c_1 \not\leftrightarrow c_2$. So there must be at least as many equivalence classes of $\leftrightarrow$ as they are of $\rightleftharpoons$.
+
+For inequality $\frac{1}{\abs{\Aut(G)}} \cdot P^*_\leftrightarrow(G,n) \leq P^*_\rightleftharpoons(G,n)$ we show, that for each equivalence class of $\rightleftharpoons$ there are at most $n!$ equivalence classes of $\leftrightarrow$. Remember that $n$ is the number of colors or independent sets that the colorings of $G$ we consider have. Let $c_1$ be some coloring, that belongs to some equivalence class $E_\rightleftharpoons$ of $\rightleftharpoons$ and equivalence class $E_\leftrightarrow$ of $\leftrightarrow$. All possible relabelings of colors of $c_1$ will be contained in both classes $E_\rightleftharpoons$ and $E_\leftrightarrow$. On the other hand, there exist at most $\abs{\Aut(G)}$ ways to rotate the coloring $c_1$ which will all be contained in $E_\rightleftharpoons$ but may result in at most $\abs{\Aut(G)}$ different equivalence classes of $\leftrightarrow$.
+
+\end{proof}
+
+\begin{claim}
+    For any graph $G=(V,E)$ and a natural number $n$, we have: $$\frac{1}{n!} \cdot OP^*(G,n) \leq P^*_\rightleftharpoons(G,n) \leq OP^*(G,n)$$
+\end{claim}
+
+\vtodo{Show the straightforward bound on number of classes of the relabeling-automorphism relation based on the number of orbits of $\sim$}
+
 \end{highlight}
