@@ -309,11 +309,11 @@
 
 - [x] finish thesis overview
 
-- [ ] write first version of the conclusion of the thesis
-
-## Main tasks
+- [x] write first version of the conclusion of the thesis
 
 - [ ] describe algorithm for calculating the number of equivalence classes of the relabeling-automorphism relation
+
+## Main tasks
 
 - [ ] add visual example with 3-colorings of cube up to automorphism
   - enumerate all the colorings
