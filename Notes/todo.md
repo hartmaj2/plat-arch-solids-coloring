@@ -307,7 +307,7 @@
 
 ## 2025_04_19
 
-- [ ] finish thesis overview
+- [x] finish thesis overview
 
 - [ ] write first version of the conclusion of the thesis
 
