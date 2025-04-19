@@ -764,3 +764,10 @@
 ### 2025_04_19
 
 - finished a rough summary of what I deal with in the thesis (will use it to write the conclusion of the thesis)
+
+- researched a bit more about the current state of the art of combining methods for counting colorings up to symmetries but also considering unnamed partitions into independent sets only
+
+- asked a question about the current state of the art on the blog of P.J.Cameron
+  - [link](https://cameroncounts.wordpress.com/2012/04/12/counting-colourings-of-graphs/)
+
+- finished first version of the conclusion of the thesis
