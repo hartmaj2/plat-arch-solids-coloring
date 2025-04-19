@@ -1,2 +1,20 @@
 \chapter*{Conclusion}
 \addcontentsline{toc}{chapter}{Conclusion}
+
+\begin{highlight}
+
+In this thesis, we studied various coloring problems on graphs of Platonic and Archimedean solids. Firstly, we studied, what general properties graphs of these solids have and then continued by defining various concepts of coloring, that can be applied on those graphs.
+
+Before delving into details about the particular types of colorings, we generalized the concept of coloring, which ties all the specific types of colorings together. For the particular cases, we also provided examples of these colorings on selected Platonic graphs and later showed connections that exist between some of the colorings.
+
+Then, we continued by computing chromatic numbers for selected types of colorings, while exploiting the conversions between some of the colorings defined before. We studied chromatic polynomials of the solids and found an explicit formula for calculating chromatic polynomials of k-partite graphs with partite size 2. Graph of the octahedron is an example of such graph.
+
+After considering limitations of the chromatic polynomial, we studied the concept of orbital chromatic polynomial, which allows for computing numbers of colorings up to symmetries. We implemented an algorithm for computing this polynomial based on an approach suggested by P.J. Cameron. This algorithm is then used to compute this polynomial for all Platonic and selected Archimedean solids.
+
+In following section, we addressed a second limitation of the standard chromatic polynomial. Namely, we showed a method for calculating the number of colorings, when they are viewed only as partitions into independent sets irrespective of values of the colors that the sets receive.
+
+We then showed that combining the methods above to calculate number of independent sets up to symmetries is not trivial and provided some bounds on the desired numbers. Finally, we provide an algorithm that computes these numbers by enumerating all the colorings and then filtering them. We also provide illustrations of the colorings that were counted by the algorithm. Finding a better method or a more effective algorithm is a problem we leave unanswered.
+
+We studied all the topics, starting with the chromatic polynomial and going till the end of the thesis, for vertex coloring only. This was intentional, since as we previously showed, we can use standard conversions to solve the problems for most of the other mentioned particular colorings. On the other hand, for rainbow coloring and magic labeling, we leave the door open for further investigation in the future.
+
+\end{highlight}
