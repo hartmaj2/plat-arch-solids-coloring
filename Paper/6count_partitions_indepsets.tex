@@ -39,6 +39,8 @@ dodecahedron & $0$ & $1200$ & $7019920$ & $\approx 10^{8}$ & $\approx 10^{10}$ &
 \label{tab:platonic-exact-n-partitions}
 \end{table}
 
+\vtodo{Add also evaluation for some of the Archimedean solids}
+
 Notice, that even though we managed to overcome the problem of counting a single partition $W$ of $G$ into independent sets multiple times, because of the ways we can relabel the colorings, the method still suffers from the following: Rotated or reflected independent sets might be counted as different objects. This happens exactly in the cases, when by rotating some partition $W_1$, we arrive at a partition $W_2$ s.t. for any coloring $c_1$ obtained by labeling the sets of $W_1$ and for any coloring $c_2$ obtained by labeling sets of $W_2$ we have $c_1 \not\leftrightarrow c_2$. In other words, we cannot create $c_2$ by renaming the colors of $c_1$ or vice versa.
 
 This problem is illustrated on figure \ref{fig:example-octahedron-4-partitions} below. We can see that all three partitions are same when we allow rotating the solid. But it is impossible to arrive from one coloring to another by simply relabeling the colors. 
@@ -175,6 +177,8 @@ dodecahedron & $0$ & $75$ & $1404548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $
 \caption{Upper and lower bounds for the number of equivalence classes of the relabeling-automorphism relation based on the number of equivalence classes of the $\sim$ relation.}
 \label{tab:bounds-orbital}
 \end{table}
+
+\vtodo{Demonstrate the bound on the example of dodecahedron}
 
 \section{Algorithm for computing number of equivalence classes of the relabeling-automorphism relation}
 
