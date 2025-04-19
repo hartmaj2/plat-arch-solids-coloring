@@ -760,3 +760,7 @@
 - added a text about limitations of regular chromatic polynomial
   - counting symmetric colorings mutliple times
   - counting colorings that are just relabeling of colors of the independent sets multiple times
+
+### 2025_04_19
+
+- finished a rough summary of what I deal with in the thesis (will use it to write the conclusion of the thesis)
