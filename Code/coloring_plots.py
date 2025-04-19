@@ -428,7 +428,7 @@ def check_equiv_under_automorph_and_permutation(c1 : list[int], c2 : list[int], 
                     return False
                 else:
                     f[b1] = b2
-                    f[b2] = b1
+                    f_inv[b2] = b1
     return True
 
 # END: COLORINGS AUTOMORPHISM AND RELABELING EQUIVALENCY CHECKING
