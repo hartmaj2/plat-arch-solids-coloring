@@ -311,6 +311,14 @@
 
 - [x] write first version of the conclusion of the thesis
 
+- [x] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
+  - what permutation and relabeling causes their identification?
+
+## 2025_04_20
+
+- [ ] compute numbers of equivalence classes using the improved algorithm
+  - then maybe try to print the colorings as well
+
 - [ ] describe algorithm for calculating the number of equivalence classes of the relabeling-automorphism relation
 
 ## Main tasks
@@ -320,11 +328,6 @@
   - show that some colorings are just permutations of colors of other colorings
 
 ## Side tasks
-
-### Improve code
-
-- [ ] debug why 4 colorings of cube consider the (2,2,2,2) colorings all as same
-  - what permutation and relabeling causes their identification?
 
 ### Interpreting collages
 
