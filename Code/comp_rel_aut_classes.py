@@ -1,7 +1,7 @@
 #!/usr/local/bin/sage -python
 # Compute number of colorings up to symmetries and relabeling of the color classes
 
-import solids_prep.solids_layout_prep as slp
+import solids_prep.solids_dict_prep as sdp
 
 import itertools
 import timing.timing as tmng
@@ -132,11 +132,11 @@ def get_classified_by_relaut_eqiv_class(clrings : list[list[int]], g : Graph, nu
 
 
 # SOLID SETTINGS
-SOLID_NAME = "icosahedron"
-NUM_CLRS = 5
+SOLID_NAME = "dodecahedron"
+NUM_CLRS = 3
 
 # GRAPH DATA
-G = Graph(slp.get_labeled_neighbor_dict(SOLID_NAME))
+G = Graph(sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES])
 
 def run_alg_using(unification_func: Callable[[list[int],list[int],list[tuple],int],tuple | None]):
     colorings,time1 = tmng.run_and_get_time(all_graph_colorings_list,G,NUM_CLRS)
