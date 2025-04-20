@@ -316,10 +316,13 @@
 
 ## 2025_04_20
 
-- [ ] compute numbers of equivalence classes using the improved algorithm
-  - then maybe try to print the colorings as well
+- [x] compute numbers of equivalence classes using the improved algorithm
 
-- [ ] describe algorithm for calculating the number of equivalence classes of the relabeling-automorphism relation
+- [ ] use the improved function also in the `coloring_plots.py` code
+
+- [ ] describe the algorithm for calculating the number of equivalence classes of the relabeling-automorphism relation
+
+- [ ] print selected examples of equivalent classes that we calculated
 
 ## Main tasks
 
