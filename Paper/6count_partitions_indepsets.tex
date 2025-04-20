@@ -5,7 +5,7 @@
 
 Important thing to note about results of table \ref{tab:platonic-exactly-n-clrs} above is the fact, that we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ can be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only and the value of the colors bear no special meaning to us. 
 
-\begin{defn}[relabeling relation]
+\begin{defn}[relabeling relation]\label{dfn:relabeling-relation}
     Given a graph $G=(V,E)$ and a set of colorings $C$, we define a relation $\leftrightarrow \; \subseteq C \times C$ as follows: For any two colorings $c_1,c_2 \in C$ we have $c_1 \leftrightarrow c_2$ iff exists a permutation of colors $\pi$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(v))$. We call this relation the \emph{relabeling relation}.
 \end{defn}
 
@@ -63,7 +63,7 @@ Note that in some cases of symmetric colorings, this problem is avoided. For exa
 
 Overcoming the problem of counting rotations or reflection of the same partition multiple times motivates the following definition:
 
-\begin{defn}[relabeling-automorphism relation]
+\begin{defn}[relabeling-automorphism relation]\label{dfn:relabeling-automorphism-relation}
     Let $G=(V,E)$ be a graph and $C$ a set of its vertex colorings. We define a relation $\rightleftharpoons \; \subseteq C \times C$ as follows: Given two colorings $c_1,c_2 \in C$ we have $c_1 \rightleftharpoons c_2$ iff there exists a permutation of colors $\pi$ and an automorphism $\alpha \in \Aut(G)$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(\alpha(v)))$. We call this relation the \emph{relabeling-automorphism relation}.
 \end{defn}
 
@@ -182,9 +182,56 @@ dodecahedron & $0$ & $75$ & $1404548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $
 
 \section{Algorithm for computing number of equivalence classes of the relabeling-automorphism relation}
 
-Since we are dealing with graphs that have relatively small amount of edges and vertices, we can compute some of the numbers using an algorithm, that simply enumerates all colorings, filters the colorings which are different only by labels of the color classes, and then finds non-equivalent colorings by going through all automorphism and comparing with already seen colorings. 
+For all the algorithms below, we assume that we are working with colorings using $n$ colors. The colorings are represented as lists of integers ranging from $0$ to $n-1$, where $n$ is the number of colors. The lists are indexed by vertices, which are numbers $0, \ldots,|V|-1$.
+
+Since we are dealing with graphs that have relatively small amount of edges and vertices, we can compute some of the numbers using a simple algorithm that works by first enumerating all coloring and then filtering the ones that are equivalent. The algorithm can be split into the following two parts:
+
+\subsection{Finding representatives of the relabeling relation}
+
+First, we want to exclude colorings, that correspond to the same partitions into independent sets, but just have different labels for the colors. This corresponds to finding colorings that represent different classes of the relabeling relation from definition \ref{dfn:relabeling-relation}. We use the fact, that the colorings are represented as lists together with the following observation: Given a partition into $n$ independent sets, there are $n!$ ways to assign labels to the colorings. Out of these $n!$ colorings, there will be always exactly one of them s.t. the coloring is in a so called \textit{canonic form}.  
+
+\begin{defn}\label{dfn:canonic-form}
+    Let $B=\{0,\ldots,n-1\}$ be a set of colors and $c$ be a coloring using colors from $B$ s.t. $c$ is represented as sequence $(b_0, \ldots,b_{\abs{V}-1})$ s.t. $\forall i: b_i \in B$. For each $i \in B$ denote $k_i$ the lowest index at which color $i$ appears. We say that $c$ is in \emph{canonic form} if $\forall i < j \in B: k_i < k_j$.
+\end{defn}
+
+In other words, a coloring is in canonic form ,if when we go through the coloring from lowest index to highest index, we encounter the colors for the first time in the same order as what the values of the colors are. Now the observation is, that for all $n!$ relabelings of the independent sets, there is exactly one coloring s.t. it is in canonic form. This means, that by keeping only the colorings in canonic form, we get exactly colorings representing the equivalence classes of the relabeling relation.
+
+\begin{algorithm}[H]
+    \caption{Algorithm for testing that a given coloring is in canonic form as in definition \ref{dfn:canonic-form}} 
+    \begin{algorithmic}[1]
+        \Function{IsInCanonicForm}{$c$}
+            \State $k \gets 0$      
+            \For{color $b_i$ in coloring $c$}
+                \If{$b_i > k$}
+                    \State \Return False
+                \EndIf
+                 \If{$b_i = k$}
+                    \State $k \gets k + 1$
+                \EndIf
+            \EndFor   
+            \State \Return True
+        \EndFunction
+    \end{algorithmic}
+    \label{alg:is-in-canonic-form}
+\end{algorithm}
+
+\subsection{Finding representatives of relabeling-automorphism relation}
+
+By filtering the colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. This means that now we can proceed with a more computationally heavy part of the algorithm. In this part of the algorithm, we run through all the colorings and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when considering some next coloring $c_i$, we compare $c_i$ with all representatives in $R$. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we continue to the next coloring. Otherwise, we add $c_i$ to $R$ i.e. we declare $c_i$ as a representative of its class. See detailed description of the algorithm below:
+
+\begin{algorithm}[H]
+    \caption{Algorithm for finding representatives of relabeling-automorphism relation as defined in \ref{dfn:relabeling-automorphism-relation}} 
+    \begin{algorithmic}[1]
+        \Function{FindRelabelingAutomorphismRepresentatives}{$c$}
+            
+        \EndFunction
+    \end{algorithmic}
+    \label{alg:representatives-of-relabeling-automorphism-relation}
+\end{algorithm}
 
 \vtodo{Describe the algorithm for computing equivalence classes of $\rightleftharpoons$}
+
+\section{Numbers of equivalence classes of relabeling-automorphism relation}
 
 \begin{table}[H]
 \centering
