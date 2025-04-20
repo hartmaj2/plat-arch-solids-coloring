@@ -771,3 +771,9 @@
   - [link](https://cameroncounts.wordpress.com/2012/04/12/counting-colourings-of-graphs/)
 
 - finished first version of the conclusion of the thesis
+
+- wrote an improved version of the algorithm for checking relabeling-automorphism equivalency
+
+### 2025_04_20
+
+- 
