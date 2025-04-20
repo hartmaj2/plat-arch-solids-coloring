@@ -148,7 +148,7 @@ For inequality $\frac{1}{n!} \cdot OP^*(G,n) \leq P^*_\rightleftharpoons(G,n)$ w
 
 \end{proof}
 
-Note, that the lower bound resulting from $\ref{clm:automorphism-bound}$ is useful for cases where $n$, the number of colors, is small. In such cases, it can give us a better bound than what the bound from $\ref{clm:relabeling-bound}$ gives.
+Note, that the lower bound resulting from claim $\ref{clm:automorphism-bound}$ is useful for cases where $n$, the number of colors, is small. In such cases, it can give us a better bound than what the bound from claim $\ref{clm:relabeling-bound}$ gives.
 
 See values resulting from this bound in the table below and compare with table \ref{tab:bounds-exactn-n-partitions}.
 
@@ -182,8 +182,43 @@ dodecahedron & $0$ & $75$ & $1404548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $
 
 \section{Algorithm for computing number of equivalence classes of the relabeling-automorphism relation}
 
+Since we are dealing with graphs that have relatively small amount of edges and vertices, we can compute some of the numbers using an algorithm, that simply enumerates all colorings, filters the colorings which are different only by labels of the color classes, and then finds non-equivalent colorings by going through all automorphism and comparing with already seen colorings. 
+
 \vtodo{Describe the algorithm for computing equivalence classes of $\rightleftharpoons$}
 
-\vtodo{Demonstrate results of using this algorithm}
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\toprule
+\textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\midrule
+tetrahedron & $0$ & $0$ & $1$ & $0$ & $0$ & $0$ & $0$ \\
+octahedron & $0$ & $1$ & $1$ & $1$ & $1$ & $0$ & $0$ \\
+cube & $1$ & $3$ & $9$ & $10$ & $7$ & $2$ & $1$ \\
+icosahedron & $0$ & $0$ & $1$ & $12$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+dodecahedron & $0$ & $17$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+\bottomrule
+\end{tabular}
+\caption{Calculated numbers of equivalence classes of the $\rightleftharpoons$ relation of Platonic solids using the algorithm above. The symbol $\cdot$ means that the computation took longer than 60 seconds and hence was terminated.}
+\label{tab:plat-nums-relabeling-automorphism-classes}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\toprule
+\textbf{Archimedean solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
+\midrule
+truncated tetrahedron & $0$ & $2$ & $119$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+cuboctahedron & $0$ & $2$ & $24$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+truncated cube & $0$ & $65$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+truncated octahedron & $1$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+\bottomrule
+\end{tabular}
+\caption{Calculated numbers of equivalence classes of the $\rightleftharpoons$ relation of selected Archimedean solids using the algorithm above. The symbol $\cdot$ means that the computation took longer than 60 seconds and hence was terminated.}
+\label{tab:arch-nums-relabeling-automorphism-classes}
+\end{table}
+
+\vtodo{Show colorings corresponding to some of the entries in the tables above}
 
 \end{highlight}
