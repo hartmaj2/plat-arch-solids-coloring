@@ -2,6 +2,7 @@
 # Compute number of colorings up to symmetries and relabeling of the color classes
 
 import solids_prep.solids_dict_prep as sdp
+import t_printing.latex_table_printing as tp
 
 import itertools
 import timing.timing as tmng
@@ -130,10 +131,34 @@ def get_classified_by_relaut_eqiv_class(clrings : list[list[int]], g : Graph, nu
 
 # BEGIN: FINDING REPRESENTATIVES OF AUTOMORPHISM EQUIVALENCE CLASSES
 
+# TABLE DATA SETTING
+STARTING_NUMBER = 2
+ENDING_NUMBER = 8
+data_col_headers = [str(i) for i in range(STARTING_NUMBER,ENDING_NUMBER+1)]
+
+# COMPUTATION SETTINGS
+MAX_SECONDS_RUN = 60
+
+# TABLE OUTPUT SETTING
+NOT_COMPUTED_SYMB = r"\cdot"
+
+PLATONIC_HEADER = "Platonic solid"
+PLAT_TABLE_CAPTION = f"Calculated numbers of equivalence classes of the $\\rightleftharpoons$ relation of Platonic solids using the algorithm above. The symbol ${NOT_COMPUTED_SYMB}$ means that the computation took longer than {MAX_SECONDS_RUN} seconds and hence was terminated."
+PLAT_TABLE_LABEL = f"tab:plat-nums-relabeling-automorphism-classes"
+
+ARCHIMEDEAN_HEADER = "Archimedean solid"
+ARCH_TABLE_CAPTION = f"Calculated numbers of equivalence classes of the $\\rightleftharpoons$ relation of selected Archimedean solids using the algorithm above. The symbol ${NOT_COMPUTED_SYMB}$ means that the computation took longer than {MAX_SECONDS_RUN} seconds and hence was terminated."
+ARCH_TABLE_LABEL = f"tab:arch-nums-relabeling-automorphism-classes"
+
+REDUCED_ARCH_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron']
+
+
 
 # SOLID SETTINGS
 SOLID_NAME = "dodecahedron"
 NUM_CLRS = 3
+
+
 
 # GRAPH DATA
 G = Graph(sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES])
@@ -151,11 +176,56 @@ def print_results(clrings : list[list[int]], t1 : float, cnnized : list[list[int
     print()
     print(f"{"All colorings:":{c1_size}}{len(clrings):<{c2_size}}{t1:.3}\n{"Canonization:":{c1_size}}{len(cnnized):<{c2_size}}{t2:.3}\n{"Classification:":{c1_size}}{len(clssfied.keys()):<{c2_size}}{t3:.3}")
 
-print(50*"-")
-print("RUN 1")
-run_alg_using(try_unify_by_aut)
-print(50*"-")
-print()
-print("RUN 2")
-run_alg_using(try_unify_by_aut2)
-print(50*"-")
+def compare_algs():
+    print(50*"-")
+    print("RUN 1")
+    run_alg_using(try_unify_by_aut)
+    print(50*"-")
+    print()
+    print("RUN 2")
+    run_alg_using(try_unify_by_aut2)
+    print(50*"-")
+
+# computes the number of equivalence classes of the relabeling-automorphism relation for given graph and given number of colors
+def compute_graph_relabeling_automorphism_classes(graph : Graph, num_clrs : int) -> int:
+    num_classes = len(get_classified_by_relaut_eqiv_class(get_canonized(all_graph_colorings_list(graph,num_clrs)),graph,num_clrs,try_unify_by_aut))
+    return num_classes
+
+# runs the algorithm to find number of equivalence classes of the relabeling-automorphism relations for selected solids for number of colors from starting_num up to ending_num
+def get_equiv_classes_up_to_num(selected_solids : list[str], starting_num : int, ending_num : int, computation_time_lim : int) -> dict[str,list[int]]:
+    solids_data = sdp.get_selected_solids_dict(selected_solids)
+    nums_classes_dict = {}
+    for solid_name in selected_solids: # loop through all the graphs corresponding to the selected solids
+        graph = Graph(solids_data[solid_name][sdp.JSON_EDGES])
+        classes_nums : list = []
+        col_1,col_2 = 10,10
+        print((col_1 + col_2 + 3)*"-")
+        print(f"Solid: {solid_name}")
+        print(f"|{"Num clrs":^{col_1}}|{"Result":^{col_2}}|")
+        print((col_1 + col_2 + 3)*"-")
+        for i in range(starting_num,ending_num+1):
+            print(f"|{i:^{col_1}}|",end="")
+            res = tmng.try_run_for_t_seconds2(computation_time_lim,compute_graph_relabeling_automorphism_classes,graph,i)
+            if res == None:
+                res = NOT_COMPUTED_SYMB
+                classes_nums.extend([NOT_COMPUTED_SYMB for j in range(i,ending_num+1)])
+                print(f"{res:^{col_2}}|")
+                break
+            res = str(res)
+            classes_nums.append(res)
+            print(f"{res:^{col_2}}|")
+        nums_classes_dict[solid_name] = classes_nums
+        print((col_1 + col_2 + 3)*"-")
+    return nums_classes_dict
+
+# because of the multiprocessing we have to use the if __name__ == "__main__" construct
+if __name__ == "__main__":
+    import multiprocessing
+    multiprocessing.freeze_support()
+
+    selected_solids = tp.STD_PLAT_TABLE_ORDER
+    nums_classes_dict = get_equiv_classes_up_to_num(selected_solids,STARTING_NUMBER,ENDING_NUMBER,MAX_SECONDS_RUN)
+    tp.print_solid_mult_col_data(nums_classes_dict,selected_solids,PLATONIC_HEADER,data_col_headers,PLAT_TABLE_CAPTION,PLAT_TABLE_LABEL,output_type=sys.stdout,transform=lambda x : "$" + x + "$",first_col_horiz_space=0.5)
+
+    nums_classes_dict = get_equiv_classes_up_to_num(REDUCED_ARCH_TABLE_ORDER,STARTING_NUMBER,ENDING_NUMBER,MAX_SECONDS_RUN)
+    tp.print_solid_mult_col_data(nums_classes_dict,REDUCED_ARCH_TABLE_ORDER,ARCHIMEDEAN_HEADER,data_col_headers,ARCH_TABLE_CAPTION,ARCH_TABLE_LABEL,output_type=sys.stdout,transform=lambda x : "$" + x + "$",first_col_horiz_space=0.5)
