@@ -776,4 +776,6 @@
 
 ### 2025_04_20
 
-- 
+- implement function that runs a procedure for given amount of time and returns its result or terminates it and returns None if it did not finish in the given time
+
+- implement code that prints a table with numbers of the equivalence classes of the relabeling-automorphism relation
