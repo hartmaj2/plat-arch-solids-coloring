@@ -217,19 +217,61 @@ In other words, a coloring is in canonic form ,if when we go through the colorin
 
 \subsection{Finding representatives of relabeling-automorphism relation}
 
-By filtering the colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. This means that now we can proceed with a more computationally heavy part of the algorithm. In this part of the algorithm, we run through all the colorings and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when considering some next coloring $c_i$, we compare $c_i$ with all representatives in $R$. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we continue to the next coloring. Otherwise, we add $c_i$ to $R$ i.e. we declare $c_i$ as a representative of its class. See detailed description of the algorithm below:
+By filtering the colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. After doing that, we can proceed with a more computationally heavy part of the algorithm. In this part of the algorithm, we run through all the colorings and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when we consider some next coloring $c_i$, we compare $c_i$ with all representatives in $R$. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we continue to the next coloring. Otherwise, we add $c_i$ to $R$ i.e. we declare $c_i$ as a representative of its class. See detailed description of the algorithm below:
 
 \begin{algorithm}[H]
     \caption{Algorithm for finding representatives of relabeling-automorphism relation as defined in \ref{dfn:relabeling-automorphism-relation}} 
     \begin{algorithmic}[1]
-        \Function{FindRelabelingAutomorphismRepresentatives}{$c$}
-            
+        \Function{FindRelabelingAutomorphismRepresentatives}{$G,C$}
+            \State $R \gets \emptyset$
+            \For{coloring $c_i \in C$}
+                \For{coloring $r_j \in R$}
+                    \If{$c_i$ and $c_j$ can be unified by some $\alpha \in \Aut(G)$ and relabeling}
+                        \State Continue with next coloring at step 3
+                    \EndIf
+                \EndFor
+                \State $R \gets R \cup \{c_i\}$
+            \EndFor
+            \State \Return $R$
         \EndFunction
     \end{algorithmic}
     \label{alg:representatives-of-relabeling-automorphism-relation}
 \end{algorithm}
 
-\vtodo{Describe the algorithm for computing equivalence classes of $\rightleftharpoons$}
+Using this algorithm, we can just ask for size of set $R$ to get the number of equivalence classes of the $\rightleftharpoons$ relation. Since step $5$ of the algorithm above is a bit more involved, we describe it in more detail below. We use notation $\Dom(f)$ and $\Rng(f)$ to describe domain and range of function $f$ respectively. Also we treat each cycle $O$ of an automorphism $\alpha$ as a sequence of vertices $(v_1,\ldots,v_k)$ where $k := \abs{O}$. See the description of the algorithm below:
+
+\begin{algorithm}[H]
+    \caption{Algorithm testing if two colorings $c_1, c_2$ can be unified by given automorphism $\alpha$ by some relabeling.} 
+    \begin{algorithmic}[1]
+        \Function{TestRelabelingAutomorphismRelated}{$c_1,c_2,\alpha$}
+            \State $f \gets \emptyset$
+            \For{cycle $O \in \alpha$}
+                \State $k \gets \abs{O}$
+                \For{$v_i \in O$}
+                    \If{$c_1(v_i ) \notin \Dom(f)$}
+                        \If{$c_2(v_{i + 1 \bmod k}) \notin \Rng(f)$}
+                            \State $f(c_1(v_i)) \gets c_2(v_{i + 1 \bmod k})$
+                        \Else
+                            \State \Return False
+                        \EndIf
+                    \Else
+                        \If{$f(c_1(v_i )) \neq c_2(v_{i + 1 \bmod k})$}
+                            \State \Return False
+                        \EndIf
+                    \EndIf
+                \EndFor
+            \EndFor
+            \State \Return True
+        \EndFunction
+    \end{algorithmic}
+    \label{alg:test-two-colorings-relabel-automorph-related}
+\end{algorithm}
+
+In natural language, the algorithm above tries to construct a mapping $f$ from colors of coloring $c_1$ to colors of coloring $c_2$. This mapping must be a valid permutation of colors, so we require that no two colors from $c_1$ map to a single color in $c_2$.
+
+Step $5$ of algorithm \ref{alg:representatives-of-relabeling-automorphism-relation} consists of testing, whether for some $\alpha \in \Aut(G)$, the algorithm \ref{alg:test-two-colorings-relabel-automorph-related} above returns true.
+
+See next section for results we computed using the algorithm above.
 
 \section{Numbers of equivalence classes of relabeling-automorphism relation}
 
