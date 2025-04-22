@@ -324,6 +324,12 @@
 
 - [x] use the improved function also in the `coloring_plots.py` code
 
+## 2025_04_23
+
+- [ ] proofread what I wrote in the thesis
+
+- [ ] test if result will be printed faster if I use the alg. from thesis for relaut colorings printing instead of the old one (which is prly slower)
+
 - [ ] show figures with selected examples of equivalent classes that we calculated
 
 ## Main tasks
