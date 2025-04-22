@@ -23,12 +23,6 @@ from sage.graphs.graph_coloring import all_graph_colorings
 
 from collections.abc import Callable
 
-# OUTPUT SETTING
-output_path = "Code/Plots/"
-filename_base = "res"
-collage_name = "cube_non_rel-3-clrings-relautclassified"
-MAX_DIMS_RATIO = 5
-
 # PLOT_SETTINGS
 VERTEX_LABEL = False
 EDGE_LABELS = False
@@ -36,7 +30,13 @@ COLORS_TO_USE = ["#FF0000","#00FF00","#0000FF","#FFFF00","#FF00FF","#00FFFF","#F
 
 # SOLID SETTINGS
 SOLID_NAME = "cube"
-NUM_CLRS = 3
+NUM_CLRS = 4
+
+# OUTPUT SETTING
+output_path = "Code/Plots/"
+filename_base = "res"
+collage_name = f"{SOLID_NAME}_non_relaut-{NUM_CLRS}-clrings"
+MAX_DIMS_RATIO = 5
 
 # INPUT SETTINGS
 G = Graph(slp.get_labeled_neighbor_dict(SOLID_NAME))
@@ -533,7 +533,7 @@ def get_classified_fpritned_clrings(fingerprinted_colorings : list[tuple[list,li
 # colorings = all_graph_colorings_list(G,NUM_CLRS) # all colorings as usual
 colorings = get_canonized(all_graph_colorings_list(G,NUM_CLRS)) # colorings up to permutations of colors (but not up to rotations and reflections)
 # colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS)) # colorings up to rotations/reflections but not up to permutation
-# colorings = get_non_automorphic(G,all_graph_colorings_list(G,NUM_CLRS),check_equiv_under_automorph_and_permutation)
+colorings = get_non_automorphic(G,colorings,check_equiv_under_automorph_and_permutation)
 
 # colorings = get_unified_indepset_sturucture_layout_clrings(colorings,G)
 
@@ -561,16 +561,16 @@ fingerprinted = [recolor_indep_sets_by_sizes(fprinted) for fprinted in fingerpri
 
 # BEGIN: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
 
-# classified_fprinted = get_classified_fpritned_clrings(fingerprinted)
-# create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
+classified_fprinted = get_classified_fpritned_clrings(fingerprinted)
+create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
 
 # END: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
 
 
 # BEGIN: USE CLASSIFICATION BY RELAUT EQUIVALENCY CLASSES IN COLLAGE
 
-classified_fprinted = get_classified_by_relaut_eqiv_class(fingerprinted,G,unify_rotation=False)
-create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
+# classified_fprinted = get_classified_by_relaut_eqiv_class(fingerprinted,G,unify_rotation=False)
+# create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
 
 # END: USE CLASSIFICATION BY RELAUT EQUIVALENCY CLASSES IN COLLAGE
 
@@ -579,8 +579,6 @@ create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
 
 # colorings = [clring for (clring,fprint) in fingerprinted] # remove if not using fingerprinted
 
-# print("generating coloring images...")
-# # colorings = CLRING_FUNCTION(g,NUM_CLRS) 
 # images = create_images_svg(G,POSITIONS,STYLES,colorings,MAX_DIMS_RATIO)
 
 # END : NORMAL PRINTING IN COLLAGE
