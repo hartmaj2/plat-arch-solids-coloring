@@ -793,3 +793,5 @@
   - used the fixed code for relaut equivalency checking
   - better color selection by indep set size
   - making the name of the collage more automatized
+
+- found out, that the algorithm we describe in the thesis (by building a set of representatives) is faster then the equiv checking that I do inside the coloring plots function that goes through all pairs and removes equivalent ones
