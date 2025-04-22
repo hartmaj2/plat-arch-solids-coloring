@@ -779,3 +779,10 @@
 - implement function that runs a procedure for given amount of time and returns its result or terminates it and returns None if it did not finish in the given time
 
 - implement code that prints a table with numbers of the equivalence classes of the relabeling-automorphism relation
+
+- add pseudoalg for finding canonic form of a coloring to the bachelor thesis
+
+### 2025_04_21
+
+- add pseudoalg for the general algorithm for finding representatives
+- add pseudoalg for testing if two colorings can be unified by a given automorphism and some relabeling
