@@ -413,26 +413,27 @@ def get_dictionarized(clrings : list[list]) -> list[dict]:
 # checks if two colorings are equivalent up to automorphism while also trying if the colors are not just permuted
 # the alg works by trying to construct a mapping from colors of the first coloring to colors of the second coloring
 def check_equiv_under_automorph_and_permutation(c1 : list[int], c2 : list[int], automorphism_cycles : list[tuple]) -> bool:
-    f = {} # possible mapping that is being constructed on the fly
-    f_inv = {} # inverse of the mapping to be able to check if somebody has mapped to the image we want earlier
+    img = [-1] * (max(c1)+1) # -1 means mapped to no color yet
+    preimg = [-1] * (max(c1)+1) # -1 means no color mapped to this yet
     for cycle in automorphism_cycles:
         k = len(cycle)
         for i in range(k):
-            b1 = c1[cycle[i]]
-            b2 = c2[cycle[(i+1)%k]]
-            if b1 in f: # color b1 is already mapped to some other color
-                if f[b1] != b2:
+            vtx_preim = cycle[i]
+            vtx_img = cycle[(i+1)%k]
+            b1 = c1[vtx_preim]
+            b2 = c2[vtx_img]
+            if img[b1] == -1: # b1 not mapped to anything yet
+                if preimg[b2] != -1: # some other color has already mapped to b2
                     return False
+                else: # we can map b1 -> b2
+                    img[b1] = b2
+                    preimg[b2] = b1
             else:
-                if b2 in f_inv: # some other color has already mapped to this color
+                if img[b1] != b2: # we have already mapped to some other color so we cannot map to this one as well
                     return False
-                else:
-                    f[b1] = b2
-                    f_inv[b2] = b1
     return True
 
 # END: COLORINGS AUTOMORPHISM AND RELABELING EQUIVALENCY CHECKING
-
 
 # BEGIN: COLORINGS AUTOMORPHISM EQUIVALENCY CHECKING
 
