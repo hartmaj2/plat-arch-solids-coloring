@@ -322,7 +322,7 @@
 
 ## 2025_04_22
 
-- [ ] use the improved function also in the `coloring_plots.py` code
+- [x] use the improved function also in the `coloring_plots.py` code
 
 - [ ] show figures with selected examples of equivalent classes that we calculated
 
