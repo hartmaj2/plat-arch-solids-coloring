@@ -786,3 +786,10 @@
 
 - add pseudoalg for the general algorithm for finding representatives
 - add pseudoalg for testing if two colorings can be unified by a given automorphism and some relabeling
+
+### 2025_04_22
+
+- improved code for printing colorings
+  - used the fixed code for relaut equivalency checking
+  - better color selection by indep set size
+  - making the name of the collage more automatized
