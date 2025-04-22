@@ -361,7 +361,7 @@ def recolor_indep_sets_by_sizes(fingerprinted : tuple[list[int],list[tuple]]) ->
     orig_coloring = get_coloring(fingerprinted)
     num_clrs = max(orig_coloring) + 1
     sorted_fprint = get_fingerprint(fingerprinted).copy()
-    sorted_fprint.sort(key=lambda tup : tup[0])
+    sorted_fprint.sort(key=lambda tup : tup[0],reverse=True)
     color_mapping = [0] * num_clrs
     for i,tup in enumerate(sorted_fprint):
         color_mapping[tup[1]] = i
