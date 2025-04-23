@@ -45,7 +45,7 @@ The definition above restricts the colorings we will be working with to finite s
 
 Less formally, two colorings are related, when we can find an automorphism that maps vertices of any color in the first coloring, to vertices of the same color in the second coloring. 
 
-We can observe that for any coloring $c$ of $G$, we have $c \sim c$ by simply taking the identity automorphism $id \in \Aut(G)$. So the transitivity relation is \textit{reflexive}. It is also \textit{symmetric} by using the fact, that if $c_1 \sim c_2$ by existence of automorphism $\alpha$, then we can use $\alpha^{-1}$ to show that $c_2 \sim c_1$ as well. Lastly, we can also show that the relation $\sim$ is \textit{transitive}. This comes from the fact, that composing two automorphisms $\alpha$ and $\psi$ yields an automorphism. So in fact, the transitivity relation defined above is an eqivalence relation.
+We can observe, that for any coloring $c$ of $G$, we have $c \sim c$ by simply taking the identity automorphism $id \in \Aut(G)$. So the transitivity relation is \textit{reflexive}. It is also \textit{symmetric} by using the fact, that if $c_1 \sim c_2$ by existence of automorphism $\alpha$, then we can use $\alpha^{-1}$ to show that $c_2 \sim c_1$ as well. Lastly, we can also show that the relation $\sim$ is \textit{transitive}. This comes from the fact, that composing two automorphisms $\alpha$ and $\psi$ yields an automorphism. So in fact, the transitivity relation defined above is an eqivalence relation.
 
 \begin{defn}(orbit)
     For $n \in \mathbb{N}$ and a coloring $c \in C_n$ of some graph $G$ we will call the eqivalence class $[c]_{\sim}$ an \emph{orbit} of $c$ and denote it by $\Orb(c)$.
@@ -65,7 +65,7 @@ Again, to say more coloquially, the stabilizer is the set of all automorphisms t
 
 \section{Calculating the number of orbits}
 
-Now it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the number of equivalence classes of the transitivity relation. Mathematically formulated, it allows us to derive the following equation:
+Now, it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the number of equivalence classes of the transitivity relation. Mathematically formulated, it allows us to derive the following equation:
 
 \begin{equation}\label{eqn:orbits-by-stab}
     \sum_{c\in C_n}\abs{\Stab(c)} = \abs{\Aut(G)} \cdot \abs{C_n/_\sim} 
@@ -79,15 +79,15 @@ For example, consider the graph of cube $G_{cube}$. Taking for $C_4$ the set of 
 Before stating another important observation, we will need a following definition:
 
 \begin{defn}[fixpoint]
-    For a graph $G$, $n \in \mathbb{N}$, a set of its proper colorings $C_n$ and automorphism $\alpha \in \Aut(G)$ we denote $\Fix(\alpha)= \{ c \in C \ | \ \forall v \in V : c(\alpha(v)) = c(v) \}$
+    For a graph $G = (V,E)$, natural number $n$, a set of its proper colorings $C_n$ and automorphism $\alpha \in \Aut(G)$, we denote $\Fix(\alpha)= \{ c \in C \ | \ \forall v \in V : c(\alpha(v)) = c(v) \}$
 \end{defn}
 
-To get a formula which computes the same number but using a sum over the set $\Aut(G)$ instead, we use the following observation: The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the number of ordered pairs $(c,\alpha)$ s.t. $\forall v \in V : c(\alpha(v)) = c(v)$. Using the definition of fixpoint, we can calculate this number also using the sum $\sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$ which yields the following important identity:
+To get a formula which computes the same number but using a sum over the set $\Aut(G)$ instead, we use the following observation: The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the number of ordered pairs $(c,\alpha)$ s.t. $\forall v \in V : c(\alpha(v)) = c(v)$. Using the definition of fixpoint, we can calculate this number also using the sum $\sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$, which yields the following important identity:
 \begin{equation}\label{eqn:two-way-counting}
     \sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)} = \sum_{c \in C_n}\abs{\Stab(c)}    
 \end{equation}
 
-By combining equations \ref{eqn:orbits-by-stab} and \ref{eqn:two-way-counting}, we get the following result which is a direct application of the famous \textit{Burnside's lemma} on our particular setting:
+By combining equations \ref{eqn:orbits-by-stab} and \ref{eqn:two-way-counting}, we get the following result, which is a direct application of the famous \textit{Burnside's lemma} on our particular setting:
 
 \begin{thm}[application of Burnside's lemma] \label{thm:burnside}
     For a graph $G$, $n \in \mathbb{N}$ and a set of its proper colorings $C_n$, we have:
@@ -256,7 +256,7 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
 \label{tab:platonic-polys-evals}
 \end{table}
 
-Note we can use the same method as in section \ref{sec:num-clrings-exactly-n-clrs} using the formula \ref{eqn:exactly-n-colors} also for the orbital chromatic polynomial $OP(G,x)$ to arrive at corresponding values $OP^*(G,n)$. Using this formula, we can then simplify table \ref{tab:platonic-polys-evals} above to get the following table:
+Note, that we can use the same method as in section \ref{sec:num-clrings-exactly-n-clrs}, using the formula \ref{eqn:exactly-n-colors}, also for the orbital chromatic polynomial $OP(G,x)$, to arrive at corresponding values $OP^*(G,n)$. Using the formula, we can then simplify table \ref{tab:platonic-polys-evals} above to get the following table:
 
 \begin{table}[H]
 \centering

@@ -180,7 +180,7 @@ dodecahedron & $0$ & $75$ & $1404548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $
 \label{tab:bounds-orbital}
 \end{table}
 
-\section{Algorithm for computing number of equivalence classes of the relabeling-automorphism relation}
+\section{Algorithm for computing number of equivalence classes of the relabeling-automorphism relation}\label{sec:equiv-classes-of-relaut}
 
 For all the algorithms below, let $n$ be the number of colors of colorings we consider. The colorings are represented as lists of integers ranging from $1$ to $n$, where $n$ is the number of colors. The lists are indexed by vertices, which are numbers $1, \ldots,|V|$.
 
@@ -273,7 +273,11 @@ Step $5$ of algorithm \ref{alg:representatives-of-relabeling-automorphism-relati
 
 See next section for results we computed using the algorithm above.
 
-\section{Numbers of equivalence classes of relabeling-automorphism relation}
+\section{Numbers of equivalence classes of relabeling-automorphism relation}\label{sec:nums-equiv-classes-relaut}
+
+In this section, we provide tables with values of $P^*_\rightleftharpoons(G,n)$, which we managed to compute. It is especially interesting, to compare results in tables below with the results we got in tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}. We can see, that the numbers reduced significantly.
+
+Unfortunately, we can also see, that there are some entries in the tables left out, for which the algorithm took too long to get the resulting number. Note, that we did not have this issue when computing tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}, since we were already provided with the chromatic polynomial, which we could simply evaluate at certain points. By doing that, we avoided having to enumerate all colorings, which is the most computationally heavy part of the algorithm from section \ref{sec:equiv-classes-of-relaut}.
 
 \begin{table}[H]
 \centering
@@ -307,6 +311,14 @@ truncated octahedron & $1$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $
 \caption{Calculated numbers of equivalence classes of the $\rightleftharpoons$ relation of selected Archimedean solids using the algorithm above. The symbol $\cdot$ means that the computation took longer than 60 seconds and hence was terminated.}
 \label{tab:arch-nums-relabeling-automorphism-classes}
 \end{table}
+
+\section{Visualizing relabeling-automorphism classes of selected solids}
+
+In this section, we would like to interpret the results from section \ref{sec:nums-equiv-classes-relaut}, by showing the colorings, that represent the equivalence classes we counted.
+
+Interestingly enough, we can observe, that for any number of colors ranging from $3$ to $6$, the octahedron has only a single partition into independent sets, up to symmetries. See the four corresponding figures below:
+
+
 
 \vtodo{Show colorings corresponding to some of the entries in the tables above}
 
