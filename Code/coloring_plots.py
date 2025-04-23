@@ -30,7 +30,7 @@ COLORS_TO_USE = ["#FF0000","#00FF00","#0000FF","#FFFF00","#FF00FF","#00FFFF","#F
 
 # SOLID SETTINGS
 SOLID_NAME = "cube"
-NUM_CLRS = 4
+NUM_CLRS = 3
 
 # OUTPUT SETTING
 output_path = "Code/Plots/"
@@ -250,6 +250,9 @@ def stringify_fprnt_clr_vals(fingerprint : list[tuple]) -> str:
 # returns list of fingerprinted colorings where each fingerprinted coloring is a tuple in form (clring as list, fingerprint)
 def get_fprnted_clrings(colorings_as_list : list[list]) -> list[tuple]:
     return [(clring,stdize_fprnt(get_fprnt(clring))) for clring in colorings_as_list]
+
+def stringify(tuple : tuple[int]) -> str:
+    return "".join([str(a) for a in tuple])
 
 # END: COLORING STANDARDIZATION BY FINGERPRIT
 
@@ -549,7 +552,9 @@ fingerprinted.sort(key= lambda fprnted: stringify_fprnt_clr_vals(get_fingerprint
 fingerprinted.sort(key=lambda fprnted : stringify_fprnt_counts(get_fingerprint(fprnted))) # sort lexicographically based on standardized fingerprint independent set sizes
 
 print("encountered following fingerprints:")
-print(get_encountered_fingerprints(fingerprinted))
+size_sequences = list(get_encountered_fingerprints(fingerprinted))
+size_sequences.sort(key=lambda tup : stringify(tup))
+print(size_sequences)
 
 
 # END: USE ORDERING BY FINGERPRINT
@@ -561,8 +566,8 @@ fingerprinted = [recolor_indep_sets_by_sizes(fprinted) for fprinted in fingerpri
 
 # BEGIN: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
 
-classified_fprinted = get_classified_fpritned_clrings(fingerprinted)
-create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
+# classified_fprinted = get_classified_fpritned_clrings(fingerprinted)
+# create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
 
 # END: USE CLASSIFICATION BY FINGERPRINT IN COLLAGE
 
@@ -577,8 +582,8 @@ create_classified_fprnted_collage(G,POSITIONS,STYLES,classified_fprinted)
 
 # BEGIN : NORMAL PRINTING IN COLLAGE
 
-# colorings = [clring for (clring,fprint) in fingerprinted] # remove if not using fingerprinted
+colorings = [clring for (clring,fprint) in fingerprinted] # remove if not using fingerprinted
 
-# images = create_images_svg(G,POSITIONS,STYLES,colorings,MAX_DIMS_RATIO)
+images = create_images_svg(G,POSITIONS,STYLES,colorings,MAX_DIMS_RATIO)
 
 # END : NORMAL PRINTING IN COLLAGE
