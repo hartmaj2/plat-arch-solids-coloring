@@ -326,7 +326,7 @@
 
 ## 2025_04_23
 
-- [ ] proofread what I wrote in the thesis
+- [x] proofread what I wrote in the thesis
 
 - [ ] test if result will be printed faster if I use the alg. from thesis for relaut colorings printing instead of the old one (which is prly slower)
 
