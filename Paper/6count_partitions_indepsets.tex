@@ -316,7 +316,35 @@ truncated octahedron & $1$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $
 
 In this section, we would like to interpret the results from section \ref{sec:nums-equiv-classes-relaut}, by showing the colorings, that represent the equivalence classes we counted.
 
-Interestingly enough, we can observe, that for any number of colors ranging from $3$ to $6$, the octahedron has only a single partition into independent sets, up to symmetries. See the four corresponding figures below:
+For many cases, we have multiple equivalence classes for particular values of $n$, where $n$ is the number of independent sets in the partition. In such cases, we will organize the respective partitions in following figures by a so called \textit{sizes vector}.
+
+\begin{defn}[sizes vector]
+    Let $G=(V,E)$ be a graph and let $W$ be a partition of $V$ into $n$ independent sets, where $n$ is some natural number. Let $s=(\abs{I_1}, \ldots, \abs{I_n})$ be a vector s.t. $\forall i: I_i \in W$, $\forall i \neq j: I_i \neq I_j$ and $\forall i \leq j : \abs{I_i} \leq \abs{I_j}$. We call this the \emph{sizes vector} of partition $W$.
+\end{defn}
+
+\subsection{Octahedron relabeling-automorphism classes}
+
+For octahedron, we can observe, that for any number of colors ranging from $3$ to $6$, its graph has only a single partition into independent sets, up to symmetries. See the four corresponding figures below:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Resources/Figs/octahedron-relaut-classes.pdf}
+    \caption{Equivalence classes of $\rightleftharpoons$ of octahedron for $n$ from $3$ up to $6$.}
+    \label{fig:octahedron-relaut-classes}
+\end{figure}
+
+\subsection{Cube relabeling-automorphism classes}
+
+In the case of cube and $n=3$, we have three non-equivalent partitions s.t. their sizes vectors are pairwise different. See the following figure: 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1\textwidth]{Resources/Figs/octahedron-relaut-classes.pdf}
+    \caption{Equivalence classes of $\rightleftharpoons$ of octahedron for $n$ from $3$ up to $6$.}
+    \label{fig:octahedron-relaut-classes}
+\end{figure}
+
+The sizes vector is an ordered vector of sizes of the independent sets in $W$.
 
 
 
