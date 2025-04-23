@@ -146,13 +146,13 @@ dodecahedron & $0$ & $1200$ & $7019920$ & $\approx 10^{8}$ & $\approx 10^{10}$ &
 
 Argument for inequality $P^*_\rightleftharpoons(G,n) \leq OP^*(G,n)$ is again simple and analogous to the one in clam \ref{clm:relabeling-bound}. We notice, that if for any two colorings $c_1,c_2$ we have $c_1 \not\rightleftharpoons c_2$ then also $c_1 \not\sim c_2$.
 
-For inequality $\frac{1}{n!} \cdot OP^*(G,n) \leq P^*_\rightleftharpoons(G,n)$ we proceed again analogously as in claim \ref{clm:relabeling-bound}. We show that for each equivalence class of $\rightleftharpoons$ we have at most $n!$ equivalence classes of $\sim$. We imagine a coloring $c_1$ that belongs to some equivalence class $E_\rightleftharpoons$ of $\rightleftharpoons$ and $E_\sim$ of $\sim$. Applying any automorphism $\alpha \in \Aut(G)$ results in a coloring, that will be contained in both $E_\rightleftharpoons$ and $E_\sim$. On the other hand, by relabeling the colors of $c_1$ we may obtain $n!$ colorings s.t. each belongs to a different equivalence class of $\sim$ even though they all belong to $E_\rightleftharpoons$.
+For inequality $\frac{1}{n!} \cdot OP^*(G,n) \leq P^*_\rightleftharpoons(G,n)$ we proceed again analogously as in claim \ref{clm:relabeling-bound}. We show that for each equivalence class of $\rightleftharpoons$, we have at most $n!$ equivalence classes of $\sim$ corresponding to that class. We imagine a coloring $c_1$ that belongs to some equivalence class $E_\rightleftharpoons$ of $\rightleftharpoons$ and $E_\sim$ of $\sim$. Applying any automorphism $\alpha \in \Aut(G)$ results in a coloring, that will be contained in both $E_\rightleftharpoons$ and $E_\sim$. On the other hand, by relabeling the colors of $c_1$, we may obtain $n!$ colorings s.t. each belongs to a different equivalence class of $\sim$ even though they all belong to $E_\rightleftharpoons$.
 
 \end{proof}
 
 Note, that the lower bound resulting from claim $\ref{clm:automorphism-bound}$ is useful for cases where $n$, the number of colors, is small. In such cases, it can give us a better bound than what the bound from claim $\ref{clm:relabeling-bound}$ gives.
 
-See values resulting from this bound in the table below and compare with table \ref{tab:bounds-exactn-n-partitions}.
+See upper and lower bounds resulting from claim \ref{clm:automorphism-bound} in table \ref{tab:bounds-orbital} below.
 
 \begin{table}[H]
 \centering
@@ -180,29 +180,27 @@ dodecahedron & $0$ & $75$ & $1404548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $
 \label{tab:bounds-orbital}
 \end{table}
 
-\vtodo{Demonstrate the bound on the example of dodecahedron}
-
 \section{Algorithm for computing number of equivalence classes of the relabeling-automorphism relation}
 
-For all the algorithms below, we assume that we are working with colorings using $n$ colors. The colorings are represented as lists of integers ranging from $0$ to $n-1$, where $n$ is the number of colors. The lists are indexed by vertices, which are numbers $0, \ldots,|V|-1$.
+For all the algorithms below, let $n$ be the number of colors of colorings we consider. The colorings are represented as lists of integers ranging from $1$ to $n$, where $n$ is the number of colors. The lists are indexed by vertices, which are numbers $1, \ldots,|V|$.
 
 Since we are dealing with graphs that have relatively small amount of edges and vertices, we can compute some of the numbers using a simple algorithm that works by first enumerating all coloring and then filtering the ones that are equivalent. The algorithm can be split into the following two parts:
 
 \subsection{Finding representatives of the relabeling relation}
 
-First, we want to exclude colorings, that correspond to the same partitions into independent sets, but just have different labels for the colors. This corresponds to finding colorings that represent different classes of the relabeling relation from definition \ref{dfn:relabeling-relation}. We use the fact, that the colorings are represented as lists together with the following observation: Given a partition into $n$ independent sets, there are $n!$ ways to assign labels to the colorings. Out of these $n!$ colorings, there will be always exactly one of them s.t. the coloring is in a so called \textit{canonic form}.  
+First, we want to exclude colorings, that correspond to the same partitions into independent sets, but just have different labels for the colors. This corresponds to finding colorings that represent different classes of the relabeling relation from definition \ref{dfn:relabeling-relation}. To do so, we use the fact, that the colorings are represented as lists together with the following observation: Given a partition into $n$ independent sets, there are $n!$ ways to assign labels to the colorings. Out of these $n!$ colorings, there is always exactly one coloring s.t. it is in a so called \textit{canonic form}.  
 
-\begin{defn}\label{dfn:canonic-form}
-    Let $B=\{0,\ldots,n-1\}$ be a set of colors and $c$ be a coloring using colors from $B$ s.t. $c$ is represented as sequence $(b_0, \ldots,b_{\abs{V}-1})$ s.t. $\forall i: b_i \in B$. For each $i \in B$ denote $k_i$ the lowest index at which color $i$ appears. We say that $c$ is in \emph{canonic form} if $\forall i < j \in B: k_i < k_j$.
+\begin{defn}[canonic form]\label{dfn:canonic-form}
+    Let $B=\{1,\ldots,n\}$ be a set of colors and $c$ be a coloring using colors $B$ s.t. $c$ is represented as sequence $(b_1, \ldots,b_{\abs{V}})$ s.t. $\forall i: b_i \in B$. For each $i \in B$, denote $k_i$ the lowest index at which color $i$ appears. We say that $c$ is in \emph{canonic form} if $\forall i < j \in B: k_i < k_j$.
 \end{defn}
 
-In other words, a coloring is in canonic form ,if when we go through the coloring from lowest index to highest index, we encounter the colors for the first time in the same order as what the values of the colors are. Now the observation is, that for all $n!$ relabelings of the independent sets, there is exactly one coloring s.t. it is in canonic form. This means, that by keeping only the colorings in canonic form, we get exactly colorings representing the equivalence classes of the relabeling relation.
+In other words, a coloring is in canonic form, if when we go through the coloring from lowest index to highest index, we encounter the colors for the first time in the same order as what their values are. Now the observation is as follows: For all $n!$ ways to assign colors to the independent sets, there is exactly one coloring s.t. it is in canonic form. This means, that by keeping only the colorings in canonic form, we get exactly colorings representing the equivalence classes of the relabeling relation.
 
 \begin{algorithm}[H]
-    \caption{Algorithm for testing that a given coloring is in canonic form as in definition \ref{dfn:canonic-form}} 
+    \caption{Algorithm for testing whether a given coloring is in canonic form by definition \ref{dfn:canonic-form}.} 
     \begin{algorithmic}[1]
         \Function{IsInCanonicForm}{$c$}
-            \State $k \gets 0$      
+            \State $k \gets 1$      
             \For{color $b_i$ in coloring $c$}
                 \If{$b_i > k$}
                     \State \Return False
@@ -219,16 +217,16 @@ In other words, a coloring is in canonic form ,if when we go through the colorin
 
 \subsection{Finding representatives of relabeling-automorphism relation}
 
-By filtering the colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. After doing that, we can proceed with a more computationally heavy part of the algorithm. In this part of the algorithm, we run through all the colorings and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when we consider some next coloring $c_i$, we compare $c_i$ with all representatives in $R$. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we continue to the next coloring. Otherwise, we add $c_i$ to $R$ i.e. we declare $c_i$ as a representative of its class. See detailed description of the algorithm below:
+By filtering the colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. After performing that step, we can proceed with a more computationally heavy part of the algorithm. In this part of the algorithm, we go through the colorings we were left with, and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when we consider some next coloring $c_i$, we compare $c_i$ with all representatives in $R$, that we have found so far. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we continue to the next coloring. Otherwise, we add $c_i$ to $R$ i.e. we declare $c_i$ as a representative of its $\rightleftharpoons$ class. See detailed description of the algorithm below:
 
 \begin{algorithm}[H]
-    \caption{Algorithm for finding representatives of relabeling-automorphism relation as defined in \ref{dfn:relabeling-automorphism-relation}} 
+    \caption{Algorithm for finding representatives of equivalence classes of the relabeling-automorphism relation as defined in \ref{dfn:relabeling-automorphism-relation}. $G$ is a graph and $C$ is the set of colorings in canonic form.} 
     \begin{algorithmic}[1]
         \Function{FindRelabelingAutomorphismRepresentatives}{$G,C$}
             \State $R \gets \emptyset$
             \For{coloring $c_i \in C$}
                 \For{coloring $r_j \in R$}
-                    \If{$c_i$ and $c_j$ can be unified by some $\alpha \in \Aut(G)$ and relabeling}
+                    \If{$c_i$ and $r_j$ can be unified by some $\alpha \in \Aut(G)$ and relabeling}
                         \State Continue with next coloring at step 3
                     \EndIf
                 \EndFor
@@ -240,24 +238,24 @@ By filtering the colorings that are not in canonic form, we have reduced the num
     \label{alg:representatives-of-relabeling-automorphism-relation}
 \end{algorithm}
 
-Using this algorithm, we can just ask for size of set $R$ to get the number of equivalence classes of the $\rightleftharpoons$ relation. Since step $5$ of the algorithm above is a bit more involved, we describe it in more detail below. We use notation $\Dom(f)$ and $\Rng(f)$ to describe domain and range of function $f$ respectively. Also we treat each cycle $O$ of an automorphism $\alpha$ as a sequence of vertices $(v_1,\ldots,v_k)$ where $k := \abs{O}$. See the description of the algorithm below:
+Using algorithm \ref{alg:representatives-of-relabeling-automorphism-relation} above, we can just ask for size of set $R$, to get the number of equivalence classes of the $\rightleftharpoons$ relation. Since step $5$ of the algorithm above is a bit more involved, we describe it in more detail below. We use notation $\Dom(\pi)$ and $\Rng(\pi)$ to describe the domain and range of function $\pi$ respectively. Also, we treat each cycle $O$ of an automorphism $\alpha$ as a sequence of vertices $(v_1,\ldots,v_k)$, where $k := \abs{O}$. See description of the algorithm below:
 
 \begin{algorithm}[H]
-    \caption{Algorithm testing if two colorings $c_1, c_2$ can be unified by given automorphism $\alpha$ by some relabeling.} 
+    \caption{Algorithm testing whether two colorings $c_1, c_2$ can be unified by given an automorphism $\alpha$ by some relabeling \pi.} 
     \begin{algorithmic}[1]
         \Function{TestRelabelingAutomorphismRelated}{$c_1,c_2,\alpha$}
-            \State $f \gets \emptyset$
+            \State $\pi \gets \emptyset$
             \For{cycle $O \in \alpha$}
                 \State $k \gets \abs{O}$
                 \For{$v_i \in O$}
-                    \If{$c_1(v_i ) \notin \Dom(f)$}
-                        \If{$c_2(v_{i + 1 \bmod k}) \notin \Rng(f)$}
-                            \State $f(c_1(v_i)) \gets c_2(v_{i + 1 \bmod k})$
+                    \If{$c_1(v_i ) \notin \Dom(\pi)$}
+                        \If{$c_2(v_{i + 1 \bmod k}) \notin \Rng(\pi)$}
+                            \State $\pi(c_1(v_i)) \gets c_2(v_{i + 1 \bmod k})$
                         \Else
                             \State \Return False
                         \EndIf
                     \Else
-                        \If{$f(c_1(v_i )) \neq c_2(v_{i + 1 \bmod k})$}
+                        \If{$\pi(c_1(v_i )) \neq c_2(v_{i + 1 \bmod k})$}
                             \State \Return False
                         \EndIf
                     \EndIf
@@ -269,9 +267,9 @@ Using this algorithm, we can just ask for size of set $R$ to get the number of e
     \label{alg:test-two-colorings-relabel-automorph-related}
 \end{algorithm}
 
-In natural language, the algorithm above tries to construct a mapping $f$ from colors of coloring $c_1$ to colors of coloring $c_2$. This mapping must be a valid permutation of colors, so we require that no two colors from $c_1$ map to a single color in $c_2$.
+In natural language, the algorithm above tries to construct a mapping $\pi$ from colors of coloring $c_1$ to colors of coloring $c_2$. This mapping must be a valid permutation of colors, so we require that no two colors from $c_1$ map to a single color in $c_2$ i.e. the map $\pi$ must be injective.
 
-Step $5$ of algorithm \ref{alg:representatives-of-relabeling-automorphism-relation} consists of testing, whether for some $\alpha \in \Aut(G)$, the algorithm \ref{alg:test-two-colorings-relabel-automorph-related} above returns true.
+Step $5$ of algorithm \ref{alg:representatives-of-relabeling-automorphism-relation} consists of testing, whether for some $\alpha \in \Aut(G)$, the algorithm \ref{alg:test-two-colorings-relabel-automorph-related} above returns True.
 
 See next section for results we computed using the algorithm above.
 
