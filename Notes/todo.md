@@ -328,21 +328,22 @@
 
 - [x] proofread what I wrote in the thesis
 
+- [x] show figures with selected examples of equivalent classes that we calculated
+
 - [ ] test if result will be printed faster if I use the alg. from thesis for relaut colorings printing instead of the old one (which is prly slower)
 
-- [ ] show figures with selected examples of equivalent classes that we calculated
 
 ## Main tasks
 
-- [ ] add visual example with 3-colorings of cube up to automorphism
-  - enumerate all the colorings
-  - show that some colorings are just permutations of colors of other colorings
+- [ ] rewrite introduction
+
+- [ ] improve definition of coloring to include difference between proper and improper coloring
+
+- [ ] write abstract of the thesis
 
 ## Side tasks
 
 ### Interpreting collages
-
-- [ ] what automorphism makes the two colorings to be in the same relabel+automorphism class?
 
 - [ ] how come there is so many relabel + automorphism classes of dodecahedron?
 
