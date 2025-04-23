@@ -34,10 +34,10 @@ EXACTS_LABEL = f"tab:platonic-exactly-n-clrs"
 EXACT_PARTITIONS_CAPTION = f"Numbers of of possible partitions of vertices of the graphs into $n$ independent sets."
 EXACT_PARTITIONS_LABEL = f"tab:platonic-exact-n-partitions"
 
-PARTITIONS_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\righleftharpoons$ relation based on the number of equivalence classes of the $\\leftrightarrow$ relation."
+PARTITIONS_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\righleftharpoons$ relation based on the number of equivalence classes of the $\\leftrightarrow$ relation. For each solid, top row contains the upper bounds while bottom row contains the lower bounds."
 PARTITIONS_BOUNDS_LABEL = f"tab:bounds-exactn-n-partitions"
 
-ORBITAL_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\righleftharpoons$ relation based on the number of equivalence classes of the $\\sim$ relation."
+ORBITAL_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\righleftharpoons$ relation based on the number of equivalence classes of the $\\sim$ relation. For each solid, top row contains the upper bounds while bottom row contains the lower bounds."
 ORBITAL_BOUNDS_LABEL = f"tab:bounds-orbital"
 
 # INPUT FILE SETTINGS
