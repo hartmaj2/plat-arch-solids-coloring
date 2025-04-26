@@ -353,6 +353,8 @@
 
 - [ ] in the visualisation of Pascal's triangle formula for K_{k x 2} graphs, emphasize where the operation is done in the figure
 
+- [ ] add figure with phosphorous P_4 as tetrahedron kind of molecule
+
 ### Improve definitions
 
 - [ ] distinguish between proper and improper colorings in the definitions
