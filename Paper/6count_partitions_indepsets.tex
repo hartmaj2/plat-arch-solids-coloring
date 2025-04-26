@@ -1,9 +1,9 @@
 \chapter{Counting number of partitions into independent sets}
 \label{chap:num-partitions-into-indep-sets}
 
-\begin{highlight}
-
 Important thing to note about results of table \ref{tab:platonic-exactly-n-clrs} above is the fact, that we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ can be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only and the value of the colors bear no special meaning to us. 
+
+\todo[JF]{Lze napsat jednodušeji "Recall that in table \ref{tab:platonic-exactly-n-clrs} we count two colorings $c_1$ and $c_2$ as different ..." a "... has no special meaning".}
 
 \begin{defn}[relabeling relation]\label{dfn:relabeling-relation}
     Given a graph $G=(V,E)$ and a set of colorings $C$, we define a relation $\leftrightarrow \; \subseteq C \times C$ as follows: For any two colorings $c_1,c_2 \in C$ we have $c_1 \leftrightarrow c_2$ iff exists a permutation of colors $\pi$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(v))$. We call this relation the \emph{relabeling relation}.
@@ -43,7 +43,7 @@ dodecahedron & $0$ & $1200$ & $7019920$ & $\approx 10^{8}$ & $\approx 10^{10}$ &
 
 Notice, that even though we managed to overcome the problem of counting a single partition $W$ of $G$ into independent sets multiple times, because of the ways we can relabel the colorings, the method still suffers from the following: Rotated or reflected independent sets might be counted as different objects. This happens exactly in cases, when by rotating some partition $W_1$, we arrive at a partition $W_2$ s.t. for any coloring $c_1$ obtained by labeling the sets of $W_1$ and for any coloring $c_2$ obtained by labeling sets of $W_2$ we have $c_1 \not\leftrightarrow c_2$. In other words, we cannot construct coloring $c_2$ just by renaming the colors of coloring $c_1$ or vice versa.
 
-This problem is illustrated on figure \ref{fig:example-octahedron-4-partitions} below. We can see that all three partitions are same when we allow rotating the solid. But it is impossible to arrive from one coloring to another by simply relabeling the colors. 
+This problem is illustrated on figure \ref{fig:example-octahedron-4-partitions} below. We can see that all three partitions are same when we allow rotating the solid. But it is impossible to obtain one coloring from another by simply relabeling the colors. 
 
 \begin{figure}[H]
     \centering
@@ -217,7 +217,7 @@ In other words, a coloring is in canonic form, if when we go through the colorin
 
 \subsection{Finding representatives of relabeling-automorphism relation}
 
-By filtering the colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. After performing that step, we can proceed with a more computationally heavy part of the algorithm. In this part of the algorithm, we go through the colorings we were left with, and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when we consider some next coloring $c_i$, we compare $c_i$ with all representatives in $R$, that we have found so far. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we continue to the next coloring. Otherwise, we add $c_i$ to $R$ i.e. we declare $c_i$ as a representative of its $\rightleftharpoons$ class. See detailed description of the algorithm below:
+By filtering the colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. After performing that step, we can proceed with a more computationally heavy \todo[JF, noinline]{? "demanding"} part of the algorithm. In this part of the algorithm, we go through the colorings we were left with, and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when we consider some next coloring $c_i$, we compare $c_i$ with all representatives in $R$, that we have found so far. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we continue to the next coloring. Otherwise, we add $c_i$ to $R$ i.e. we declare $c_i$ as a representative of its $\rightleftharpoons$ class. See the detailed description of the algorithm below:
 
 \begin{algorithm}[H]
     \caption{Algorithm for finding representatives of equivalence classes of the relabeling-automorphism relation as defined in \ref{dfn:relabeling-automorphism-relation}. $G$ is a graph and $C$ is the set of colorings in canonic form.} 
@@ -238,7 +238,7 @@ By filtering the colorings that are not in canonic form, we have reduced the num
     \label{alg:representatives-of-relabeling-automorphism-relation}
 \end{algorithm}
 
-Using this algorithm, we can just ask for size of set $R$, to get the number of equivalence classes of the $\rightleftharpoons$ relation. Since step $5$ of the algorithm above is a bit more involved, we describe it in more detail below. We use notation $\Dom(\pi)$ and $\Rng(\pi)$ to describe the domain and range of function $\pi$ respectively. Also, we treat each cycle $O$ of an automorphism $\alpha$ as a sequence of vertices $(v_1,\ldots,v_k)$, where $k := \abs{O}$. See description of the algorithm below:
+Using this algorithm, we can ask for size of set $R$, to get the number of equivalence classes of the $\rightleftharpoons$ relation. Since step $5$ of the algorithm above is a bit more involved, we describe it in more detail below. We use notation $\Dom(\pi)$ and $\Rng(\pi)$ to describe the domain and range of function $\pi$ respectively. Also, we treat each cycle $O$ of an automorphism $\alpha$ as a sequence of vertices $(v_1,\ldots,v_k)$, where $k := \abs{O}$. See description of the algorithm below:
 
 \begin{algorithm}[H]
     \caption{Algorithm testing if two colorings $c_1, c_2$ can be unified by given automorphism $\alpha$ by some relabeling \pi.} 
@@ -277,7 +277,7 @@ See next section for results we computed using the algorithm above.
 
 In this section, we provide tables with values of $P^*_\rightleftharpoons(G,n)$, which we managed to compute. It is especially interesting, to compare results in tables below with the results we got in tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}. We can see, that the numbers reduced significantly.
 
-Unfortunately, we can also see, that there are some entries in the tables left out, for which the algorithm took too long to get the resulting number. Note, that we did not have this issue when computing tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}, since we were already provided with the chromatic polynomial, which we could simply evaluate at certain points. By doing that, we avoided having to enumerate all colorings, which is the most computationally heavy part of the algorithm from section \ref{sec:equiv-classes-of-relaut}.
+Unfortunately, we can also see, that there are some entries in the tables left out, for which the algorithm took too long to get the resulting number.\todo[JF, noinline]{dám Vám komentář osobně, jak to napsat; v mezidobí, zkuste třeba sage na HPC a více času} Note, that we did not have this issue when computing tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}, since we were already provided with the chromatic polynomial, which we could simply evaluate at certain points. By doing that, we avoided having to enumerate all colorings, which is the most computationally heavy part of the algorithm from section \ref{sec:equiv-classes-of-relaut}.
 
 \begin{table}[H]
 \centering
@@ -316,6 +316,8 @@ truncated octahedron & $1$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $
 
 In this section, we would like to interpret the results from section \ref{sec:nums-equiv-classes-relaut}, by showing the colorings, that represent the equivalence classes we counted.
 
+\todo[JF]{zmiňte, že je budete ilustrovat jen na několika jednoduchých podle tabulky 6.4 a přitom netriviálních (tedy ne na všech), třeba je v té tabulce barevně vyznačte a v caption zmiňte, to to vyznačení znamená}
+
 For many cases, we have multiple equivalence classes for particular values of $n$, where $n$ is the number of independent sets in the partition. In such cases, we will organize the respective partitions in following figures by a so called \textit{size sequence}.
 
 \begin{defn}[size sequence]
@@ -334,6 +336,8 @@ For octahedron, we can observe, that for any number of colors ranging from $3$ t
     \caption{Equivalence classes of relabeling-automorphism of octahedron for $n$ from $3$ up to $6$.}
     \label{fig:octahedron-relaut-classes}
 \end{figure}
+
+\todo[JF]{Možná by už tu bylo dobré zrovna ilustrovat size sequence, přímo pod obrázky.}
 
 \subsection{Cube relabeling-automorphism classes}
 
@@ -375,4 +379,3 @@ For icosahedron and $n=4$, it turns out that there is only the following equival
     \label{fig:icosahedron-4clring-relaut-classes}
 \end{figure}
 
-\end{highlight}

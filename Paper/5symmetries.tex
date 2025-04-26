@@ -79,7 +79,7 @@ For example, consider the graph of cube $G_{cube}$. Taking for $C_4$ the set of 
 Before stating another important observation, we will need a following definition:
 
 \begin{defn}[fixpoint]
-    For a graph $G = (V,E)$, natural number $n$, a set of its proper colorings $C_n$ and automorphism $\alpha \in \Aut(G)$, we denote $\Fix(\alpha)= \{ c \in C \ | \ \forall v \in V : c(\alpha(v)) = c(v) \}$
+    For a graph $G = (V,E)$, positive integer $n$, a set of its proper colorings $C_n$ and automorphism $\alpha \in \Aut(G)$, we denote $\Fix(\alpha)= \{ c \in C \ | \ \forall v \in V : c(\alpha(v)) = c(v) \}$
 \end{defn}
 
 To get a formula which computes the same number but using a sum over the set $\Aut(G)$ instead, we use the following observation: The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the number of ordered pairs $(c,\alpha)$ s.t. $\forall v \in V : c(\alpha(v)) = c(v)$. Using the definition of fixpoint, we can calculate this number also using the sum $\sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$, which yields the following important identity:
@@ -98,13 +98,19 @@ By combining equations \ref{eqn:orbits-by-stab} and \ref{eqn:two-way-counting}, 
 
 We introduce a notion very similar to the one of the chromatic polynomial of a graph. Additionally, we take into account symmetries.
 
-\begin{highlight}
 
 \begin{defn}[orbital chromatic polynomial]
-    For a graph $G$ and a family of its proper colorings $C$ we define the function $OP(G,x)$ s.t. $\forall k \in \mathbb{N} : OP(G,k)$ is equal to $\abs{C_k/_\sim}$. We call this function \emph{orbital chromatic polynomial}. Indeed in Theorem \ref{thm:count-orb-chrompoly}, we show that values at every natural number correspond to the right hand side of formula \ref{eqn:oribtal-chrompoly} which is a polynomial.
+    For a graph $G$ and a family of its proper colorings $C$ we introduce the function $OP(G,n): \mathbb{N}\to \mathbb{N}$ defined as $
+    %\forall k \in \mathbb{N} : 
+    OP(G,n)=\abs{C_n/_\sim}$. We call this function \emph{orbital chromatic polynomial}, because 
+    %Indeed 
+    in Theorem \ref{thm:count-orb-chrompoly}, we show that values of $OP(G,n)$ 
+    %at every positive integer 
+    correspond to the right hand side of formula \ref{eqn:oribtal-chrompoly} which is a polynomial.
 \end{defn}
 
-\end{highlight}
+\todo[JF]{$x,k$ změněno na $n$, aby to bylo kompatibilní se značením u obyčejného chr. poly; "natural number" změněno na "positive integer" (zkontrolujte i jinde, např. v 6. kap).}
+
 
 The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
 
@@ -136,16 +142,12 @@ In the following definition, we extend the definition of an undirected graph to 
 
 Now we are ready to state the following theorem:
 
-\begin{highlight}
-
 \begin{thm}[computation of orbital chromatic polynomial] \label{thm:count-orb-chrompoly}
-    Let $G$ be a graph, then for any natural number $n$, the following formula holds:
+    Let $G$ be a graph, then for any positive integer $n$, the following formula holds:
     \begin{equation} \label{eqn:oribtal-chrompoly}
         OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\alpha \in \Aut(G)}P(G/_\alpha,n)
     \end{equation}
 \end{thm}
-
-\end{highlight}
 
 \begin{proof}
 
@@ -210,6 +212,9 @@ cube & $\frac{1}{48}x^{8} - \frac{1}{4}x^{7} + \frac{3}{2}x^{6} - \frac{16}{3}x^
 
 \section{Demonstrative example on a graph of the octahedron}
 
+\todo[JF, noinline]{proč demonstrative?}
+
+
 The difference between chromatic and orbital chromatic polynomials can be demonstrated on a graph of the octahedron $K_{3 \times 2}$. As can be seen in table \ref{tab:selected-chrom-polys} we have that: $$P(K_{3 \times 2},x) = x^{6} - 12x^{5} + 58x^{4} - 137x^{3} + 154x^{2} - 64x$$ whereas by \ref{tab:selected-orbital-chrom-polys} 
  we have: $$OP(K_{3 \times 2},x) = \frac{1}{48}x^{6} - \frac{3}{16}x^{5} + \frac{37}{48}x^{4} - \frac{79}{48}x^{3} + \frac{41}{24}x^{2} - \frac{2}{3}x$$.
 
@@ -224,7 +229,6 @@ Plugging in $3$ for $x$, we get the number of vertex colorings of the octahedron
 
 Now, an important observation is, that all of these $6$ colorings are equivalent when considered up to automorphisms. Indeed we can compute that $OP(K_{3 \times 2},3) = 1$.
 
-\begin{highlight}
 
 \section{Comparison with chromatic polynomial}
 
@@ -252,11 +256,13 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
  & $0$ & $75$ & $1404848$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
 \bottomrule
 \end{tabular}
-\caption{Evaluated chromatic polynomial and orbital chromatic polynomial for platonic solids at points 2 to 8. For each solid, the top row contains the chromatic polynomial, the bottom row contains the orbital chromatic polynoial.}
+\caption{Values of the chromatic polynomial and orbital chromatic polynomial for platonic solids at points 2 to 8. For each solid, the top row corresponds to the chromatic polynomial, the bottom row to the orbital chromatic polynomial.}
 \label{tab:platonic-polys-evals}
 \end{table}
 
-Note, that we can use the same method as in section \ref{sec:num-clrings-exactly-n-clrs}, using the formula \ref{eqn:exactly-n-colors}, also for the orbital chromatic polynomial $OP(G,x)$, to arrive at corresponding values $OP^*(G,n)$. Using the formula, we can then simplify table \ref{tab:platonic-polys-evals} above to get the following table:
+\todo[JF]{Zvažte oddělení tisíců, např. 6878900 versus 6\,878\,900.}
+
+Note, that we can use the same method as in section \ref{sec:num-clrings-exactly-n-clrs}, using the formula \ref{eqn:exactly-n-colors}, also for the orbital chromatic polynomial $OP(G,x)$, to arrive at corresponding values $OP^*(G,n)$. Using the formula\todo[JF, noinline]{kterou?}, we can  simplify table \ref{tab:platonic-polys-evals} to get the following table:
 
 \begin{table}[H]
 \centering
@@ -284,4 +290,3 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
 \label{tab:platonic-exactly-n-clrs}
 \end{table}
 
-\end{highlight}
