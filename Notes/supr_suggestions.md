@@ -38,3 +38,5 @@ Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
 \todo[JF]{$x,k$ změněno na $n$, aby to bylo kompatibilní se značením u obyčejného chr. poly; "natural number" změněno na "positive integer" (zkontrolujte i jinde, např. v 6. kap).}
 
  \todo[JF, noinline]{? "demanding"} 
+
+ \todo[JF]{Když dáváte důkaz, bylo by dobré věc zformulovat jako tvrzení.}
