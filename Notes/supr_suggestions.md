@@ -40,3 +40,5 @@ Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
  \todo[JF, noinline]{? "demanding"} 
 
  \todo[JF]{Když dáváte důkaz, bylo by dobré věc zformulovat jako tvrzení.}
+
+ \todo[JF]{Místo "Thus, the results are quite complicated and hard to fit in a single table." spíš napište, že rozsáhlé polynomy pro zbylá Platónská tělesa (případně některá Archimédovská) jsou v Appendixu.}
