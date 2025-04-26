@@ -28,3 +28,13 @@ visualize some particular colorings in more accessible way.
 
 Kolik takových vlastně je? Možná by mělo smysl je dát do tabulky.
 Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
+
+## 6
+
+\todo[JF]{"denote" odpovídá značení, definici odpovídá "define"}
+
+\todo[JF]{Lze napsat jednodušeji "Recall that in table \ref{tab:platonic-exactly-n-clrs} we count two colorings $c_1$ and $c_2$ as different ..." a "... has no special meaning".}
+
+\todo[JF]{$x,k$ změněno na $n$, aby to bylo kompatibilní se značením u obyčejného chr. poly; "natural number" změněno na "positive integer" (zkontrolujte i jinde, např. v 6. kap).}
+
+ \todo[JF, noinline]{? "demanding"} 
