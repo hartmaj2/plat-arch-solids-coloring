@@ -22,6 +22,8 @@ ROOT_FOLDER = "Code"
 
 # OUTPUT SETTING
 
+
+
 ## ALL SOLIDS PRINTING
 CHROMPOLY_DATA_HEADER = ["Chromatic polynomial"]
 ORBCHROMPOLY_DATA_HEADER = ["Orbital chromatic polynomial"]
@@ -45,7 +47,7 @@ CAPTION_ORBCHROMPOLY = "Orbital chromatic polynomial of selected solids."
 LABEL_ORBCHROMPOLY = "tab:selected-orbital-chrom-polys"
 
 selected_solids = ["tetrahedron","octahedron","cube"]
-
+REDUCED_ARCH_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron']
 
 # uncomment following 2 lines to output to a folder
 # output_file = open(ROOT_FOLDER + "/Results/chrom_polys2.md","w")
@@ -76,11 +78,13 @@ def get_chrom_polys_dict(solid_dict : dict, chrom_poly_function : Callable[[Grap
             solid_computed_data[solid_name] = [chrom_poly_function(g)] # IMPORTANT: needs to be packed in a list in order for the printing to work propertly 
     return solid_computed_data
 
-def print_orbital_chrom_poly_table(solids : dict[str,dict]):
+def print_orbital_chrom_poly_table(selected_solids : list[str]):
+    solids = sdp.get_selected_solids_dict(selected_solids)
     solid_data = get_chrom_polys_dict(solids,orb.orbital_chromatic_polynomial2)
     printing.print_solid_mult_col_data(solid_data,selected_solids,TEXT_COLUMN_HEADER,ORBCHROMPOLY_DATA_HEADER,CAPTION_ORBCHROMPOLY,LABEL_ORBCHROMPOLY,output_type,pp.poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP,first_col_horiz_space=1.5,row_spacing=ROW_SPACING_RATIO)
 
-def print_chrom_poly_table(solids : dict[str,dict]):
+def print_chrom_poly_table(selected_solids : list[str]):
+    solids = sdp.get_selected_solids_dict(selected_solids)
     solid_data = get_chrom_polys_dict(solids,orb.chromatic_polynomial2)
     printing.print_solid_mult_col_data(solid_data,selected_solids,TEXT_COLUMN_HEADER,CHROMPOLY_DATA_HEADER,CAPTION_CHROMPOLY,LABEL_CHROMPOLY,output_type,pp.poly_to_latex,ALIGNMENT_PAR_STYLE_WRAP,first_col_horiz_space=0)
 
@@ -95,9 +99,9 @@ def print_desmos_polys(solid_dict : dict, chrom_poly_function : Callable[[Graph]
 
 # main loop over folders with different solid types (Platonic, Archimedean)
 def main():
-    solids = sdp.get_selected_solids_dict(selected_solids)
-    # print_chrom_poly_table(solids)
-    print_orbital_chrom_poly_table(solids)
+    
+    print_chrom_poly_table(REDUCED_ARCH_TABLE_ORDER)
+    # print_orbital_chrom_poly_table(REDUCED_ARCH_TABLE_ORDER)
 
     # print_desmos_polys(solids,orb.chromatic_polynomial2,"p")
 
