@@ -1,9 +1,7 @@
 \chapter{Counting number of partitions into independent sets}
 \label{chap:num-partitions-into-indep-sets}
 
-Important thing to note about results of table \ref{tab:platonic-exactly-n-clrs} above is the fact, that we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ can be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only and the value of the colors bear no special meaning to us. 
-
-\todo[JF]{Lze napsat jednodušeji "Recall that in table \ref{tab:platonic-exactly-n-clrs} we count two colorings $c_1$ and $c_2$ as different ..." a "... has no special meaning".}
+Recall that in table \ref{tab:platonic-exactly-n-clrs} we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ can be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only, and the values of the colors have no special meaning.
 
 \begin{defn}[relabeling relation]\label{dfn:relabeling-relation}
     Given a graph $G=(V,E)$ and a set of colorings $C$, we define a relation $\leftrightarrow \; \subseteq C \times C$ as follows: For any two colorings $c_1,c_2 \in C$ we have $c_1 \leftrightarrow c_2$ iff exists a permutation of colors $\pi$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(v))$. We call this relation the \emph{relabeling relation}.
