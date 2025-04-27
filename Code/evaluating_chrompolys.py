@@ -24,11 +24,6 @@ THIN_RULE = r"\specialrule{0.2pt}{0.65ex}{0.65ex}"
 
 data_headers = [str(x) for x in range(STARTING_NUM,EVAL_NUM_LIMIT+1)]
 
-
-
-PARTITIONS_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\righleftharpoons$ relation based on the number of equivalence classes of the $\\leftrightarrow$ relation. For each solid, top row contains the upper bounds while bottom row contains the lower bounds."
-PARTITIONS_BOUNDS_LABEL = f"tab:bounds-exactn-n-partitions"
-
 ORBITAL_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\righleftharpoons$ relation based on the number of equivalence classes of the $\\sim$ relation. For each solid, top row contains the upper bounds while bottom row contains the lower bounds."
 ORBITAL_BOUNDS_LABEL = f"tab:bounds-orbital"
 
@@ -231,17 +226,20 @@ EXACTS_LABEL = f"tab:platonic-exactly-n-clrs"
 EXACT_PARTITIONS_CAPTION = f"Numbers of possible partitions of vertices of the graphs into $n$ independent sets."
 EXACT_PARTITIONS_LABEL = f"tab:platonic-exact-n-partitions"
 
-dict = get_n_partition_counts_dict(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER)))
-preprocessed_dict = preprocess_big_numbers_for_print(dict,TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_col_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,EXACT_PARTITIONS_CAPTION,EXACT_PARTITIONS_LABEL,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),output_type=output_type,first_col_horiz_space=0.5)
+# dict = get_n_partition_counts_dict(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER)))
+# preprocessed_dict = preprocess_big_numbers_for_print(dict,TOO_LARGE_NUM_LIMIT)
+# tp.print_solid_mult_col_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,EXACT_PARTITIONS_CAPTION,EXACT_PARTITIONS_LABEL,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),output_type=output_type,first_col_horiz_space=0.5)
 # END: PRINTING EXACT N-PARTITIONS
 
 
 
 # BEGIN: EXACT N-PARTITIONS BASED BOUND PRINTING
-# dict = calculate_relabeling_class_bounds(get_n_partition_counts_dict(get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT))))
-# preprocessed_dict = preprocess_bound_tuples_from_dict(dict,TOO_LARGE_NUM_LIMIT)
-# tp.print_solid_mult_row_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,EXACT_PARTITIONS_BOUNDS_CAPTION,EXACT_PARTITIONS_BOUNDS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+PARTITIONS_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\rightleftharpoons$ relation based on the number of equivalence classes of the $\\leftrightarrow$ relation. For each solid, top row contains the upper bounds while bottom row contains the lower bounds."
+PARTITIONS_BOUNDS_LABEL = f"tab:bounds-exact-n-partitions"
+
+dict = calculate_relabeling_class_bounds(get_n_partition_counts_dict(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER))))
+preprocessed_dict = preprocess_bound_tuples_from_dict(dict,TOO_LARGE_NUM_LIMIT)
+tp.print_solid_mult_row_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,PARTITIONS_BOUNDS_CAPTION,PARTITIONS_BOUNDS_LABEL,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
 # END: EXACT N-PARTITIONS BASED BOUND PRINTING
 
 
