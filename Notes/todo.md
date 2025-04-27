@@ -332,6 +332,16 @@
 
 - [ ] test if result will be printed faster if I use the alg. from thesis for relaut colorings printing instead of the old one (which is prly slower)
 
+## 2025_04_27
+
+- [x] try separating thousands in the tables of thesis
+
+- [x] implement function to add small spaces `\,` to a number
+- [x] update tables to use thousands separation
+
+- [x] emphasize which colorings I am showing examples of in the table
+- [ ] update text about which examples I decided to show and update table caption
+
 
 ## Main tasks
 
