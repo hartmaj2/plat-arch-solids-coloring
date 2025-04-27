@@ -46,3 +46,12 @@ Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
  \todo[JF]{Zvažte oddělení tisíců, např. 6878900 versus 6\,878\,900.}
 
  \todo[JF]{zmiňte, že je budete ilustrovat jen na několika jednoduchých podle tabulky 6.4 a přitom netriviálních (tedy ne na všech), třeba je v té tabulce barevně vyznačte a v caption zmiňte, to to vyznačení znamená}
+
+ \todo[JF]{Možná by už tu bylo dobré zrovna ilustrovat size sequence, přímo pod obrázky.}
+ 
+ \todo[JF]{Moc pěkně jste to napsal. 
+
+Jedině místo "Finding ... unanswered." by se hodilo  něco pozitivnějšího, třeba "It opens an interesting problem, already mentioned by P. Cameron [..], whether these values can be enumerated by a better method or a more effective algorithm.". 
+
+Nebo i bez \href{https://www.cs.cmu.edu/~jrs/sins.html}{grandmotheringu} :)
+}
