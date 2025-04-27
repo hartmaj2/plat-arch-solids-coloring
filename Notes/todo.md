@@ -342,9 +342,11 @@
 - [x] emphasize which colorings I am showing examples of in the table
 - [x] update text about which examples I decided to show and update table caption
 
-- [ ] add size sequences under the octahedron figure
+- [x] add size sequences under the octahedron figure
 
-- [ ] improve conclusion
+- [x] improve conclusion
+
+## 2025_04_28
 
 - [ ] write abstract of the thesis
 
