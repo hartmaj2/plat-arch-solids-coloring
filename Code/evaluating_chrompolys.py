@@ -77,6 +77,25 @@ def get_solids_poly_evaluations(poly_calc_func : Callable[[Graph],Any], k : int,
 def get_approx_string(val : int):
     return f"\\approx 10^{{{int(math.log10(val))}}}"
 
+# add spaces between thousands
+def add_thousands_spaces(s : str):
+    if not s.lstrip('-').isdigit(): # check if the string is a positive or negative integer
+        return s
+    negative = (s[0] == "-")
+    if negative: # for negative numbers, we don't want to add space before the - sign (that can happen if we treat "-" as a digit)
+        s = s[1:]
+    new_str = []
+    for i in range(len(s)):
+        pos = len(s) - 1 - i
+        new_str.append(s[pos])
+        if (i + 1) % 3 == 0 and pos != 0:
+            new_str.append("\\,")
+    new_str = new_str[::-1] # reverse the list
+    new_str = "".join(new_str) # join the list into a string
+    if negative:
+        new_str = "-" + new_str
+    return new_str
+
 # for latex printing
 def wrap_with_dollars(s : str):
     return "$" + s + "$"
@@ -258,10 +277,10 @@ CHROMPOLY_EXACTS_ARCH_CAPTION = f"Number of colorings of Archimedean solids usin
 CHROMPOLY_EXACTS_ARCH_LABEL = "tab:archimedean-chrompolys-exacts"
 
 platonic = preprocess_big_numbers_for_print(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER)),TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_col_data(platonic,tp.STD_PLAT_TABLE_ORDER,HEADER_PLAT,data_headers,CHROMPOLY_EXACTS_PLATS_CAPTION,CHROMPOLY_EXACTS_PLATS_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
+tp.print_solid_mult_col_data(platonic,tp.STD_PLAT_TABLE_ORDER,HEADER_PLAT,data_headers,CHROMPOLY_EXACTS_PLATS_CAPTION,CHROMPOLY_EXACTS_PLATS_LABEL,output_type=output_type,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),first_col_horiz_space=0.5)
 
 archimedean = preprocess_big_numbers_for_print(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT+arch_eval_lim_offset,REDUCED_ARCH_TABLE_ORDER)),TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_col_data(archimedean,REDUCED_ARCH_TABLE_ORDER,HEADER_ARCH,data_headers[:arch_eval_lim_offset],CHROMPOLY_EXACTS_ARCH_CAPTION,CHROMPOLY_EXACTS_ARCH_LABEL,output_type=output_type,transform=wrap_with_dollars,first_col_horiz_space=0.5)
+tp.print_solid_mult_col_data(archimedean,REDUCED_ARCH_TABLE_ORDER,HEADER_ARCH,data_headers[:arch_eval_lim_offset],CHROMPOLY_EXACTS_ARCH_CAPTION,CHROMPOLY_EXACTS_ARCH_LABEL,output_type=output_type,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),first_col_horiz_space=0.5)
 # end: exactly n-colors 
 
 # END : PRINTING POLY EVALUATIONS FOR SELECTED SOLIDS
