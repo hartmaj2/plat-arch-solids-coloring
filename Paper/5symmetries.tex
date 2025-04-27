@@ -109,9 +109,6 @@ We introduce a notion very similar to the one of the chromatic polynomial of a g
     correspond to the right hand side of formula \ref{eqn:oribtal-chrompoly} which is a polynomial.
 \end{defn}
 
-\todo[JF]{$x,k$ změněno na $n$, aby to bylo kompatibilní se značením u obyčejného chr. poly; "natural number" změněno na "positive integer" (zkontrolujte i jinde, např. v 6. kap).}
-
-
 The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
 
 For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
@@ -233,37 +230,40 @@ It is interesting to compare the difference between chromatic polynomial and orb
 
 \begin{table}[H]
 \centering
-\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\begin{tabular}{l@{\hspace{0.36cm}}ccccccc}
 \toprule
 \textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
 \midrule
-tetrahedron & $0$ & $0$ & $24$ & $120$ & $360$ & $840$ & $1680$ \\
+tetrahedron & $0$ & $0$ & $24$ & $120$ & $360$ & $840$ & $1\,680$ \\
  & $0$ & $0$ & $1$ & $5$ & $15$ & $35$ & $70$ \\
 \specialrule{0.2pt}{0.65ex}{0.65ex}
-octahedron & $0$ & $6$ & $96$ & $780$ & $4080$ & $15330$ & $45696$ \\
- & $0$ & $1$ & $10$ & $55$ & $215$ & $665$ & $1736$ \\
+octahedron & $0$ & $6$ & $96$ & $780$ & $4\,080$ & $15\,330$ & $45\,696$ \\
+ & $0$ & $1$ & $10$ & $55$ & $215$ & $665$ & $1\,736$ \\
 \specialrule{0.2pt}{0.65ex}{0.65ex}
-cube & $2$ & $114$ & $2652$ & $29660$ & $198030$ & $932862$ & $3440024$ \\
- & $1$ & $15$ & $154$ & $1115$ & $5955$ & $24836$ & $85260$ \\
+cube & $2$ & $114$ & $2\,652$ & $29\,660$ & $198\,030$ & $932\,862$ & $3\,440\,024$ \\
+ & $1$ & $15$ & $154$ & $1\,115$ & $5\,955$ & $24\,836$ & $85\,260$ \\
 \specialrule{0.2pt}{0.65ex}{0.65ex}
-icosahedron & $0$ & $0$ & $240$ & $80400$ & $4012560$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
- & $0$ & $0$ & $2$ & $670$ & $33444$ & $640444$ & $6878900$ \\
+icosahedron & $0$ & $0$ & $240$ & $80\,400$ & $4\,012\,560$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+ & $0$ & $0$ & $2$ & $670$ & $33\,444$ & $640\,444$ & $6\,878\,900$ \\
 \specialrule{0.2pt}{0.65ex}{0.65ex}
-dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
- & $0$ & $75$ & $1404848$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
+dodecahedron & $0$ & $7\,200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+ & $0$ & $75$ & $1\,404\,848$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
 \bottomrule
 \end{tabular}
+
+
 \caption{Values of the chromatic polynomial and orbital chromatic polynomial for platonic solids at points 2 to 8. For each solid, the top row corresponds to the chromatic polynomial, the bottom row to the orbital chromatic polynomial.}
 \label{tab:platonic-polys-evals}
 \end{table}
 
-\todo[JF]{Zvažte oddělení tisíců, např. 6878900 versus 6\,878\,900.}
 
-Note, that we can use the same method as in section \ref{sec:num-clrings-exactly-n-clrs}, using the formula \ref{eqn:exactly-n-colors}, also for the orbital chromatic polynomial $OP(G,x)$, to arrive at corresponding values $OP^*(G,n)$. Using the formula\todo[JF, noinline]{kterou?}, we can  simplify table \ref{tab:platonic-polys-evals} to get the following table:
+\begin{highlight}
+Note, that we can apply the same method as in section \ref{sec:num-clrings-exactly-n-clrs} also to the orbital chromatic polynomial $OP(G,x)$, to arrive at corresponding values $OP^*(G,n)$. Using formula \ref{eqn:exactly-n-colors}, the results from table \ref{tab:platonic-polys-evals} above yield the following table:
+\end{highlight}
 
 \begin{table}[H]
 \centering
-\begin{tabular}{l@{\hspace{0.5cm}}ccccccc}
+\begin{tabular}{l@{\hspace{0.36cm}}ccccccc}
 \toprule
 \textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
 \midrule
@@ -273,17 +273,16 @@ tetrahedron & $0$ & $0$ & $24$ & $0$ & $0$ & $0$ & $0$ \\
 octahedron & $0$ & $6$ & $72$ & $360$ & $720$ & $0$ & $0$ \\
  & $0$ & $1$ & $6$ & $15$ & $15$ & $0$ & $0$ \\
 \specialrule{0.2pt}{0.65ex}{0.65ex}
-cube & $2$ & $108$ & $2208$ & $17520$ & $57600$ & $80640$ & $40320$ \\
- & $1$ & $12$ & $100$ & $485$ & $1290$ & $1680$ & $840$ \\
+cube & $2$ & $108$ & $2\,208$ & $17\,520$ & $57\,600$ & $80\,640$ & $40\,320$ \\
+ & $1$ & $12$ & $100$ & $485$ & $1\,290$ & $1\,680$ & $840$ \\
 \specialrule{0.2pt}{0.65ex}{0.65ex}
-icosahedron & $0$ & $0$ & $240$ & $79200$ & $3533760$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
- & $0$ & $0$ & $2$ & $660$ & $29454$ & $420336$ & $2654400$ \\
+icosahedron & $0$ & $0$ & $240$ & $79\,200$ & $3\,533\,760$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+ & $0$ & $0$ & $2$ & $660$ & $29\,454$ & $420\,336$ & $2\,654\,400$ \\
 \specialrule{0.2pt}{0.65ex}{0.65ex}
-dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
- & $0$ & $75$ & $1404548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
+dodecahedron & $0$ & $7\,200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+ & $0$ & $75$ & $1\,404\,548$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{12}$ & $\approx 10^{14}$ \\
 \bottomrule
 \end{tabular}
-\caption{Numbers of colorings using exactly 2 to 8 colors. For each solid, the top row contains the value when counting symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism.}
+\caption{Numbers of colorings using exactly 2 to 8 colors. For each solid, the top row corresponds to the value when counting symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism.}
 \label{tab:platonic-exactly-n-clrs}
 \end{table}
-

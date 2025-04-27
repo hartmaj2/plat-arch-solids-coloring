@@ -165,10 +165,9 @@ cube & $x^{8} - 12x^{7} + 66x^{6} - 214x^{5} + 441x^{4} - 572x^{3} + 423x^{2} - 
 \end{table}
 
 
-We are able to calculate these polynomials also for other solids. Nonetheless, the polynomials have a property, that the leading exponent is equal to the number of vertices of the graph. Thus, the results are quite complicated and hard to fit in a single table. On the other hand, we can get a sense on the number of colorings of our graphs also by evaluating the polynomials at certain points. We do this in the following section.
-
-\todo[JF]{Místo "Thus, the results are quite complicated and hard to fit in a single table." spíš napište, že rozsáhlé polynomy pro zbylá Platónská tělesa (případně některá Archimédovská) jsou v Appendixu.}
-
+\begin{highlight}
+We are able to calculate these polynomials also for other solids. Nonetheless, the polynomials have a property, that the leading exponent is equal to the number of vertices of the graph. This results in long polynomials which we provide in section \ref{sec:more-chrompolys} of the Appendix. On the other hand, we can get a sense on the number of colorings of our graphs also by evaluating the polynomials at certain points. We do this in the following section.
+\end{highlight}
 
 \section{Evaluating the chromatic polynomial}
 
@@ -182,11 +181,11 @@ Below, we provide tables with evaluations of the chromatic polynomial of all the
 \toprule
 \textbf{Platonic solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} & \textbf{8} \\
 \midrule
-tetrahedron & $0$ & $0$ & $24$ & $120$ & $360$ & $840$ & $1680$ \\
-octahedron & $0$ & $6$ & $96$ & $780$ & $4080$ & $15330$ & $45696$ \\
-cube & $2$ & $114$ & $2652$ & $29660$ & $198030$ & $932862$ & $3440024$ \\
-icosahedron & $0$ & $0$ & $240$ & $80400$ & $4012560$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
-dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+tetrahedron & $0$ & $0$ & $24$ & $120$ & $360$ & $840$ & $1\,680$ \\
+octahedron & $0$ & $6$ & $96$ & $780$ & $4\,080$ & $15\,330$ & $45\,696$ \\
+cube & $2$ & $114$ & $2\,652$ & $29\,660$ & $198\,030$ & $932\,862$ & $3\,440\,024$ \\
+icosahedron & $0$ & $0$ & $240$ & $80\,400$ & $4\,012\,560$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+dodecahedron & $0$ & $7\,200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
 \bottomrule
 \end{tabular}
 \caption{Evaluated chromatic polynomial of Platonic solids at points 2 to 8.}
@@ -199,10 +198,10 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
 \toprule
 \textbf{Archimedean solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} \\
 \midrule
-truncated tetrahedron & $0$ & $120$ & $60000$ & $3410880$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
-cuboctahedron & $0$ & $24$ & $9216$ & $772680$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
-truncated cube & $0$ & $13440$ & $\approx 10^{9}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
-truncated octahedron & $2$ & $378978$ & $\approx 10^{10}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
+truncated tetrahedron & $0$ & $120$ & $60\,000$ & $3\,410\,880$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+cuboctahedron & $0$ & $24$ & $9\,216$ & $772\,680$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+truncated cube & $0$ & $13\,440$ & $\approx 10^{9}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
+truncated octahedron & $2$ & $378\,978$ & $\approx 10^{10}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
 \bottomrule
 \end{tabular}
 \caption{Evaluated chromatic polynomial of Archimedean solids at points 2 to 7.}
@@ -218,12 +217,16 @@ It is important to note, that in table \ref{tab:platonic-polys-evals} above, in 
     Let $P^*(G,n)$ be defined as the number of colorings of a graph $G$ using \textbf{exactly} $n$ colors.
 \end{defn}
 
-The number $P^*(G,n)$ can be calculated using a recursive formula with a base case being $P^*(G,\chi(G))=P(G,\chi(G))$. The recursive formula is as follows:
-\begin{equation}\label{eqn:exactly-n-colors}
-P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)    
-\end{equation}
+\begin{highlight}
+The number $P^*(G,n)$ can be calculated using a recursive formula, with the base case $P^*(G,\chi(G))=P(G,\chi(G))$. We introduce the formula in the following claim:
 
-\todo[JF]{Když dáváte důkaz, bylo by dobré věc zformulovat jako tvrzení.}
+\begin{claim}\label{clm:exactly-n-colors}
+    Let $G$ be a graph, $n$ positive integer. Then:
+    \begin{equation}\label{eqn:exactly-n-colors}
+    P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)    
+    \end{equation}
+\end{claim}
+\end{highlight}
 
 \begin{proof}
     For the base case, where $n\le \chi(G)$, it straightforwardly holds that $P^*(G,\chi(G))=P(G,\chi(G))$, since there exist no colorings that use less than $\chi(G)$ colors.
@@ -241,9 +244,9 @@ Now, with formula \ref{eqn:exactly-n-colors} above in hand, we can use results f
 \midrule
 tetrahedron & $0$ & $0$ & $24$ & $0$ & $0$ & $0$ & $0$ \\
 octahedron & $0$ & $6$ & $72$ & $360$ & $720$ & $0$ & $0$ \\
-cube & $2$ & $108$ & $2208$ & $17520$ & $57600$ & $80640$ & $40320$ \\
-icosahedron & $0$ & $0$ & $240$ & $79200$ & $3533760$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
-dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
+cube & $2$ & $108$ & $2\,208$ & $17\,520$ & $57\,600$ & $80\,640$ & $40\,320$ \\
+icosahedron & $0$ & $0$ & $240$ & $79\,200$ & $3\,533\,760$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+dodecahedron & $0$ & $7\,200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10^{13}$ & $\approx 10^{14}$ & $\approx 10^{16}$ \\
 \bottomrule
 \end{tabular}
 \caption{Number of colorings of Platonic solids using \textbf{exactly} n colors for n from 2 up to 8.}
@@ -256,10 +259,10 @@ dodecahedron & $0$ & $7200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 10
 \toprule
 \textbf{Archimedean solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{6} & \textbf{7} \\
 \midrule
-truncated tetrahedron & $0$ & $120$ & $59520$ & $3112080$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
-cuboctahedron & $0$ & $24$ & $9120$ & $726840$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
-truncated cube & $0$ & $13440$ & $\approx 10^{9}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
-truncated octahedron & $2$ & $378972$ & $\approx 10^{10}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
+truncated tetrahedron & $0$ & $120$ & $59\,520$ & $3\,112\,080$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+cuboctahedron & $0$ & $24$ & $9\,120$ & $726\,840$ & $\approx 10^{7}$ & $\approx 10^{8}$ \\
+truncated cube & $0$ & $13\,440$ & $\approx 10^{9}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
+truncated octahedron & $2$ & $378\,972$ & $\approx 10^{10}$ & $\approx 10^{13}$ & $\approx 10^{15}$ & $\approx 10^{17}$ \\
 \bottomrule
 \end{tabular}
 \caption{Number of colorings of Archimedean solids using \textbf{exactly} n colors for n from 2 up to 7.}
