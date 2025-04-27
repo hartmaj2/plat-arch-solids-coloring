@@ -24,13 +24,6 @@ THIN_RULE = r"\specialrule{0.2pt}{0.65ex}{0.65ex}"
 
 data_headers = [str(x) for x in range(STARTING_NUM,EVAL_NUM_LIMIT+1)]
 
-EVALS_CAPTION = f"Evaluated chromatic polynomial and orbital chromatic polynomial for platonic solids at points {STARTING_NUM} to {EVAL_NUM_LIMIT}. For each solid, the top row contains the chromatic polynomial, the bottom row contains the orbital chromatic polynoial."
-EVALS_LABEL = "tab:platonic-polys-evals"
-HEADER = "Platonic solid"
-
-EXACTS_CAPTION = f"Numbers of colorings using exactly {STARTING_NUM} to {EVAL_NUM_LIMIT} colors. For each solid, the top row contains the value when counting also symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism."
-EXACTS_LABEL = f"tab:platonic-exactly-n-clrs"
-
 EXACT_PARTITIONS_CAPTION = f"Numbers of of possible partitions of vertices of the graphs into $n$ independent sets."
 EXACT_PARTITIONS_LABEL = f"tab:platonic-exact-n-partitions"
 
@@ -65,7 +58,7 @@ def get_solids_poly_dict(poly_calc_func : Callable[[Graph],Any], solid_names : l
     return plat_polys
 
 # evaluates the polynomials from STARTING_NUM to k (start at 2 because obviously no graph can be 1 colored as long as it has some edge)
-def get_solids_poly_evaluations(poly_calc_func : Callable[[Graph],Any], k : int, solid_names) -> dict [str,list]:
+def get_solids_poly_evaluations(poly_calc_func : Callable[[Graph],Any], k : int, solid_names : list[str]) -> dict [str,list]:
     polys = get_solids_poly_dict(poly_calc_func,solid_names)
     evals = {}
     for name,poly in zip(polys.keys(),polys.values()):
@@ -216,14 +209,21 @@ def preprocess_bound_tuples_from_dict(n_partitions_dict : dict[str,list[tuple]],
 
 
 # BEGIN: PRINTING EVALUATED POLYNOMIALS OR EXACT N-COLORINGS
-# dicts = [get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT),get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT)]
-# dicts = [get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT)),get_exact_n_colors_dict(get_plat_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT))]
-# preprocessed_dicts = [preprocess_for_print(d,TOO_LARGE_NUM_LIMIT) for d in dicts]
+dicts = [get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER),get_solids_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER)]
+# dicts = [get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER)),get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER))]
+preprocessed_dicts = [preprocess_big_numbers_for_print(d,TOO_LARGE_NUM_LIMIT) for d in dicts]
 
-# mult_row_dict = create_mult_row_dict(preprocessed_dicts)
+mult_row_dict = create_mult_row_dict(preprocessed_dicts)
 
-# tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=EVALS_CAPTION,label=EVALS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
-# tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=EXACTS_CAPTION,label=EXACTS_LABEL,transform=wrap_with_dollars,output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+EVALS_CAPTION = f"Values of the chromatic polynomial and orbital chromatic polynomial for platonic solids at points {STARTING_NUM} to {EVAL_NUM_LIMIT}. For each solid, the top row corresponds to the chromatic polynomial, the bottom row to the orbital chromatic polynomial."
+EVALS_LABEL = "tab:platonic-polys-evals"
+HEADER = "Platonic solid"
+
+EXACTS_CAPTION = f"Numbers of colorings using exactly {STARTING_NUM} to {EVAL_NUM_LIMIT} colors. For each solid, the top row corresponds to the value when counting symmetric colorings as different. The bottom row takes two colorings as different only if they cannot be identified using some automorphism."
+EXACTS_LABEL = f"tab:platonic-exactly-n-clrs"
+
+tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=EVALS_CAPTION,label=EVALS_LABEL,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+# tp.print_solid_mult_row_data(mult_row_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,caption=EXACTS_CAPTION,label=EXACTS_LABEL,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
 # END: PRINTING EVALUATED POLYNOMIALS OR EXACT N-COLORINGS
 
 
@@ -262,11 +262,11 @@ CHROMPOLY_ONLY_EVALS_ARCH_LABEL = "tab:archimedean-chrompolys-evals"
 HEADER_ARCH = "Archimedean solid"
 
 # begin: polynomial evaluation
-platonic = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_col_data(platonic,tp.STD_PLAT_TABLE_ORDER,HEADER_PLAT,data_headers,CHROMPOLY_ONLY_EVALS_PLATS_CAPTION,CHROMPOLY_ONLY_EVALS_PLATS_LABEL,output_type=output_type,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),first_col_horiz_space=0.5)
+# platonic = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
+# tp.print_solid_mult_col_data(platonic,tp.STD_PLAT_TABLE_ORDER,HEADER_PLAT,data_headers,CHROMPOLY_ONLY_EVALS_PLATS_CAPTION,CHROMPOLY_ONLY_EVALS_PLATS_LABEL,output_type=output_type,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),first_col_horiz_space=0.5)
 
-archimedean = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT+arch_eval_lim_offset,REDUCED_ARCH_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_col_data(archimedean,REDUCED_ARCH_TABLE_ORDER,HEADER_ARCH,data_headers[:arch_eval_lim_offset],CHROMPOLY_ONLY_EVALS_ARCH_CAPTION,CHROMPOLY_ONLY_EVALS_ARCH_LABEL,output_type=output_type,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),first_col_horiz_space=0.5)
+# archimedean = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT+arch_eval_lim_offset,REDUCED_ARCH_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
+# tp.print_solid_mult_col_data(archimedean,REDUCED_ARCH_TABLE_ORDER,HEADER_ARCH,data_headers[:arch_eval_lim_offset],CHROMPOLY_ONLY_EVALS_ARCH_CAPTION,CHROMPOLY_ONLY_EVALS_ARCH_LABEL,output_type=output_type,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),first_col_horiz_space=0.5)
 # end: polynomial evaluation
 
 # begin: exactly n-colors 
