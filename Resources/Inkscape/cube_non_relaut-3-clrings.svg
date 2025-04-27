@@ -1077,30 +1077,33 @@
        transform="scale(1.331928,1.3333333)" />
     <text
        xml:space="preserve"
-       style="font-size:53.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
-       x="124.93488"
-       y="535.14801"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
+       x="131.16406"
+       y="539.0647"
        id="text139"><tspan
          id="tspan139"
-         x="124.93488"
-         y="535.14801">(1,3,4)</tspan></text>
+         x="131.16406"
+         y="539.0647"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">(1,3,4)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:53.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
        x="643.08521"
-       y="535.14801"
+       y="539.0647"
        id="text139-0"><tspan
          id="tspan139-9"
          x="643.08521"
-         y="535.14801">(2,2,4)</tspan></text>
+         y="539.0647"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">(2,2,4)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:53.3333px;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
        x="1163.8726"
-       y="535.14801"
+       y="539.0647"
        id="text139-0-5"><tspan
          id="tspan139-9-8"
          x="1163.8726"
-         y="535.14801">(2,3,3)</tspan></text>
+         y="539.0647"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal">(2,3,3)</tspan></text>
   </g>
 </svg>
