@@ -44,3 +44,5 @@ Např pro krychli počet všech / počet různých pro 2 až 8 barev.}
  \todo[JF]{Místo "Thus, the results are quite complicated and hard to fit in a single table." spíš napište, že rozsáhlé polynomy pro zbylá Platónská tělesa (případně některá Archimédovská) jsou v Appendixu.}
 
  \todo[JF]{Zvažte oddělení tisíců, např. 6878900 versus 6\,878\,900.}
+
+ \todo[JF]{zmiňte, že je budete ilustrovat jen na několika jednoduchých podle tabulky 6.4 a přitom netriviálních (tedy ne na všech), třeba je v té tabulce barevně vyznačte a v caption zmiňte, to to vyznačení znamená}
