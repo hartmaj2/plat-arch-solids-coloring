@@ -31,11 +31,11 @@ Using this formula, we can compute yet another table shown below:
 tetrahedron & $0$ & $0$ & $1$ & $0$ & $0$ & $0$ & $0$ \\
 octahedron & $0$ & $1$ & $3$ & $3$ & $1$ & $0$ & $0$ \\
 cube & $1$ & $18$ & $92$ & $146$ & $80$ & $16$ & $1$ \\
-icosahedron & $0$ & $0$ & $10$ & $660$ & $4908$ & $10008$ & $7900$ \\
-dodecahedron & $0$ & $1200$ & $7019920$ & $\approx 10^{8}$ & $\approx 10^{10}$ & $\approx 10^{11}$ & $\approx 10^{11}$ \\
+icosahedron & $0$ & $0$ & $10$ & $660$ & $4\,908$ & $10\,008$ & $7\,900$ \\
+dodecahedron & $0$ & $1\,200$ & $7\,019\,920$ & $\approx 10^{8}$ & $\approx 10^{10}$ & $\approx 10^{11}$ & $\approx 10^{11}$ \\
 \bottomrule
 \end{tabular}
-\caption{Numbers of of possible partitions of vertices of the graphs into $n$ independent sets.}
+\caption{Numbers of possible partitions of vertices of the graphs into $n$ independent sets.}
 \label{tab:platonic-exact-n-partitions}
 \end{table}
 
@@ -215,7 +215,7 @@ In other words, a coloring is in canonic form, if when we go through the colorin
 
 \subsection{Finding representatives of relabeling-automorphism relation}
 
-By filtering the colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. After performing that step, we can proceed with a more computationally heavy \todo[JF, noinline]{? "demanding"} part of the algorithm. In this part of the algorithm, we go through the colorings we were left with, and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when we consider some next coloring $c_i$, we compare $c_i$ with all representatives in $R$, that we have found so far. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we continue to the next coloring. Otherwise, we add $c_i$ to $R$ i.e. we declare $c_i$ as a representative of its $\rightleftharpoons$ class. See the detailed description of the algorithm below:
+By filtering the colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. After performing that step, we can proceed with a more computationally demanding part of the algorithm. In this part of the algorithm, we go through the colorings we were left with, and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when we consider some next coloring $c_i$, we compare $c_i$ with all representatives in $R$, that we have found so far. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we continue to the next coloring. Otherwise, we add $c_i$ to $R$ i.e. we declare $c_i$ as a representative of its $\rightleftharpoons$ class. See the detailed description of the algorithm below:
 
 \begin{algorithm}[H]
     \caption{Algorithm for finding representatives of equivalence classes of the relabeling-automorphism relation as defined in \ref{dfn:relabeling-automorphism-relation}. $G$ is a graph and $C$ is the set of colorings in canonic form.} 
@@ -275,7 +275,7 @@ See next section for results we computed using the algorithm above.
 
 In this section, we provide tables with values of $P^*_\rightleftharpoons(G,n)$, which we managed to compute. It is especially interesting, to compare results in tables below with the results we got in tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}. We can see, that the numbers reduced significantly.
 
-Unfortunately, we can also see, that there are some entries in the tables left out, for which the algorithm took too long to get the resulting number.\todo[JF, noinline]{dám Vám komentář osobně, jak to napsat; v mezidobí, zkuste třeba sage na HPC a více času} Note, that we did not have this issue when computing tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}, since we were already provided with the chromatic polynomial, which we could simply evaluate at certain points. By doing that, we avoided having to enumerate all colorings, which is the most computationally heavy part of the algorithm from section \ref{sec:equiv-classes-of-relaut}.
+Unfortunately, we can also see, that there are some entries in the tables left out, for which the algorithm took too long to get the resulting number.\todo[JF, noinline]{dám Vám komentář osobně, jak to napsat; v mezidobí, zkuste třeba sage na HPC a více času} Note, that we did not have this issue when computing tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}, since we were already provided with the chromatic polynomial, which we could simply evaluate at certain points. By doing that, we avoided having to enumerate all colorings, which is the most computationally demanding part of the algorithm from section \ref{sec:equiv-classes-of-relaut}.
 
 \begin{table}[H]
 \centering

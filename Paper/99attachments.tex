@@ -1,4 +1,59 @@
 \chapter{Attachments}
+
+\begin{highlight}
+\section{Tables of calculated chromatic polynomials}\label{sec:more-chrompolys}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{cccccc}
+\toprule
+\textbf{Power of \( x \)} & \textbf{Tetrahedron} & \textbf{Octahedron} & \textbf{Cube} & \textbf{Icosahedron} & \textbf{Dodecahedron} \\
+\midrule
+\textbf{20} &  &  &  &  & 1 \\
+\textbf{19} &  &  &  &  & -30 \\
+\textbf{18} &  &  &  &  & 435 \\
+\textbf{17} &  &  &  &  & -4060 \\
+\textbf{16} &  &  &  &  & 27393 \\
+\textbf{15} &  &  &  &  & -142194 \\
+\textbf{14} &  &  &  &  & 589875 \\
+\textbf{13} &  &  &  &  & -2004600 \\
+\textbf{12} &  &  &  & 1 & 5673571 \\
+\textbf{11} &  &  &  & -30 & -13518806 \\
+\textbf{10} &  &  &  & 415 & 27292965 \\
+\textbf{ 9} &  &  &  & -3500 & -46805540 \\
+\textbf{ 8} &  &  & 1 & 20023 & 68090965 \\
+\textbf{ 7} &  &  & -12 & -81622 & -83530946 \\
+\textbf{ 6} &  & 1 & 66 & 241605 & 85371335 \\
+\textbf{ 5} &  & -12 & -214 & -517360 & -71159652 \\
+\textbf{ 4} & 1 & 58 & 441 & 780286 & 46655060 \\
+\textbf{ 3} & -6 & -137 & -572 & -782108 & -22594964 \\
+\textbf{ 2} & 11 & 154 & 423 & 463310 & 7171160 \\
+\textbf{ 1} & -6 & -64 & -133 & -121020 & -1111968 \\
+\bottomrule
+\end{tabular}
+\caption{Coefficients of chromatic polynomials of Platonic solids, ordered by powers of \( x \).}
+\label{tab:chromatic-polys-coefs}
+\end{table}
+\begin{table}[H]
+\centering
+\begin{tabular}{lp{0.6\linewidth}}
+\toprule
+\textbf{Archimedean} & \textbf{Chromatic polynomial} \\
+\midrule
+trunc. tetrahedron & $x^{12} - 18x^{11} + 149x^{10} - 752x^{9} + 2586x^{8} - 6408x^{7} + 11774x^{6} - 16189x^{5} + 16468x^{4} - 11869x^{3} + 5442x^{2} - 1184x$ \\
+cuboctahedron & $x^{12} - 24x^{11} + 268x^{10} - 1842x^{9} + 8680x^{8} - 29516x^{7} + 74019x^{6} - 136826x^{5} + 182024x^{4} - 164656x^{3} + 90016x^{2} - 22144x$ \\
+trunc. cube & $x^{24} - 36x^{23} + 622x^{22} - 6868x^{21} + 54445x^{20} - 330016x^{19} + 1590616x^{18} - 6258826x^{17} + 20483524x^{16} - 56517092x^{15} + 132781696x^{14} - 267560902x^{13} + 464751928x^{12} - 698041384x^{11} + 907685011x^{10} - 1021028578x^{9} + 990348490x^{8} - 822946048x^{7} + 579284763x^{6} - 338935770x^{5} + 159596344x^{4} - 57088336x^{3} + 13839584x^{2} - 1703168x$ \\
+trunc. octahedron & $x^{24} - 36x^{23} + 630x^{22} - 7134x^{21} + 58707x^{20} - 373816x^{19} + 1914823x^{18} - 8098890x^{17} + 28806937x^{16} - 87308340x^{15} + 227623087x^{14} - 513887650x^{13} + 1008990864x^{12} - 1726780052x^{11} + 2576178723x^{10} - 3343211267x^{9} + 3755216148x^{8} - 3618864524x^{7} + 2949553512x^{6} - 1987203924x^{5} + 1066396109x^{4} - 427989031x^{3} + 114056146x^{2} - 15071023x$ \\
+\bottomrule
+\end{tabular}
+\caption{Chromatic polynomials of some of the Archimedean solids.}
+\label{tab:chromatic-polys-some-archs}
+\end{table}
+
+\end{highlight}
+
+
 \section{Size of automorphism groups of Platonic and Archimedean graphs}
 
 \begin{table}[H]
@@ -43,9 +98,11 @@ truncated icosidodecahedron & 120 \\
 \label{tab:arch-automorphisms}
 \end{table}
 
+
+
 \section{SageMath programs}
 
-\begin{listing}
+\begin{listing}[H]
 \caption{Python implementation of algorithm \ref{alg:orb-chrompoly}}
 \begin{lstlisting}
 def orbital_chromatic_polynomial(g : Graph):  
