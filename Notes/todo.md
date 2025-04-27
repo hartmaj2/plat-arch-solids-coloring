@@ -340,8 +340,15 @@
 - [x] update tables to use thousands separation
 
 - [x] emphasize which colorings I am showing examples of in the table
-- [ ] update text about which examples I decided to show and update table caption
+- [x] update text about which examples I decided to show and update table caption
 
+- [ ] add size sequences under the octahedron figure
+
+- [ ] improve conclusion
+
+- [ ] write abstract of the thesis
+
+- [ ] add keywords
 
 ## Main tasks
 
@@ -349,7 +356,7 @@
 
 - [ ] improve definition of coloring to include difference between proper and improper coloring
 
-- [ ] write abstract of the thesis
+
 
 ## Side tasks
 
