@@ -143,7 +143,7 @@ MAX_SECONDS_RUN = 60
 NOT_COMPUTED_SYMB = r"\cdot"
 
 PLATONIC_HEADER = "Platonic solid"
-PLAT_TABLE_CAPTION = f"Calculated numbers of equivalence classes of the $\\rightleftharpoons$ relation of Platonic solids using the algorithm above. The symbol ${NOT_COMPUTED_SYMB}$ means that the computation took longer than {MAX_SECONDS_RUN} seconds and hence was terminated."
+PLAT_TABLE_CAPTION = f"Calculated numbers of equivalence classes of the $\\rightleftharpoons$ relation of Platonic solids using the algorithm above. The symbol ${NOT_COMPUTED_SYMB}$ means that the computation took longer than {MAX_SECONDS_RUN} seconds and hence was terminated. For the numbers highlighted in red, we provide visual examples in section \\ref{{sec:relaut-classes-visualisations}}."
 PLAT_TABLE_LABEL = f"tab:plat-nums-relabeling-automorphism-classes"
 
 ARCHIMEDEAN_HEADER = "Archimedean solid"
