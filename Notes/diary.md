@@ -802,3 +802,13 @@
 - proofread conclusion
 
 - started writing section with visualisations of tabulated results
+
+### 2025_04_26
+
+- took into account some of the supervisor suggestions
+  - improved some wordings and definitions
+  - formulated what was necessery as a claim
+  - added table of chromatic polynomials to the thesis
+
+### 2025_04_27
+
