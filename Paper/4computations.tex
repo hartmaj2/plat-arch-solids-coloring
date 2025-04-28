@@ -165,9 +165,7 @@ cube & $x^{8} - 12x^{7} + 66x^{6} - 214x^{5} + 441x^{4} - 572x^{3} + 423x^{2} - 
 \end{table}
 
 
-\begin{highlight}
 We are able to calculate these polynomials also for other solids. Nonetheless, the polynomials have a property, that the leading exponent is equal to the number of vertices of the graph. This results in long polynomials which we provide in section \ref{sec:more-chrompolys} of the Appendix. On the other hand, we can get a sense on the number of colorings of our graphs also by evaluating the polynomials at certain points. We do this in the following section.
-\end{highlight}
 
 \section{Evaluating the chromatic polynomial}
 
@@ -217,7 +215,6 @@ It is important to note, that in table \ref{tab:platonic-polys-evals} above, in 
     Let $P^*(G,n)$ be defined as the number of colorings of a graph $G$ using \textbf{exactly} $n$ colors.
 \end{defn}
 
-\begin{highlight}
 The number $P^*(G,n)$ can be calculated using a recursive formula, with the base case $P^*(G,\chi(G))=P(G,\chi(G))$. We introduce the formula in the following claim:
 
 \begin{claim}\label{clm:exactly-n-colors}
@@ -226,7 +223,6 @@ The number $P^*(G,n)$ can be calculated using a recursive formula, with the base
     P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)    
     \end{equation}
 \end{claim}
-\end{highlight}
 
 \begin{proof}
     For the base case, where $n\le \chi(G)$, it straightforwardly holds that $P^*(G,\chi(G))=P(G,\chi(G))$, since there exist no colorings that use less than $\chi(G)$ colors.
