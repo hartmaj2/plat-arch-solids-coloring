@@ -348,17 +348,21 @@
 
 ## 2025_04_28
 
-- [ ] write abstract of the thesis
+- [x] write abstract of the thesis
 
-- [ ] add keywords
+- [x] add keywords
+  - look what keywords Cameron used in his similar theses
 
-## Main tasks
+- [ ] write dedication
 
 - [ ] rewrite introduction
 
+- [ ] rewrite python script to find representative colorings for single solid and n
+  - try to rewrite in C++ (maybe with help of ChatGPT)
+
+## Main tasks
+
 - [ ] improve definition of coloring to include difference between proper and improper coloring
-
-
 
 ## Side tasks
 
@@ -367,8 +371,6 @@
 - [ ] how come there is so many relabel + automorphism classes of dodecahedron?
 
 ### Improve visuals
-
-- [ ] emphasize certain entries of the tables that are later visualised (making them bold)
 
 - [ ] in the visualisation of Pascal's triangle formula for K_{k x 2} graphs, emphasize where the operation is done in the figure
 
