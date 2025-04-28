@@ -825,3 +825,5 @@
 
 - write abstract and keywords
   - both english and czech
+
+- wrote dedication
