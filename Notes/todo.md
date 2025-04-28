@@ -362,6 +362,10 @@
 
 ## Main tasks
 
+- [ ] test the thesis for PDF/A compliance
+
+- [ ] test abstract generation
+
 - [ ] improve definition of coloring to include difference between proper and improper coloring
 
 ## Side tasks
