@@ -827,3 +827,5 @@
   - both english and czech
 
 - wrote dedication
+
+- wrote second version of introduction
