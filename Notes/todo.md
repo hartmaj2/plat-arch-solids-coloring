@@ -353,9 +353,9 @@
 - [x] add keywords
   - look what keywords Cameron used in his similar theses
 
-- [ ] write dedication
+- [x] write dedication
 
-- [ ] rewrite introduction
+- [x] rewrite introduction
 
 - [ ] rewrite python script to find representative colorings for single solid and n
   - try to rewrite in C++ (maybe with help of ChatGPT)
