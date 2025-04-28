@@ -820,3 +820,8 @@
 - added size sequences to the figures with examples of partitions different under relabeling-automorphism relation
 
 - made statement in conclusion more positive and reference note by P.J. Cameron
+
+### 2025_04_28
+
+- write abstract and keywords
+  - both english and czech
