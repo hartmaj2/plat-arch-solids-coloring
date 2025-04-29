@@ -829,3 +829,19 @@
 - wrote dedication
 
 - wrote second version of introduction
+
+### 2025_04_29
+
+- fixed typo in abstract 
+
+- learned how to increase scale of multiple svg elements at once (for vertices)
+- learned how to connect vertices by lines manually (so I can increase stroke thickness while preserving dotted line style)
+- learned that I can select all vertices of a figure quickly in the layers menu which contains all the objects named and enumerated
+  - the vertices are there usually right after another so I can just click the first and shift + click the last to select them all
+
+- used this to increase sizes of vertices of the small figures
+
+- decreased size of size sequences under bigger figures
+
+- regenerated tables to be both axis flipped (for the chromatic polynomials) using ChatGPT
+- convinced ChatGPT to add another column with the chromatic polynomial of the rhombicuboctahedron
