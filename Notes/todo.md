@@ -357,6 +357,18 @@
 
 - [x] rewrite introduction
 
+## 2025_04_29
+
+- [ ] fix easy visual stuff in the thesis
+  - [x] k in abstract math mode
+  - [x] unify if mentioning names with initials or not
+  - [x] remove some of the keywords
+  - [x] dots in tables remove for Archimedean solids
+  - [ ] solid size vectors unified
+  - [ ] finally to the icosahedron example
+  - [ ] polynomials flip 20,...1, to 1,...20 (ChatGPT + compare)
+  - [ ] make vertices bigger (try with ChatGPT)
+
 - [ ] rewrite python script to find representative colorings for single solid and n
   - try to rewrite in C++ (maybe with help of ChatGPT)
 
