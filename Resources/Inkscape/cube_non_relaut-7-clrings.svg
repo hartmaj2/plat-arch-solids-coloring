@@ -5,8 +5,8 @@
    version="1.1"
    id="svg1"
    width="969.33331"
-   height="559.37225"
-   viewBox="0 0 969.33331 559.37225"
+   height="533.48413"
+   viewBox="0 0 969.33331 533.48413"
    sodipodi:docname="cube_non_relaut-7-clrings.svg"
    inkscape:export-filename="cube_non_relaut-7-clrings.pdf"
    inkscape:export-xdpi="96"
@@ -415,8 +415,8 @@
        x="0"
        y="0"
        width="969.33331"
-       height="559.37225"
-       id="page1"
+       height="533.48413"
+       id="page2"
        margin="0"
        bleed="0" />
   </sodipodi:namedview>
@@ -426,8 +426,8 @@
      inkscape:label="1">
     <path
        id="path1"
-       d="M 0,0 H 969.33331 V 559.37226 H 0 Z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.48327" />
+       d="M 0,0 H 969.33331 V 533.48415 H 0 Z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.44854" />
     <g
        id="g5"
        clip-path="url(#clipPath6)">
@@ -752,21 +752,21 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
        x="109.22353"
-       y="529.625"
+       y="509.62503"
        id="text93"><tspan
          sodipodi:role="line"
          id="tspan93"
          x="109.22353"
-         y="529.625">(1,1,1,1,1,1,2)</tspan></text>
+         y="509.62503">(1,1,1,1,1,1,2)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:42.6667px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
        x="624.81183"
-       y="529.625"
+       y="509.62503"
        id="text93-8"><tspan
          sodipodi:role="line"
          id="tspan93-6"
          x="624.81183"
-         y="529.625">(1,1,1,1,1,1,2)</tspan></text>
+         y="509.62503">(1,1,1,1,1,1,2)</tspan></text>
   </g>
 </svg>
