@@ -369,12 +369,12 @@
   - [x] finally to the icosahedron example
   - [x] polynomials flip 20,...1, to 1,...20 (ChatGPT + compare)
 
-- [ ] rewrite introduction to be more motivating and less describing the content
+- [x] rewrite introduction to be more motivating and less describing the content
   - try to write another version and then compare, worst case we fall back to old version
 
-- [ ] try run the relaut equiv class program for specific colorings only with more time than just 60 seconds
-
 ## 2025_04_30
+
+- [ ] try run the relaut equiv class program for specific colorings only with more time than just 60 seconds
 
 - [ ] think about data structure for searching for the correct representant (could it be made faster)
 
