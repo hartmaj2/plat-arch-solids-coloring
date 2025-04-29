@@ -5,9 +5,9 @@
    version="1.1"
    id="svg1"
    width="412"
-   height="558.40033"
-   viewBox="0 0 412 558.40033"
-   sodipodi:docname="icosahedron_non_relaut-4-clrings.pdf"
+   height="540.16046"
+   viewBox="0 0 412 540.16046"
+   sodipodi:docname="icosahedron_non_relaut-4-clrings.svg"
    inkscape:export-filename="icosahedron_non_relaut-4-clrings.pdf"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -527,8 +527,8 @@
        x="0"
        y="0"
        width="412"
-       height="558.40033"
-       id="page2"
+       height="540.16046"
+       id="page1"
        margin="0"
        bleed="0" />
   </sodipodi:namedview>
@@ -538,8 +538,8 @@
      inkscape:label="1">
     <path
        id="path1"
-       d="M 0,0 H 411.99999 V 558.4003 H 0 Z"
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.48198" />
+       d="M 0,0 H 411.99999 V 540.16045 H 0 Z"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.45757" />
     <g
        id="g4"
        clip-path="url(#clipPath5)">
@@ -904,13 +904,13 @@
        transform="scale(1.331208,1.3333333)" />
     <text
        xml:space="preserve"
-       style="font-size:64px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
-       x="94.103882"
-       y="534.4375"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#1f241c"
+       x="148.6875"
+       y="522.21875"
        id="text106"><tspan
          sodipodi:role="line"
          id="tspan106"
-         x="94.103882"
-         y="534.4375">(3,3,3,3)</tspan></text>
+         x="148.6875"
+         y="522.21875">(3,3,3,3)</tspan></text>
   </g>
 </svg>
