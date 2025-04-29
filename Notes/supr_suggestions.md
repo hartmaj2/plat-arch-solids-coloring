@@ -55,3 +55,7 @@ Jedině místo "Finding ... unanswered." by se hodilo  něco pozitivnějšího, 
 
 Nebo i bez \href{https://www.cs.cmu.edu/~jrs/sins.html}{grandmotheringu} :)
 }
+
+\todo[JF]{"The reason for not including all Archimedean solids is mentioned in section \ref{sec:comp-chrompolys}." totéž, vizte výše}
+
+\todo[JF, noinline]{dám Vám komentář osobně, jak to napsat; v mezidobí, zkuste třeba sage na HPC a více času} 
