@@ -845,3 +845,7 @@
 
 - regenerated tables to be both axis flipped (for the chromatic polynomials) using ChatGPT
 - convinced ChatGPT to add another column with the chromatic polynomial of the rhombicuboctahedron
+
+- rewrote introduction and checked for errors with ChatGPT
+
+- improved dedication
