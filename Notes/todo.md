@@ -359,18 +359,26 @@
 
 ## 2025_04_29
 
-- [ ] fix easy visual stuff in the thesis
+- [x] fix easy visual stuff in the thesis
   - [x] k in abstract math mode
   - [x] unify if mentioning names with initials or not
   - [x] remove some of the keywords
   - [x] dots in tables remove for Archimedean solids
-  - [ ] solid size vectors unified
-  - [ ] finally to the icosahedron example
-  - [ ] polynomials flip 20,...1, to 1,...20 (ChatGPT + compare)
-  - [ ] make vertices bigger (try with ChatGPT)
+  - [x] solid size vectors unified
+  - [x] make vertices bigger (try with ChatGPT)
+  - [x] finally to the icosahedron example
+  - [x] polynomials flip 20,...1, to 1,...20 (ChatGPT + compare)
 
-- [ ] rewrite python script to find representative colorings for single solid and n
-  - try to rewrite in C++ (maybe with help of ChatGPT)
+- [ ] rewrite introduction to be more motivating and less describing the content
+  - try to write another version and then compare, worst case we fall back to old version
+
+- [ ] try run the relaut equiv class program for specific colorings only with more time than just 60 seconds
+
+## 2025_04_30
+
+- [ ] think about data structure for searching for the correct representant (could it be made faster)
+
+- [ ] create a multiprocess version of the relabeling automorphism finding program (parallel version)
 
 ## Main tasks
 
@@ -382,15 +390,11 @@
 
 ## Side tasks
 
-### Interpreting collages
-
-- [ ] how come there is so many relabel + automorphism classes of dodecahedron?
-
 ### Improve visuals
 
 - [ ] in the visualisation of Pascal's triangle formula for K_{k x 2} graphs, emphasize where the operation is done in the figure
 
-- [ ] add figure with phosphorous P_4 as tetrahedron kind of molecule
+- [ ] make some section headings shorter
 
 ### Improve definitions
 
@@ -398,6 +402,5 @@
 
 ### Misc
 
-- [ ] mention explicit formula for orbital chromatic polynomial of complete graph using binomial coefficient
-
-- [ ] time how long orbpoly vs chrompoly run
+- [ ] rewrite python script to find representative colorings for single solid and n
+  - try to rewrite in C++ (maybe with help of ChatGPT)
