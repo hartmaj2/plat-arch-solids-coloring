@@ -1,0 +1,7 @@
+-------INPUT--------
+SOLID_NAME='icosahedron'
+NUM_CLRS=6
+
+-------OUTPUT-------
+num_classes=63
+time=2.26e+03
