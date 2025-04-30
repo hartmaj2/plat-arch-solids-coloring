@@ -849,3 +849,12 @@
 - rewrote introduction and checked for errors with ChatGPT
 
 - improved dedication
+
+### 2025_04_30
+
+- made my thesis pdf/a compliant using SIS verifier and Martin Mares's ghostscript converter
+  - wrote about that in Discord
+
+- improved introduction (suggested by supervisor)
+
+- fixed table caption (truncated solids)
