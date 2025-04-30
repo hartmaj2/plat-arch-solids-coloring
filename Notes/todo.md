@@ -374,6 +374,10 @@
 
 ## 2025_04_30
 
+- [x] test the thesis for PDF/A compliance
+
+- [x] test abstract generation
+
 - [ ] try run the relaut equiv class program for specific colorings only with more time than just 60 seconds
 
 - [ ] think about data structure for searching for the correct representant (could it be made faster)
@@ -381,10 +385,6 @@
 - [ ] create a multiprocess version of the relabeling automorphism finding program (parallel version)
 
 ## Main tasks
-
-- [ ] test the thesis for PDF/A compliance
-
-- [ ] test abstract generation
 
 - [ ] improve definition of coloring to include difference between proper and improper coloring
 
