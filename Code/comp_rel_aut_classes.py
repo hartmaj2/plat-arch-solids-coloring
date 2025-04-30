@@ -111,22 +111,44 @@ def get_unification_proof(c1 : list[int], c2 : list[int], auts_as_cycles : list[
     return None
 
 # returns a dictionary where keys are the representative colorings and the values are lists of colorings that are relaut eqivalent to it
-def get_classified_by_relaut_eqiv_class(clrings : list[list[int]], g : Graph, num_clrs : int, unification_func: Callable[[list[int],list[int],list[tuple],int],tuple | None]) -> dict[tuple,list[list[int]]]:
-    classified : dict[tuple,list[list[int]]] = {} 
-    auts_as_cycles = [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]
-    for c_curr in clrings:
-        for c_repr in classified.keys():
-            uni_proof = get_unification_proof(c_curr,list(c_repr),auts_as_cycles,num_clrs,unification_func)
-            if uni_proof is None: # the coloring is not automorph+relabel equivalent to the c_repr representant
-                continue
-            else:
-                classified[c_repr].append(c_curr)
-                break # we don't want to check for more ways to transform this coloring to the same representant
-        else : # there was no representant to which we can rel+automorph
-            hashable_curr = tuple(c_curr)
-            classified[hashable_curr] = [c_curr] # set this coloring as a representant
+def get_classified_by_relaut_eqiv_class(clrings : list[list[int]], g : Graph, num_clrs : int, unification_func: Callable[[list[int],list[int],list[tuple],int],tuple | None], verbose = False) -> dict[tuple,list[list[int]]]:
+    if verbose:
+        log_file = open("log.txt","w")
+        classified : dict[tuple,list[list[int]]] = {} 
+        auts_as_cycles = [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]
+        for i,c_curr in enumerate(clrings):
+            if i % 10 == 0:
+                print(f"representants:{len(classified):<10}step:{i:<10}",file=sys.stdout)
+                log_file.flush()
+            for c_repr in classified.keys():
+                uni_proof = get_unification_proof(c_curr,list(c_repr),auts_as_cycles,num_clrs,unification_func)
+                if uni_proof is None: # the coloring is not automorph+relabel equivalent to the c_repr representant
+                    continue
+                else:
+                    classified[c_repr].append(c_curr)
+                    break # we don't want to check for more ways to transform this coloring to the same representant
+            else : # there was no representant to which we can rel+automorph
+                hashable_curr = tuple(c_curr)
+                classified[hashable_curr] = [c_curr] # set this coloring as a representant
 
-    return classified
+        log_file.close()
+        return classified
+    else:
+        classified : dict[tuple,list[list[int]]] = {} 
+        auts_as_cycles = [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]
+        for c_curr in clrings:
+            for c_repr in classified.keys():
+                uni_proof = get_unification_proof(c_curr,list(c_repr),auts_as_cycles,num_clrs,unification_func)
+                if uni_proof is None: # the coloring is not automorph+relabel equivalent to the c_repr representant
+                    continue
+                else:
+                    classified[c_repr].append(c_curr)
+                    break # we don't want to check for more ways to transform this coloring to the same representant
+            else : # there was no representant to which we can rel+automorph
+                hashable_curr = tuple(c_curr)
+                classified[hashable_curr] = [c_curr] # set this coloring as a representant
+
+        return classified
 
 
 # BEGIN: FINDING REPRESENTATIVES OF AUTOMORPHISM EQUIVALENCE CLASSES
@@ -152,44 +174,22 @@ ARCH_TABLE_LABEL = f"tab:arch-nums-relabeling-automorphism-classes"
 
 REDUCED_ARCH_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron']
 
-
-
-
-
-def run_alg_using(unification_func: Callable[[list[int],list[int],list[tuple],int],tuple | None]):
-    colorings,time1 = tmng.run_and_get_time(all_graph_colorings_list,G,NUM_CLRS)
-    canonized,time2 = tmng.run_and_get_time(get_canonized,colorings)
-    classified,time3 = tmng.run_and_get_time(get_classified_by_relaut_eqiv_class,canonized,G,NUM_CLRS,unification_func)
-    print_results(colorings,time1,canonized,time2,classified,time3)
-
-def print_results(clrings : list[list[int]], t1 : float, cnnized : list[list[int]], t2 : float, clssfied : dict[tuple,list[list[int]]], t3 : float):
-    c1_size = 20
-    c2_size = 10
-    print(f"{"Solid:":{c1_size}}{SOLID_NAME}\n{"Num clrs:":{c1_size}}{NUM_CLRS}\n{"Equiv classes:":{c1_size}}{len(clssfied.keys())}")
-    print()
-    print(f"{"All colorings:":{c1_size}}{len(clrings):<{c2_size}}{t1:.3}\n{"Canonization:":{c1_size}}{len(cnnized):<{c2_size}}{t2:.3}\n{"Classification:":{c1_size}}{len(clssfied.keys()):<{c2_size}}{t3:.3}")
-
-def compare_algs():
-    print(50*"-")
-    print("RUN 1")
-    run_alg_using(try_unify_by_aut)
-    print(50*"-")
-    print()
-    print("RUN 2")
-    run_alg_using(try_unify_by_aut2)
-    print(50*"-")
-
 # computes the number of equivalence classes of the relabeling-automorphism relation for given graph and given number of colors
 def compute_graph_relabeling_automorphism_classes(graph : Graph, num_clrs : int, verbose : bool = False) -> int:
     if verbose: # VERBOSE
         w_1, w_2 = 20, 10
+        log_file2 = open("log2.txt","w")
         colorings,t_1 = tmng.run_and_get_time(all_graph_colorings_list,graph,num_clrs)
-        print(f"{"All:":<{w_1}}{len(colorings):<{w_2}}{t_1:{w_2}}")
+        print(f"{"All:":<{w_1}}{len(colorings):<{w_2}}{t_1:{w_2}}",file=log_file2)
+        log_file2.flush()
         canonized,t_2 = tmng.run_and_get_time(get_canonized,colorings)
-        print(f"{"Canonized:":<{w_1}}{len(canonized):<{w_2}}{t_2:{w_2}}")
-        classes,t_3 = tmng.run_and_get_time(get_classified_by_relaut_eqiv_class,canonized,graph,num_clrs,try_unify_by_aut)
+        print(f"{"Canonized:":<{w_1}}{len(canonized):<{w_2}}{t_2:{w_2}}",file=log_file2)
+        log_file2.flush()
+        classes,t_3 = tmng.run_and_get_time(get_classified_by_relaut_eqiv_class,canonized,graph,num_clrs,try_unify_by_aut,verbose=True)
         num_classes = len(classes)
-        print(f"{"Result:":<{w_1}}{num_classes:<{w_2}}{t_3:{w_2}}")
+        print(f"{"Result:":<{w_1}}{num_classes:<{w_2}}{t_3:{w_2}}",file=log_file2)
+        log_file2.flush()
+        log_file2.close()
         return num_classes
     else: # NON-VERBOSE
         num_classes = len(get_classified_by_relaut_eqiv_class(get_canonized(all_graph_colorings_list(graph,num_clrs)),graph,num_clrs,try_unify_by_aut))
