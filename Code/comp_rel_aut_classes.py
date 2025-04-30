@@ -154,14 +154,7 @@ REDUCED_ARCH_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated
 
 
 
-# SOLID SETTINGS
-SOLID_NAME = "dodecahedron"
-NUM_CLRS = 3
 
-
-
-# GRAPH DATA
-G = Graph(sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES])
 
 def run_alg_using(unification_func: Callable[[list[int],list[int],list[tuple],int],tuple | None]):
     colorings,time1 = tmng.run_and_get_time(all_graph_colorings_list,G,NUM_CLRS)
@@ -187,9 +180,20 @@ def compare_algs():
     print(50*"-")
 
 # computes the number of equivalence classes of the relabeling-automorphism relation for given graph and given number of colors
-def compute_graph_relabeling_automorphism_classes(graph : Graph, num_clrs : int) -> int:
-    num_classes = len(get_classified_by_relaut_eqiv_class(get_canonized(all_graph_colorings_list(graph,num_clrs)),graph,num_clrs,try_unify_by_aut))
-    return num_classes
+def compute_graph_relabeling_automorphism_classes(graph : Graph, num_clrs : int, verbose : bool = False) -> int:
+    if verbose: # VERBOSE
+        w_1, w_2 = 20, 10
+        colorings,t_1 = tmng.run_and_get_time(all_graph_colorings_list,graph,num_clrs)
+        print(f"{"All:":<{w_1}}{len(colorings):<{w_2}}{t_1:{w_2}}")
+        canonized,t_2 = tmng.run_and_get_time(get_canonized,colorings)
+        print(f"{"Canonized:":<{w_1}}{len(canonized):<{w_2}}{t_2:{w_2}}")
+        classes,t_3 = tmng.run_and_get_time(get_classified_by_relaut_eqiv_class,canonized,graph,num_clrs,try_unify_by_aut)
+        num_classes = len(classes)
+        print(f"{"Result:":<{w_1}}{num_classes:<{w_2}}{t_3:{w_2}}")
+        return num_classes
+    else: # NON-VERBOSE
+        num_classes = len(get_classified_by_relaut_eqiv_class(get_canonized(all_graph_colorings_list(graph,num_clrs)),graph,num_clrs,try_unify_by_aut))
+        return num_classes
 
 # runs the algorithm to find number of equivalence classes of the relabeling-automorphism relations for selected solids for number of colors from starting_num up to ending_num
 def get_equiv_classes_up_to_num(selected_solids : list[str], starting_num : int, ending_num : int, computation_time_lim : int) -> dict[str,list[int]]:
@@ -218,14 +222,35 @@ def get_equiv_classes_up_to_num(selected_solids : list[str], starting_num : int,
         print((col_1 + col_2 + 3)*"-")
     return nums_classes_dict
 
+# SOLID SETTINGS
+SOLID_NAME = "icosahedron"
+NUM_CLRS = 6
+
+# GRAPH DATA
+G = Graph(sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES])
+
 # because of the multiprocessing we have to use the if __name__ == "__main__" construct
 if __name__ == "__main__":
-    import multiprocessing
-    multiprocessing.freeze_support()
 
-    selected_solids = tp.STD_PLAT_TABLE_ORDER
-    nums_classes_dict = get_equiv_classes_up_to_num(selected_solids,STARTING_NUMBER,ENDING_NUMBER,MAX_SECONDS_RUN)
-    tp.print_solid_mult_col_data(nums_classes_dict,selected_solids,PLATONIC_HEADER,data_col_headers,PLAT_TABLE_CAPTION,PLAT_TABLE_LABEL,output_type=sys.stdout,transform=lambda x : "$" + x + "$",first_col_horiz_space=0.5)
+    file = open("output.txt","w")
+    
+    num_classes,time = tmng.run_and_get_time(compute_graph_relabeling_automorphism_classes,G,NUM_CLRS,verbose=True)
+    print(f"{"INPUT":-^20}",file=file)
+    print(f"{SOLID_NAME=}",file=file)
+    print(f"{NUM_CLRS=}",file=file)
+    print()
+    print(f"{"OUTPUT":-^20}",file=file)
+    print(f"{num_classes=}",file=file)
+    print(f"{time=:.3}",file=file)
 
-    nums_classes_dict = get_equiv_classes_up_to_num(REDUCED_ARCH_TABLE_ORDER,STARTING_NUMBER,ENDING_NUMBER,MAX_SECONDS_RUN)
-    tp.print_solid_mult_col_data(nums_classes_dict,REDUCED_ARCH_TABLE_ORDER,ARCHIMEDEAN_HEADER,data_col_headers,ARCH_TABLE_CAPTION,ARCH_TABLE_LABEL,output_type=sys.stdout,transform=lambda x : "$" + x + "$",first_col_horiz_space=0.5)
+    file.close()
+
+    # import multiprocessing
+    # multiprocessing.freeze_support()
+
+    # selected_solids = tp.STD_PLAT_TABLE_ORDER
+    # nums_classes_dict = get_equiv_classes_up_to_num(selected_solids,STARTING_NUMBER,ENDING_NUMBER,MAX_SECONDS_RUN)
+    # tp.print_solid_mult_col_data(nums_classes_dict,selected_solids,PLATONIC_HEADER,data_col_headers,PLAT_TABLE_CAPTION,PLAT_TABLE_LABEL,output_type=sys.stdout,transform=lambda x : "$" + x + "$",first_col_horiz_space=0.5)
+
+    # nums_classes_dict = get_equiv_classes_up_to_num(REDUCED_ARCH_TABLE_ORDER,STARTING_NUMBER,ENDING_NUMBER,MAX_SECONDS_RUN)
+    # tp.print_solid_mult_col_data(nums_classes_dict,REDUCED_ARCH_TABLE_ORDER,ARCHIMEDEAN_HEADER,data_col_headers,ARCH_TABLE_CAPTION,ARCH_TABLE_LABEL,output_type=sys.stdout,transform=lambda x : "$" + x + "$",first_col_horiz_space=0.5)
