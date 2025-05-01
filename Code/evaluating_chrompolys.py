@@ -243,24 +243,25 @@ PARTITIONS_BOUNDS_LABEL = f"tab:bounds-exact-n-partitions"
 # BEGIN : EXACT ORBITAL EVALS BASED BOUND PRINTING
 ORBITAL_BOUNDS_CAPTION = f"Upper and lower bounds for the number of equivalence classes of the $\\rightleftharpoons$ relation based on the number of equivalence classes of the $\\sim$ relation. For each solid, top row contains the upper bounds while bottom row contains the lower bounds."
 ORBITAL_BOUNDS_LABEL = f"tab:bounds-orbital"
+REDUCED_ARCH_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron']
 
-dict = calculate_automorphism_class_bounds(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER)))
+dict = calculate_automorphism_class_bounds(get_exact_n_colors_dict(get_solids_poly_evaluations(ocp.orbital_chromatic_polynomial2,EVAL_NUM_LIMIT,REDUCED_ARCH_TABLE_ORDER)))
 preprocessed_dict = preprocess_bound_tuples_from_dict(dict,TOO_LARGE_NUM_LIMIT)
-tp.print_solid_mult_row_data(preprocessed_dict,tp.STD_PLAT_TABLE_ORDER,HEADER,data_headers,ORBITAL_BOUNDS_CAPTION,ORBITAL_BOUNDS_LABEL,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
+tp.print_solid_mult_row_data(preprocessed_dict,REDUCED_ARCH_TABLE_ORDER,HEADER,data_headers,ORBITAL_BOUNDS_CAPTION,ORBITAL_BOUNDS_LABEL,transform=lambda s : wrap_with_dollars(add_thousands_spaces(s)),output_type=output_type,first_col_horiz_space=0.5,row_cluster_sep=THIN_RULE)
 # END : EXACT ORBITAL EVALS BASED BOUND PRINTING
 
 
 # BEGIN : PRINTING EVALUATIONS FOR SELECTED SOLIDS
-REDUCED_ARCH_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron']
+# REDUCED_ARCH_TABLE_ORDER = ['truncated tetrahedron', 'cuboctahedron', 'truncated cube', 'truncated octahedron']
 
-CHROMPOLY_ONLY_EVALS_PLATS_CAPTION = f"Evaluated chromatic polynomial of Platonic solids at points {STARTING_NUM} to {EVAL_NUM_LIMIT}."
-CHROMPOLY_ONLY_EVALS_PLATS_LABEL = "tab:platonic-chrompolys-evals"
-HEADER_PLAT = "Platonic solid"
+# CHROMPOLY_ONLY_EVALS_PLATS_CAPTION = f"Evaluated chromatic polynomial of Platonic solids at points {STARTING_NUM} to {EVAL_NUM_LIMIT}."
+# CHROMPOLY_ONLY_EVALS_PLATS_LABEL = "tab:platonic-chrompolys-evals"
+# HEADER_PLAT = "Platonic solid"
 
-arch_eval_lim_offset = -1
-CHROMPOLY_ONLY_EVALS_ARCH_CAPTION = f"Evaluated chromatic polynomial of Archimedean solids at points {STARTING_NUM} to {EVAL_NUM_LIMIT+arch_eval_lim_offset}."
-CHROMPOLY_ONLY_EVALS_ARCH_LABEL = "tab:archimedean-chrompolys-evals"
-HEADER_ARCH = "Archimedean solid"
+# arch_eval_lim_offset = -1
+# CHROMPOLY_ONLY_EVALS_ARCH_CAPTION = f"Evaluated chromatic polynomial of Archimedean solids at points {STARTING_NUM} to {EVAL_NUM_LIMIT+arch_eval_lim_offset}."
+# CHROMPOLY_ONLY_EVALS_ARCH_LABEL = "tab:archimedean-chrompolys-evals"
+# HEADER_ARCH = "Archimedean solid"
 
 # begin: polynomial evaluation
 # platonic = preprocess_big_numbers_for_print(get_solids_poly_evaluations(ocp.chromatic_polynomial2,EVAL_NUM_LIMIT,tp.STD_PLAT_TABLE_ORDER),TOO_LARGE_NUM_LIMIT)
