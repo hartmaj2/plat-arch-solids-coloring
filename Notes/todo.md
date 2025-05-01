@@ -378,11 +378,11 @@
 
 - [x] test abstract generation
 
-- [ ] try run the relaut equiv class program for specific colorings only with more time than just 60 seconds
+## 2025_05_01
 
-- [ ] think about data structure for searching for the correct representant (could it be made faster)
+- [x] use size sequence and run parallel for colorings according to their size sequence
 
-- [ ] create a multiprocess version of the relabeling automorphism finding program (parallel version)
+- [ ] improve algorithm by separating the colorings by something finer than size sequences
 
 ## Main tasks
 
