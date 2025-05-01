@@ -858,3 +858,11 @@
 - improved introduction (suggested by supervisor)
 
 - fixed table caption (truncated solids)
+
+- calculated num of relaut classes for 6 colors of icosahedron
+
+### 2025_05_01
+
+- made the algorithm faster just by separating the colorings by size vectors before starting the checking process
+
+- improve speed by handling colorings for each size_vector on a separate core
