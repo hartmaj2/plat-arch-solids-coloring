@@ -50,7 +50,7 @@ class TableComp:
             print((col_1 + col_2 + 3)*"-")
             for i in range(starting_num,ending_num+1):
                 print(f"|{i:^{col_1}}|",end="")
-                res = tmng.try_run_for_t_seconds2(computation_time_lim,Comp.compute_graph_relabeling_automorphism_classes,graph,i)
+                res = tmng.try_run_for_t_seconds2(computation_time_lim,Strategies.compute_graph_relabeling_automorphism_classes,graph,i)
                 if res == None:
                     res = TableComp.NOT_COMPUTED_SYMB
                     classes_nums.extend([TableComp.NOT_COMPUTED_SYMB for j in range(i,ending_num+1)])
@@ -417,13 +417,38 @@ class Strategies:
             print(f"{"res:":<{w_1}}{res:<{w_2}}{t_6:{w_2}}",file=log_file2)
             log_file2.flush()
             return res
+        
+        else:
 
+            colorings= Clr.all_graph_colorings_list(graph,num_clr)
+
+            canonized = Canon.get_canonized(colorings)
+
+            fingerprinteds = Fprint.get_fprnted_clrings(canonized)
+
+            standardized = Fprint.get_standardized(fingerprinteds)
+
+            classified = Classify.classify_by_size_seq(standardized)
+
+            pool = mp.Pool(mp.cpu_count()) # creates a new pool with 8 workers (since I have 8 cores)
+            start = tm.time()
+            items = []
+            for i,(size_seq,coloring) in enumerate(zip(classified.keys(),classified.values())):
+                items.append((size_seq,coloring,i,graph, num_clr, verbose))
+            results = pool.map(Comp.process_item,items)
+            pool.close() # tells the pool that we will not be submitting any more processes
+            pool.join() # tells the pool to wait at this point of the program until all jobs are done
+            reprs = {}
+            for (size_seq,colorings) in results:
+                reprs[size_seq] = colorings
+            res = sum([len(colorings) for colorings in reprs.values()])
+            return res
 
 
 
 # SOLID SETTINGS
-SOLID_NAME = "dodecahedron"
-NUM_CLRS = 4
+SOLID_NAME = "icosahedron"
+NUM_CLRS = 8
 
 # GRAPH DATA
 G = Graph(sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES])
