@@ -269,6 +269,10 @@ In natural language, the algorithm above tries to construct a mapping $\pi$ from
 
 Step $5$ of algorithm \ref{alg:representatives-of-relabeling-automorphism-relation} consists of testing, whether for some $\alpha \in \Aut(G)$, the algorithm \ref{alg:test-two-colorings-relabel-automorph-related} above returns True.
 
+\begin{highlight}
+As a remark, we would like to mention a possible improvement, which is to separate the colorings based on their \textit{size sequences} as in definition \ref{def:size-sequence} and perform algorithm \ref{alg:representatives-of-relabeling-automorphism-relation} for each part separately. This results in lower number of overall comparisons, since without separating, we would compare using algorithm \ref{alg:test-two-colorings-relabel-automorph-related} also colorings, which have different size sequences, which are never in same relabeling-automorphism class. Another advantage of this approach is, that we can perform computation of each part in parallel as the results are independent of each other.
+\end{highlight}
+
 See next section for results we computed using the algorithm above.
 
 \section{Numbers of equivalence classes of relabeling-automorphism relation}\label{sec:nums-equiv-classes-relaut}
@@ -286,7 +290,7 @@ Unfortunately, we can also see, that there are some entries in the tables left o
 tetrahedron & $0$ & $0$ & $1$ & $0$ & $0$ & $0$ & $0$ \\
 octahedron & $0$ & $\tabemph{1}$ & $\tabemph{1}$ & $\tabemph{1}$ & $\tabemph{1}$ & $0$ & $0$ \\
 cube & $1$ & $\tabemph{3}$ & $\tabemph{9}$ & $10$ & $7$ & $\tabemph{2}$ & $1$ \\
-icosahedron & $0$ & $0$ & $\tabemph{1}$ & $12$ & $\cdot$ & $\cdot$ & $\cdot$ \\
+icosahedron & $0$ & $0$ & $\tabemph{1}$ & $12$ & $63$ & $113$ & $\cdot$ \\
 dodecahedron & $0$ & $17$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
 \bottomrule
 \end{tabular}
@@ -296,14 +300,14 @@ dodecahedron & $0$ & $17$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ & $\cdot$ \\
 
 \begin{table}[H]
 \centering
-\begin{tabular}{l@{\hspace{0.5cm}}ccc}
+\begin{tabular}{l@{\hspace{0.5cm}}cccc}
 \toprule
-\textbf{Archimedean solid} & \textbf{2} & \textbf{3} & \textbf{4} \\
+\textbf{Archimedean solid} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} \\
 \midrule
-truncated tetrahedron & $0$ & $2$ & $119$ \\
-cuboctahedron & $0$ & $2$ & $24$ \\
-truncated cube & $0$ & $65$ & $\cdot$ \\
-truncated octahedron & $1$ & $\cdot$ & $\cdot$ \\
+truncated tetrahedron & $0$ & $2$ & $119$ & $1109$ \\
+cuboctahedron & $0$ & $2$ & $24$ & $187$ \\
+truncated cube & $0$ & $65$ & $\cdot$ & $\cdot$ \\
+truncated octahedron & $1$ & $1569$ & $\cdot$ & $\cdot$ \\
 \bottomrule
 \end{tabular}
 \caption{Calculated numbers of equivalence classes of the $\rightleftharpoons$ relation of selected Archimedean solids using the algorithm above. The symbol $\cdot$ means we did not manage to compute that number.}
@@ -316,7 +320,7 @@ In this section, we would like to interpret the results from section \ref{sec:nu
 
 For many cases, we have multiple equivalence classes for particular values of $n$, where $n$ is the number of independent sets in the partition. In such cases, we will organize the respective partitions in following figures by a so called \textit{size sequence}.
 
-\begin{defn}[size sequence]
+\begin{defn}[size sequence]\label{def:size-sequence}
     Let $G=(V,E)$ be a graph and let $W$ be a partition of $V$ into $n$ independent sets, where $n$ is some natural number. Let $s=(\abs{I_1}, \ldots, \abs{I_n})$ be a vector s.t. $\forall i: I_i \in W$, $\forall i \neq j: I_i \neq I_j$ and $\forall i \leq j : \abs{I_i} \leq \abs{I_j}$. We call this the \emph{size sequence} of partition $W$.
 \end{defn}
 
