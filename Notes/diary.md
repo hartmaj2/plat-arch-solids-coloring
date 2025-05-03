@@ -880,3 +880,11 @@
 
 - found out what is Bell number and Stirling number of second kind -> S(n,k) (for computing # of partitions)
   - tested my recursive formula for S(n,k)
+
+- implemented relaut class computation the same way as P.J. Cameron
+  - it is faster for big num of colors (since then there are n! colorings for each partition)
+  - on the other hand for small num of colors and big num of vtces, the previous version performs better
+
+- also printed Petersen graphs
+
+- computed relaut classes num for icosahedron and num_clrs = 8
