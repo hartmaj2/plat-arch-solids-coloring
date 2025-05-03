@@ -1,7 +1,11 @@
 #!/usr/local/bin/sage -python
 # This program calculates num of relaut equiv classes using generation of all set partitions and then filtering
 
+import svgutils.compose as svgc 
+import tempfile
+
 import solids_prep.solids_dict_prep as sdp
+import solids_prep.solids_layout_prep as slp
 
 import timing.timing as tmng
 import time as tm
@@ -81,6 +85,8 @@ class Fprint:
 
 # BEGIN: GETTING ALL COLORINGS AS LIST
 class Clr:
+
+
     # converts the coloring in dict format to list format
     @staticmethod
     def get_coloring_list(clring_as_dict : dict[int,list]) -> list[int]:
@@ -90,6 +96,17 @@ class Clr:
             for vtx in clring_as_dict[color]:
                 clring_as_list[vtx] = color
         return clring_as_list
+
+    # converts a coloring given as list of colors for each vertex to a dict where key is color string in format '#FFFFFF' and value contains vtx indices of that color
+    @staticmethod
+    def get_coloring_dict(clring_as_list : list[int]) -> dict[str,list]:
+        clring_dict = {}
+        for i,c_ind in enumerate(clring_as_list):
+            clr = Collage.COLORS_TO_USE[c_ind]
+            if clr not in clring_dict:
+                clring_dict[clr] = []
+            clring_dict[clr].append(i)
+        return clring_dict
 
 # END: GETTING ALL COLORINGS AS LIST
 
@@ -237,17 +254,29 @@ class Partitions:
 class Strategies:
     # computes the number of equivalence classes of the relabeling-automorphism relation for given graph and given number of colors
     @staticmethod
-    def compute_using_set_partitions(graph : Graph, num_clrs : int, verbose : bool = False) -> int:
+    def compute_using_set_partitions(graph : Graph, num_clrs : int, verbose : bool = False) -> dict[tuple[int],list[tuple]]:
         if verbose:
-            partitions = Partitions.get_vtx_set_partitions(graph,num_clrs)
-            print(f"{len(partitions)}")
+            w_1, w_2 = 20, 10
+            log_file2 = open("log_strategy_2.txt","w")
+            partitions,t_1 = tmng.run_and_get_time(Partitions.get_vtx_set_partitions,graph,num_clrs)
+            print(f"{"partitions:":<{w_1}}{len(partitions):<{w_2}}{t_1:{w_2}}",file=log_file2)
+            log_file2.flush()
+            start = tm.time()
             indep_partitions = list(filter(lambda p : Partitions.is_partition_into_indepsets(p,graph),partitions))
-            print(f"{len(indep_partitions)}")
+            t_2 = tm.time() - start
+            print(f"{"indep_partitions:":<{w_1}}{len(indep_partitions):<{w_2}}{t_2:{w_2}}",file=log_file2)
+            log_file2.flush()
+            start = tm.time()
             clrings = list(map(lambda p : Partitions.partition_to_clring_as_list(p,graph),indep_partitions))
-            fingerprinteds = Fprint.get_fprnted_clrings(clrings)
-
-            standardized = Fprint.get_standardized(fingerprinteds)
-
+            t_3 = tm.time() - start
+            print(f"{"Conv to clrings:":<{w_1}}{len(clrings):<{w_2}}{t_3:{w_2}}",file=log_file2)
+            log_file2.flush()
+            fingerprinteds,t_4 = tmng.run_and_get_time(Fprint.get_fprnted_clrings,clrings)
+            print(f"{"fingerprinteds:":<{w_1}}{len(fingerprinteds):<{w_2}}{t_4:{w_2}}",file=log_file2)
+            log_file2.flush()
+            standardized,t_5 = tmng.run_and_get_time(Fprint.get_standardized,fingerprinteds)
+            print(f"{"standardized":<{w_1}}{len(standardized):<{w_2}}{t_5:{w_2}}",file=log_file2)
+            log_file2.flush()
             classified = Classify.classify_by_size_seq(standardized)
 
             pool = mp.Pool(mp.cpu_count()) # creates a new pool with 8 workers (since I have 8 cores)
@@ -257,31 +286,142 @@ class Strategies:
             results = pool.map(Comp.process_item,items)
             pool.close() # tells the pool that we will not be submitting any more processes
             pool.join() # tells the pool to wait at this point of the program until all jobs are done
-            reprs = {}
+            size_seq_classes = {}
             for (size_seq,colorings) in results:
-                reprs[size_seq] = colorings
-            res = sum([len(colorings) for colorings in reprs.values()])
-            return res
+                size_seq_classes[size_seq] = colorings
+            return size_seq_classes
+            # res = sum([len(colorings) for colorings in reprs.values()])
+            # return res
             
         else:
-            raise NotImplementedError
+            partitions = Partitions.get_vtx_set_partitions(graph,num_clrs)
+            indep_partitions = list(filter(lambda p : Partitions.is_partition_into_indepsets(p,graph),partitions))
+            clrings = list(map(lambda p : Partitions.partition_to_clring_as_list(p,graph),indep_partitions))
+            fingerprinteds = Fprint.get_fprnted_clrings(clrings)
+            standardized = Fprint.get_standardized(fingerprinteds)
+            classified = Classify.classify_by_size_seq(standardized)
 
+            pool = mp.Pool(mp.cpu_count()) # creates a new pool with 8 workers (since I have 8 cores)
+            items = []
+            for i,(size_seq,coloring) in enumerate(zip(classified.keys(),classified.values())):
+                items.append((size_seq,coloring,i,graph, num_clrs, verbose))
+            results = pool.map(Comp.process_item,items)
+            pool.close() # tells the pool that we will not be submitting any more processes
+            pool.join() # tells the pool to wait at this point of the program until all jobs are done
+            size_seq_classes = {}
+            for (size_seq,colorings) in results:
+                size_seq_classes[size_seq] = colorings
+            return size_seq_classes
+
+class Collage:
+
+    COLORS_TO_USE = ["#FF0000","#00FF00","#0000FF","#FFFF00","#FF00FF","#00FFFF","#FFFFFF","#000000","#FF8800","#888888"]
+    VERTEX_LABEL = False
+    EDGE_LABELS = False
+
+    # recievies graph to be printed, its positions dict and styles dict together with
+    # the classified fingerprinted colorings which are:
+    #   dict where key is the sizes vector 
+    #   value is a list of fingerprinted colorings with this sizes vector of their fingerprint
+    @staticmethod
+    def create_classified_fprnted_collage(graph : Graph, classified_fprinted_clrings : dict[tuple,list],**kwargs):
+        classified_svgs : dict[tuple,list[svgc.SVG]] = {}
+        temp_paths = []
+
+        for class_id,fprinted_clrings in zip(classified_fprinted_clrings.keys(),classified_fprinted_clrings.values()):
+            print(f"{class_id=}")
+            classified_svgs[class_id] = []
+            for fprinted in fprinted_clrings:
+                c = Clr.get_coloring_dict(Fprint.get_coloring(fprinted))
+                graphic = graph.plot(vertex_labels=Collage.VERTEX_LABEL,edge_labels=Collage.EDGE_LABELS,vertex_colors=c,**kwargs)
+                # store each image in temporary file and then create corresponding PIL image
+                with tempfile.NamedTemporaryFile(suffix=".svg",delete=False) as tmp:
+                    graphic.save(tmp.name)
+                    temp_paths.append(tmp.name)
+                    img_file = svgc.SVG(tmp.name)
+                    classified_svgs[class_id].append(img_file)     
+
+        Collage.merge_classified_svgs(classified_svgs) # by now, the tempfiles still have to exist, otherwise, the svg contents will be erased
+
+        for path in temp_paths: # now we can remove the tempfiles
+            os.remove(path) 
+
+    # merge the images inside the classified colorings so that each row contains one type of fingerprint
+    @staticmethod
+    def merge_classified_svgs(classified_svgs : dict[tuple,list[svgc.SVG]]):
+        
+        unique_fprint_sizes = [key for key in classified_svgs.keys()]
+        rows_num = len(unique_fprint_sizes)
+        columns_num = max([len(fprinted_clrings) for fprinted_clrings in classified_svgs.values()])
+
+        ref_svg = classified_svgs[unique_fprint_sizes[0]][0]
+
+        svg_width = ref_svg.width
+        svg_height = ref_svg.height
+
+        if not isinstance(svg_width,float) or not isinstance(svg_height,float):
+            return
+
+        # this is a constant by which I have to scale both dimensions to get pt value from px
+        # probably the width and height parameters return px value which is greater and has to be reduced by 20% to get pt size
+        PADDING_COMPENSATION = 0.8
+
+        svg_width *= PADDING_COMPENSATION
+        svg_height *= PADDING_COMPENSATION
+
+        img_padding_size = 50
+
+        collage_width = svg_width * columns_num + img_padding_size * (columns_num - 1)
+        collage_height = svg_height * rows_num + img_padding_size * (rows_num - 1)
+
+        for i,sizes_vect in enumerate(unique_fprint_sizes):
+            svgs_class = classified_svgs[sizes_vect]
+            y = i * (svg_height + img_padding_size)
+            for j,svg in enumerate(svgs_class):
+                x = j * (svg_width + img_padding_size)
+                svg.move(x,y)
+                
+        # xmlns='http://www.w3.org/2000/svg' defines a xml namespace to be the namespace for SVG defomed by the W3C, the World Wide Web Consortium
+        # 2000 there means that the namespace was defined in year 2000 by W3C
+        background_svg_str = (
+            f"<svg xmlns='http://www.w3.org/2000/svg' width='{collage_width}pt' height='{collage_height}pt'>"
+            f"<rect width='100%' height='100%' fill='white'/></svg>"
+        )
+
+        
+
+        with tempfile.NamedTemporaryFile(suffix=".svg", delete=True, mode="w", encoding="utf-8") as bgfile:
+            bgfile.write(background_svg_str)
+            bgfile.flush() # important, otherwise the changes are not seen by SVG constructor
+            bgfile_path = bgfile.name
+            background = svgc.SVG(bgfile_path)
+
+            svgs = reduce(lambda x,y : x + y,classified_svgs.values(),[])
+            fig = svgc.Figure(f"{collage_width}pt",f"{collage_height}pt",background,*svgs)
+            fig.save(f"{OUTPUT_PATH}{COLLAGE_NAME}.svg")
 
 
 # SOLID SETTINGS
-SOLID_NAME = "petersen"
-NUM_CLRS = 10
+SOLID_NAME = "dodecahedron"
+NUM_CLRS = 4
+
+# COLLAGE SETTINGS
+OUTPUT_PATH = "Code/Plots/"
+COLLAGE_NAME = f"{SOLID_NAME}_non_relaut-{NUM_CLRS}-clrings"
+filename_base = "res"
+
 
 # GRAPH DATA
-# G = Graph(sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES])
-G = graphs.PetersenGraph()
+G = Graph(sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES])
+# G = graphs.PetersenGraph()
 
 # because of the multiprocessing we have to use the if __name__ == "__main__" construct
 if __name__ == "__main__":
 
     file = open("output.txt","w")
     
-    num_classes,time = tmng.run_and_get_time(Strategies.compute_using_set_partitions,G,NUM_CLRS,verbose=True)
+    size_seq_classes,time = tmng.run_and_get_time(Strategies.compute_using_set_partitions,G,NUM_CLRS,verbose=True)
+    num_classes = sum([len(colorings) for colorings in size_seq_classes.values()])
     print(f"{"INPUT":-^20}",file=file)
     print(f"{SOLID_NAME=}",file=file)
     print(f"{NUM_CLRS=}",file=file)
@@ -291,4 +431,12 @@ if __name__ == "__main__":
     print(f"{time=:.3}",file=file)
 
     file.close()
+
+    # fingerprinteds_classified = {}
+    # for size_seq,colorings in size_seq_classes.items():
+    #     fingerprinteds_classified[size_seq] = Fprint.get_fprnted_clrings([list(coloring) for coloring in colorings])
+    # # Collage.create_classified_fprnted_collage(G,fingerprinteds_classified) UNCOMMENT TO PRINT WITHOUT POSITIONS AND STYLES
+    # POSITIONS = slp.get_pos_dict(SOLID_NAME)
+    # STYLES = slp.get_labeled_edge_styles(SOLID_NAME)
+    # Collage.create_classified_fprnted_collage(G,fingerprinteds_classified,pos=POSITIONS,edge_styles=STYLES)
 
