@@ -19,6 +19,15 @@ NUM_CLRS=7
 num_classes=113
 time=5.19e+02
 
+####################
+
+-------INPUT--------
+SOLID_NAME='icosahedron'
+NUM_CLRS=8
+-------OUTPUT-------
+num_classes=91
+time=19.6
+
 
 
 
