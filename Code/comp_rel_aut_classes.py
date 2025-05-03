@@ -233,9 +233,10 @@ class Comp:
 
     # returns a dictionary where keys are the representative colorings and the values are lists of colorings that are relaut eqivalent to it
     @staticmethod
-    def get_classified_by_relaut_eqiv_class(clrings : list[list[int]], g : Graph, num_clrs : int, verbose = False, log_index : int = 0) -> dict[tuple[int,...],list[list[int]]]:
+    def get_classified_by_relaut_eqiv_class(clrings : list[list[int]], g : Graph, num_clrs : int, verbose = False, log_index : int = 0, size_seq = None) -> dict[tuple[int,...],list[list[int]]]:
         if verbose:
             log_file = open(f"ZClassLogs/log{log_index}.txt","w")
+            print(f"{size_seq}",file=log_file)
             classified : dict[tuple,list[list[int]]] = {} 
             auts_as_cycles = [a.cycle_tuples(singletons=True) for a in g.automorphism_group()]
             for i,c_curr in enumerate(clrings):
@@ -252,7 +253,7 @@ class Comp:
                 else : # there was no representant to which we can rel+automorph
                     hashable_curr = tuple(c_curr)
                     classified[hashable_curr] = [c_curr] # set this coloring as a representant
-
+            print("DONE",file=log_file)
             log_file.close()
             return classified
         else:
@@ -276,7 +277,7 @@ class Comp:
     @staticmethod
     def process_item(item):
         size_seq, colorings, i, graph, num_clr, verbose = item
-        reprs = list(Comp.get_classified_by_relaut_eqiv_class(colorings,graph,num_clr,verbose=verbose,log_index=i).keys())
+        reprs = list(Comp.get_classified_by_relaut_eqiv_class(colorings,graph,num_clr,verbose=verbose,log_index=i,size_seq=size_seq).keys())
         return size_seq,reprs
 
 class Classify:
@@ -447,11 +448,12 @@ class Strategies:
 
 
 # SOLID SETTINGS
-SOLID_NAME = "icosahedron"
-NUM_CLRS = 8
+SOLID_NAME = "petersen"
+NUM_CLRS = 7
 
 # GRAPH DATA
-G = Graph(sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES])
+# G = Graph(sdp.get_all_solids_dict()[SOLID_NAME][sdp.JSON_EDGES])
+G = graphs.PetersenGraph()
 
 # because of the multiprocessing we have to use the if __name__ == "__main__" construct
 if __name__ == "__main__":
