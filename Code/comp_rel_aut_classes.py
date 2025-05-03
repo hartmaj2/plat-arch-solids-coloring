@@ -432,7 +432,6 @@ class Strategies:
             classified = Classify.classify_by_size_seq(standardized)
 
             pool = mp.Pool(mp.cpu_count()) # creates a new pool with 8 workers (since I have 8 cores)
-            start = tm.time()
             items = []
             for i,(size_seq,coloring) in enumerate(zip(classified.keys(),classified.values())):
                 items.append((size_seq,coloring,i,graph, num_clr, verbose))
