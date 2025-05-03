@@ -382,13 +382,11 @@
 
 - [x] use size sequence and run parallel for colorings according to their size sequence
 
-- [ ] improve algorithm by separating the colorings by something finer than size sequences
-
 ## 2025_05_03
 
-- [ ] print drawings of Petersen graph (and send to prof. Cameron maybe)
+- [x] print drawings of Petersen graph (and send to prof. Cameron maybe)
 
-- [ ] read about the algorithm that is used to enumerate all colorings (Dancing Links)
+- [ ] improve algorithm by separating the colorings by something finer than size sequences
 
 - [ ] proofread text with ChatGPT
 
@@ -409,6 +407,8 @@
 - [ ] distinguish between proper and improper colorings in the definitions
 
 ### Misc
+
+- [ ] read about the algorithm that is used to enumerate all colorings (Dancing Links)
 
 - [ ] rewrite python script to find representative colorings for single solid and n
   - try to rewrite in C++ (maybe with help of ChatGPT)
