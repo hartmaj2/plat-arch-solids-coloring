@@ -384,6 +384,14 @@
 
 - [ ] improve algorithm by separating the colorings by something finer than size sequences
 
+## 2025_05_03
+
+- [ ] print drawings of Petersen graph (and send to prof. Cameron maybe)
+
+- [ ] read about the algorithm that is used to enumerate all colorings (Dancing Links)
+
+- [ ] proofread text with ChatGPT
+
 ## Main tasks
 
 - [ ] improve definition of coloring to include difference between proper and improper coloring
