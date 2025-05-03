@@ -866,3 +866,17 @@
 - made the algorithm faster just by separating the colorings by size vectors before starting the checking process
 
 - improve speed by handling colorings for each size_vector on a separate core
+
+### 2025_05_03
+
+- calculated num of relaut equiv classes for Petersen graph and q = 3,4,5,6,7,8
+  - for q = 8 coloring generation took about 200 minutes (but got the same result as Cameron)
+  - for q = 9 generating colorings takes too long
+
+- read about how P.J. Cameron computed the numbers
+  - generate all possible partitions
+  - filter ones where exists a part that is not independent set
+  - filter ones that can be unified by relaut equivalence relation
+
+- found out what is Bell number and Stirling number of second kind -> S(n,k) (for computing # of partitions)
+  - tested my recursive formula for S(n,k)
