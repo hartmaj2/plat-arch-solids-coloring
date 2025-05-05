@@ -2,16 +2,16 @@
 
 \section{The general concept of coloring}
 
-As we will be working with many different colorings, to avoid repetition, we will define the notion of an abstract coloring which all the particular colorings will share.
+As we will be working with many types of colorings, we introduce a general notion of an abstract coloring, which all specific types will share, in order to avoid repetition.
 
 \begin{defn}[partial function]
-    A \emph{partial function} is a function $f:X \rightarrow Y$ s.t. $\forall x \in X$ we have $f(x) \in Y$ or $f(x)$ is undefined.
+    A \emph{partial function} is a function $f : X \rightarrow Y$ such that for all $x \in X$, either $f(x) \in Y$ or $f(x)$ is undefined.
 \end{defn}
 
-Since we will be working with graphs of Platonic and Archimedean solids, which are all planar. We can define the coloring directly on their plane graphs, as they are drawn on the plane, instead of considering their abstract graphs.
+Since we are concerned with graphs of Platonic and Archimedean solids—which are all planar—we define the concept of coloring directly on their plane graphs, i.e., as they are drawn in the plane, rather than considering their abstract representations.
 
 \begin{defn}[coloring]
-    Let $S$ be a set and $G=(V,E,F)$ a plane graph. We define \emph{coloring} of $G$ as a partial function $c: V \cup E \cup F \rightarrow S$ with a coloring rule $R$ that restricts, which elements of the graph cannot be mapped to same element in S.
+    Let $S$ be a set, and let $G = (V,E,F)$ be a plane graph. We define \emph{coloring} of $G$ as a partial function $c : V \cup E \cup F \rightarrow S$ together with a coloring rule $R$ that restricts which elements of the graph may be assigned the same color (i.e., mapped to the same element of $S$).
 \end{defn}
 
 In other words, (proper) coloring is an assignment of elements in $S$ to vertices, edges or faces of some plane graph. We can think of elements of $S$ as colors but usually, we will use numbers instead. What is especially important to us is, whether any two elements are mapped onto a same target i.e. colored by the same color. The coloring rule then prevents some assignments to be considered valid. This makes the coloring problem non-trivial.
