@@ -386,9 +386,9 @@
 
 - [x] print drawings of Petersen graph (and send to prof. Cameron maybe)
 
-- [ ] improve algorithm by separating the colorings by something finer than size sequences
+## 2025_05_06
 
-- [ ] proofread text with ChatGPT
+- [ ] fix grammar and punctuation in chapters 3 - 9
 
 ## Main tasks
 
@@ -412,3 +412,5 @@
 
 - [ ] rewrite python script to find representative colorings for single solid and n
   - try to rewrite in C++ (maybe with help of ChatGPT)
+
+- [ ] improve algorithm by separating the colorings by something finer than size sequences

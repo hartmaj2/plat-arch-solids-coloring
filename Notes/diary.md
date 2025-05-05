@@ -888,3 +888,7 @@
 - also printed Petersen graphs
 
 - computed relaut classes num for icosahedron and num_clrs = 8
+
+### 2025_05_05
+
+- fixed grammar and punctuation of chapters 0 to 2
