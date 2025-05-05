@@ -2,28 +2,28 @@
 
 \section{Platonic and Archimedean solids}
 
-Platonic solids are regular \textbf{convex} polyhedra. Regular polyhedron is a polyhedron whose all faces are congruent to a single regular polygon i.e. a polygon with all sides of equal length. There are exactly five Platonic solids: tetrahedron, cube, octahedron, dodecahedron and icosahedron.
+Platonic solids are regular \textbf{convex} polyhedra. A regular polyhedron is a polyhedron whose faces are all congruent to a single regular polygon, i.e., a polygon with all sides of equal length. There are exactly five Platonic solids: the tetrahedron, cube, octahedron, dodecahedron, and icosahedron.
 
-Note that convexity is an important property for us, since it ensures, that we can always obtain a 3-vertex connected planar graph. This fact is also known as Steinitz’ theorem for polyhedra \cite{kendall24}.
+Note that convexity is an important property for us, since it ensures that we can always obtain a 3-vertex connected planar graph. This fact is also known as Steinitz’s theorem for polyhedra \cite{kendall24}.
 
 The Archimedean solids can then be obtained by performing one of the following non-disjoint operations on Platonic solids:
 
 \begin{description}
-    \item[Truncation] Removes corners of the polyhedron by making a cut perpendicular to a line connecting the vertex of the corresponding corner with the centroid of the polyhedron.
-    \item[Rectification] Special case of truncation where the truncating cuts are done in such way, that they go through midpoints of the edges connecting the vertices. 
+    \item[Truncation] Removes the corners of the polyhedron by making cuts perpendicular to lines connecting the vertices to the centroid of the polyhedron.
+    \item[Rectification] A special case of truncation, where the cuts are made in such a way that they pass through the midpoints of the edges connecting the vertices.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth]{../Resources/Figs/op_truncation.pdf}
-        \caption{Trunctation and rectification of cube visualised \cite{wikimedia-cube-truncation}}
+        \caption{Truncation and rectification of cube visualized \cite{wikimedia-cube-truncation}}
         \label{fig:op_truncation}
     \end{figure}
-    \item[Expansion/Cantellation] All the facets are pulled out away from the centroid of the polyhedron by the same distance without rescaling. The empty spaces are then filled with regular polygons in the following way: Edges that used to be identical in the original polyhedron are connected by adding a new a square. All the vertices that corresponded to a single vertex $v$ in the original polyhedron are connected by adding a $d$-gon where $d=deg(v)$.
+    \item[Expansion/Cantellation] All facets are moved outward from the centroid of the polyhedron by the same distance, without rescaling. The resulting gaps are filled with regular polygons as follows: edges that were identical in the original polyhedron are connected by inserting a new square, and all vertices that correspond to a single vertex $v$ in the original polyhedron are connected by adding a $d$-gon, where $d = \deg(v)$.
 
-    This operation can also be described as cantellation. The difference is in how we imagine the process that takes us to the resulting shape. From the viewpoint of cantellation, we first bevel (cut off) the edges and then apply truncation on what remained from the original vertices.
+    This operation can also be described as cantellation. The difference is in how we imagine the process that takes us to the resulting shape. From the viewpoint of cantellation, we first bevel (cut off) the edges and then apply truncation to what remained from the original vertices.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth]{../Resources/Figs/op_cantellation.pdf}
-        \caption{Cube cantellation visualised \cite{wikimedia-cube-cantellation}}
+        \caption{Cube cantellation visualized \cite{wikimedia-cube-cantellation}}
         \label{fig:op_cantellation}
     \end{figure}
     \item[Snub] Is an application of expansion/cantellation followed by splitting each new square in half in such a way, that we can twist the facets of the original Platonic solid.
@@ -32,7 +32,7 @@ The Archimedean solids can then be obtained by performing one of the following n
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{Resources/Figs/op_snub_pdfa.pdf}
-    \caption{The twisting part of snub operation on cube visualised \cite{natal-polyhed-viewer}}
+    \caption{The twisting part of the snub operation on cube visualized \cite{natal-polyhed-viewer}}
     \label{fig:op_snub}
 \end{figure}
     
