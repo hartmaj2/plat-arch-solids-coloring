@@ -2,7 +2,7 @@
 
 \section{Computing chromatic numbers}
 
-The vertex, edge, and total chromatic numbers can be computed using the \textit{SageMath} \cite{sagemath} function \verb|chromatic_number| and the appropriate conversions from Chapter~\ref{chap:clring_conversions}. Computing Tables~\ref{tab:platonic-chrom-nums} and~\ref{tab:archimedean-chrom-nums} took less than five seconds on a computer with the Apple M2 chip.
+The vertex, edge, and total chromatic numbers can be computed using the \textit{SageMath} \cite{sagemath} function \verb|chromatic_number| and the appropriate conversions from Chapter~\ref{chap:clring_conversions}. Computing tables~\ref{tab:platonic-chrom-nums} and~\ref{tab:archimedean-chrom-nums} took less than five seconds on a computer with the Apple M2 chip.
 
 The following two tables provide an overview of vertex, edge, and total chromatic numbers, denoted by $\chi(G)$, $\chi'(G)$, and $\chi''(G)$ respectively, for the Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
 
@@ -50,11 +50,11 @@ truncated icosidodecahedron & 2 & 3 & 4 \\
 
 Note that from the tables above, we see that indeed all the listed graphs have $\chi(G) \leq 4$. This is a consequence of the famous \textit{Four Color Theorem} \cite{appelhaken76} for planar graphs.
 
-Using the result of \textit{Brooks' theorem} \cite{brooks41}, we know that the only graph among those listed for which $\chi(G) = \Delta(G) + 1$ should be the tetrahedron. This is indeed true, as can be verified by consulting Tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props}. 
+Using the result of \textit{Brooks' theorem} \cite{brooks41}, we know that the only graph among those listed for which $\chi(G) = \Delta(G) + 1$ should be the tetrahedron. This is indeed true, as can be verified by consulting tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props}. 
 
 By \textit{Vizing's theorem} \cite{misra92}, for every graph $G$ with maximum degree $\Delta(G)$, we have $\Delta(G) \leq \chi'(G) \leq \Delta(G) + 1$. This implies two classes of graphs. Class one contains graphs for which $\chi'(G) = \Delta(G)$, and class two contains those for which $\chi'(G) = \Delta(G) + 1$.
 
-To determine which class the graphs of Platonic and Archimedean solids belong to, we compare the degrees at each vertex of the solids as shown in Tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props} with their chromatic indices in the tables above. We observe that all the solids are of Vizing class one. Note that this is not the case for all planar graphs. In fact, there exist planar graphs with $\Delta(G)$ from 2 up to 5 such that they are class two.
+To determine which class the graphs of Platonic and Archimedean solids belong to, we compare the degrees at each vertex of the solids as shown in tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props} with their chromatic indices in the tables above. We observe that all the solids are of Vizing class one. Note that this is not the case for all planar graphs. In fact, there exist planar graphs with $\Delta(G)$ from 2 up to 5 such that they are class two.
 
 Similarly, for total coloring, Vizing's conjecture \cite{vizing68} states that for all graphs, we have $\Delta(G) + 1 \leq \chi''(G) \leq \Delta(G) + 2$. If the conjecture holds, then it again implies two classes of graphs. In the case of Platonic and Archimedean solids, it turns out that all of them except the tetrahedron belong to class with $\chi''(G) = \Delta(G) + 1$.
 
@@ -149,7 +149,7 @@ where $G - \{u,v\}$ is a graph with edge $\{u,v\}$ deleted and $G \cdot \{u,v\}$
 
 Using the formula above, we can no longer use the complete graph as a base case. Instead, we use the fact that for a tree on $n$ vertices $T_n$, we have $P(T_n,x) = x \cdot (x-1)^{n-1}$. This can be imagined by choosing a root vertex $r$ and directing all edges in $T_n$ toward $r$. Now we can color the vertices sequentially s.t. we start with $r$ and then we color direct children of $r$ and so on. To color $r$, we can use all $x$ colors. For any other vertex $v \neq r$, only the \textit{unique} parent $p$ of $v$ is colored which means that there are $x-1$ free colors for $v$. 
 
-Note that we assume that the graph $G$ with which we started is connected. This assumption comes naturally, as we are dealing only with graphs of 3-dimensional solids. We also assume that in the recursive step we always pick an edge that lies on a cycle. In this way, we will never create a disconnected graph. In practice, finding such an edge is done using DFS.
+Note that we assume that the graph $G$ with which we started is connected. This assumption comes naturally, as we are dealing only with graphs of 3-dimensional solids. We also assume that in the recursive step we always pick an edge that lies on a cycle. In this way, we will never create a disconnected graph. In practice, finding such edge is done using DFS.
 
 An algorithm that uses formula \ref{eqn:chrompoly-edge} and the above assumptions is implemented in the \textit{SageMath} \cite{sagemath} software under the name \verb|chromatic_polynomial|. The time complexity of this algorithm is exponential in $E(G)$, the number of edges of the graph $G$ on input. Using this algorithm, it is possible to calculate chromatic polynomials of Platonic and Archimedean graphs with at most $48$ edges in the order of minutes.
 
