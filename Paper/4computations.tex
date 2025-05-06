@@ -73,7 +73,7 @@ Consider this example: Given the graph of the tetrahedron $K_4$ and $X$, the fam
 
 In the following, let $\oplus$ denote the edge addition operation and let $\star$ denote the vertex identification operation. Let $G_{\oplus,\bar{e}}$ and $G_{\star,\bar{e}}$ describe the resulting graphs by applying the corresponding operation on some non-edge $\bar{e}$ of $G$. Let $\bar{E}$ denote the set of all non-edges of $G$.
 \begin{defn}[set of non-edges]
-    Let $G=(V,E)$ be a graph. We denote $\bar{E} = \bar{E}(G) = \binom{V}{2} \setminus E$ the set of non-edges of $G$.
+    Let $G=(V,E)$ be a graph. We denote by $\bar{E} = \bar{E}(G) = \binom{V}{2} \setminus E$ the set of non-edges of $G$.
 \end{defn}
 
 \begin{defn}[vertex identification operation]
@@ -85,7 +85,7 @@ In the following, let $\oplus$ denote the edge addition operation and let $\star
     In the above, we assume that $w \notin V$.
 \end{defn}
 
-Notice, for each $\bar{e} = \{u,v\} \in \bar{E}(G)$, it holds that $|\bar{E}(G_{\star,\bar{e}})| < |\bar{E}(G)|$. This is because $\{u,v\} \notin \bar{E}(G_{\star,\bar{e}})$, and also for the new vertex $w$, we have: 
+Notice that for each $\bar{e} = \{u,v\} \in \bar{E}(G)$, we have $|\bar{E}(G_{\star,\bar{e}})| < |\bar{E}(G)|$. This is because $\{u,v\} \notin \bar{E}(G_{\star,\bar{e}})$, and also for the new vertex $w$, we have: 
 \[
 \{w,x\} \in \bar{E}(G_{\star,\bar{e}}) \implies \{u,x\} \in \bar{E}(G) \wedge \{v,x\} \in \bar{E}(G)
 \]
@@ -93,19 +93,19 @@ In other words, the number of non-edges after the $\star$ operation always decre
 
 \begin{lemma}
 \label{lemma:non-edge_set_size}
-    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has size at most $n$. Then, for any non-edge $\bar{e} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that: 
+    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has a size of at most $n$. Then, for any non-edge $\bar{e} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that: 
     \[
     |\bar{E}(G_{o,\bar{e}})| = |\bar{E}(G)| - 1
     \]
 \end{lemma}
 
 \begin{proof}
-    Let us consider any $\bar{e} \in \bar{E}$. The operation $\oplus$ removes $\bar{e}$ from $\bar{E}$ and keeps the other non-edges intact, so the lemma holds for this case. For the case of the $\star$ operation, $\bar{E}(G_{\star,\bar{e}})$ will no longer contain the non-edge $\bar{e} = \{v,u\}$. Also, since the graph is complete $k$-partite, there exists no $w \in V(G) \setminus \{v,u\}$ such that $\{w,v\} \in \bar{E}$ or $\{w,u\} \in \bar{E}$. This means that after the $\star$ operation, all other non-edges will remain being non-edges. Also, the $\star$ operation does not create any new non-edges. This concludes the proof.
+    Consider any $\bar{e} \in \bar{E}$. The operation $\oplus$ removes $\bar{e}$ from $\bar{E}$ and keeps the other non-edges intact, so the lemma holds for this case. For the case of the $\star$ operation, $\bar{E}(G_{\star,\bar{e}})$ will no longer contain the non-edge $\bar{e} = \{v,u\}$. Also, since the graph is complete $k$-partite, there exists no $w \in V(G) \setminus \{v,u\}$ such that $\{w,v\} \in \bar{E}$ or $\{w,u\} \in \bar{E}$. This means that after the $\star$ operation, all other non-edges will remain being non-edges. Also, the $\star$ operation does not create any new non-edges. This concludes the proof.
 \end{proof}
 
 \begin{lemma}
 \label{lemma:indistinguishability}
-    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has size at most $n$. Then, for any two non-edges $\bar{e}, \bar{f} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that:
+    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has a size of at most $n$. Then, for any two non-edges $\bar{e}, \bar{f} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that:
     \[
     G_{o,\bar{e}} = G_{o,\bar{f}}
     \]
@@ -123,13 +123,13 @@ In other words, the number of non-edges after the $\star$ operation always decre
 \end{claim}
 
 \begin{proof}
-    We base our proof on using the recursive algorithm for computing chromatic polynomials using the formula \ref{eqn:chrom_poly_nonedge} above. Let $G_{o_1,\ldots,o_n}$ be a graph resulting from applying operations $o_1$ to $o_n$ in the corresponding order. By using Lemma \ref{lemma:indistinguishability} this graph is well defined, as the resulting graph is always the same irrespective of the particular choice of non-edges we apply the operations $o_1, \ldots,o_n$ to.
+    We base our proof on using the recursive algorithm for computing chromatic polynomials using the formula \ref{eqn:chrom_poly_nonedge} above. Let $G_{o_1,\ldots,o_n}$ be a graph resulting from applying the operations $o_1$ to $o_n$ in the corresponding order. By using Lemma \ref{lemma:indistinguishability} this graph is well defined, as the resulting graph is always the same irrespective of the particular choice of non-edges we apply the operations $o_1, \ldots,o_n$ to.
 
-    In every step of the recursion, we split the problem of calculating $P(G,x)$ to calculating the sum of $P(G_{\oplus,\bar{e}},x)$ and $P(G_{\star,\bar{e}},x)$. The recursion stops when there exists no non-edge $\bar{e} \in \bar{E}$ i.e. $G$ is a complete graph. By Lemma \ref{lemma:non-edge_set_size}, the recursion depth is equal to the number of non-edges of the original graph $K_{k\times 2}$ for every branch of the recursion. For $K_{k\times 2}$ this is equal to $k$. This means, that each branch of the recursion ends with a graph $G_{o_1,\ldots,o_k}$ where $o_i \in \{\oplus,\star\}$. For a sequence of operations $s=o_1,\ldots,o_k$ let us denote $s_{\star} = |\{ i : o_i   =\star\}|$ i.e. the number of vertex identification operations performed throughout the sequence. Then we have $G_s = K_{2k-s_{\star}}$ because every $\star$ operation removes exactly one vertex from the original graph. Let $S$ be the set of all possible sequences of $k$ operations. Then for $G=K_{k\times 2}$, we have $P(G,x)= \sum_{s\in S}P(G_s,x)$. This follows from the fact, that there is a one-to-one correspondence between branches of the recursion and sequences in $S$. We get the final formula by identifying all sequences with the same number of $\star$ operations, which yields the binomial coefficients in the final formula. 
+    In every step of the recursion, we divide the problem of calculating $P(G,x)$ into calculating the sum of $P(G_{\oplus,\bar{e}},x)$ and $P(G_{\star,\bar{e}},x)$. The recursion stops when there exists no non-edge $\bar{e} \in \bar{E}$ i.e. $G$ is a complete graph. By Lemma \ref{lemma:non-edge_set_size}, the recursion depth is equal to the number of non-edges of the original graph $K_{k\times 2}$ for every branch of the recursion. For $K_{k\times 2}$, this is equal to $k$. This means that each branch of the recursion ends with a graph $G_{o_1,\ldots,o_k}$ where $o_i \in \{\oplus,\star\}$. For a sequence of operations $s=o_1,\ldots,o_k$ let us denote $s_{\star} = |\{ i : o_i   =\star\}|$ i.e. the number of vertex identification operations performed throughout the sequence. Then we have $G_s = K_{2k-s_{\star}}$ because every $\star$ operation removes exactly one vertex from the original graph. Let $S$ be the set of all possible sequences of $k$ operations. Then for $G=K_{k\times 2}$, we have $P(G,x)= \sum_{s\in S}P(G_s,x)$. This follows from the fact that there is a one-to-one correspondence between branches of the recursion and sequences in $S$. We obtain the final formula by identifying all sequences with the same number of $\star$ operations, which produces the binomial coefficients in the final formula. 
 \end{proof}
 
 
-A particular example that demonstrates the claim above is the graph of octahedron $K_{2,2,2} = K_{3 \times 2}$. According to formula \ref{eqn:chromatic-pascal}, we have \[ P(K_{3 \times 2},x) = P(K_6,x)+3P(K_5,x) + 3P(K_4,x)+P(K_3,x)\] as illustrated in the figure below.
+A particular example that demonstrates the claim above is the graph of the octahedron $K_{2,2,2} = K_{3 \times 2}$. According to formula \ref{eqn:chromatic-pascal}, we have \[ P(K_{3 \times 2},x) = P(K_6,x)+3P(K_5,x) + 3P(K_4,x)+P(K_3,x)\] as illustrated in the figure below.
 
 \begin{figure}[H]
     \centering
@@ -139,7 +139,7 @@ A particular example that demonstrates the claim above is the graph of octahedro
 
 \section{Computing chromatic polynomials of Platonic and Archimedean solids}\label{sec:comp-chrompolys}
 
-Because the graphs of Platonic and Archimedean solids are all planar, it follows, that they are also sparse. Thus, it is not practical to use the recursive formula \ref{eqn:chrom_poly_nonedge} which has complete graphs as a base case. We can instead simply reorganize the terms and instead use the following formula:
+Because the graphs of Platonic and Archimedean solids are all planar, it follows that they are also sparse. Thus, it is not practical to use the recursive formula \ref{eqn:chrom_poly_nonedge} which has complete graphs as the base case. We can instead simply reorganize the terms and use the following formula:
 
 \begin{equation}\label{eqn:chrompoly-edge}
     P(G,x) = P(G - \{u,v\},x) - P(G \cdot \{u,v\},x)
@@ -147,15 +147,15 @@ Because the graphs of Platonic and Archimedean solids are all planar, it follows
 
 where $G - \{u,v\}$ is a graph with edge $\{u,v\}$ deleted and $G \cdot \{u,v\}$ a graph with edge $\{u,v\}$ contracted. 
 
-Using the formula above, we can no longer use the complete graph as a base case. Instead, we use the fact that for a tree on $n$ vertices $T_n$, we have $P(T_n,x) = x \cdot (x-1)^{n-1}$. This can be imagined by choosing a root vertex $r$ and directing all edges in $T_n$ towards $r$. Now we can color the vertices sequentially s.t. we start with $r$ and then we color direct children of $r$ and so on. To color $r$, we can use all $x$ colors. For any other vertex $v \neq r$, only the \textit{unique} parent $p$ of $v$ is colored which means that there are $x-1$ free colors for $v$. 
+Using the formula above, we can no longer use the complete graph as a base case. Instead, we use the fact that for a tree on $n$ vertices $T_n$, we have $P(T_n,x) = x \cdot (x-1)^{n-1}$. This can be imagined by choosing a root vertex $r$ and directing all edges in $T_n$ toward $r$. Now we can color the vertices sequentially s.t. we start with $r$ and then we color direct children of $r$ and so on. To color $r$, we can use all $x$ colors. For any other vertex $v \neq r$, only the \textit{unique} parent $p$ of $v$ is colored which means that there are $x-1$ free colors for $v$. 
 
-Note, that we assume that the graph $G$ that we start with is connected. This assumption comes naturally, as we are dealing only with graphs of 3-dimensional solids. We also assume, that in the recursive step, we always pick an edge that lies on a cycle. This way, we will never create a disconnected graph. Finding such edge is in practice done using DFS.
+Note that we assume that the graph $G$ with which we started is connected. This assumption comes naturally, as we are dealing only with graphs of 3-dimensional solids. We also assume that in the recursive step we always pick an edge that lies on a cycle. In this way, we will never create a disconnected graph. In practice, finding such an edge is done using DFS.
 
-An algorithm, that uses formula \ref{eqn:chrompoly-edge} and the assumptions above is implemented in the \textit{SageMath} \cite{sagemath} software under the name \verb|chromatic_polynomial|. The time complexity of this algorithm is exponential in $E(G)$, the number of edges of the graph $G$ on input. By using this algorithm, it is possible to calculate chromatic polynomials of Platonic and Archimedean graphs with at most $48$ edges in the order of minutes.
+An algorithm that uses formula \ref{eqn:chrompoly-edge} and the above assumptions is implemented in the \textit{SageMath} \cite{sagemath} software under the name \verb|chromatic_polynomial|. The time complexity of this algorithm is exponential in $E(G)$, the number of edges of the graph $G$ on input. Using this algorithm, it is possible to calculate chromatic polynomials of Platonic and Archimedean graphs with at most $48$ edges in the order of minutes.
 
-A more detailed description, of how the algorithm is implemented, can be found in a technical report by Read \cite{read1987chromatic}.
+A more detailed description of how the algorithm is implemented can be found in a technical report by Read \cite{read1987chromatic}.
 
-In the table below, we provide examples of chromatic polynomials we computed.
+In the table below, we provide examples of the chromatic polynomials we computed.
 
 \begin{table}[H]
 \centering
@@ -173,11 +173,11 @@ cube & $x^{8} - 12x^{7} + 66x^{6} - 214x^{5} + 441x^{4} - 572x^{3} + 423x^{2} - 
 \end{table}
 
 
-We are able to calculate these polynomials also for other solids. Nonetheless, the polynomials have a property, that the leading exponent is equal to the number of vertices of the graph. This results in long polynomials which we provide in section \ref{sec:more-chrompolys} of the Appendix. On the other hand, we can get a sense on the number of colorings of our graphs also by evaluating the polynomials at certain points. We do this in the following section.
+We are also able to calculate these polynomials for other solids. Nevertheless, these polynomials have the property that the leading exponent is equal to the number of vertices of the graph. This results in long polynomials, which we provide in Section \ref{sec:more-chrompolys} of the appendix. On the other hand, we can also get a sense of the number of colorings of our graphs by evaluating the polynomials at certain points. We do this in the following section.
 
 \section{Evaluating the chromatic polynomial}
 
-Below, we provide tables with evaluations of the chromatic polynomial of all the Platonic solids and some of the Archimedean solids. The reason for not including all Archimedean solids is mentioned in section \ref{sec:comp-chrompolys}.
+Below, we provide tables with evaluations of the chromatic polynomial of all the Platonic solids and some of the Archimedean solids. The reason for not including all Archimedean solids is mentioned in Section \ref{sec:comp-chrompolys}.
 
 \begin{table}[H]
 \centering
@@ -212,7 +212,7 @@ truncated octahedron & $2$ & $378\,978$ & $\approx 10^{10}$ & $\approx 10^{13}$ 
 \label{tab:archimedean-chrompolys-evals}
 \end{table}
 
-It is important to note, that in table \ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the number of colorings with exactly $n$ colors but with \textbf{at most} $n$ colors. This means, that colorings that used only a proper subset of the $n$ available colors are counted as well. Sometimes, we would like to avoid counting these colorings. For this reason, we show a method to arrive at the number of colorings using \textbf{exactly} n colors, in the section below.
+It is important to note that in Table \ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the number of colorings with exactly $n$ colors but with \textbf{at most} $n$ colors. This means that colorings that used only a proper subset of the $n$ available colors are counted as well. Sometimes, we would like to avoid counting these colorings. For this reason, we show a method to arrive at the number of colorings using \textbf{exactly} n colors, in the section below.
 
 \section{Number of colorings using exactly n colors}
 \label{sec:num-clrings-exactly-n-clrs}
@@ -221,19 +221,19 @@ It is important to note, that in table \ref{tab:platonic-polys-evals} above, in 
     Let $P^*(G,n)$ be defined as the number of colorings of a graph $G$ using \textbf{exactly} $n$ colors.
 \end{defn}
 
-The number $P^*(G,n)$ can be calculated using a recursive formula, with the base case $P^*(G,\chi(G))=P(G,\chi(G))$. We introduce the formula in the following claim:
+The number $P^*(G,n)$ can be calculated using a recursive formula, with the base case $P^*(G,\chi(G))=P(G,\chi(G))$. We introduce the formula in the following claim.
 
 \begin{claim}\label{clm:exactly-n-colors}
-    Let $G$ be a graph, $n$ positive integer. Then:
+    Let $G$ be a graph, and $n$ be a positive integer. Then:
     \begin{equation}\label{eqn:exactly-n-colors}
     P^*(G,n) = P(G,n) - \sum_{i=\chi(G)}^{n-1}\binom{n}{i}P^*(G,i)    
     \end{equation}
 \end{claim}
 
 \begin{proof}
-    For the base case, where $n\le \chi(G)$, it straightforwardly holds that $P^*(G,\chi(G))=P(G,\chi(G))$, since there exist no colorings that use less than $\chi(G)$ colors.
+    For the base case, where $n\le \chi(G)$, we have straightforwardly $P^*(G,\chi(G))=P(G,\chi(G))$, since there exist no colorings that use less than $\chi(G)$ colors.
     
-    For the recursive case, let $n>\chi(G)$ be the number for which we want to calculate $P^*(G,n)$. We proceed by taking the value $P(G,n)$ and noticing, that this value also calculates colorings using $n-1$, $n-2$, \ldots \ , $\chi(G)$ colors which we want to exclude. For $i \in \{\chi(G),\ldots,n-1\}$ how many colorings using $i$ colors have we calculated? A naive approach would be to simply subtract the value $P^*(G,i)$. The problem with this approach is, that when we are allowed to use $n$ colors and have to use exactly $i$ of them, we can choose the set of $i$ colors to use in $\binom{n}{i}$ ways. Note that indeed all of the $\binom{n}{i}$ colorings use at most $n$ colors and are pairwise different. Using this observation, we can see that the correct value to subtract is $\binom{n}{i}P^*(G,i)$ for each $i$.
+    For the recursive case, let $n>\chi(G)$ be the number for which we want to calculate $P^*(G,n)$. We proceed by taking the value $P(G,n)$ and noticing that this value also calculates colorings using $n-1$, $n-2$, \ldots, $\chi(G)$ colors that we want to exclude. For $i \in \{\chi(G),\ldots,n-1\}$, how many colorings using $i$ colors have we calculated? A naive approach would be to simply subtract the value $P^*(G,i)$. The problem with this approach is that when we are allowed to use $n$ colors and have to use exactly $i$ of them, we can choose the set of $i$ colors to use in $\binom{n}{i}$ ways. Note that indeed all of the $\binom{n}{i}$ colorings use at most $n$ colors and are pairwise different. Using this observation, we can see that the correct value to subtract is $\binom{n}{i}P^*(G,i)$ for each $i$.
 \end{proof}
 
 Now, with formula \ref{eqn:exactly-n-colors} above in hand, we can use results from tables \ref{tab:platonic-chrompolys-evals} and \ref{tab:archimedean-chrompolys-evals} to compute the numbers of colorings using \textbf{exactly} n colors. See tables below:
@@ -273,11 +273,11 @@ truncated octahedron & $2$ & $378\,972$ & $\approx 10^{10}$ & $\approx 10^{13}$ 
 
 \section{Limitations of the chromatic polynomial}
 
-The results we obtained above using the chromatic polynomial have two important limitations that arise because of the way, that difference of two colorings is defined.
+The results we obtained above using the chromatic polynomial have two important limitations that arise because of the way the difference of two colorings is defined.
 
 \subsection{Counting up to symmetries}
 
-Firstly, it may happen, that we consider two colorings as different even though they are just different rotations or reflections of each other. See example of such colorings below:
+Firstly, it may happen that we consider two colorings as different even though they are just different rotations or reflections of each other. See examples of such colorings below:
 
 \begin{figure}[H]
     \centering
@@ -290,7 +290,7 @@ If we are interested only in colorings different up to symmetries, we need to us
 
 \subsection{Counting up to labels of independent sets}
 
-Second limitation arises, when we need to view the colorings as partitions into independent sets irrespective of the particular names, or values, of the colors. Then, there can be cases of partitions which we count multiple times, because there exist different non-equal ways to label the colors. In other words, an independent set that is given the color red will be considered as different from the same independent set when it is given the color blue. See illustration of this problem below:
+The second limitation arises when we need to view the colorings as partitions into independent sets irrespective of the particular names, or values, of the colors. Then, there can be cases of partitions which we count multiple times, because there exist different non-equal ways to label the colors. In other words, an independent set that is given the color red will be considered as different from the same independent set when it is given the color blue. See an illustration of this problem below:
 
 \begin{figure}[H]
     \centering
@@ -299,7 +299,7 @@ Second limitation arises, when we need to view the colorings as partitions into 
     \label{fig:cube-clrings-same-partition}
 \end{figure}
 
-The problem with counting independent sets multiple times can be solved using method described in chapter \ref{chap:num-partitions-into-indep-sets}. 
+The problem of counting independent sets multiple times can be solved using the method described in Chapter \ref{chap:num-partitions-into-indep-sets}. 
 
-Also, note that the two colorings in figure \ref{fig:cube-clrings-same-partition} above are different up to symmetries, so the problems mentioned above are indeed different and have to be handled separately.
+Also, note that the two colorings in Figure \ref{fig:cube-clrings-same-partition} above are different up to symmetries, so the problems mentioned above are indeed different and must be handled separately.
 
