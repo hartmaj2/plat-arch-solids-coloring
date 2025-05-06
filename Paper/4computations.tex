@@ -2,9 +2,9 @@
 
 \section{Computing chromatic numbers}
 
-The vertex, edge and total chromatic numbers can be computed using the \textit{SageMath} \cite{sagemath} function called \verb|chromatic_number| and appropriate conversions from chapter \ref{chap:clring_conversions}. Computing tables \ref{tab:platonic-chrom-nums} and \ref{tab:archimedean-chrom-nums} took less than five seconds on a computer with the Apple M2 chip.
+The vertex, edge, and total chromatic numbers can be computed using the \textit{SageMath} \cite{sagemath} function \verb|chromatic_number| and the appropriate conversions from Chapter~\ref{chap:clring_conversions}. Computing Tables~\ref{tab:platonic-chrom-nums} and~\ref{tab:archimedean-chrom-nums} took less than five seconds on a computer with the Apple M2 chip.
 
-The following two tables provide overview of vertex, edge and total chromatic numbers, denoted by $\chi(G)$, $\chi'(G)$ and $\chi''(G)$ respectively, for Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
+The following two tables provide an overview of vertex, edge, and total chromatic numbers, denoted by $\chi(G)$, $\chi'(G)$, and $\chi''(G)$ respectively, for the Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
 
 \begin{table}[H]
 \centering
@@ -48,26 +48,26 @@ truncated icosidodecahedron & 2 & 3 & 4 \\
 \label{tab:archimedean-chrom-nums}
 \end{table}
 
-Note, that from the tables above, we see that indeed all the above graphs have $\chi(G)$ at most 4. This is due to the famous \textit{Four Color Theorem} \cite{appelhaken76} for planar graphs.
+Note that from the tables above, we see that indeed all the listed graphs have $\chi(G) \leq 4$. This is a consequence of the famous \textit{Four Color Theorem} \cite{appelhaken76} for planar graphs.
 
-Note that by using the results of the \textit{Brook's theorem} \cite{brooks41}, we have that the only graph from the table above s.t. it has $\chi(G) = \Delta(G) + 1$ should be the tetrahedron. This observation is indeed true, as we can check by consulting tables \ref{tab:platonic-basic-props} and \ref{tab:archimedean-basic-props}. 
+Using the result of \textit{Brooks' theorem} \cite{brooks41}, we know that the only graph among those listed for which $\chi(G) = \Delta(G) + 1$ should be the tetrahedron. This is indeed true, as can be verified by consulting Tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props}. 
 
-As a consequence of \textit{Vizing's theorem} \cite{misra92}, for every graph $G$ with maximum degree $\Delta(G)$, we have $\Delta(G) \leq \chi'(G) \leq \Delta(G) + 1$. This implies two classes of graphs. Class one are graphs s.t. $\chi'(G) = \Delta(G)$. Class two are then graphs s.t. $\chi'(G) = \Delta(G) + 1$. What class are graphs of Platonic and Archimedean solids?
+By \textit{Vizing's theorem} \cite{misra92}, for every graph $G$ with maximum degree $\Delta(G)$, we have $\Delta(G) \leq \chi'(G) \leq \Delta(G) + 1$. This implies two classes of graphs. Class one contains graphs for which $\chi'(G) = \Delta(G)$, and class two contains those for which $\chi'(G) = \Delta(G) + 1$.
 
-Let us compare the degrees at each vertex of the solids as shown in tables \ref{tab:platonic-basic-props} and \ref{tab:archimedean-basic-props} with their calculated chromatic indices in the tables above. We can observe, that all the solids are of Vizing class one. Note that this is not the case for all planar graphs. In fact, there exist planar graphs with $\Delta(G)$ from 2 up to 5 such that they are class two.
+To determine which class the graphs of Platonic and Archimedean solids belong to, we compare the degrees at each vertex of the solids as shown in Tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props} with their chromatic indices in the tables above. We observe that all the solids are of Vizing class one. Note that this is not the case for all planar graphs. In fact, there exist planar graphs with $\Delta(G)$ from 2 up to 5 such that they are class two.
 
-Similarly, for total coloring, Vizing's conjecture \cite{vizing68} states, that for all graphs, we have $\Delta(G) + 1 \leq \chi''(G) \leq \Delta(G) + 2$. If the conjecture holds, then it again implies two classes of graphs. In the case of Platonic and Archimedean solids, it turns out, that all of them except the tetrahedron belong to class with $\chi''(G) = \Delta(G) + 1$.
+Similarly, for total coloring, Vizing's conjecture \cite{vizing68} states that for all graphs, we have $\Delta(G) + 1 \leq \chi''(G) \leq \Delta(G) + 2$. If the conjecture holds, then it again implies two classes of graphs. In the case of Platonic and Archimedean solids, it turns out that all of them except the tetrahedron belong to class with $\chi''(G) = \Delta(G) + 1$.
 
 \section{Formula for computing chromatic polynomials}
 
-Chromatic polynomial of any graph $G=(V,E)$ can be calculated recursively using the following fact: When we fix two vertices $u$, $v$ s.t. $\{u,v\} \notin E$, we can split all colorings of $G$ into two disjoint groups. Let $d$ be the number of colorings of $G$ in which $u$ and $v$ are colored by different color and let $s$ be the number of colorings in which $u$ and $v$ are colored by same colors. Then the number of all colorings $P(G,x) = d + s$. Let $G+\{u,v\}$ be graph $G$ s.t. its set of edges is $E \cup \{u,v\}$. Let $G \cdot \{u,v\}$ be the graph $G + \{u,v\}$ where the edge $\{u,v\}$ is contracted into a single vertex. Then we can see that $d = P(G + \{u,v\},x)$ and $s = P(G \cdot \{u,v\},x)$. This fact yields the following formula \cite{chartrand2019}:
+The chromatic polynomial of any graph $G = (V, E)$ can be computed recursively using the following fact: When we fix two vertices $u$, $v$ such that $\{u,v\} \notin E$, we can split all colorings of $G$ into two disjoint groups. Let $d$ be the number of colorings of $G$ in which $u$ and $v$ are colored by different color and let $s$ be the number of colorings in which $u$ and $v$ are colored by same colors. Then the number of all colorings $P(G,x) = d + s$. Let $G+\{u,v\}$ be graph $G$ such that its set of edges is $E \cup \{u,v\}$. Let $G \cdot \{u,v\}$ be the graph $G + \{u,v\}$ where the edge $\{u,v\}$ is contracted into a single vertex. Then we can see that $d = P(G + \{u,v\},x)$ and $s = P(G \cdot \{u,v\},x)$. This fact yields the following formula \cite{chartrand2019}:
 \begin{equation}\label{eqn:chrom_poly_nonedge}
  P(G,x) = P(G + \{u,v\},x) + P(G \cdot \{u,v\},x)
 \end{equation}
 
-The formula above serves as the recursive case of our computation i.e. when the graph has some non-edge. In the other case, the base case, the graph has no non-edges and thus it is a complete graph $K_n$ for some $n \in \mathbb{N}$. Then the chromatic polynomial is $P(K_n,x) = x \cdot (x-1) \cdot \ldots \cdot (x-n+1)$.
+The formula above serves as the recursive case of our computation, i.e., when the graph has some non-edge. In the other case—the base case—the graph has no non-edges and thus is a complete graph $K_n$ for some $n \in \mathbb{N}$. Then the chromatic polynomial is $P(K_n,x) = x \cdot (x-1) \cdot \ldots \cdot (x-n+1)$.
 
-Consider this example: Given the graph of tetrahedron $K_4$ and $X$ the family of proper vertex colorings. The chromatic polynomial $P_{X}(K_4,x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1,v_2,v_3,v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors left to use for the first vertex. With each other vertex, we have one less color available to use. 
+Consider this example: Given the graph of the tetrahedron $K_4$ and $X$, the family of proper vertex colorings, the chromatic polynomial is $P_{X}(K_4,x) = x \cdot (x-1) \cdot (x-2) \cdot (x-3)$. This can be seen if we label the vertices $v_1, v_2, v_3, v_4$ and imagine coloring them sequentially in the order of their labels. We have exactly $x$ colors available for the first vertex. For each subsequent vertex, we have one fewer color available to use.
 
 \section{Chromatic polynomial of complete k-partite graphs with partition size 2}
 
@@ -77,7 +77,7 @@ In the following, let $\oplus$ denote the edge addition operation and let $\star
 \end{defn}
 
 \begin{defn}[vertex identification operation]
-    For a graph $G=(V,E)$ and a non-edge $\{u,v\}$ we define the resulting graph $G_{\star,\{u,v\}} = (V',E')$ as follows:
+    For a graph $G=(V,E)$ and a non-edge $\{u,v\}$, we define the resulting graph $G_{\star,\{u,v\}} = (V',E')$ as follows:
     \begin{enumerate}
         \item $V' := (V \setminus \{u,v\}) \cup \{w\}$
         \item $E' = (\binom{V'}{2} \cap E) \cup \{\{w,x\} : \{u,x\} \in E \vee \{v,x\} \in E\}$
@@ -85,26 +85,34 @@ In the following, let $\oplus$ denote the edge addition operation and let $\star
     In the above, we assume that $w \notin V$.
 \end{defn}
 
-Notice, for each $\bar{e} = \{u,v\}\in \bar{E}(G)$ it holds that $|\bar{E}(G_{\star,\bar{e}})| < |\bar{E}(G)|$. This is because $\{u,v\} \notin \bar{E}(G_{\star,\bar{e}})$ and also for the new vertex $w$, we have: \[\{w,x\} \in \bar{E}(G_{\star,\bar{e}}) \implies \{u,x\} \in \bar{E}(G) \wedge \{v,x\} \in \bar{E}(G)\]
-In other words, the number of non-edges after $\star$ operation always decreases.
+Notice, for each $\bar{e} = \{u,v\} \in \bar{E}(G)$, it holds that $|\bar{E}(G_{\star,\bar{e}})| < |\bar{E}(G)|$. This is because $\{u,v\} \notin \bar{E}(G_{\star,\bar{e}})$, and also for the new vertex $w$, we have: 
+\[
+\{w,x\} \in \bar{E}(G_{\star,\bar{e}}) \implies \{u,x\} \in \bar{E}(G) \wedge \{v,x\} \in \bar{E}(G)
+\]
+In other words, the number of non-edges after the $\star$ operation always decreases.
 
 \begin{lemma}
 \label{lemma:non-edge_set_size}
-    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has size at most $n$. Then for any non-edge $\bar{e} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$ we have that: \[|\bar{E}(G_{o,\bar{e}})| = |\bar{E}(G)| - 1\]
+    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has size at most $n$. Then, for any non-edge $\bar{e} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that: 
+    \[
+    |\bar{E}(G_{o,\bar{e}})| = |\bar{E}(G)| - 1
+    \]
 \end{lemma}
 
 \begin{proof}
-    Let us consider any $\bar{e} \in \bar{E}$. The operation $\oplus$ removes $\bar{e}$ from $\bar{E}$ and keeps the other non-edges intact, so the lemma holds for this case. For the case of $\star$ operation, $\bar{E}(G_{\star,\bar{e}})$ will no longer contain the non-edge $\bar{e}=\{v,u\}$. Also, since the graph is complete $k$-partite, there exists no $w \in V(G) \setminus \{v,u\}$ s.t. $\{w,v\} \in \bar{E}$ or $\{w,u\} \in \bar{E}$. This means that after the $\star$ operation, all other non-edges will stay being non-edges. Also the $\star$ operation does not create any new non-edges. This concludes the proof.
+    Let us consider any $\bar{e} \in \bar{E}$. The operation $\oplus$ removes $\bar{e}$ from $\bar{E}$ and keeps the other non-edges intact, so the lemma holds for this case. For the case of the $\star$ operation, $\bar{E}(G_{\star,\bar{e}})$ will no longer contain the non-edge $\bar{e} = \{v,u\}$. Also, since the graph is complete $k$-partite, there exists no $w \in V(G) \setminus \{v,u\}$ such that $\{w,v\} \in \bar{E}$ or $\{w,u\} \in \bar{E}$. This means that after the $\star$ operation, all other non-edges will remain being non-edges. Also, the $\star$ operation does not create any new non-edges. This concludes the proof.
 \end{proof}
 
 \begin{lemma}
 \label{lemma:indistinguishability}
-    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has size at most $n$. Then for any two non-edges $\bar{e},\bar{f} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$ we have that: 
-    \[ G_{o,\bar{e}} = G_{o,\bar{f}}\]
+    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has size at most $n$. Then, for any two non-edges $\bar{e}, \bar{f} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that:
+    \[
+    G_{o,\bar{e}} = G_{o,\bar{f}}
+    \]
 \end{lemma}
 
 \begin{proof}
-    Both $\bar{e}$ and $\bar{f}$ are non-edges between vertices from partitions of size $2$. Such partitions are all indistinguishable so the resulting graph is the same in both case $G_{o,\bar{e}}$ and $G_{o,\bar{f}}$.
+    Both $\bar{e}$ and $\bar{f}$ are non-edges between vertices from partitions of size $2$. Such partitions are all indistinguishable, so the resulting graph is the same in both cases $G_{o,\bar{e}}$ and $G_{o,\bar{f}}$.
 \end{proof}
 
 \begin{claim}
