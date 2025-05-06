@@ -49,17 +49,17 @@ Again, note how the definition of $E_I$ corresponds to the coloring rule \ref{eq
     \label{fig:cubical_incid_graph}
 \end{figure}
 
-Now we have all the necessary tools to define a \textit{total graph}, which has the property, that its vertex coloring corresponds exactly to the total coloring of the original graph.
+Now we have all the necessary tools to define a \textit{total graph}, which has the property that its vertex coloring corresponds exactly to the total coloring of the original graph.
 
 \begin{defn}[total graph]
-    Let $G = (V, E)$ be a graph. Let $G_L = (V_L, E_L)$ and $G_I = (V_I, E_I)$ be its line graph and incidence graphs respectively. We define its \emph{total graph} $G_T = (V_T, E_T)$ as follows:
+    Let $G = (V, E)$ be a graph. Let $G_L = (V_L, E_L)$ and $G_I = (V_I, E_I)$ be its line graph and incidence graphs, respectively. We define its \emph{total graph} $G_T = (V_T, E_T)$ as follows:
     \begin{enumerate}
         \item $V_T := V_I$
         \item $E_T := E \cup E_L \cup E_I$
     \end{enumerate}
 \end{defn}
 
-In natural language, we start with the vertices and edges of the incidence graph. Then, we split the vertices of the incidence graph into two disjoint sets: the set of vertices of the original graph and the set of vertices of the line graph. In the former set, we connect any two vertices that are adjacent in the original graph. In the latter, we do the same using adjacency in the line graph.
+In natural language, we start with the vertices and edges of the incidence graph. Then, we split the vertices of the incidence graph into two disjoint sets: the set of vertices of the original graph and the set of vertices of the line graph. In the former set, we connect any two vertices that are adjacent in the original graph. In the latter case, we do the same using adjacency in the line graph.
 
 \begin{figure}[H]
     \centering

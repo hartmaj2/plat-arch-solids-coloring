@@ -1,21 +1,21 @@
 \chapter{Number of colorings up to symmetries and the orbital chromatic polynomial}
 \label{chap:clrings-up-to-symmetries}
 
-In the previous chapters, we computed, how many proper colorings of Platonic and Archimedean solids exists using the notion of the chromatic polynomial. In that approach, we didn't take into account, that some colorings can be obtained from the other ones by simply rotating or reflecting the solid i.e. by applying some geometric transformation on it. When one coloring can be obtained from another one using some geometric transformation, then it makes good sense to regard these two colorings as identical. An analogy from chemistry is, that the properties of a molecule do not change, when we rotate it. Thus it is reasonable, to consider all its rotations as being the same molecule. 
+In the previous chapters, we computed how many proper colorings of Platonic and Archimedean solids exist using the notion of the chromatic polynomial. In that approach, we did not take into account that some colorings can be obtained from the other ones simply by rotating or reflecting the solid, that is, by applying some geometric transformation to it. When one coloring can be obtained from another using some geometric transformation, then it makes good sense to regard these two colorings as identical. An analogy from chemistry is that the properties of a molecule do not change when we rotate it. Thus, it is reasonable to consider all its rotations as being the same molecule. 
 
-In order to be able to say, which colorings should be considered identical, we need to define some kind of equivalence relation, that will group all the different transformations of same coloring together. In mathematics, we call this relation a \textit{transitivity relation} and its equivalence classes are typically referred to as its \textit{orbits}. The transitivity relation is defined on a set of objects, in our case the colorings, and a group that acts on these objects, the transformations.
+In order to be able to say which colorings should be considered identical, we need to define some kind of equivalence relation that will group all the different transformations of the same coloring together. In mathematics, we call this relation a \textit{transitivity relation} and its equivalence classes are typically referred to as its \textit{orbits}. The transitivity relation is defined on a set of objects, in our case the colorings, and a group that acts on these objects, the transformations.
 
 Using the terminology above, our task boils down to counting the number of orbits of the transitivity relation, defined on colorings of our solid using the group of transformations of the solid.
 
-To be able to use the transformations of the solids in our computations, we need a mathematical way of describing them. As we are working with graphs of the solids, we then also need to be able to describe these transformations as transformations on these graphs.
+To be able to use the transformations of the solids in our computations, we need a mathematical way of describing them. As we are working with graphs of the solids, we need to be able to describe these transformations as transformations on these graphs.
 
 
 \section{Preliminaries}
 
-It turns out, that transformations of the solid that we consider correspond exactly to automorphisms of the corresponding graph of the solid.
+It turns out that transformations of the solid that we consider correspond exactly to automorphisms of the corresponding graph of the solid.
 
 \begin{defn}[automorphism]
-    Let $G=(V,E)$ be a graph. Then a function $f:V \rightarrow V$ is an \emph{automorphism} of $G$ if it is a bijection and for every $\{u,v\} \in E$ we have that $\{f(u),f(v)\} \in E$.
+    Let $G=(V,E)$ be a graph. Then a function $f:V \rightarrow V$ is an \emph{automorphism} of $G$ if it is a bijection and for every $\{u,v\} \in E$ we have $\{f(u),f(v)\} \in E$.
 \end{defn}
 
 For a graph $G$, we will denote the set of all automorphisms of $G$ by $\Aut(G)$.
@@ -29,60 +29,60 @@ For a graph $G$, we will denote the set of all automorphisms of $G$ by $\Aut(G)$
     \end{enumerate}
 \end{defn}
 
-An important observation is, that for a graph $G$, the set of all automorphisms $\Aut(G)$ together with the function composition operation forms a group. 
+An important observation is that for a graph $G$, the set of all automorphisms $\Aut(G)$ together with the function composition operation forms a group. 
 
 Before we define can define the transitivity relation, we also need to properly define the set of elements on which this relation will be defined:
 
 \begin{defn}[colorings with up to n colors]
-    For a graph $G$, positive integer $n$ and a family of colorings $C$, we define the set $C_n \subseteq C$ the set of all proper colorings of $G$ by at most $n$ colors.
+    For a graph $G$, a positive integer $n$, and a family of colorings $C$, we define the set $C_n \subseteq C$ the set of all proper colorings of $G$ by at most $n$ colors.
 \end{defn}
 
 The definition above restricts the colorings we will be working with to finite sets only. With the notion of automorphism and colorings in hand, we can define the transitivity relation for the colorings.
 
 \begin{defn}(transitivity relation)
-        Let $G=(V,E)$ be a graph and $n\in \mathbb{N}$. Let $c_1,c_2 \in C_n$. We define $c_1 \sim c_2$ whenever exists an automorphism $\alpha \in \Aut(G) : \forall v \in V : c_1(v)=c_2(\alpha(v))$.
+        Let $G=(V,E)$ be a graph, and $n\in \mathbb{N}$. Let $c_1,c_2 \in C_n$. We define $c_1 \sim c_2$ whenever there exists an automorphism $\alpha \in \Aut(G) : \forall v \in V : c_1(v)=c_2(\alpha(v))$.
 \end{defn}
 
-Less formally, two colorings are related, when we can find an automorphism that maps vertices of any color in the first coloring, to vertices of the same color in the second coloring. 
+Less formally, two colorings are related when we can find an automorphism that maps vertices of any color in the first coloring to vertices of the same color in the second coloring. 
 
-We can observe, that for any coloring $c$ of $G$, we have $c \sim c$ by simply taking the identity automorphism $id \in \Aut(G)$. So the transitivity relation is \textit{reflexive}. It is also \textit{symmetric} by using the fact, that if $c_1 \sim c_2$ by existence of automorphism $\alpha$, then we can use $\alpha^{-1}$ to show that $c_2 \sim c_1$ as well. Lastly, we can also show that the relation $\sim$ is \textit{transitive}. This comes from the fact, that composing two automorphisms $\alpha$ and $\psi$ yields an automorphism. So in fact, the transitivity relation defined above is an eqivalence relation.
+We can observe that for any coloring $c$ of $G$, we have $c \sim c$ simply by taking the identity automorphism $id \in \Aut(G)$. So, the transitivity relation is \textit{reflexive}. It is also \textit{symmetric} by using the fact, that if $c_1 \sim c_2$ by the existence of automorphism $\alpha$, then we can use $\alpha^{-1}$ to show that $c_2 \sim c_1$ also. Lastly, we can also show that the relation $\sim$ is \textit{transitive}. This comes from the fact that composing two automorphisms $\alpha$ and $\psi$ yields an automorphism. So, in fact, the transitivity relation defined above is an equivalence relation.
 
 \begin{defn}(orbit)
-    For $n \in \mathbb{N}$ and a coloring $c \in C_n$ of some graph $G$ we will call the eqivalence class $[c]_{\sim}$ an \emph{orbit} of $c$ and denote it by $\Orb(c)$.
+    For $n \in \mathbb{N}$ and a coloring $c \in C_n$ of some graph $G$ we will call the equivalence class $[c]_{\sim}$ an \emph{orbit} of $c$ and denote it by $\Orb(c)$.
 \end{defn}
 
 \begin{defn}(set of all orbits)
-    For $n \in \mathbb{N}$ and a set $C_n$ of proper colorings of graph $G$, we denote $C_n/_\sim$ the set of all eqivalence classes of the transitivity relation $\sim$ on $C_n$.
+    For $n \in \mathbb{N}$ and a set $C_n$ of proper colorings of graph $G$, we denote $C_n/_\sim$ the set of all equivalence classes of the transitivity relation $\sim$ on $C_n$.
 \end{defn}
 
-Here is a good place to point out, that it is exactly our objective, to calculate the size of this set, $\abs{C_n/_\sim}$.
+Here is a good place to point out that it is exactly our objective to calculate the size of this set $\abs{C_n/_\sim}$.
 
 \begin{defn}(stabilizer)
     For $n \in \mathbb{N}$ and a coloring $c \in C_n$ of $G=(V,E)$, we will call the set $\Stab(c) = \{ \alpha \in \Aut(G) \ | \ \forall v \in V : c(\alpha(v)) = c(v) \}$ a \emph{stabilizer} of $c$. 
 \end{defn}
 
-Again, to say more coloquially, the stabilizer is the set of all automorphisms that when applied to a coloring will result in exactly the same coloring. What we mean by same colorings is, that all the vertices get the same color under both colorings.
+Again, to say more coloquially, the stabilizer is the set of all automorphisms that when applied to a coloring will result in exactly the same coloring. What we mean by same colorings is that all the vertices get the same color under both colorings.
 
 \section{Calculating the number of orbits}
 
-Now, it can be shown using the Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is the key fact that allows us to be able to compute the number of equivalence classes of the transitivity relation. Mathematically formulated, it allows us to derive the following equation:
+Now, it can be shown using Lagrange's theorem that $\abs{\Stab(c)} \cdot \abs{\Orb(c)} = \abs{\Aut(G)}$ which is a key fact that allows us to be able to compute the number of equivalence classes of the transitivity relation. Mathematically, it allows us to derive the following equation:
 
 \begin{equation}\label{eqn:orbits-by-stab}
     \sum_{c\in C_n}\abs{\Stab(c)} = \abs{\Aut(G)} \cdot \abs{C_n/_\sim} 
 \end{equation}
 
 
-Usually, this formula is not suitable for practical calculations because the size of set $C_n$ can be quite large. In most cases, the set $\Aut(G)$ is much smaller and thus it is more reasonable, to sum over its elements instead. 
+Usually, this formula is not suitable for practical calculations because the size of the set $C_n$ can be quite large. In most cases, the set $\Aut(G)$ is much smaller, and thus it is more reasonable to take the sum over its elements instead. 
 
-For example, consider the graph of cube $G_{cube}$. Taking for $C_4$ the set of all proper colorings of $G_{cube}$ by at most $4$ colors, we get $\abs{C_4} = 2652$. This value can be obtained by plugging number $4$ to the chromatic polynomial of $G_{cube}$. On the other hand, by consulting table \ref{tab:plat-automorphisms} below, we have $\abs{\Aut(G_{cube})} = 48$ which is more than hundred times smaller number.
+For example, consider the graph of the cube $G_{cube}$. Taking for $C_4$ the set of all proper colorings of $G_{cube}$ by at most $4$ colors, we get $\abs{C_4} = 2652$. This value can be obtained by plugging number $4$ to the chromatic polynomial of $G_{cube}$. On the other hand, by consulting Table~\ref{tab:plat-automorphisms} below, we have $\abs{\Aut(G_{cube})} = 48$, which is a number more than a hundred times smaller.
 
-Before stating another important observation, we will need a following definition:
+Before stating another important observation, we will need the following definition.
 
 \begin{defn}[fixpoint]
     For a graph $G = (V,E)$, positive integer $n$, a set of its proper colorings $C_n$ and automorphism $\alpha \in \Aut(G)$, we denote $\Fix(\alpha)= \{ c \in C \ | \ \forall v \in V : c(\alpha(v)) = c(v) \}$
 \end{defn}
 
-To get a formula which computes the same number but using a sum over the set $\Aut(G)$ instead, we use the following observation: The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the number of ordered pairs $(c,\alpha)$ s.t. $\forall v \in V : c(\alpha(v)) = c(v)$. Using the definition of fixpoint, we can calculate this number also using the sum $\sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$, which yields the following important identity:
+To get a formula which computes the same number but instead uses a sum over the set $\Aut(G)$, we use the following observation. The sum $\sum_{c \in C_n} \abs{\Stab(c)}$ computes the number of ordered pairs $(c,\alpha)$ s.t. $\forall v \in V : c(\alpha(v)) = c(v)$. Using the definition of fixpoint, we can calculate this number also using the sum $\sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$, which yields the following important identity:
 \begin{equation}\label{eqn:two-way-counting}
     \sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)} = \sum_{c \in C_n}\abs{\Stab(c)}    
 \end{equation}
@@ -90,13 +90,12 @@ To get a formula which computes the same number but using a sum over the set $\A
 By combining equations \ref{eqn:orbits-by-stab} and \ref{eqn:two-way-counting}, we get the following result, which is a direct application of the famous \textit{Burnside's lemma} on our particular setting:
 
 \begin{thm}[application of Burnside's lemma] \label{thm:burnside}
-    For a graph $G$, $n \in \mathbb{N}$ and a set of its proper colorings $C_n$, we have:
-    $$\abs{C_n/_\sim} = \frac{1}{\abs{\Aut(G)}}\cdot \sum_{\alpha \in \Aut(G)}\abs{\Fix(\alpha)}$$
+    For a graph $G$, $n \in \mathbb{N}$ and a set of its proper colorings $C_n$, we have: $$\abs{C_n/_\sim} = \frac{1}{\abs{\Aut(G)}}\cdot \sum_{\alpha \in \Aut(G)}\abs{\Fix(\alpha)}$$
 \end{thm}
 
 \section{Orbital chromatic polynomial}
 
-We introduce a notion very similar to the one of the chromatic polynomial of a graph. Additionally, we take into account symmetries.
+We introduce a notion very similar to that of the chromatic polynomial of a graph. In addition, we take into account symmetries.
 
 
 \begin{defn}[orbital chromatic polynomial]
@@ -109,12 +108,12 @@ We introduce a notion very similar to the one of the chromatic polynomial of a g
     correspond to the right hand side of formula \ref{eqn:oribtal-chrompoly} which is a polynomial.
 \end{defn}
 
-The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}. The Theorem \ref{thm:count-orb-chrompoly} is equivalent to how the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
+The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}.  Theorem \ref{thm:count-orb-chrompoly} is equivalent to the way the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
 
-For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
+For a graph $G$, the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
 
 \begin{defn}[cycles of permutation]
-    Given a graph $G=(V,E)$ and an automorphism $\alpha \in \Aut(G)$ we denote the set of cycles of $\alpha$ by $\Cycles(\alpha)$. By a cycle $O \in \Cycles(\alpha)$, we mean the set of vertices of $G$ on the cycle $O$.
+    Given a graph $G=(V,E)$ and an automorphism $\alpha \in \Aut(G)$, we denote the set of cycles of $\alpha$ by $\Cycles(\alpha)$. By a cycle $O \in \Cycles(\alpha)$, we mean the set of vertices of $G$ on the cycle $O$.
 \end{defn}
 
 \begin{defn}[vertex set identification]
@@ -125,16 +124,16 @@ For a graph $G$ the orbital chromatic polynomial $OP(G,x)$ can be expressed in t
     \end{enumerate}
 \end{defn}
 
-Given a graph $G=(V,E)$ and a sequence of disjoints subsets $S_1, \ldots , S_n \subseteq V$, we denote $G_{\star,S_1,\ldots,S_n}$ the graph resulting from successive application of vertex set identification operation on the sets $S_1$ up to $S_n$ and graph $G$.
+Given a graph $G=(V,E)$ and a sequence of disjoint subsets $S_1, \ldots , S_n \subseteq V$, we denote $G_{\star,S_1,\ldots,S_n}$ the graph resulting from successive application of the vertex set identification operation to the sets $S_1$ up to $S_n$ and graph $G$.
 
 \begin{defn}[independent set]
     For a graph $G=(V,E)$ and a subset of vertices $S \subseteq V$, we say that $S$ is \emph{independent} if $\forall x,y \in S : \{x,y\} \notin E$.
 \end{defn}
 
-In the following definition, we extend the definition of an undirected graph to allow also \textit{loops}. By a loop $l \in \binom{E}{1}$, we mean an edge with both endpoints being an identical vertex. For any graph $G$ containing a loop $l$, we set the chromatic polynomial $P(G,x) = 0$.
+In the following definition, we extend the definition of an undirected graph to also allow \textit{ loops}. By a loop $l \in \binom{E}{1}$, we mean an edge with both endpoints being the same vertex. For any graph $G$ containing a loop $l$, we set the chromatic polynomial $P(G,x) = 0$.
 
 \begin{defn}[fixation graph]
-    Given a graph $G$ and automorphism $\alpha \in \Aut(G)$. For $n = \abs{\Cycles(\alpha)}$ let $O_1, \ldots ,O_n \subseteq \Cycles(\alpha)$ be the sequence of cycles of $\alpha$ in an arbitrary order. We define the \emph{fixation graph} $G /_{\alpha}$ as $G_{\star,O_1, \ldots , O_n}$ s.t. additionally, we add a loop at every new vertex $w_i$ if $O_i$ was not an independent set.
+    Given a graph $G$ and an automorphism $\alpha \in \Aut(G)$. For $n = \abs{\Cycles(\alpha)}$, let $O_1, \ldots ,O_n \subseteq \Cycles(\alpha)$ be the sequence of cycles of $\alpha$ in arbitrary order. We define the \emph{fixation graph} $G /_{\alpha}$ as $G_{\star,O_1, \ldots , O_n}$ such that additionally, we add a loop at every new vertex $w_i$ if $O_i$ was not an independent set.
 \end{defn}
 
 Now we are ready to state the following theorem:
@@ -148,24 +147,24 @@ Now we are ready to state the following theorem:
 
 \begin{proof}
 
-    Let $G=(V,E)$ be a graph and $n \in \mathbb{N}$. By definition of orbital chromatic polynomial we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
+    Let $G=(V,E)$ be a graph, and $n \in \mathbb{N}$. By the definition of orbital chromatic polynomial, we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
     $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$$
 
-    In order to prove the equation above, it is enough to show that $\forall \alpha \in \Aut(G) : P(G/_{\alpha},n) = \abs{\Fix(\alpha)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\alpha)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\alpha = (V',E')$ using at most $n$ colors. It will be helpful, for $k = \abs{\Cycles(\alpha)}$, to denote $w_1, \ldots , w_k$ the new vertices corresponding to the cycles $O_1, \ldots ,O_k \in \Cycles(\alpha)$ that were identified in $G$ to get the resulting graph $G/_\alpha$.
+    In order to prove the equation above, it is enough to show that $\forall \alpha \in \Aut(G) : P(G/_{\alpha},n) = \abs{\Fix(\alpha)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\alpha)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\alpha = (V',E')$ using at most $n$ colors. It will be helpful, for $k = \abs{\Cycles(\alpha)}$, to denote $w_1, \ldots , w_k$ the new vertices corresponding to the cycles $O_1, \ldots ,O_k \in \Cycles(\alpha)$ that were identified in $G$ to obtain the resulting graph $G/_\alpha$.
     
-    Let $c \in \Fix(\alpha)$ be a coloring of $G$ that is fixed by $\alpha$. Because $c$ is fixed by $\alpha$, then by definition, it must hold that $\forall v \in V : c(\alpha(v)) = c(v)$. By this condition, for a given cycle $O_i \in \Cycles(\alpha)$, we have that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$ i.e. all vertices on a cycle must have the same color $b_i$. Note that we allow for $i \neq j$ to have $b_i = b_j$. Now we map the proper coloring $c \in C_n$ to a coloring $c' \in C'_n$ defined s.t. $\forall i \in \{1, \ldots ,k\} : c'(w_i) = b_i$. This results in a proper coloring since if for any $i \neq j$ we have $\{w_i,w_j\} \in E'$ then there must exist vertices $u \in O_i$ and $v \in O_j$ s.t. $\{u,v\} \in E$ by the definition of vertex set identification operation. Thus we have $b_i \neq b_j$. So we have $c' \in C'_n$. 
+    Let $c \in \Fix(\alpha)$ be a coloring of $G$ that is fixed by $\alpha$. Because $c$ is fixed by $\alpha$, then, by definition, $\forall v \in V : c(\alpha(v)) = c(v)$ must hold. By this condition, for a given cycle $O_i \in \Cycles(\alpha)$, we have that $\forall u,v \in O_i : c(u) = c(v) = b_i$ for some color $b_i$, that is, all vertices on a cycle must have the same color $b_i$. Note that we allow $i \neq j$ to have $b_i = b_j$. Now we map the proper coloring $c \in C_n$ to a coloring $c' \in C'_n$ defined s.t. $\forall i \in \{1, \ldots ,k\} : c'(w_i) = b_i$. This results in a proper coloring since if for any $i \neq j$ we have $\{w_i,w_j\} \in E'$, then there must exist vertices $u \in O_i$ and $v \in O_j$ s.t. $\{u,v\} \in E$ by the definition of the vertex set identification operation. Thus, we have $b_i \neq b_j$. So we have $c' \in C'_n$. 
     
-    Now suppose that we have $c_1,c_2 \in C_n$ s.t. $c_1 \neq c_2$ then the images under this mapping $c'_1,c'_2 \in C'_n$ are different so the mapping is injective.
+    Now suppose that we have $c_1,c_2 \in C_n$ s.t. $c_1 \neq c_2$ then the images under this mapping $c'_1,c'_2 \in C'_n$ are different, so the mapping is injective.
 
-    For surjectivity, suppose we have a proper coloring $c' \in C'_n$ of graph $G/_\alpha$. Then the preimage of $c'$ is the following coloring which we denote by $c \in C_n$: $(\forall O_i \in \Cycles(\alpha))( \forall v \in O_i) : c(v) = c'(w_i)$. It is not hard to see, by the definition of the vertex set identification operation, that the coloring $c$ is a proper coloring of $G$. Note that we also have that $c \in \Fix(\alpha)$ because we assigned all vertices on each cycle the same color.
+    For surjectivity, suppose that we have a proper coloring $c' \in C'_n$ of graph $G/_\alpha$. Then the preimage of $c'$ is the following coloring that we denote by $c \in C_n$: $(\forall O_i \in \Cycles(\alpha))( \forall v \in O_i) : c(v) = c'(w_i)$. It is not difficult to see, by the definition of the vertex set identification operation, that the coloring $c$ is a proper coloring of $G$. Note that we also have $c \in \Fix(\alpha)$ because we assign all the vertices on each cycle the same color.
 
-    So we have that $\forall \alpha \in \Aut(G) : P(G/_{\alpha},n) = \abs{\Fix(\alpha)}$ which we needed to show. 
+    So we have $\forall \alpha \in \Aut(G) : P(G/_{\alpha},n) = \abs{\Fix(\alpha)}$ which we needed to show. 
      
 \end{proof}
 
 \section{Calculating orbital chromatic polynomials}
 
-Theorem \ref{thm:count-orb-chrompoly} can be used to derive a following algorithm:
+Theorem \ref{thm:count-orb-chrompoly} can be used to derive the following algorithm:
 
 \begin{algorithm}[H]
     \caption{Algorithm based on Theorem \ref{thm:count-orb-chrompoly} for computing the orbital chromatic polynomial $OP(G,x)$ of a given graph $G$} 
@@ -212,7 +211,7 @@ cube & $\frac{1}{48}x^{8} - \frac{1}{4}x^{7} + \frac{3}{2}x^{6} - \frac{16}{3}x^
 The difference between chromatic and orbital chromatic polynomials can be demonstrated on a graph of the octahedron $K_{3 \times 2}$. As can be seen in table \ref{tab:selected-chrom-polys} we have that: $$P(K_{3 \times 2},x) = x^{6} - 12x^{5} + 58x^{4} - 137x^{3} + 154x^{2} - 64x$$ whereas by \ref{tab:selected-orbital-chrom-polys} 
  we have: $$OP(K_{3 \times 2},x) = \frac{1}{48}x^{6} - \frac{3}{16}x^{5} + \frac{37}{48}x^{4} - \frac{79}{48}x^{3} + \frac{41}{24}x^{2} - \frac{2}{3}x$$.
 
-Plugging in $3$ for $x$, we get the number of vertex colorings of the octahedron using at most $3$ colors. We get $P(K_{3 \times 2},3) = 6$. All these colorings can be enumerated using \textit{SageMath} \cite{sagemath} and its \verb|all_graph_colorings| function. On the figure below, we can see all of these $6$ colorings:
+Plugging in $3$ for $x$, we get the number of vertex colorings of the octahedron using at most $3$ colors. We get $P(K_{3 \times 2},3) = 6$. All these colorings can be enumerated using \textit{SageMath} \cite{sagemath} and its \verb|all_graph_colorings| function. In the figure below, we can see all of these $6$ colorings:
 
 \begin{figure}[H]
     \centering
@@ -221,12 +220,12 @@ Plugging in $3$ for $x$, we get the number of vertex colorings of the octahedron
     \label{fig:octahedron-3-clrings}
 \end{figure}
 
-Now, an important observation is, that all of these $6$ colorings are equivalent when considered up to automorphisms. Indeed we can compute that $OP(K_{3 \times 2},3) = 1$.
+Now, an important observation is that all of these $6$ colorings are equivalent when considered up to automorphisms. Indeed we can compute that $OP(K_{3 \times 2},3) = 1$.
 
 
 \section{Comparison with chromatic polynomial}
 
-It is interesting to compare the difference between chromatic polynomial and orbital chromatic polynomial for all the solids by looking at the values of the polynomials at certain points. This can be seen in table \ref{tab:platonic-polys-evals} below.
+It is interesting to compare the difference between the chromatic polynomial and the orbital chromatic polynomial for all of the solids by looking at the values of the polynomials at certain points. This can be seen in Table~\ref{tab:platonic-polys-evals} below.
 
 \begin{table}[H]
 \centering
@@ -255,7 +254,7 @@ dodecahedron & $0$ & $7\,200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 
 \end{table}
 
 
-Note, that we can apply the same method as in section \ref{sec:num-clrings-exactly-n-clrs} also to the orbital chromatic polynomial $OP(G,x)$, to arrive at corresponding values $OP^*(G,n)$. Using formula \ref{eqn:exactly-n-colors}, the results from table \ref{tab:platonic-polys-evals} above yield the following table:
+Note that we can apply the same method as in section \ref{sec:num-clrings-exactly-n-clrs} also to the orbital chromatic polynomial $OP(G,x)$, to arrive at the corresponding values $OP^*(G,n)$. Using formula \ref{eqn:exactly-n-colors}, the results from Table~\ref{tab:platonic-polys-evals} above yield the following table:
 
 \begin{table}[H]
 \centering

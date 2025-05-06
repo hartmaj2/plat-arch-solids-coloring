@@ -8,16 +8,16 @@ As we will be working with many types of colorings, we introduce a general notio
     A \emph{partial function} is a function $f : X \rightarrow Y$ such that for all $x \in X$, either $f(x) \in Y$ or $f(x)$ is undefined.
 \end{defn}
 
-Since we are concerned with graphs of Platonic and Archimedean solids—which are all planar—we define the concept of coloring directly on their plane graphs, i.e., as they are drawn in the plane, rather than considering their abstract representations.
+Since we are concerned with graphs of Platonic and Archimedean solids, which are all planar, we define the concept of coloring directly on their plane graphs, i.e. as they are drawn in the plane, rather than considering their abstract representations.
 
 \begin{defn}[coloring]
-    Let $S$ be a set, and let $G = (V, E, F)$ be a plane graph. We define a \emph{coloring} of $G$ as a partial function $c : V \cup E \cup F \rightarrow S$ together with a coloring rule $R$ that restricts which elements of the graph may be assigned the same color, i.e., mapped to the same element of $S$.
+    Let $S$ be a set, and let $G = (V, E, F)$ be a plane graph. We define a \emph{coloring} of $G$ as a partial function $c : V \cup E \cup F \rightarrow S$ together with a coloring rule $R$ that restricts which elements of the graph may be assigned the same color, i.e. mapped to the same element of $S$.
 \end{defn}
 
-In other words, a coloring is an assignment of elements in $S$ to vertices, edges, or faces of some plane graph. We can think of elements of $S$ as colors, but usually we will use numbers instead. What is especially important to us is whether any two elements are mapped onto the same target, i.e., colored by the same color. The coloring rule then prevents some assignments from being considered valid. This makes the coloring problem non-trivial.
+In other words, a coloring is an assignment of elements in $S$ to vertices, edges, or faces of some plane graph. We can think of elements of $S$ as colors, but usually we will use numbers instead. What is especially important to us is whether any two elements are mapped onto the same target, i.e. colored by the same color. The coloring rule then prevents some assignments from being considered valid. This makes the coloring problem non-trivial.
 
 \begin{defn}[family of colorings]
-    For a graph $G$, let the set of all colorings of $G$ sharing the same coloring rule $R$ be called a \emph{family of colorings} of $G$.
+    For a graph $G$, let the set of all the colorings of $G$ sharing the same coloring rule $R$ be called a \emph{family of colorings} of $G$.
 \end{defn}
 
 \begin{defn}[$k$-coloring]
@@ -30,20 +30,20 @@ Note that a $k$-coloring does not necessarily use all of the $k$ available color
     For a plane graph $G$, a family of colorings $C$, and a natural number $k$, if there exists a $k$-coloring of $G$, then we say that $G$ is \emph{$k$-colorable}.
 \end{defn}
 
-A typical question we ask when considering colorings of a graph is: What is the smallest number of colors we can use to color the graph without violating the coloring rule? This leads to the definition of the so-called \textit{chromatic number}.
+A typical question we ask when considering colorings of a graph is: What is the smallest number of colors that we can use to color the graph without violating the coloring rule? This leads to the definition of the so-called \textit{chromatic number}.
 
 
 \begin{defn}[chromatic number]
     For a plane graph $G$ and a family of colorings $C$, the \emph{chromatic number} $\chi^C(G)$ is the minimum $k \in \mathbb{N}$ such that $G$ is $k$-colorable.
 \end{defn}
 
-Once we know a graph is $k$-colorable, there is another interesting property of the graph we can examine. We can ask about how many different colorings with $k$ colors there exists for the given graph. A closely related concept to this question is the \emph{chromatic polynomial}. But first, we need to define when two colorings are considered different.
+Once we know a graph is $k$-colorable, there is another interesting property of the graph we can examine. We can ask how many different colorings with $k$ colors exist for the given graph. A closely related concept to this question is the \emph{chromatic polynomial}. But first, we need to define when two colorings are considered different.
 
 \begin{defn}[different colorings]
     Given a plane graph $G = (V, E, F)$, a family of colorings $C$, and $k$-colorings $c_1, c_2 \in C$, we say $c_1$ and $c_2$ are \emph{different} if there exists $x \in V \cup E \cup F$ such that $c_1(x) \neq c_2(x)$.
 \end{defn}
 
-The definition above states that if two colorings assign different colors to any element, then the colorings are considered different. Note that this does not take into account any symmetries of the graph.
+The above definition states that if two colorings assign different colors to any element, then the colorings are considered different. Note that this does not take into account any symmetries of the graph.
 
 \begin{defn}[chromatic polynomial]
     For a graph $G$ and a family of colorings $C$, the \emph{chromatic polynomial}, denoted by $P_C(G,x)$ is a function such that for all $k \in \mathbb{N}$, we have $P_C(G,k) = n$, where $n$ is the number of different $k$-colorings of $G$.
@@ -146,7 +146,7 @@ Since we consider planar graphs, we can also color the faces of the correspondin
 
 \subsection{Rainbow coloring}
 
-So far, the particular colorings we have considered were all quite similar to each other. In what sense? All of their coloring rules were based on the notion of adjacency of some elements, i.e., neighboring vertices, incident edges etc. could not share the same color. There exist other types of colorings, where the coloring rules are based on other concepts, such as connectivity. One such example is the \textit{rainbow coloring} \cite{chartrand08}.
+So far, the particular colorings we have considered were all quite similar to each other. In what sense? All of their coloring rules were based on the notion of adjacency of some elements, i.e. neighboring vertices, incident edges etc. could not share the same color. There exist other types of colorings, where the coloring rules are based on other concepts, such as connectivity. One such example is the \textit{rainbow coloring} \cite{chartrand08}.
 
 \begin{defn}[rainbow coloring]
     Let $S$ be a set. A \emph{rainbow coloring} of a plane graph $G = (V, E, F)$ is a coloring $c : E \rightarrow S$ belonging to a family of colorings with the following rule: 
@@ -176,6 +176,6 @@ There also exist coloring rules that depend on the actual values of the colors. 
 
 All labelings share the notion of assigning a \textit{weight} to the elements of a graph. For an element $x$, we denote its weight by $w(x)$. Using this notation, we define an \textit{edge labeling} as a function $l : E \rightarrow \mathbb{N}$ and analogously, a \textit{vertex labeling} as a function $l : V \rightarrow \mathbb{N}$
 
-Moreover, we call an edge labeling \textit{magic} if there exists $k \in \mathbb{N}$ such that $\forall v \in V: w(v) = k$, where $w$ is a weight function defined in terms of $l$. In other words, an edge labeling $l$ is magic if all vertices have the same weight when edges are labeled using $l$. For example, we might define $w(v) = \sum_{uv \in E} l(uv)$. An analogous definition holds for magic vertex labeling.
+Moreover, we call an edge labeling \textit{magic} if there exists $k \in \mathbb{N}$ such that $\forall v \in V: w(v) = k$, where $w$ is a weight function defined in terms of $l$. In other words, edge labeling $l$ is magic if all vertices have the same weight when edges are labeled using $l$. For example, we might define $w(v) = \sum_{uv \in E} l(uv)$. An analogous definition holds for magic vertex labeling.
 
 All labeling definitions above are based on the book \textit{Magic Graphs} by Wallis \cite{marrwall2013}.

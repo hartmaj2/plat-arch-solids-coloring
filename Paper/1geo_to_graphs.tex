@@ -2,7 +2,7 @@
 
 \section{Platonic and Archimedean solids}
 
-Platonic solids are regular \textbf{convex} polyhedra. A regular polyhedron is a polyhedron whose faces are all congruent to a single regular polygon, i.e., a polygon with all sides of equal length. There are exactly five Platonic solids: the tetrahedron, cube, octahedron, dodecahedron, and icosahedron.
+Platonic solids are regular \textbf{convex} polyhedra. A regular polyhedron is a polyhedron whose faces are all congruent to a single regular polygon, i.e. a polygon with all sides of equal length. There are exactly five Platonic solids: the tetrahedron, cube, octahedron, dodecahedron, and icosahedron.
 
 Note that convexity is an important property for us, since it ensures that we can always obtain a 3-vertex connected planar graph. This fact is also known as Steinitz’s theorem for polyhedra \cite{kendall24}.
 
@@ -19,7 +19,7 @@ The Archimedean solids can then be obtained by performing one of the following n
     \end{figure}
     \item[Expansion/Cantellation] All facets are moved outward from the centroid of the polyhedron by the same distance, without rescaling. The resulting gaps are filled with regular polygons as follows: edges that were identical in the original polyhedron are connected by inserting a new square, and all vertices that correspond to a single vertex $v$ in the original polyhedron are connected by adding a $d$-gon, where $d = \deg(v)$.
 
-    This operation can also be described as cantellation. The difference is in how we imagine the process that takes us to the resulting shape. From the viewpoint of cantellation, we first bevel (cut off) the edges and then apply truncation to what remained from the original vertices.
+    This operation can also be described as cantellation. The difference is in how we imagine the process that leads to the resulting shape. From the viewpoint of cantellation, we first bevel (cut off) the edges and then apply truncation to what remained from the original vertices.
     \begin{figure}[H]
         \centering
         \includegraphics[width=1\textwidth]{../Resources/Figs/op_cantellation.pdf}
@@ -40,7 +40,7 @@ The Archimedean solids can then be obtained by performing one of the following n
 
 \section{Basic definitions and assumptions}
 
-Here we state mathematical definitions that should not be surprising in any way (i.e., can be considered standard). Also, we state any assumptions we will make, which will then hold for the rest of this thesis.
+Here we state mathematical definitions that should not be surprising in any way (i.e. can be considered standard). Also, we state any assumptions we will make, which will then hold for the rest of this thesis.
 
 \begin{defn}[undirected graph]
     An \emph{undirected graph} $G$ is an ordered pair $G = (V,E)$, where $V$ is the set of its vertices and $E \subseteq \binom{V}{2}$ is the set of its edges. 
@@ -55,7 +55,7 @@ We use the definition of a \textit{drawing} of a graph from the book \textit{Inv
 \end{defn}
 
 \begin{defn}[plane graph]
-    A \emph{plane graph} $G' = (V, E, F)$ is a drawing of a planar graph $G = (V, E)$ in the plane, where $F$ is the set of all faces of the drawing. We will also use the notation $V(G'), E(G'), F(G')$ to refer to the sets $V, E$, and $F$, respectively.
+    A \emph{plane graph} $G' = (V, E, F)$ is a drawing of a planar graph $G = (V, E)$ in the plane, where $F$ is the set of all the faces of the drawing. We will also use the notation $V(G'), E(G'), F(G')$ to refer to the sets $V, E$ and $F$, respectively.
 \end{defn}
 
 In this thesis, we assume that for any plane graph $G = (V, E, F)$, the sets $V$, $E$, and $F$ are pairwise disjoint.
@@ -64,7 +64,7 @@ In this thesis, we assume that for any plane graph $G = (V, E, F)$, the sets $V$
 
 Here we list some properties of the graphs corresponding to the solids described above. Let $G = (V, E, F)$ be a plane graph of a solid, where $F$ is the set of its faces. In the following tables, $d$ denotes a number such that $\forall u \in V : \deg(u) = d$.
 
-The last column shows the so-called \textit{vertex configuration}, which specifies, for each polygon surrounding a vertex, the number of its sides. The numbers appear in the configuration in the exact order in which the corresponding faces are arranged around the vertex. For example, the configuration $c_1 = 3.4.3.4$ differs from the hypothetical configuration $c_2 = 3.4.4.3$, even though both contain the numbers $3$ and $4$ exactly twice. In $c_1$, each triangle is surrounded by two squares and vice versa. In $c_2$, each triangle or square has both a triangle and a square next to it.
+The last column shows the so-called \textit{vertex configuration}, which specifies, for each polygon surrounding a vertex, the number of its sides. The numbers appear in the configuration in the exact order in which the corresponding faces are arranged around the vertex. For example, the configuration $c_1 = 3.4.3.4$ differs from the hypothetical configuration $c_2 = 3.4.4.3$, although both contain the numbers $3$ and $4$ exactly twice. In $c_1$, each triangle is surrounded by two squares and vice versa. In $c_2$, each triangle or square has both a triangle and a square next to it.
 
 \begin{table}[H]
 \centering
