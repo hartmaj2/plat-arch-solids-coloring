@@ -1,7 +1,7 @@
 \chapter{Counting number of partitions into independent sets}
 \label{chap:num-partitions-into-indep-sets}
 
-Recall that in table \ref{tab:platonic-exactly-n-clrs} we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ can be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only, and the values of the colors have no special meaning.
+Recall that in Table~\ref{tab:platonic-exactly-n-clrs} we count two colorings $c_1$ and $c_2$ as different also in the case, when $c_1$ can be obtained as a permutation of colors of $c_2$. This is something we would like to avoid if we are interested in the structure of the coloring only, and the values of the colors have no special meaning.
 
 \begin{defn}[relabeling relation]\label{dfn:relabeling-relation}
     Given a graph $G=(V,E)$ and a set of colorings $C$, we define the relation $\leftrightarrow \; \subseteq C \times C$ as follows: For any two colorings $c_1,c_2 \in C$ we have $c_1 \leftrightarrow c_2$ iff there exists a permutation of colors $\pi$ s.t. $\forall v \in V : c_1(v) = \pi(c_2(v))$. We call this relation the \emph{relabeling relation}.
@@ -75,7 +75,7 @@ Thus, since $\rightleftharpoons$ is an equivalence relation, we can again consid
     Let us for a given $n \in \mathbb{N}$ denote by $P^*_{\rightleftharpoons}(G,n)$ the number of equivalence classes of $\rightleftharpoons$ on the set of all proper vertex colorings using exactly $n$ colors. 
 \end{defn}
 
-It is tempting to assume that $P^*_{\rightleftharpoons}(G,n)$ can be calculated from $OP^*(G,n)$ in a similar fashion as $P^*_{\leftrightarrow}(G,n)$ can be calculated using $P^*(G,n)$ by formula \ref{eqn:count-relabel-orbits}. In order to prove that formula, we showed that for each equivalence class of $C/_\leftrightarrow$, we count exactly $n!$ colorings in $C$ when we use $P^*(G,n)$. If something similar is to hold for $\rightleftharpoons$, we would have to show that for each equivalence class of $C/_\rightleftharpoons$, we count exactly $k$ equivalence classes of $C/_\sim$ when using $OP^*(G,n)$, for some fixed number $k$. Unfortunately, this is not the case since there exist a graph $G$ and a set of its n-colorings $C$ such that there are equivalence classes of $C/_\rightleftharpoons$ that are counted exactly once by $OP^*(G,n)$, but also classes that are counted multiple times.
+It is tempting to assume that $P^*_{\rightleftharpoons}(G,n)$ can be calculated from $OP^*(G,n)$ in a similar fashion as $P^*_{\leftrightarrow}(G,n)$ can be calculated using $P^*(G,n)$ by Formula~\ref{eqn:count-relabel-orbits}. In order to prove that formula, we showed that for each equivalence class of $C/_\leftrightarrow$, we count exactly $n!$ colorings in $C$ when we use $P^*(G,n)$. If something similar is to hold for $\rightleftharpoons$, we would have to show that for each equivalence class of $C/_\rightleftharpoons$, we count exactly $k$ equivalence classes of $C/_\sim$ when using $OP^*(G,n)$, for some fixed number $k$. Unfortunately, this is not the case since there exist a graph $G$ and a set of its n-colorings $C$ such that there are equivalence classes of $C/_\rightleftharpoons$ that are counted exactly once by $OP^*(G,n)$, but also classes that are counted multiple times.
 
 For example, consider the graph of the cube and its following two 4-colorings:
 
@@ -86,7 +86,7 @@ For example, consider the graph of the cube and its following two 4-colorings:
     \label{fig:example-cube-4-clrings-diff-classes}
 \end{figure}
 
-When the colorings in figure \ref{fig:example-cube-4-clrings-diff-classes} are viewed as a partition, then the left partition represents a single equivalence class of both $\sim$ and $\rightleftharpoons$. This follows from the fact that permuting the colors of the independent set leads to a coloring that can be obtained from the original coloring by simply rotating the solid as well.
+When the colorings in Figure~\ref{fig:example-cube-4-clrings-diff-classes} are viewed as a partition, then the left partition represents a single equivalence class of both $\sim$ and $\rightleftharpoons$. This follows from the fact that permuting the colors of the independent set leads to a coloring that can be obtained from the original coloring by simply rotating the solid as well.
 
 On the other hand, the partition on the right represents $4!$ equivalence classes of $\sim$, since any permutation of colors produces a different equivalence class of $\sim$.
 
@@ -106,9 +106,9 @@ For inequality $\frac{1}{\abs{\Aut(G)}} \cdot P^*_\leftrightarrow(G,n) \leq P^*_
 
 \end{proof}
 
-Notice that the result of claim $\ref{clm:relabeling-bound}$ gives us equality for any graph $G$ s.t. $\Aut(G) = \{id\}$ i.e. a graph, whose only symmetry is the identity function. In general, the lower bound is higher for graphs that are not very symmetric. Unfortunately, this is not the case for our graphs, so the lower bounds will not give us as much information as they could, for different classes of graphs.
+Notice that the result of Claim~$\ref{clm:relabeling-bound}$ gives us equality for any graph $G$ s.t. $\Aut(G) = \{id\}$ i.e. a graph, whose only symmetry is the identity function. In general, the lower bound is higher for graphs that are not very symmetric. Unfortunately, this is not the case for our graphs, so the lower bounds will not give us as much information as they could, for different classes of graphs.
 
-See below examples of bounds calculated using formulas from claim \ref{clm:relabeling-bound}:
+See below examples of bounds calculated using formulas from Claim~\ref{clm:relabeling-bound}:
 
 \begin{table}[H]
 \centering
@@ -142,15 +142,15 @@ dodecahedron & $0$ & $1\,200$ & $7\,019\,920$ & $\approx 10^{8}$ & $\approx 10^{
 
 \begin{proof}
 
-The argument for inequality $P^*_\rightleftharpoons(G,n) \leq OP^*(G,n)$ is again simple and analogous to the one in clam \ref{clm:relabeling-bound}. We notice that if for any two colorings $c_1,c_2$ we have $c_1 \not\rightleftharpoons c_2$, then also $c_1 \not\sim c_2$.
+The argument for inequality $P^*_\rightleftharpoons(G,n) \leq OP^*(G,n)$ is again simple and analogous to the one in Claim~\ref{clm:relabeling-bound}. We notice that if for any two colorings $c_1,c_2$ we have $c_1 \not\rightleftharpoons c_2$, then also $c_1 \not\sim c_2$.
 
-For inequality $\frac{1}{n!} \cdot OP^*(G,n) \leq P^*_\rightleftharpoons(G,n)$, we proceed again analogously as in claim \ref{clm:relabeling-bound}. We show that for each equivalence class of $\rightleftharpoons$, we have at most $n!$ equivalence classes of $\sim$ corresponding to that class. We imagine a coloring $c_1$ that belongs to some equivalence class $E_\rightleftharpoons$ of $\rightleftharpoons$ and $E_\sim$ of $\sim$. Applying any automorphism $\alpha \in \Aut(G)$ results in a coloring that will be contained in both $E_\rightleftharpoons$ and $E_\sim$. On the other hand, by relabeling the colors of $c_1$, we may obtain $n!$ colorings such that each belongs to a different equivalence class of $\sim$ even though they all belong to $E_\rightleftharpoons$.
+For inequality $\frac{1}{n!} \cdot OP^*(G,n) \leq P^*_\rightleftharpoons(G,n)$, we proceed again analogously as in Claim~\ref{clm:relabeling-bound}. We show that for each equivalence class of $\rightleftharpoons$, we have at most $n!$ equivalence classes of $\sim$ corresponding to that class. We imagine a coloring $c_1$ that belongs to some equivalence class $E_\rightleftharpoons$ of $\rightleftharpoons$ and $E_\sim$ of $\sim$. Applying any automorphism $\alpha \in \Aut(G)$ results in a coloring that will be contained in both $E_\rightleftharpoons$ and $E_\sim$. On the other hand, by relabeling the colors of $c_1$, we may obtain $n!$ colorings such that each belongs to a different equivalence class of $\sim$ even though they all belong to $E_\rightleftharpoons$.
 
 \end{proof}
 
-Note that the lower bound resulting from claim $\ref{clm:automorphism-bound}$ is useful for cases where $n$, the number of colors, is small. In such cases, it can give us a better bound than what the bound of claim $\ref{clm:relabeling-bound}$ gives.
+Note that the lower bound resulting from Claim~$\ref{clm:automorphism-bound}$ is useful for cases where $n$, the number of colors, is small. In such cases, it can give us a better bound than what the bound of Claim~$\ref{clm:relabeling-bound}$ gives.
 
-See upper and lower bounds resulting from claim \ref{clm:automorphism-bound} in table \ref{tab:bounds-orbital} below:
+See upper and lower bounds resulting from Claim~\ref{clm:automorphism-bound} in Table~\ref{tab:bounds-orbital} below:
 
 \begin{table}[H]
 \centering
@@ -186,7 +186,7 @@ Since we are dealing with graphs that have a relatively small amount of edges an
 
 \subsection{Finding representatives of the relabeling relation}
 
-First, we want to exclude colorings that correspond to the same partitions into independent sets but have just different labels for the colors. This corresponds to finding colorings that represent different classes of the relabeling relation from definition \ref{dfn:relabeling-relation}. To do so, we use the fact that the colorings are represented as lists together with the following observation: Given a partition into $n$ independent sets, there are $n!$ ways to assign labels to the colorings. Of these $n!$ colorings, there is always exactly one coloring such that it is in a so-called \textit{canonic form}.  
+First, we want to exclude colorings that correspond to the same partitions into independent sets but have just different labels for the colors. This corresponds to finding colorings that represent different classes of the relabeling relation from Definition~\ref{dfn:relabeling-relation}. To do so, we use the fact that the colorings are represented as lists together with the following observation: Given a partition into $n$ independent sets, there are $n!$ ways to assign labels to the colorings. Of these $n!$ colorings, there is always exactly one coloring such that it is in a so-called \textit{canonic form}.  
 
 \begin{defn}[canonic form]\label{dfn:canonic-form}
     Let $B=\{1,\ldots,n\}$ be a set of colors and $c$ be a coloring using colors $B$ such that $c$ is represented as a sequence $(b_1, \ldots,b_{\abs{V}})$ such that $\forall i: b_i \in B$. For each $i \in B$, denote by $k_i$ the lowest index at which color $i$ appears. We say that $c$ is in \emph{canonic form} if $\forall i < j \in B: k_i < k_j$.
@@ -195,7 +195,7 @@ First, we want to exclude colorings that correspond to the same partitions into 
 In other words, a coloring is in canonic form if when we go through the coloring from lowest index to highest index, we encounter the colors for the first time in the same order as what their values are. Now, the observation is as follows: For all $n!$ ways to assign colors to the independent sets, there is exactly one coloring s.t. it is in canonic form. This means that by keeping only the colorings in canonic form, we get exactly the colorings representing the equivalence classes of the relabeling relation.
 
 \begin{algorithm}[H]
-    \caption{Algorithm for testing whether a given coloring is in canonic form by definition \ref{dfn:canonic-form}.} 
+    \caption{Algorithm for testing whether a given coloring is in canonic form by Definition~\ref{dfn:canonic-form}.} 
     \begin{algorithmic}[1]
         \Function{IsInCanonicForm}{$c$}
             \State $k \gets 1$      
@@ -218,7 +218,7 @@ In other words, a coloring is in canonic form if when we go through the coloring
 By filtering out colorings that are not in canonic form, we have reduced the number of colorings we need to deal with by a factor of $n!$. After performing that step, we can proceed with a more computationally demanding part of the algorithm. In this part of the algorithm, we go through the colorings that we were left with and build a set $R$ of representatives of the relabeling-automorphism class. In each step, when we consider the next coloring $c_i$, we compare $c_i$ with all the representatives in $R$, which we have found so far. If $c_i$ can be unified by an automorphism with some representative $r_j \in R$, then we proceed with the next coloring. Otherwise, we add $c_i$ to $R$, that is, we declare $c_i$ as a representative of its $\rightleftharpoons$ class. See the detailed description of the algorithm below:
 
 \begin{algorithm}[H]
-    \caption{Algorithm for finding representatives of equivalence classes of the relabeling-automorphism relation as defined in \ref{dfn:relabeling-automorphism-relation}. $G$ is a graph and $C$ is the set of colorings in canonic form.} 
+    \caption{Algorithm for finding representatives of equivalence classes of the relabeling-automorphism relation as in Definition~\ref{dfn:relabeling-automorphism-relation}. $G$ is a graph and $C$ is the set of colorings in canonic form.} 
     \begin{algorithmic}[1]
         \Function{FindRelabelingAutomorphismRepresentatives}{$G,C$}
             \State $R \gets \emptyset$
@@ -267,17 +267,17 @@ Using this algorithm, we can ask for the size of the set $R$, to get the number 
 
 In natural language, the algorithm above tries to construct a mapping $\pi$ from colors of coloring $c_1$ to colors of coloring $c_2$. This mapping must be a valid permutation of colors, so we require that no two colors from $c_1$ map to a single color in $c_2$.
 
-Step $5$ of the algorithm \ref{alg:representatives-of-relabeling-automorphism-relation} consists of testing whether for some $\alpha \in \Aut(G)$, the algorithm \ref{alg:test-two-colorings-relabel-automorph-related} above returns True.
+Step $5$ of Algorithm~\ref{alg:representatives-of-relabeling-automorphism-relation} consists of testing whether for some $\alpha \in \Aut(G)$, Algorithm~\ref{alg:test-two-colorings-relabel-automorph-related} above returns True.
 
-As a remark, we would like to mention a possible improvement, which is to separate the colorings according to their \textit{ size sequences} as in definition \ref{def:size-sequence} and perform the algorithm \ref{alg:representatives-of-relabeling-automorphism-relation} for each part separately. This results in a lower number of overall comparisons, since without separating, we would compare using algorithm \ref{alg:test-two-colorings-relabel-automorph-related} also colorings, which have different size sequences, which are never in the same relabeling-automorphism class. Another advantage of this approach is that we can perform computation of each part in parallel as the results are independent of each other.
+As a remark, we would like to mention a possible improvement, which is to separate the colorings according to their \textit{ size sequences} as in Definition~\ref{def:size-sequence} and perform Algorithm~\ref{alg:representatives-of-relabeling-automorphism-relation} for each part separately. This results in a lower number of overall comparisons, since without separating, we would compare using Algorithm~\ref{alg:test-two-colorings-relabel-automorph-related} also colorings, which have different size sequences, which are never in the same relabeling-automorphism class. Another advantage of this approach is that we can perform computation of each part in parallel as the results are independent of each other.
 
 See next section for results we computed using the algorithm above.
 
 \section{Numbers of equivalence classes of relabeling-automorphism relation}\label{sec:nums-equiv-classes-relaut}
 
-In this section, we provide tables with values of $P^*_\rightleftharpoons(G,n)$, which we managed to compute. It is especially interesting to compare the results in the tables below with the results we obtained in tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}. We can see that the numbers have been reduced significantly.
+In this section, we provide tables with values of $P^*_\rightleftharpoons(G,n)$, which we managed to compute. It is especially interesting to compare the results in the tables below with the results we obtained in Tables~\ref{tab:platonic-chrompolys-exacts} and~\ref{tab:archimedean-chrompolys-exacts}. We can see that the numbers have been reduced significantly.
 
-Unfortunately, we also see that there are some entries in the tables left out, for which the algorithm took too long to get the resulting number. Note that we did not have this issue when computing tables \ref{tab:platonic-chrompolys-exacts} and \ref{tab:archimedean-chrompolys-exacts}, since we were already provided with the chromatic polynomial, which we could simply evaluate at certain points. By doing that, we avoided having to enumerate all colorings, which is the most computationally demanding part of the algorithm from Section~\ref{sec:equiv-classes-of-relaut}.
+Unfortunately, we also see that there are some entries in the tables left out, for which the algorithm took too long to get the resulting number. Note that we did not have this issue when computing Tables~\ref{tab:platonic-chrompolys-exacts} and~\ref{tab:archimedean-chrompolys-exacts}, since we were already provided with the chromatic polynomial, which we could simply evaluate at certain points. By doing that, we avoided having to enumerate all colorings, which is the most computationally demanding part of the algorithm from Section~\ref{sec:equiv-classes-of-relaut}.
 
 \begin{table}[H]
 \centering
