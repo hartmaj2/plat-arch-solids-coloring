@@ -231,7 +231,7 @@ The number $P^*(G,n)$ can be calculated using a recursive formula, with the base
 \end{claim}
 
 \begin{proof}
-    For the base case, where $n\le \chi(G)$, we have straightforwardly $P^*(G,\chi(G))=P(G,\chi(G))$, since there exist no colorings that use less than $\chi(G)$ colors.
+    For the base case, where $n\le \chi(G)$, we have $P^*(G,\chi(G))=P(G,\chi(G))$, since there exist no colorings that use less than $\chi(G)$ colors.
     
     For the recursive case, let $n>\chi(G)$ be the number for which we want to calculate $P^*(G,n)$. We proceed by taking the value $P(G,n)$ and noticing that this value also calculates colorings using $n-1$, $n-2$, \ldots, $\chi(G)$ colors that we want to exclude. For $i \in \{\chi(G),\ldots,n-1\}$, how many colorings using $i$ colors have we calculated? A naive approach would be to simply subtract the value $P^*(G,i)$. The problem with this approach is that when we are allowed to use $n$ colors and have to use exactly $i$ of them, we can choose the set of $i$ colors to use in $\binom{n}{i}$ ways. Note that indeed all of the $\binom{n}{i}$ colorings use at most $n$ colors and are pairwise different. Using this observation, we can see that the correct value to subtract is $\binom{n}{i}P^*(G,i)$ for each $i$.
 \end{proof}
