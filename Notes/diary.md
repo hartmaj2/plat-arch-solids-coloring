@@ -892,3 +892,7 @@
 ### 2025_05_05
 
 - fixed grammar and punctuation of chapters 0 to 2
+
+### 2025_06_10
+
+- preparation of presentation for the defense of the thesis on 20.6.
