@@ -87,7 +87,7 @@ To get a formula which computes the same number but instead uses a sum over the 
     \sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)} = \sum_{c \in C_n}\abs{\Stab(c)}    
 \end{equation}
 
-By combining equations \ref{eqn:orbits-by-stab} and \ref{eqn:two-way-counting}, we get the following result, which is a direct application of the famous \textit{Burnside's lemma} on our particular setting:
+By combining equations~\ref{eqn:orbits-by-stab} and~\ref{eqn:two-way-counting}, we get the following result, which is a direct application of the famous \textit{Burnside's lemma} on our particular setting:
 
 \begin{thm}[application of Burnside's lemma] \label{thm:burnside}
     For a graph $G$, $n \in \mathbb{N}$ and a set of its proper colorings $C_n$, we have: $$\abs{C_n/_\sim} = \frac{1}{\abs{\Aut(G)}}\cdot \sum_{\alpha \in \Aut(G)}\abs{\Fix(\alpha)}$$
@@ -103,12 +103,12 @@ We introduce a notion very similar to that of the chromatic polynomial of a grap
     %\forall k \in \mathbb{N} : 
     OP(G,n)=\abs{C_n/_\sim}$. We call this function \emph{orbital chromatic polynomial}, because 
     %Indeed 
-    in Theorem \ref{thm:count-orb-chrompoly}, we show that values of $OP(G,n)$ 
+    in Theorem~\ref{thm:count-orb-chrompoly}, we show that values of $OP(G,n)$ 
     %at every positive integer 
-    correspond to the right hand side of formula \ref{eqn:oribtal-chrompoly} which is a polynomial.
+    correspond to the right hand side of formula~\ref{eqn:oribtal-chrompoly} which is a polynomial.
 \end{defn}
 
-The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}.  Theorem \ref{thm:count-orb-chrompoly} is equivalent to the way the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
+The notion of orbital chromatic polynomial was first introduced by Cameron and Kayibi \cite{caka2007} in 2007 and was defined in more general terms for any subgroup of automorphisms $A \leqslant  \Aut(G)$. In the following section, some of the definitions are adaptations of similar definitions also from \cite{caka2007}.  Theorem~\ref{thm:count-orb-chrompoly} is equivalent to the way the orbital chromatic polynomial was defined in \cite{caka2007}. In this thesis, we provide a more detailed proof of the method outlined in \cite{caka2007}. 
 
 For a graph $G$, the orbital chromatic polynomial $OP(G,x)$ can be expressed in terms of the usual chromatic polynomial. But in order to do so, it is helpful to define a special kind of graph. We define it in terms of a given automorphism $a$ and call it the \textit{fixation graph}. Any coloring $c' \in C'_n$ of the fixation graph corresponds exactly to one coloring $c \in C_n$ of the original graph $G$ that is fixed by the automorphism $a$.
 
@@ -147,7 +147,7 @@ Now we are ready to state the following theorem:
 
 \begin{proof}
 
-    Let $G=(V,E)$ be a graph, and $n \in \mathbb{N}$. By the definition of orbital chromatic polynomial, we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting lemma \ref{thm:burnside} we have:
+    Let $G=(V,E)$ be a graph, and $n \in \mathbb{N}$. By the definition of orbital chromatic polynomial, we have $OP(G,n) = \abs{C_n /_{\sim}}$. So by the Burnside's orbit counting Lemma~\ref{thm:burnside} we have:
     $$OP(G,n) = \frac{1}{\abs{\Aut(G)}} \cdot \sum_{\alpha \in \Aut(G)} \abs{\Fix(\alpha)}$$
 
     In order to prove the equation above, it is enough to show that $\forall \alpha \in \Aut(G) : P(G/_{\alpha},n) = \abs{\Fix(\alpha)}$. Formally, we need to find a one-to-one correspondence between any coloring $c \in \Fix(\alpha)$ and a coloring $c' \in C'_n$ where $C'_n$ is the set of all colorings of $G /_\alpha = (V',E')$ using at most $n$ colors. It will be helpful, for $k = \abs{\Cycles(\alpha)}$, to denote $w_1, \ldots , w_k$ the new vertices corresponding to the cycles $O_1, \ldots ,O_k \in \Cycles(\alpha)$ that were identified in $G$ to obtain the resulting graph $G/_\alpha$.
@@ -164,7 +164,7 @@ Now we are ready to state the following theorem:
 
 \section{Calculating orbital chromatic polynomials}
 
-Theorem \ref{thm:count-orb-chrompoly} can be used to derive the following algorithm:
+Theorem~\ref{thm:count-orb-chrompoly} can be used to derive the following algorithm:
 
 \begin{algorithm}[H]
     \caption{Algorithm based on Theorem \ref{thm:count-orb-chrompoly} for computing the orbital chromatic polynomial $OP(G,x)$ of a given graph $G$} 
@@ -187,7 +187,7 @@ Theorem \ref{thm:count-orb-chrompoly} can be used to derive the following algori
     \label{alg:orb-chrompoly}
 \end{algorithm}
 
-An implementation of the algorithm \ref{alg:orb-chrompoly} above is provided in the appendix. This implementation was used to calculate the polynomials that can be seen in table \ref{tab:selected-orbital-chrom-polys} below.
+An implementation of Algorithm~\ref{alg:orb-chrompoly} above is provided in the Appendix. This implementation was used to calculate the polynomials that can be seen in Table~\ref{tab:selected-orbital-chrom-polys} below.
 
 \renewcommand{\arraystretch}{2.0}
 \begin{table}[H]
@@ -208,7 +208,7 @@ cube & $\frac{1}{48}x^{8} - \frac{1}{4}x^{7} + \frac{3}{2}x^{6} - \frac{16}{3}x^
 
 \section{Example on a graph of the octahedron}
 
-The difference between chromatic and orbital chromatic polynomials can be demonstrated on a graph of the octahedron $K_{3 \times 2}$. As can be seen in table \ref{tab:selected-chrom-polys} we have that: $$P(K_{3 \times 2},x) = x^{6} - 12x^{5} + 58x^{4} - 137x^{3} + 154x^{2} - 64x$$ whereas by \ref{tab:selected-orbital-chrom-polys} 
+The difference between chromatic and orbital chromatic polynomials can be demonstrated on a graph of the octahedron $K_{3 \times 2}$. As can be seen in Table \ref{tab:selected-chrom-polys} we have that: $$P(K_{3 \times 2},x) = x^{6} - 12x^{5} + 58x^{4} - 137x^{3} + 154x^{2} - 64x$$ whereas by Table~\ref{tab:selected-orbital-chrom-polys} 
  we have: $$OP(K_{3 \times 2},x) = \frac{1}{48}x^{6} - \frac{3}{16}x^{5} + \frac{37}{48}x^{4} - \frac{79}{48}x^{3} + \frac{41}{24}x^{2} - \frac{2}{3}x$$.
 
 Plugging in $3$ for $x$, we get the number of vertex colorings of the octahedron using at most $3$ colors. We get $P(K_{3 \times 2},3) = 6$. All these colorings can be enumerated using \textit{SageMath} \cite{sagemath} and its \verb|all_graph_colorings| function. In the figure below, we can see all of these $6$ colorings:
@@ -254,7 +254,7 @@ dodecahedron & $0$ & $7\,200$ & $\approx 10^{8}$ & $\approx 10^{11}$ & $\approx 
 \end{table}
 
 
-Note that we can apply the same method as in Section~\ref{sec:num-clrings-exactly-n-clrs} also to the orbital chromatic polynomial $OP(G,x)$, to arrive at the corresponding values $OP^*(G,n)$. Using formula \ref{eqn:exactly-n-colors}, the results from Table~\ref{tab:platonic-polys-evals} above yield the following table:
+Note that we can apply the same method as in Section~\ref{sec:num-clrings-exactly-n-clrs} also to the orbital chromatic polynomial $OP(G,x)$, to arrive at the corresponding values $OP^*(G,n)$. Using formula~\ref{eqn:exactly-n-colors}, the results from Table~\ref{tab:platonic-polys-evals} above yield the following table:
 
 \begin{table}[H]
 \centering

@@ -2,7 +2,7 @@
 
 \section{Computing chromatic numbers}
 
-The vertex, edge, and total chromatic numbers can be computed using the \textit{SageMath} \cite{sagemath} function \verb|chromatic_number| and the appropriate conversions from Chapter~\ref{chap:clring_conversions}. Computing tables~\ref{tab:platonic-chrom-nums} and~\ref{tab:archimedean-chrom-nums} took less than five seconds on a computer with the Apple M2 chip.
+The vertex, edge, and total chromatic numbers can be computed using the \textit{SageMath} \cite{sagemath} function \verb|chromatic_number| and the appropriate conversions from Chapter~\ref{chap:clring_conversions}. Computing Tables~\ref{tab:platonic-chrom-nums} and~\ref{tab:archimedean-chrom-nums} took less than five seconds on a computer with the Apple M2 chip.
 
 The following two tables provide an overview of vertex, edge, and total chromatic numbers, denoted by $\chi(G)$, $\chi'(G)$, and $\chi''(G)$ respectively, for the Platonic and Archimedean solids. Note that the edge chromatic number $\chi'(G)$ is also called the \textit{chromatic index}.
 
@@ -50,11 +50,11 @@ truncated icosidodecahedron & 2 & 3 & 4 \\
 
 Note that from the tables above, we see that indeed all the listed graphs have $\chi(G) \leq 4$. This is a consequence of the famous \textit{Four Color Theorem} \cite{appelhaken76} for planar graphs.
 
-Using the result of \textit{Brooks' theorem} \cite{brooks41}, we know that the only graph among those listed for which $\chi(G) = \Delta(G) + 1$ should be the tetrahedron. This is indeed true, as can be verified by consulting tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props}. 
+Using the result of \textit{Brooks' theorem} \cite{brooks41}, we know that the only graph among those listed for which $\chi(G) = \Delta(G) + 1$ should be the tetrahedron. This is indeed true, as can be verified by consulting Tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props}. 
 
 By \textit{Vizing's theorem} \cite{misra92}, for every graph $G$ with maximum degree $\Delta(G)$, we have $\Delta(G) \leq \chi'(G) \leq \Delta(G) + 1$. This implies two classes of graphs. Class one contains graphs for which $\chi'(G) = \Delta(G)$, and class two contains those for which $\chi'(G) = \Delta(G) + 1$.
 
-To determine which class the graphs of Platonic and Archimedean solids belong to, we compare the degrees at each vertex of the solids as shown in tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props} with their chromatic indices in the tables above. We observe that all the solids are of Vizing class one. Note that this is not the case for all planar graphs. In fact, there exist planar graphs with $\Delta(G)$ from 2 up to 5 such that they are class two.
+To determine which class the graphs of Platonic and Archimedean solids belong to, we compare the degrees at each vertex of the solids as shown in Tables~\ref{tab:platonic-basic-props} and~\ref{tab:archimedean-basic-props} with their chromatic indices in the tables above. We observe that all the solids are of Vizing class one. Note that this is not the case for all planar graphs. In fact, there exist planar graphs with $\Delta(G)$ from 2 up to 5 such that they are class two.
 
 Similarly, for total coloring, Vizing's conjecture \cite{vizing68} states that for all graphs, we have $\Delta(G) + 1 \leq \chi''(G) \leq \Delta(G) + 2$. If the conjecture holds, then it again implies two classes of graphs. In the case of Platonic and Archimedean solids, it turns out that all of them except the tetrahedron belong to class with $\chi''(G) = \Delta(G) + 1$.
 
@@ -123,23 +123,23 @@ In other words, the number of non-edges after the $\star$ operation always decre
 \end{claim}
 
 \begin{proof}
-    We base our proof on using the recursive algorithm for computing chromatic polynomials using the formula \ref{eqn:chrom_poly_nonedge} above. Let $G_{o_1,\ldots,o_n}$ be a graph resulting from applying the operations $o_1$ to $o_n$ in the corresponding order. By using Lemma \ref{lemma:indistinguishability} this graph is well defined, as the resulting graph is always the same irrespective of the particular choice of non-edges we apply the operations $o_1, \ldots,o_n$ to.
+    We base our proof on using the recursive algorithm for computing chromatic polynomials using formula~\ref{eqn:chrom_poly_nonedge} above. Let $G_{o_1,\ldots,o_n}$ be a graph resulting from applying the operations $o_1$ to $o_n$ in the corresponding order. By using Lemma~\ref{lemma:indistinguishability} this graph is well defined, as the resulting graph is always the same irrespective of the particular choice of non-edges we apply the operations $o_1, \ldots,o_n$ to.
 
-    In every step of the recursion, we divide the problem of calculating $P(G,x)$ into calculating the sum of $P(G_{\oplus,\bar{e}},x)$ and $P(G_{\star,\bar{e}},x)$. The recursion stops when there exists no non-edge $\bar{e} \in \bar{E}$ i.e. $G$ is a complete graph. By Lemma \ref{lemma:non-edge_set_size}, the recursion depth is equal to the number of non-edges of the original graph $K_{k\times 2}$ for every branch of the recursion. For $K_{k\times 2}$, this is equal to $k$. This means that each branch of the recursion ends with a graph $G_{o_1,\ldots,o_k}$ where $o_i \in \{\oplus,\star\}$. For a sequence of operations $s=o_1,\ldots,o_k$ let us denote $s_{\star} = |\{ i : o_i   =\star\}|$ i.e. the number of vertex identification operations performed throughout the sequence. Then we have $G_s = K_{2k-s_{\star}}$ because every $\star$ operation removes exactly one vertex from the original graph. Let $S$ be the set of all possible sequences of $k$ operations. Then for $G=K_{k\times 2}$, we have $P(G,x)= \sum_{s\in S}P(G_s,x)$. This follows from the fact that there is a one-to-one correspondence between branches of the recursion and sequences in $S$. We obtain the final formula by identifying all sequences with the same number of $\star$ operations, which produces the binomial coefficients in the final formula. 
+    In every step of the recursion, we divide the problem of calculating $P(G,x)$ into calculating the sum of $P(G_{\oplus,\bar{e}},x)$ and $P(G_{\star,\bar{e}},x)$. The recursion stops when there exists no non-edge $\bar{e} \in \bar{E}$ i.e. $G$ is a complete graph. By Lemma~\ref{lemma:non-edge_set_size}, the recursion depth is equal to the number of non-edges of the original graph $K_{k\times 2}$ for every branch of the recursion. For $K_{k\times 2}$, this is equal to $k$. This means that each branch of the recursion ends with a graph $G_{o_1,\ldots,o_k}$ where $o_i \in \{\oplus,\star\}$. For a sequence of operations $s=o_1,\ldots,o_k$ let us denote $s_{\star} = |\{ i : o_i   =\star\}|$ i.e. the number of vertex identification operations performed throughout the sequence. Then we have $G_s = K_{2k-s_{\star}}$ because every $\star$ operation removes exactly one vertex from the original graph. Let $S$ be the set of all possible sequences of $k$ operations. Then for $G=K_{k\times 2}$, we have $P(G,x)= \sum_{s\in S}P(G_s,x)$. This follows from the fact that there is a one-to-one correspondence between branches of the recursion and sequences in $S$. We obtain the final formula by identifying all sequences with the same number of $\star$ operations, which produces the binomial coefficients in the final formula. 
 \end{proof}
 
 
-A particular example that demonstrates the claim above is the graph of the octahedron $K_{2,2,2} = K_{3 \times 2}$. According to formula \ref{eqn:chromatic-pascal}, we have \[ P(K_{3 \times 2},x) = P(K_6,x)+3P(K_5,x) + 3P(K_4,x)+P(K_3,x)\] as illustrated in the figure below.
+A particular example that demonstrates the claim above is the graph of the octahedron $K_{2,2,2} = K_{3 \times 2}$. According to formula~\ref{eqn:chromatic-pascal}, we have \[ P(K_{3 \times 2},x) = P(K_6,x)+3P(K_5,x) + 3P(K_4,x)+P(K_3,x)\] as illustrated in the figure below.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Resources/Figs/octahedral_pascal_demo.pdf}
-    \caption{Demonstration of formula \ref{eqn:chromatic-pascal} on a graph of the octahedron. Arrows pointing left correspond to edge additions. Arrows pointing right correspond to non-neighbor vertex identifications. Note that for some arrows, the reader must also imagine the graph being rotated after applying the corresponding operation.}
+    \caption{Demonstration of formula~\ref{eqn:chromatic-pascal} on a graph of the octahedron. Arrows pointing left correspond to edge additions. Arrows pointing right correspond to non-neighbor vertex identifications. Note that for some arrows, the reader must also imagine the graph being rotated after applying the corresponding operation.}
 \end{figure}
 
 \section{Computing chromatic polynomials of Platonic and Archimedean solids}\label{sec:comp-chrompolys}
 
-Because the graphs of Platonic and Archimedean solids are all planar, it follows that they are also sparse. Thus, it is not practical to use the recursive formula \ref{eqn:chrom_poly_nonedge} which has complete graphs as the base case. We can instead simply reorganize the terms and use the following formula:
+Because the graphs of Platonic and Archimedean solids are all planar, it follows that they are also sparse. Thus, it is not practical to use the recursive formula~\ref{eqn:chrom_poly_nonedge} which has complete graphs as the base case. We can instead simply reorganize the terms and use the following formula:
 
 \begin{equation}\label{eqn:chrompoly-edge}
     P(G,x) = P(G - \{u,v\},x) - P(G \cdot \{u,v\},x)
@@ -151,7 +151,7 @@ Using the formula above, we can no longer use the complete graph as a base case.
 
 Note that we assume that the graph $G$ with which we started is connected. This assumption comes naturally, as we are dealing only with graphs of 3-dimensional solids. We also assume that in the recursive step we always pick an edge that lies on a cycle. In this way, we will never create a disconnected graph. In practice, finding such edge is done using DFS.
 
-An algorithm that uses formula \ref{eqn:chrompoly-edge} and the above assumptions is implemented in the \textit{SageMath} \cite{sagemath} software under the name \verb|chromatic_polynomial|. The time complexity of this algorithm is exponential in $E(G)$, the number of edges of the graph $G$ on input. Using this algorithm, it is possible to calculate chromatic polynomials of Platonic and Archimedean graphs with at most $48$ edges in the order of minutes.
+An algorithm that uses formula~\ref{eqn:chrompoly-edge} and the above assumptions is implemented in the \textit{SageMath} \cite{sagemath} software under the name \verb|chromatic_polynomial|. The time complexity of this algorithm is exponential in $E(G)$, the number of edges of the graph $G$ on input. Using this algorithm, it is possible to calculate chromatic polynomials of Platonic and Archimedean graphs with at most $48$ edges in the order of minutes.
 
 A more detailed description of how the algorithm is implemented can be found in a technical report by Read \cite{read1987chromatic}.
 
@@ -212,7 +212,7 @@ truncated octahedron & $2$ & $378\,978$ & $\approx 10^{10}$ & $\approx 10^{13}$ 
 \label{tab:archimedean-chrompolys-evals}
 \end{table}
 
-It is important to note that in Table \ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the number of colorings with exactly $n$ colors but with \textbf{at most} $n$ colors. This means that colorings that used only a proper subset of the $n$ available colors are counted as well. Sometimes, we would like to avoid counting these colorings. For this reason, we show a method to arrive at the number of colorings using \textbf{exactly} n colors, in the section below.
+It is important to note that in Table~\ref{tab:platonic-polys-evals} above, in column $n$, the entry does not correspond to the number of colorings with exactly $n$ colors but with \textbf{at most} $n$ colors. This means that colorings that used only a proper subset of the $n$ available colors are counted as well. Sometimes, we would like to avoid counting these colorings. For this reason, we show a method to arrive at the number of colorings using \textbf{exactly} n colors, in the section below.
 
 \section{Number of colorings using exactly n colors}
 \label{sec:num-clrings-exactly-n-clrs}
@@ -236,7 +236,7 @@ The number $P^*(G,n)$ can be calculated using a recursive formula, with the base
     For the recursive case, let $n>\chi(G)$ be the number for which we want to calculate $P^*(G,n)$. We proceed by taking the value $P(G,n)$ and noticing that this value also calculates colorings using $n-1$, $n-2$, \ldots, $\chi(G)$ colors that we want to exclude. For $i \in \{\chi(G),\ldots,n-1\}$, how many colorings using $i$ colors have we calculated? A naive approach would be to simply subtract the value $P^*(G,i)$. The problem with this approach is that when we are allowed to use $n$ colors and have to use exactly $i$ of them, we can choose the set of $i$ colors to use in $\binom{n}{i}$ ways. Note that indeed all of the $\binom{n}{i}$ colorings use at most $n$ colors and are pairwise different. Using this observation, we can see that the correct value to subtract is $\binom{n}{i}P^*(G,i)$ for each $i$.
 \end{proof}
 
-Now, with formula \ref{eqn:exactly-n-colors} above in hand, we can use results from tables \ref{tab:platonic-chrompolys-evals} and \ref{tab:archimedean-chrompolys-evals} to compute the numbers of colorings using \textbf{exactly} n colors. See tables below:
+Now, with formula~\ref{eqn:exactly-n-colors} above in hand, we can use results from Tables~\ref{tab:platonic-chrompolys-evals} and~\ref{tab:archimedean-chrompolys-evals} to compute the numbers of colorings using \textbf{exactly} n colors. See tables below:
 
 \begin{table}[H]
 \centering
@@ -301,5 +301,5 @@ The second limitation arises when we need to view the colorings as partitions in
 
 The problem of counting independent sets multiple times can be solved using the method described in Chapter~\ref{chap:num-partitions-into-indep-sets}. 
 
-Also, note that the two colorings in Figure \ref{fig:cube-clrings-same-partition} above are different up to symmetries, so the problems mentioned above are indeed different and must be handled separately.
+Also, note that the two colorings in Figure~\ref{fig:cube-clrings-same-partition} above are different up to symmetries, so the problems mentioned above are indeed different and must be handled separately.
 
