@@ -28,6 +28,20 @@ solution steps:
 - set origin using `org` and then the direction using `dir` on mac toolbar
   - tip: the direction set by `dir` is kept even if we choose a new point as origin using `org`
 
+- it is possible to add more angles using custom stylesheets
+
+
+### Custom stylesheets
+
+- create a file named `something.isy`
+- inside put:
+
+```
+<ipestyle name="something">
+<anglesize name="72 deg" value="72"/>
+</ipestyle>
+```
+
 ## Layers and views
 
 - layers allow for organization of different parts of the objects on the scene
