@@ -130,7 +130,7 @@ Given a graph $G=(V,E)$ and a sequence of disjoint subsets $S_1, \ldots , S_n \s
     For a graph $G=(V,E)$ and a subset of vertices $S \subseteq V$, we say that $S$ is \emph{independent} if $\forall x,y \in S : \{x,y\} \notin E$.
 \end{defn}
 
-In the following definition, we extend the definition of an undirected graph to also allow \textit{ loops}. By a loop $l \in \binom{E}{1}$, we mean an edge with both endpoints being the same vertex. For any graph $G$ containing a loop $l$, we set the chromatic polynomial $P(G,x) = 0$.
+In the following definition, we extend the definition of an undirected graph to also allow \textit{ loops}. By a loop $l \in V$, we mean an edge with both endpoints being the same vertex. For any graph $G$ containing a loop $l$, we set the chromatic polynomial $P(G,x) = 0$.
 
 \begin{defn}[fixation graph]
     Given a graph $G$ and an automorphism $\alpha \in \Aut(G)$. For $n = \abs{\Cycles(\alpha)}$, let $O_1, \ldots ,O_n \subseteq \Cycles(\alpha)$ be the sequence of cycles of $\alpha$ in arbitrary order. We define the \emph{fixation graph} $G /_{\alpha}$ as $G_{\star,O_1, \ldots , O_n}$ such that additionally, we add a loop at every new vertex $w_i$ if $O_i$ was not an independent set.
