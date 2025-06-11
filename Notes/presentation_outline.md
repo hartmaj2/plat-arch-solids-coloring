@@ -27,3 +27,26 @@
 ## Latex formulas to use
 
 For a graph $G$ the chromatic polynomial is denoted $P(G,x)$
+
+## Burnside's orbit counting lemma
+
+- $stab(c) = \{ \alpha \in Aut(G) , \alpha(c) = c\}$
+  - transformations that leave the coloring $c$ intact
+
+- transitiviity relation $\sim$ defined as $c_1 \sim c_2$ iff there exists automorphism $\alpha$ s.t. $c_1 = \alpha(c_2)$
+
+- orbit
+  - $[c]_\sim = \{b \in C, b \sim c\}$
+
+- what is the main idea behind Burnside's counting lemma
+  - count the sum of sizes of stabilizers over all colorings
+    - show stabilizer forms a subgroup (1. has identity, 2. closed under composition, 3. closed under inverse)
+  - use Lagrange's theorem
+    - for group $G$ and subgroup $H$ we have: $|H| \cdot k = |G|$ for some $k \in \mathbb{N}$
+
+- count $\sum_{c \in C}|Stab(c)| = \sum_{o \in C / G} \sum_{x \in o}|Stab(c)| = \sum_{o \in C / G} \sum_{x \in o}\frac{|G|}{|o|}$
+  - we first rewrote sum and then used Lagrange's theorem (orbit-stabilizer theorem)
+- $\sum_{o \in C / G} \sum_{x \in o}\frac{|G|}{|o|} = \sum_{o \in C / G}|G|=|G| \cdot |C/G|$ where $|C/G|$ is what we want
+
+- so the hard part is to prove that $|Stab(x)| \cdot |Orb(x)| = |G|$
+  - we have to show that $Stab(x)$ is a group and $Orb(x)$ is the transversal (i.e. its size is the amount of left cosets of $Stab(x)$)
