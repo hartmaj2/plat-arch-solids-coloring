@@ -87,13 +87,13 @@ In the following, let $\oplus$ denote the edge addition operation and let $\star
 
 Notice that for each $\bar{e} = \{u,v\} \in \bar{E}(G)$, we have $|\bar{E}(G_{\star,\bar{e}})| < |\bar{E}(G)|$. This is because $\{u,v\} \notin \bar{E}(G_{\star,\bar{e}})$, and also for the new vertex $w$, we have: 
 \[
-\{w,x\} \in \bar{E}(G_{\star,\bar{e}}) \implies \{u,x\} \in \bar{E}(G) \wedge \{v,x\} \in \bar{E}(G)
+\{w,x\} \in \bar{E}(G_{\star,\bar{e}}) \implies \{u,x\} \in \bar{E}(G) \vee \{v,x\} \in \bar{E}(G)
 \]
 In other words, the number of non-edges after the $\star$ operation always decreases.
 
 \begin{lemma}
 \label{lemma:non-edge_set_size}
-    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has a size of at most $n$. Then, for any non-edge $\bar{e} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that: 
+    Let $G = K_{k \times (<2)}$ be a complete $k$-partite graph where each independent set has a size of at most $2$. Then, for any non-edge $\bar{e} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that: 
     \[
     |\bar{E}(G_{o,\bar{e}})| = |\bar{E}(G)| - 1
     \]
@@ -105,7 +105,7 @@ In other words, the number of non-edges after the $\star$ operation always decre
 
 \begin{lemma}
 \label{lemma:indistinguishability}
-    Let $G = K_{k \times (<n)}$ be a complete $k$-partite graph where each independent set has a size of at most $n$. Then, for any two non-edges $\bar{e}, \bar{f} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that:
+    Let $G = K_{k \times (<2)}$ be a complete $k$-partite graph where each independent set has a size of at most $2$. Then, for any two non-edges $\bar{e}, \bar{f} \in \bar{E}(G)$ and $o \in \{\oplus,\star\}$, we have that:
     \[
     G_{o,\bar{e}} = G_{o,\bar{f}}
     \]
