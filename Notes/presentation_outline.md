@@ -1,5 +1,21 @@
 # Outline of topics I want to cover in the presentation
 
+## TODO
+
+- [x] remove final slide
+- [ ] add coloring types slide
+  - vertex coloring, total coloring, conversion between colorings
+- [ ] remove transition slides
+- [ ] merge complete k-partite graphs with partition size 2
+  - just have slide with the formula as the very first
+  - remove latex text above the formula
+- [ ] merge computation slide
+  - pictures under text (keep the same ones, two next to each other)
+- [ ] counting partitions into independent sets
+  - with vs without rotations
+- [ ] fix sharpness of octahedron screenshot
+- [ ] -||- pascal triangle
+
 ## Introduction
 
 - what are the objects that my thesis investigates?
