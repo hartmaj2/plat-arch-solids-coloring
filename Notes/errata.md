@@ -14,6 +14,31 @@
 
 ## Found by oponent
 
+### Copy of oponent statements
+
+Některé konkrétní připomínky:
+- str. 8: Mezi archimedovská tělesa nejsou zahrnuta prismata a antiprismata!
+- str. 9 (nebo i jinde): Bylo by vhodné zmínit, že 3-souvilé rov. grafy mají jistým způsobem
+unikátní nakreslení v rovině.
+- str. 12, Def. 11: Je zaveden chromatický polynom jako funkce. To, že tato funkce je
+polynomem ale není ještě několik stran vůbec patrné.
+- str. 15: Koncept Magic labelings je sice zajímavý, ale zde je poměrně vytržený z
+kontextu a pro zbytek práce není třeba. Jaký byl důvod jeho uvádění?
+- str. 18: V souvislosti se stěnovým barvením a dualitou by bylo možné zmínit, jak funguje
+v rámci platonských a archimedovských těles.
+- str. 21: Jsou zmíněny Brooksova a Vizingova věta, které však nejsou vůbec formulovány
+jako tvrzení.
+- str. 21, Eq. (4.1): Bylo by vhodné formulovat jako Lemma s důkazem.
+- str. 22 (23): Sekce 4.3 nesouvisí se zbytkem práce. Bylo by vhodné ji nějak uvést s
+logicky propojit.
+- str. 22: V lematech 1 a 2 je třeba nahradit obecné n hodnotou 2.
+- str. 23: Prázdné místo na konci stránky je typografickou chybou. V menší míře též na str.
+33, 35, 43.
+- str. 31: Není ukázáno, že Orbital chromatic pol. je vůbec polynom. Plyne to z Věty 6,
+není to ale vůbec zmíněno.
+- str. 40 a 41: Přišlo by mi zajímavé porovnání výsledků Cl. 7 a 8 v jedné tabulce s
+patříčným komentářem.
+
 ### (1) Missing precise definition of Archimedean solid
 
 - archimedean solid
