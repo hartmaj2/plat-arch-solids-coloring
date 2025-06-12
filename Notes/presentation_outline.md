@@ -10,9 +10,9 @@
   - remove latex text above the formula
 - [x] -||- pascal triangle
 - [x] fix sharpness of octahedron screenshot
-- [ ] merge computation slide
+- [x] merge computation slide
   - pictures under text (keep the same ones, two next to each other)
-- [ ] change picture on the problem slide
+- [x] change picture on the problem slide
   - the second coloring should not be possible to be received just by relabeling but relabeling + rotation
 - [ ] counting partitions into independent sets
   - with vs without rotations
