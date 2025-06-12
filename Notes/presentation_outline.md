@@ -3,18 +3,20 @@
 ## TODO
 
 - [x] remove final slide
-- [ ] add coloring types slide
+- [x] add coloring types slide
   - vertex coloring, total coloring, conversion between colorings
-- [ ] remove transition slides
-- [ ] merge complete k-partite graphs with partition size 2
+- [x] merge complete k-partite graphs with partition size 2
   - just have slide with the formula as the very first
   - remove latex text above the formula
+- [x] -||- pascal triangle
+- [x] fix sharpness of octahedron screenshot
 - [ ] merge computation slide
   - pictures under text (keep the same ones, two next to each other)
+- [ ] change picture on the problem slide
+  - the second coloring should not be possible to be received just by relabeling but relabeling + rotation
 - [ ] counting partitions into independent sets
   - with vs without rotations
-- [ ] fix sharpness of octahedron screenshot
-- [ ] -||- pascal triangle
+- [ ] remove transition slides
 
 ## Introduction
 
