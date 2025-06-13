@@ -14,9 +14,15 @@
   - pictures under text (keep the same ones, two next to each other)
 - [x] change picture on the problem slide
   - the second coloring should not be possible to be received just by relabeling but relabeling + rotation
-- [ ] counting partitions into independent sets
+- [x] counting partitions into independent sets
   - with vs without rotations
-- [ ] remove transition slides
+- [x] remove transition slides
+
+- [x] arrows why structurally same on slide 16
+- [x] format tables
+  - align column sizes
+  - mark only some entries red
+- [x] merge slides 18 and 19
 
 ## Introduction
 
