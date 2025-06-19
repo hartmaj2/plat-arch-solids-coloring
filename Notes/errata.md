@@ -45,6 +45,7 @@ patříčným komentářem.
   - all faces congruent to some regular (same sized sides and angles)  convex polygon
   - all vertices are identical (for each pair of vertices $v_1, v_2$ exists an automorphism that maps $v_1$ to $v_2$)
   - not a Platonic solid
+  - do not form infinite families like prisms and antiprisms
 
 ### (2) ???
 
