@@ -311,7 +311,7 @@
 
 ### 2025_03_08
 
-- tried to find out some pattern in how chromatic poly of cube can be expressed as chromatic poly of trees using the recursive rool (contracting or removing an edge)
+- tried to find out some pattern in how chromatic poly of cube can be expressed as chromatic poly of trees using the recursive rule (contracting or removing an edge)
   - found out, that contracting an edge e can remove multiple other edges; removes 1 + (# of tricycles that e lies on) edges
   - the point above holds because we use the fact that parallel edges can be removed
 
@@ -623,7 +623,7 @@
 
 ### 2025_04_08
 
-- implemented function to evaluate polynomial function of platonci solids at points 2 ... k
+- implemented function to evaluate polynomial function of platonic solids at points 2 ... k
 
 - implemented a function that creates dict of all the evaluations and prints them somewhat nicely
   - big numbers are written as >= 10^k where k is some number
