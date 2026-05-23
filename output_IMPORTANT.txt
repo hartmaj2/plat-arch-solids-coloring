@@ -19,6 +19,14 @@ NUM_CLRS=7
 num_classes=113
 time=5.19e+02
 
+### !!!Using Claude generated program!!! ###
+-------INPUT--------
+SOLID_NAME='icosahedron'
+NUM_CLRS=7
+-------OUTPUT-------
+num_classes=113
+time=4.035
+
 ####################
 
 -------INPUT--------
@@ -28,10 +36,13 @@ NUM_CLRS=8
 num_classes=91
 time=19.6
 
-
-
-
-
+### !!!Using Claude generated program!!! ###
+-------INPUT--------
+SOLID_NAME='dodecahedron'
+NUM_CLRS=4
+-------OUTPUT-------
+num_classes=59010
+time=171.001
 
 
 ####################
