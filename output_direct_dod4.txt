@@ -1,0 +1,6 @@
+-------INPUT--------
+SOLID_NAME='dodecahedron'
+NUM_CLRS=4
+-------OUTPUT-------
+num_classes=59010
+time=171.001
