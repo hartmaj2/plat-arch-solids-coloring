@@ -44,10 +44,34 @@ NUM_CLRS=4
 num_classes=59010
 time=171.001
 
+### USING C++ ###
+-------INPUT--------
+SOLID_NAME='dodecahedron'
+NUM_CLRS=4
+-------OUTPUT-------
+num_classes=59010
+time=2.26068s
+
+### USING C++ ###
+-------INPUT--------
+SOLID_NAME='dodecahedron'
+NUM_CLRS=5
+-------OUTPUT-------
+num_classes=7767375
+time=407.947s
+
 
 ####################
 ARCHIMEDEAN
 ####################
+
+### USING C++ ###
+-------INPUT--------
+SOLID_NAME='truncated cube'
+NUM_CLRS=4
+-------OUTPUT-------
+num_classes=3040281
+time=43.7343s
 
 -------INPUT--------
 SOLID_NAME='truncated tetrahedron'
